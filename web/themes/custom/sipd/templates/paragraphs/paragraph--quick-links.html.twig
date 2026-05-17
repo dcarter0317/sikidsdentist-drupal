@@ -1,0 +1,21 @@
+{#
+/**
+ * @file paragraph--quick-links.html.twig
+ *
+ * Bridge template for the 'quick_links' paragraph bundle.
+ * Passes the rendered Quick Link Item children to the Quick Links SDC.
+ *
+ * Fields:
+ *   - field_ql_items   Entity reference revisions (quick_link_item paragraphs, unlimited)
+ */
+#}
+
+{%- set items = null -%}
+
+{% if paragraph.field_ql_items is defined and not paragraph.field_ql_items.isEmpty %}
+  {%- set items = content.field_ql_items -%}
+{% endif %}
+
+{% include 'sipd:quick-links' with {
+  items: items,
+} only %}

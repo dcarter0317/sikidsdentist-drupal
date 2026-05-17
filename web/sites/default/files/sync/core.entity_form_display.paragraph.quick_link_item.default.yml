@@ -1,0 +1,42 @@
+uuid: ff6dc5b7-3c46-4204-bdde-5b6fdffa7cb7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.quick_link_item.field_ql_icon
+    - field.field.paragraph.quick_link_item.field_ql_link
+    - paragraphs.paragraphs_type.quick_link_item
+  module:
+    - link
+id: paragraph.quick_link_item.default
+targetEntityType: paragraph
+bundle: quick_link_item
+mode: default
+content:
+  admin_title:
+    type: string_textfield
+    weight: -10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_ql_icon:
+    type: string_textfield
+    weight: -9
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_ql_link:
+    type: link_default
+    weight: -8
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -11,5 +11,5 @@ id: featured_post
 label: 'Featured Post'
 icon_uuid: null
 icon_default: null
-description: ''
+description: 'Featured Post component, used the highlight a post, article or page.'
 behavior_plugins: {  }

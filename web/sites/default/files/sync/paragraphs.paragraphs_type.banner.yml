@@ -11,5 +11,5 @@ id: banner
 label: Banner
 icon_uuid: null
 icon_default: null
-description: ''
+description: 'Page Banner component, used for in page banners'
 behavior_plugins: {  }

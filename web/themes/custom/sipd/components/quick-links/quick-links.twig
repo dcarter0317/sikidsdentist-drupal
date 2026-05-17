@@ -1,0 +1,16 @@
+{#
+/**
+ * @file quick-links.twig
+ *
+ * Quick Links Single Directory Component.
+ *
+ * Slots:
+ *   - items — pre-rendered Quick Link Item paragraph instances
+ */
+#}
+
+<article class="quick-link__container">
+  {% if items %}
+    {{ items }}
+  {% endif %}
+</article>

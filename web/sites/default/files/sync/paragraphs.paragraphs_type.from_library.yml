@@ -2,14 +2,19 @@ uuid: 9c3ff4b0-f6a6-4ccb-a376-d44990310455
 langcode: en
 status: true
 dependencies:
+  module:
+    - paragraph_block
   enforced:
     module:
       - paragraphs_library
+third_party_settings:
+  paragraph_block:
+    status: false
 _core:
   default_config_hash: RGSkW7xbQQkzNrGunBWMSKS6lacu7KsgZjVWGVUF0xY
 id: from_library
 label: 'From library'
 icon_uuid: null
 icon_default: null
-description: null
+description: 'Looks up components from a component library'
 behavior_plugins: {  }

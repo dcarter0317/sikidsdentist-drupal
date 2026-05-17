@@ -1,0 +1,11 @@
+name: Quick Links
+description: "A row of icon-and-label navigation links. Each item shows a circular icon overlapping a bordered text bar. Designed for use with the Paragraphs module via nested Quick Link Item paragraphs."
+group: "Paragraphs Components"
+
+props:
+  type: object
+  properties:
+    items:
+      type: string
+      title: "Quick Link Items"
+      description: "Pre-rendered Quick Link Item paragraph instances. Passed from content[field_ql_items] in the bridge template."

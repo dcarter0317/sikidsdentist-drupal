@@ -1,4 +1,4 @@
-uuid: 72d0b61a-0c01-4f67-b5ab-3a462e858051
+uuid: a9df6d89-60ec-4c07-85cb-7137f6777d3a
 langcode: en
 status: true
 dependencies:
@@ -7,9 +7,9 @@ dependencies:
 third_party_settings:
   paragraph_block:
     status: false
-id: page_hero
-label: 'Page Hero'
+id: quick_link_item
+label: 'Quick Link Item'
 icon_uuid: null
 icon_default: null
-description: 'Hero component for all pages and articles.'
+description: 'Quick Link Item, for Quick Links'
 behavior_plugins: {  }

@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'drupal/recommended-project',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '29d3c10ad27b201619649e26922d52d875318df1',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -442,6 +442,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'drupal/entity_usage' => array(
+            'pretty_version' => '2.0.0-beta29',
+            'version' => '2.0.0.0-beta29',
+            'reference' => '8.x-2.0-beta29',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../web/modules/contrib/entity_usage',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'drupal/ept_columns' => array(
             'pretty_version' => '1.4.6',
             'version' => '1.4.6.0',
@@ -614,9 +623,9 @@
             'dev_requirement' => false,
         ),
         'drupal/recommended-project' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '29d3c10ad27b201619649e26922d52d875318df1',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

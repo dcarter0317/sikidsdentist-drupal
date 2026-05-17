@@ -1,0 +1,21 @@
+uuid: 9fa75730-dafe-48b2-96e1-b720e1d3f8f5
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_ql_icon
+field_name: field_ql_icon
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

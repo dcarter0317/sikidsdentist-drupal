@@ -1,0 +1,9 @@
+name: 'Quick Links Paragraph'
+description: 'Provides the Quick Links and Quick Link Item paragraph types for use with the Quick Links SDC component.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:link
+  - drupal:text

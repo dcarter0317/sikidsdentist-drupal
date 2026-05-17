@@ -1,0 +1,19 @@
+uuid: 9f82edb2-bfcb-4304-93c0-b15ebb0ed4f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ql_icon
+    - paragraphs.paragraphs_type.quick_link_item
+id: paragraph.quick_link_item.field_ql_icon
+field_name: field_ql_icon
+entity_type: paragraph
+bundle: quick_link_item
+label: 'Icon Class'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

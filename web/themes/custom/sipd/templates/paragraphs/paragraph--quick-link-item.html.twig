@@ -1,0 +1,23 @@
+{#
+/**
+ * @file paragraph--quick-link-item.html.twig
+ *
+ * Bridge template for the 'quick_link_item' paragraph bundle.
+ * Renders a single icon-and-label navigation link.
+ *
+ * Fields:
+ *   - field_ql_icon   Text (plain) — Font Awesome class string, e.g. "fa-solid fa-user-group"
+ *   - field_ql_link   Link — title (label) + URL
+ */
+#}
+
+{%- set icon_class = paragraph.field_ql_icon.value|default('fa-solid fa-link') -%}
+{%- set link_label = paragraph.field_ql_link.title|default('') -%}
+{%- set link_url = paragraph.field_ql_link.url ? paragraph.field_ql_link.url.toString() : '#' -%}
+
+<div class="quick-link">
+  <a href="{{ link_url }}" class="quick-link__link">
+    <span class="quick-link__icon"><i class="{{ icon_class }}"></i></span>
+    <span class="quick-link__text">{{ link_label }}</span>
+  </a>
+</div>
