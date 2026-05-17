@@ -1,0 +1,22 @@
+uuid: 50f5da38-e97e-4305-b251-82b773c07382
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ph_description
+    - paragraphs.paragraphs_type.page_hero
+  module:
+    - text
+id: paragraph.page_hero.field_ph_description
+field_name: field_ph_description
+entity_type: paragraph
+bundle: page_hero
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

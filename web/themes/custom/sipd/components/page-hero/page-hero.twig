@@ -1,0 +1,60 @@
+{#
+/**
+ * @file page-hero.twig
+ *
+ * Page Hero Single Directory Component.
+ *
+ * Props (defined in page-hero.component.yml):
+ *   - banner_label (string) - short label in the teal banner
+ *   - title (string, required) - main heading
+ *   - description (string) - supporting paragraph
+ *   - cta_label (string) - call-to-action link text
+ *   - cta_url (string) - call-to-action link URL
+ *   - image_url (string) - hero image URL
+ *   - image_alt (string) - hero image alt text
+ */
+#}
+
+<section class="page-hero">
+  <div class="page-hero__content">
+    <div class="page-hero__card">
+
+      {% if image_url %}
+        <div class="page-hero__card__image">
+          <img
+            src="{{ image_url }}"
+            alt="{{ image_alt|default('') }}"
+            loading="eager"
+            fetchpriority="high"
+          >
+        </div>
+      {% endif %}
+
+      <div class="page-hero__card__text">
+
+        {% if banner_label %}
+          <p class="page-hero__banner slide-in">{{ banner_label }}</p>
+        {% endif %}
+
+        <h1 class="page-hero__title">{{ title }}</h1>
+
+        {% if description %}
+          <div class="page-hero__description">{{ description|raw }}</div>
+        {% endif %}
+
+        {% if cta_label and cta_url %}
+          <div class="page-hero__cta">
+            <a
+              href="{{ cta_url }}"
+              {% if cta_url starts with 'http' %}
+                target="_blank"
+                rel="noopener noreferrer"
+              {% endif %}
+            >{{ cta_label }}</a>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>

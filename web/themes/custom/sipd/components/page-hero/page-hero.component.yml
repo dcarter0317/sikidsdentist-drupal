@@ -1,0 +1,37 @@
+name: Page Hero
+description: "A full-width page hero with an overlaid text card containing a banner label, title, description, and CTA link alongside a large image. Designed for use with the Paragraphs module."
+group: "Paragraphs Components"
+
+props:
+  type: object
+  required:
+    - title
+  properties:
+    banner_label:
+      type: string
+      title: "Banner Label"
+      description: "Short uppercase label in the teal banner. Maps to field_ph_banner_label on the paragraph."
+    title:
+      type: string
+      title: "Title"
+      description: "The main heading displayed on the hero card. Maps to field_ph_title on the paragraph."
+    description:
+      type: string
+      title: "Description"
+      description: "Rendered HTML from the formatted text field. Maps to field_ph_description on the paragraph. Pass pre-rendered markup."
+    cta_label:
+      type: string
+      title: "CTA Label"
+      description: "Text label for the call-to-action link. Maps to field_ph_cta title on the paragraph."
+    cta_url:
+      type: string
+      title: "CTA URL"
+      description: "URL the call-to-action link points to. Maps to field_ph_cta URL on the paragraph."
+    image_url:
+      type: string
+      title: "Image URL"
+      description: "Resolved file URL from the media entity. Maps to field_ph_image on the paragraph (Media reference)."
+    image_alt:
+      type: string
+      title: "Image Alt Text"
+      description: "Alt text from the media image field."

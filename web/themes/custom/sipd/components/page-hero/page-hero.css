@@ -1,0 +1,119 @@
+/**
+ * @file page-hero.css
+ *
+ * Styles for the Page Hero SDC.
+ * Scoped to .page-hero to avoid global bleed.
+ */
+
+.page-hero {
+  --fw-hero-title: 400;
+  --page-hero-height: 500px;
+  --page-hero-card-text-width: 33%;
+}
+
+.slide-in {
+  animation: slideIn 650ms ease-out forwards, fadeIn 1400ms ease-out forwards;
+}
+
+.page-hero__card {
+  position: relative;
+}
+
+@media (width < 900px) {
+  .page-hero__card {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.page-hero__card__image img {
+  display: block;
+  width: 100%;
+  height: var(--page-hero-height);
+  object-fit: cover;
+  aspect-ratio: 21 / 9;
+  object-position: 90% 0%;
+}
+
+@media (width < 900px) {
+  .page-hero__card__image img {
+    height: 200px;
+  }
+}
+
+.page-hero__card__text {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  background: var(--clr-bg-3);
+  color: var(--clr-text-2);
+  width: var(--page-hero-card-text-width);
+  z-index: 50;
+}
+
+@media (width < 900px) {
+  .page-hero__card__text {
+    position: static;
+    width: 100%;
+    order: -1;
+  }
+}
+
+.page-hero__banner {
+  background: var(--clr-bg-4);
+  text-transform: uppercase;
+  padding-block: 0.7rem;
+  padding-inline: 1rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  width: fit-content;
+  font-weight: var(--fw-light);
+  font-size: 1.6rem;
+  line-height: 1;
+  position: relative;
+}
+
+.page-hero__title {
+  font-weight: var(--fw-hero-title);
+  line-height: 1.1;
+  font-family: inherit;
+  color: inherit;
+  padding: 0 3rem 0 1.5rem;
+  margin-block: 0;
+}
+
+.page-hero__description {
+  margin-top: 8px;
+  padding: 0 3rem 0 1.5rem;
+  font-weight: 300;
+  font-size: var(--fs-caption);
+}
+
+.page-hero__cta {
+  margin-top: 1rem;
+}
+
+.page-hero__cta a,
+.page-hero__cta a:link,
+.page-hero__cta a:visited {
+  display: inline-block;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  padding: 0.75em 1.2em;
+  text-decoration: none;
+  font-weight: var(--fw-bold);
+  background: var(--clr-bg-4);
+  color: var(--card-link-color);
+  margin-left: 1.5rem;
+  width: fit-content;
+}
+
+@keyframes slideIn {
+  0% { left: -100%; }
+  100% { left: 0%; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

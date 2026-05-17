@@ -71,6 +71,7 @@ module:
   node: 0
   options: 0
   page_cache: 0
+  page_hero_paragraph: 0
   paragraph_block: 0
   paragraph_blocks: 0
   paragraphs_library: 0
