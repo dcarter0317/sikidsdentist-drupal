@@ -1,0 +1,19 @@
+uuid: c5f92f60-a8e9-4de7-9cfa-f6b2c014fa6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_aria_label
+    - paragraphs.paragraphs_type.slider
+id: paragraph.slider.field_aria_label
+field_name: field_aria_label
+entity_type: paragraph
+bundle: slider
+label: 'Aria Label'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

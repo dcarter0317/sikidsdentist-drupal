@@ -1,0 +1,23 @@
+uuid: ad2d7290-5899-48e2-87eb-154df680369d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.page
+  module:
+    - node
+id: breadcrumb_like_pathauto
+label: 'Breadcrumb Like PathAuto'
+type: 'canonical_entities:node'
+pattern: '/[node:menu-link:parent:url:path]/[node:title]'
+selection_criteria:
+  550e3e35-6b92-43dc-929c-6b575dfc68d3:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      page: page
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -1,0 +1,10 @@
+name: 'Accordion List Paragraph'
+description: 'Provides the Accordion List paragraph type for displaying nested Accordion Item paragraphs.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:text
+  - drupal:options
+  - drupal:entity_reference_revisions

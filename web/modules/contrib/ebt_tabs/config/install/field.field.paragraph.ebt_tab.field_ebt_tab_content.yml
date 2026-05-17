@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ebt_tab_content
+    - paragraphs.paragraphs_type.ebt_tab
+  module:
+    - options
+id: paragraph.ebt_tab.field_ebt_tab_content
+field_name: field_ebt_tab_content
+entity_type: paragraph
+bundle: ebt_tab
+label: 'Tab content'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

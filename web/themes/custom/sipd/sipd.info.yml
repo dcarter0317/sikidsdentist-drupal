@@ -1,0 +1,18 @@
+name: sipd
+type: theme
+base theme: stable9
+description: A custom theme for Staten Island Pediatric Dentistry
+package: Custom
+core_version_requirement: ^10 || ^11
+libraries:
+  - sipd/global
+regions:
+  primary_menu: 'Primary menu'
+  breadcrumb: 'Breadcrumb'
+  header: 'Header'
+  content: 'Content'
+  footer: 'Footer'
+components:
+  namespaces:
+    sipd:
+      - components

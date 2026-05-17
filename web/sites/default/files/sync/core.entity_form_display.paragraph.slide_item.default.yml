@@ -1,0 +1,68 @@
+uuid: 2b475e5f-9458-4c03-84d6-52b3d4781ab5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.slide_item.field_slide_alignment
+    - field.field.paragraph.slide_item.field_slide_body
+    - field.field.paragraph.slide_item.field_slide_cta
+    - field.field.paragraph.slide_item.field_slide_heading
+    - field.field.paragraph.slide_item.field_slide_image
+    - paragraphs.paragraphs_type.slide_item
+  module:
+    - link
+    - media_library
+    - text
+id: paragraph.slide_item.default
+targetEntityType: paragraph
+bundle: slide_item
+mode: default
+content:
+  admin_title:
+    type: string_textfield
+    weight: -10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_slide_alignment:
+    type: options_select
+    weight: -5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_slide_body:
+    type: text_textarea
+    weight: -7
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_slide_cta:
+    type: link_default
+    weight: -6
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_slide_heading:
+    type: string_textfield
+    weight: -8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_slide_image:
+    type: media_library_widget
+    weight: -9
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

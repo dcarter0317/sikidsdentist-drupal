@@ -1,0 +1,40 @@
+{#
+/**
+ * Custom block template for Icon Link custom block type.
+ */
+#}
+
+<div{{ attributes.addClass('block', 'block-icon-link') }}>
+  {{ title_prefix }}
+
+  {% if label and configuration.label_display %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+
+  {{ title_suffix }}
+
+  {% set icon_link_block = content['#block_content'] ?? null %}
+
+  {% set link_url = icon_link_block.field_icon_link_url.value ?? '' %}
+  {% set link_text = icon_link_block.field_icon_link_text.value ?? '' %}
+  {% set icon_class = icon_link_block.field_icon_link_class.value ?? 'fa-solid fa-user-group' %}
+
+  {% if link_url and link_text %}
+    {% include 'sipd:icon-link' with {
+      url: link_url,
+      text: link_text,
+      icon_class: icon_class
+    } only %}
+  {% elseif in_preview %}
+    <div class="icon-link icon-link--preview">
+      <a href="#" class="icon-link__link">
+        <span class="icon-link__icon" aria-hidden="true">
+          <i class="fa-solid fa-circle-info"></i>
+        </span>
+        <span class="icon-link__text">
+          Icon Link preview
+        </span>
+      </a>
+    </div>
+  {% endif %}
+</div>

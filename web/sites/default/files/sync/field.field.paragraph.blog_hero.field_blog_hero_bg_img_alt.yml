@@ -1,0 +1,19 @@
+uuid: 455858de-6625-4a68-81c2-26c8f4c3f785
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_blog_hero_bg_img_alt
+    - paragraphs.paragraphs_type.blog_hero
+id: paragraph.blog_hero.field_blog_hero_bg_img_alt
+field_name: field_blog_hero_bg_img_alt
+entity_type: paragraph
+bundle: blog_hero
+label: 'Blog Hero Background Image Alt'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

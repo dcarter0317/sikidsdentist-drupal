@@ -1,0 +1,5 @@
+ept_core.settings:
+  title: 'Extra Paragraph Types (EPT) settings'
+  description: 'Breakpoints, containers width, colors and other settings for EPT paragraphs'
+  parent: system.admin_config_content
+  route_name: ept_core.settings

@@ -1,0 +1,32 @@
+name: Card List
+description: "Container component that lays out nested Card Item paragraphs."
+group: "Paragraphs Components"
+
+props:
+  type: object
+  properties:
+    heading:
+      type: string
+      title: "Heading"
+      description: "Optional heading shown above the card list."
+
+slots:
+  items:
+    title: "Card Items"
+    description: "Rendered nested Card Item paragraph items."
+
+variants:
+  columns:
+    title: "Columns"
+    description: "Controls how many columns are shown on desktop."
+    default: columns-3
+    options:
+      columns-2:
+        title: "2 columns"
+        description: "Two cards per row on desktop."
+      columns-3:
+        title: "3 columns"
+        description: "Three cards per row on desktop."
+      columns-4:
+        title: "4 columns"
+        description: "Four cards per row on desktop."

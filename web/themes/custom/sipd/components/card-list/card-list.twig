@@ -1,0 +1,32 @@
+{#
+/**
+ * @file card-list.twig
+ *
+ * Card List Single Directory Component.
+ *
+ * Props:
+ * - heading
+ *
+ * Slots:
+ * - items
+ */
+#}
+
+{%
+  set card_list_classes = [
+    'card-list',
+    variant_class|default(''),
+  ]
+%}
+
+<section class="{{ card_list_classes|join(' ')|trim }}">
+  {% if heading %}
+    <h2 class="card-list__heading">{{ heading }}</h2>
+  {% endif %}
+
+  {% if items %}
+    <div class="card-list__grid">
+      {{ items }}
+    </div>
+  {% endif %}
+</section>

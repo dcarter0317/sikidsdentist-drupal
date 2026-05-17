@@ -1,0 +1,60 @@
+/**
+ * @file grid-container.css
+ *
+ * Styles for the Grid Container SDC.
+ * Owns all layout — grid-item cells are unsized by their own component.
+ */
+
+.grid-container {
+  --grid-gap: 2rem;
+  --grid-min-col-width: 300px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-min-col-width), 1fr));
+  grid-template-rows: auto;
+  gap: var(--grid-gap);
+}
+
+.grid-container__heading {
+  grid-column: 1 / -1;
+  font-family: var(--ff-heading, 'Poppins', Arial, sans-serif);
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  color: var(--clr-text-3, #00334f);
+  margin-block-end: 0.5rem;
+  line-height: 1.2;
+}
+
+/* ── Named column variants ────────────────────────────────── */
+
+.grid-container--columns-2 {
+  grid-template-columns: repeat(2, minmax(var(--grid-min-col-width), 1fr));
+}
+
+.grid-container--columns-3 {
+  grid-template-columns: repeat(3, minmax(var(--grid-min-col-width), 1fr));
+}
+
+.grid-container--columns-4 {
+  grid-template-columns: repeat(4, minmax(var(--grid-min-col-width), 1fr));
+}
+
+.grid-container--columns-5 {
+  grid-template-columns: repeat(5, minmax(var(--grid-min-col-width), 1fr));
+}
+
+.grid-container--columns-6 {
+  grid-template-columns: repeat(6, minmax(var(--grid-min-col-width), 1fr));
+}
+
+/* ── Mobile — all variants collapse to 1 column ──────────── */
+
+@media (width < 900px) {
+  .grid-container,
+  .grid-container--columns-2,
+  .grid-container--columns-3,
+  .grid-container--columns-4,
+  .grid-container--columns-5,
+  .grid-container--columns-6 {
+    grid-template-columns: 1fr;
+  }
+}

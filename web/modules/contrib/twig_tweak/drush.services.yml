@@ -1,0 +1,23 @@
+services:
+  twig_tweak.debug.signature_formatter:
+    class: Drupal\twig_tweak\Command\SignatureFormatter
+  twig_tweak.debug.functions:
+    class: Drupal\twig_tweak\Command\DebugFunctionsCommand
+    arguments: ['@twig', '@twig_tweak.debug.signature_formatter']
+    tags:
+      - { name: console.command }
+  twig_tweak.debug.filters:
+    class: Drupal\twig_tweak\Command\DebugFiltersCommand
+    arguments: ['@twig', '@twig_tweak.debug.signature_formatter']
+    tags:
+      - { name: console.command }
+  twig_tweak.debug.tests:
+    class: Drupal\twig_tweak\Command\DebugTestsCommand
+    arguments: ['@twig', '@twig_tweak.debug.signature_formatter']
+    tags:
+      - { name: console.command }
+  twig_tweak.debug.loaders:
+    class: Drupal\twig_tweak\Command\DebugLoadersCommand
+    arguments: ['@twig']
+    tags:
+      - { name: console.command }

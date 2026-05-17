@@ -1,0 +1,20 @@
+uuid: a86ee9d7-376c-47ef-8cf4-e0bde7bfe4de
+langcode: en
+status: false
+dependencies:
+  theme:
+    - sipd
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: sipd_page_title
+theme: sipd
+region: primary_menu
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

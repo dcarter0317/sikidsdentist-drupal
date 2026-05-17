@@ -1,0 +1,44 @@
+name: Blog Hero
+description: "A full-width hero banner component with headline, subheadline, body text, CTA button, and background image. Designed for use with the Paragraphs module and Layout Builder."
+type: component
+group: "Paragraphs Components"
+# Props define the data contract between Paragraphs and this component.
+# These map directly to fields on the 'hero' paragraph bundle.
+props:
+  type: object
+  required:
+    - title
+  properties:
+    title:
+      type: string
+      title: "Title"
+      description: "The main heading text for the hero."
+    date:
+      type: string
+      title: "Date"
+      description: "Publication date or event date to display in the hero."
+    author:
+      type: string
+      title: "Author"
+      description: "Text label for the author."
+    author_link:
+      type: string
+      title: "Author Link"
+      description: "URL the call-to-action links to."
+    background_image_url:
+      type: string
+      title: "Background Image URL"
+      description: "URL of the background image rendered behind the hero content."
+    background_image_alt:
+      type: string
+      title: "Background Image Alt Text"
+      description: "Alt text for the background image (for accessibility)."
+    content_alignment:
+      type: string
+      title: "Content Alignment"
+      description: "Controls the horizontal position and text alignment of the hero content. Maps to field_content_alignment on the paragraph."
+      default: "centered"
+      enum:
+        - centered
+        - content-left
+        - content-right

@@ -1,0 +1,21 @@
+uuid: cee334c2-dd3f-4330-8551-35c2f48e625e
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+_core:
+  default_config_hash: OjnRL-vwDWFKmoYTCU9jkwjIlui_gNnOJnIwnLo9m2k
+id: paragraph.field_ept_title
+field_name: field_ept_title
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

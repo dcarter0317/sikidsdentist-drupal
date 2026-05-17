@@ -1,0 +1,72 @@
+{#
+/**
+ * @file banner.twig
+ *
+ * Banner Single Directory Component (SDC).
+ *
+ * Available props (defined in banner.component.yml):
+ *   - style (string) - 'default' | 'button-banner' | 'cta-banner'
+ *   - title (string)
+ *   - body (string)
+ *   - label (string)
+ *   - cta_label (string)
+ *   - cta_url (string)
+ *   - cta_secondary_label (string)
+ *   - cta_secondary_url (string)
+ */
+#}
+
+{%- set banner_style = style|default('default') -%}
+
+<article class="banner banner--{{ banner_style }}">
+  <div class="banner__content">
+
+    {# ── button-banner: label + two-button group ── #}
+    {% if banner_style == 'button-banner' %}
+
+      {% if label %}
+        <p class="banner__label">{{ label }}</p>
+      {% endif %}
+
+      <div class="banner__btn-group">
+        {% if cta_label and cta_url %}
+          <a href="{{ cta_url }}" class="banner__btn">{{ cta_label }}</a>
+        {% endif %}
+        {% if cta_secondary_label and cta_secondary_url %}
+          <a href="{{ cta_secondary_url }}" class="banner__btn">{{ cta_secondary_label }}</a>
+        {% endif %}
+      </div>
+
+    {# ── cta-banner: inline label + single CTA ── #}
+    {% elseif banner_style == 'cta-banner' %}
+
+      {% if label %}
+        <p class="banner__label">{{ label }}</p>
+      {% endif %}
+
+      {% if cta_label and cta_url %}
+        <a href="{{ cta_url }}" class="banner__btn">
+          {{ cta_label }}
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      {% endif %}
+
+    {# ── default: title + optional body + optional CTA ── #}
+    {% else %}
+
+      {% if title %}
+        <h2 class="banner__title">{{ title }}</h2>
+      {% endif %}
+
+      {% if body %}
+        <p class="banner__body">{{ body }}</p>
+      {% endif %}
+
+      {% if cta_label and cta_url %}
+        <a href="{{ cta_url }}" class="banner__btn">{{ cta_label }}</a>
+      {% endif %}
+
+    {% endif %}
+
+  </div>{# /.banner__content #}
+</article>{# /.banner #}

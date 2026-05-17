@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the EBT Tabs.
+ */
+
+use Drupal\paragraphs\Entity\ParagraphsType;
+
+/**
+ * Implements hook_requirements().
+ */
+function ebt_tabs_requirements($phase) {
+  if ($phase != 'install') {
+    return [];
+  }
+
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+
+  // Check if the 'node_type' entity type exists.
+  if (!$entity_type_manager->hasDefinition('node_type')) {
+    return [];
+  }
+
+  $entity_type_manager = \Drupal::service('entity_type.manager');
+  $content_types = $entity_type_manager->getStorage('node_type')->loadMultiple();
+  foreach ($content_types as $content_type) {
+    if ($content_type->id() == 'page') {
+      return [];
+    }
+  }
+
+  return [
+    'ebt_tabs_content_type_page' => [
+      'title' => t('Content type Page'),
+      'value' => t('Not created'),
+      'description' => t('The EBT Tabs needs to be <a href="@url">created</a> "Page" content type.', ['@url' => '/admin/structure/types']),
+      'severity' => REQUIREMENT_ERROR,
+    ],
+  ];
+}
+
+
+/**
+ * Update the label of Paragraph Type "ebt_tab" adding the prefix "EBT".
+ */
+function ebt_tabs_update_9102() {
+
+  // Get the entity object.
+  $paragraph_type = ParagraphsType::load('ebt_tab');
+
+  // If there is no result, skip.
+  if (empty($paragraph_type)) {
+    return;
+  }
+
+  // Update the label.
+  $paragraph_type->set('label', 'EBT Tab');
+
+  // Save the entity.
+  $paragraph_type->save();
+
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function ebt_tabs_uninstall() {
+
+  \Drupal::logger('ebt_tabs')->notice(t('The EBT Tabs has been uninstalled, but the Block Type have not been deleted for consistency reasons. If needed, you can manually remove them by going to Structure » Block layout » Custom block library'));
+
+}

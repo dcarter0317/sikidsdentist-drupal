@@ -1,0 +1,5 @@
+ebt_columns:
+  css:
+    component:
+      css/styles.css: {}
+

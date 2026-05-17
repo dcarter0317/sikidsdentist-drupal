@@ -1,0 +1,9 @@
+name: 'Card List Paragraph'
+description: 'Provides the Card List paragraph type for displaying nested Card Item paragraphs in a configurable grid.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:text
+  - drupal:entity_reference_revisions

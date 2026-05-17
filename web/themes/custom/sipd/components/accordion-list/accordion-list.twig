@@ -1,0 +1,35 @@
+{#
+/**
+ * @file accordion-list.twig
+ *
+ * Accordion List Single Directory Component.
+ *
+ * Props:
+ * - heading: string  — optional section heading (optional)
+ *
+ * Slots:
+ * - items — rendered Accordion Item paragraph instances
+ *
+ * Variants:
+ * - columns: columns-1 (default) | columns-2 | columns-3 | columns-4
+ */
+#}
+
+{%
+  set accordion_list_classes = [
+    'accordion-list',
+    variant_class|default(''),
+  ]
+%}
+
+<section class="{{ accordion_list_classes|join(' ')|trim }}">
+  {% if heading %}
+    <h2 class="accordion-list__heading">{{ heading }}</h2>
+  {% endif %}
+
+  {% if items %}
+    <div class="accordion-list__grid">
+      {{ items }}
+    </div>
+  {% endif %}
+</section>

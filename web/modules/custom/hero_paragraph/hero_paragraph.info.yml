@@ -1,0 +1,12 @@
+name: 'Hero Paragraph'
+description: 'Provides the Hero paragraph type and its field configuration for use with the Hero SDC component and Layout Builder.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:layout_builder
+  - drupal:link
+  - drupal:image
+  - drupal:text
+  - drupal:options

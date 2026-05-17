@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * hero_paragraph.module
+ *
+ * Hooks that integrate the Hero paragraph with Layout Builder.
+ */
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_theme().
+ *
+ * Registers the paragraph--hero theme suggestion so Drupal resolves
+ * our bridge template automatically for the 'hero' paragraph bundle.
+ */
+function hero_paragraph_theme(): array {
+  return [
+    'paragraph__hero' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_paragraph_alter().
+ *
+ * Ensures our paragraph--hero.html.twig template is picked up.
+ */
+function hero_paragraph_theme_suggestions_paragraph_alter(
+  array &$suggestions,
+  array $variables
+): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['elements']['#paragraph'];
+  $bundle = $paragraph->bundle();
+  $suggestions[] = 'paragraph__' . $bundle;
+}

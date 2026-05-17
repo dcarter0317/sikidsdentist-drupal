@@ -1,0 +1,19 @@
+uuid: d85e0069-e3f3-4677-958e-e16fe4df625d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_slide_heading
+    - paragraphs.paragraphs_type.slide_item
+id: paragraph.slide_item.field_slide_heading
+field_name: field_slide_heading
+entity_type: paragraph
+bundle: slide_item
+label: 'Slide Heading'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

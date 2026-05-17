@@ -1,0 +1,24 @@
+{#
+/**
+ * @file paragraph--grid-item.html.twig
+ *
+ * Bridge template for the "grid_item" paragraph bundle.
+ * Maps Paragraphs field values to the Grid Item SDC props.
+ */
+#}
+
+{%- set heading = null -%}
+{%- set content = null -%}
+
+{% if paragraph.field_grid_item_heading is defined and not paragraph.field_grid_item_heading.isEmpty %}
+  {%- set heading = paragraph.field_grid_item_heading.value -%}
+{% endif %}
+
+{% if paragraph.field_grid_item_content is defined and not paragraph.field_grid_item_content.isEmpty %}
+  {%- set content = paragraph.field_grid_item_content.processed|default(paragraph.field_grid_item_content.value) -%}
+{% endif %}
+
+{% include "sipd:grid-item" with {
+  heading: heading,
+  content: content,
+} only %}

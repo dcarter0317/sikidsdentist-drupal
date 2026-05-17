@@ -1,0 +1,26 @@
+uuid: 49b40c19-8804-48d1-9676-c18f2fc50f22
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icon_link
+    - field.field.block_content.icon_link.field_icon_link_class
+    - field.field.block_content.icon_link.field_icon_link_text
+    - field.field.block_content.icon_link.field_icon_link_url
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: block_content.icon_link.default
+targetEntityType: block_content
+bundle: icon_link
+mode: default
+content: {  }
+hidden:
+  field_icon_link_class: true
+  field_icon_link_img: true
+  field_icon_link_text: true
+  field_icon_link_url: true
+  layout_builder__layout: true

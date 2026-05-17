@@ -1,0 +1,55 @@
+{#
+/**
+ * @file paragraph--card-list.html.twig
+ *
+ * Bridge template for the "card_list" paragraph bundle.
+ * Renders nested Card Item paragraphs into the Card List SDC.
+ */
+#}
+
+{%- set heading = null -%}
+{%- set items = null -%}
+{%- set nested_field_name = null -%}
+
+{% if paragraph.field_card_list_title is defined and not paragraph.field_card_list_title.isEmpty %}
+  {%- set heading = paragraph.field_card_list_title.value -%}
+{% elseif paragraph.field_card_list_heading is defined and not paragraph.field_card_list_heading.isEmpty %}
+  {%- set heading = paragraph.field_card_list_heading.value -%}
+{% elseif paragraph.field_heading is defined and not paragraph.field_heading.isEmpty %}
+  {%- set heading = paragraph.field_heading.value -%}
+{% endif %}
+
+{#
+  Auto-detect the nested Card Item reference field by inspecting paragraph
+  field definitions. We look for the first entity_reference_revisions field
+  targeting Paragraph entities with an allowed bundle of card_item/card-item.
+#}
+{% for field_name, field_definition in paragraph.getFieldDefinitions %}
+  {% if nested_field_name is null and field_name starts with 'field_' and paragraph.get(field_name) is defined %}
+    {% set field_item_list = paragraph.get(field_name) %}
+    {% set is_reference_revisions = field_definition.getType == 'entity_reference_revisions' %}
+    {% set target_type = field_definition.getSetting('target_type') %}
+    {% set handler_settings = field_definition.getSetting('handler_settings')|default({}) %}
+    {% set target_bundles = handler_settings.target_bundles|default({}) %}
+    {% set target_bundle_keys = target_bundles|keys %}
+    {% set is_card_item_bundle =
+      'card_item' in target_bundle_keys
+      or 'card-item' in target_bundle_keys
+      or 'card_item' in target_bundles
+      or 'card-item' in target_bundles
+    %}
+
+    {% if is_reference_revisions and target_type == 'paragraph' and is_card_item_bundle and not field_item_list.isEmpty %}
+      {%- set nested_field_name = field_name -%}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if nested_field_name and attribute(content, nested_field_name) is defined %}
+  {%- set items = attribute(content, nested_field_name) -%}
+{% endif %}
+
+{% include "sipd:card-list" with {
+  heading: heading,
+  items: items
+} only %}

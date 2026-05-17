@@ -1,0 +1,21 @@
+uuid: 58a32d79-0c00-4353-8790-6a5bc8c86d2f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_slide_alignment
+    - paragraphs.paragraphs_type.slide_item
+  module:
+    - options
+id: paragraph.slide_item.field_slide_alignment
+field_name: field_slide_alignment
+entity_type: paragraph
+bundle: slide_item
+label: 'Slide Alignment'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

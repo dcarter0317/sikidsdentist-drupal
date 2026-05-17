@@ -1,0 +1,8 @@
+uuid: 8ccb10a8-95e0-407f-9310-8c24f13df440
+langcode: en
+status: true
+dependencies: {  }
+id: icon_link
+label: 'Icon Link'
+revision: false
+description: 'Link with Icon.'

@@ -1,0 +1,51 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ebt_tab_views
+    - paragraphs.paragraphs_type.ebt_tab
+  module:
+    - viewsreference
+id: paragraph.ebt_tab.field_ebt_tab_views
+field_name: field_ebt_tab_views
+entity_type: paragraph
+bundle: ebt_tab
+label: 'Tab views'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: 0
+  plugin_types:
+    default: default
+    block: block
+    page: 0
+    feed: 0
+    embed: 0
+  preselect_views:
+    articles: 0
+    block_content: 0
+    comment: 0
+    comments_recent: 0
+    content: 0
+    content_recent: 0
+    files: 0
+    frontpage: 0
+    taxonomy_term: 0
+    user_admin_people: 0
+    watchdog: 0
+    webform_submissions: 0
+    who_s_new: 0
+    who_s_online: 0
+  enabled_settings:
+    pager: 0
+    limit: 0
+    offset: 0
+    title: 0
+    argument: 0
+field_type: viewsreference

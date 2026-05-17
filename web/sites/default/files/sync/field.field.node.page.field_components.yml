@@ -1,0 +1,77 @@
+uuid: 2fcd7564-d324-409d-bb6f-3a76d14d1b78
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_components
+    - node.type.page
+    - paragraphs.paragraphs_type.from_library
+  module:
+    - entity_reference_revisions
+    - paragraph_blocks
+third_party_settings:
+  paragraph_blocks:
+    status: 1
+id: node.page.field_components
+field_name: field_components
+entity_type: node
+bundle: page
+label: Components
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      from_library: from_library
+    negate: 1
+    target_bundles_drag_drop:
+      accordion:
+        weight: 16
+        enabled: false
+      accordion_item:
+        weight: 17
+        enabled: false
+      blog_hero:
+        weight: 18
+        enabled: false
+      card_item:
+        weight: 18
+        enabled: false
+      card_list:
+        weight: 19
+        enabled: false
+      ebt_tab:
+        weight: 22
+        enabled: false
+      ept_columns:
+        weight: 21
+        enabled: false
+      ept_text:
+        weight: 22
+        enabled: false
+      ept_tiles:
+        weight: 23
+        enabled: false
+      ept_tiles_item:
+        weight: 24
+        enabled: false
+      ept_video_and_image_gallery:
+        weight: 25
+        enabled: false
+      ept_video_and_image_gallery_item:
+        weight: 26
+        enabled: false
+      from_library:
+        weight: 27
+        enabled: true
+      hero:
+        weight: 28
+        enabled: false
+      section:
+        weight: 30
+        enabled: false
+field_type: entity_reference_revisions

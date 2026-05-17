@@ -1,0 +1,21 @@
+{#
+/**
+ * @file accordion-item.twig
+ *
+ * Accordion Item Single Directory Component.
+ *
+ * Props:
+ * - title: string  — summary/heading text (required)
+ * - content: string — expandable body; supports HTML markup (required)
+ * - open: boolean  — start expanded (optional, default false)
+ */
+#}
+
+<details class="accordion-item"{{ open ? ' open' : '' }}>
+  <summary class="accordion-item__summary">
+    {{- title -}}
+  </summary>
+  <div class="accordion-item__body">
+    {{ content|raw }}
+  </div>
+</details>

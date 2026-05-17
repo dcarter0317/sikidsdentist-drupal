@@ -1,0 +1,103 @@
+/**
+ * @file accordion-item.css
+ *
+ * Styles for the Accordion Item SDC.
+ * Based on the modern CSS accordion pattern using <details>/<summary>.
+ */
+
+.accordion-item {
+  --accordion-closed-bg: var(--clr-bg-1, #ffffff);
+  --accordion-hover-bg: #ddd;
+  --accordion-open-bg: var(--clr-bg-5, #f3efef);
+  --accordion-border-color: var(--clr-bg-6, #668595);
+  --accordion-animation-duration: 0.3s;
+
+  border: 1px solid var(--accordion-border-color);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background: var(--accordion-closed-bg);
+}
+
+.accordion-item:hover {
+  background: var(--accordion-hover-bg);
+}
+
+.accordion-item[open] {
+  background: var(--accordion-open-bg);
+}
+
+/* Keyboard focus ring on the details element instead of the summary */
+.accordion-item:focus-within:has(.accordion-item__summary:focus-visible) {
+  outline: 2px solid hsl(from var(--accordion-open-bg) h s 30%);
+  outline-offset: -2px;
+  box-shadow: 0 0 0 2px hsl(from var(--accordion-open-bg) h s 90%);
+}
+
+/* ::details-content — supported in all major browsers since Sep 2025 */
+.accordion-item::details-content {
+  border-block-start: 1px solid var(--accordion-border-color);
+  /* Nudge content up to sit on the border rather than double-stacking */
+  position: relative;
+  top: 1px;
+}
+
+/* Animate open/close to intrinsic height — progressive enhancement for Chromium */
+@supports (block-size: calc-size(auto, 100px)) {
+  .accordion-item::details-content {
+    block-size: 0;
+    transition:
+      block-size var(--accordion-animation-duration) ease-in-out,
+      content-visibility var(--accordion-animation-duration) ease-in-out;
+    transition-behavior: allow-discrete;
+  }
+
+  .accordion-item[open]::details-content {
+    block-size: calc-size(auto, size + 1rem);
+  }
+}
+
+/* ── Summary bar ─────────────────────────────────────────── */
+
+.accordion-item__summary {
+  padding: 1rem 3rem 1rem 1rem;
+  position: relative;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: initial;
+  list-style: none; /* hide default browser marker */
+  font-family: var(--ff-heading, 'Poppins', Arial, sans-serif);
+  font-size: var(--fs-h5, 1.125rem);
+  color: var(--clr-text-3, #00334F);
+}
+
+.accordion-item__summary:focus-visible {
+  outline: none;
+}
+
+/* Custom chevron icon via ::after */
+.accordion-item__summary::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  inline-size: 3rem;
+  background-image: url('data:image/svg+xml,<svg width="20" height="10" xmlns="http://www.w3.org/2000/svg" stroke="%2300334F"><line x1="0" y1="0" x2="10" y2="10"></line><line x1="10" y1="10" x2="20" y2="0"></line></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  transition: transform var(--accordion-animation-duration) ease;
+}
+
+.accordion-item[open] .accordion-item__summary::after {
+  transform: rotate(-0.5turn);
+}
+
+/* ── Body content ─────────────────────────────────────────── */
+
+.accordion-item__body {
+  padding: 1rem;
+}
+
+.accordion-item__body p {
+  line-height: 1.6;
+  margin: 0;
+}

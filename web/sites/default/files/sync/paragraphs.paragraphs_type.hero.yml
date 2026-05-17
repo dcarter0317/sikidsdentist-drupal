@@ -1,0 +1,15 @@
+uuid: 3795aebe-017b-44ee-9b7c-7545e7584c96
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraph_block
+third_party_settings:
+  paragraph_block:
+    status: true
+id: hero
+label: Hero
+icon_uuid: null
+icon_default: null
+description: 'Hero component'
+behavior_plugins: {  }

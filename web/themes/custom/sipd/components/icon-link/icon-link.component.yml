@@ -1,0 +1,26 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/assets/schemas/v1/metadata.schema.json
+
+name: Icon Link
+description: Icon link block with circular icon and bordered text label.
+status: stable
+
+props:
+  type: object
+  properties:
+    url:
+      type: string
+      title: URL
+      description: Link destination.
+    text:
+      type: string
+      title: Link text
+      description: Text displayed in the block.
+    icon_class:
+      type: string
+      title: Font Awesome icon class
+      description: Example fa-solid fa-user-group
+
+libraryOverrides:
+  css:
+    component:
+      icon-link.css: {}

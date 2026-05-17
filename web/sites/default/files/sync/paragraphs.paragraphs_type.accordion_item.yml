@@ -1,0 +1,15 @@
+uuid: 73c04762-acf0-4674-95e0-8bceea5e6821
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
+id: accordion_item
+label: 'Accordion Item'
+icon_uuid: null
+icon_default: null
+description: 'Used to add items to the accordion.'
+behavior_plugins: {  }

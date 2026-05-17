@@ -1,0 +1,75 @@
+{#
+/**
+ * @file featured-post.twig
+ *
+ * Featured Post Single Directory Component.
+ *
+ * Props:
+ * - eyebrow (string)       — publication date or short label
+ * - subtitle (string)      — h4 secondary headline (featured variant only)
+ * - category (string)      — category label (featured variant only)
+ * - author (string)        — author name (featured variant only)
+ * - image (string)         — thumbnail image URL
+ * - image_alt (string)     — thumbnail alt text
+ * - title (string)         — h3 main post heading
+ * - description (string)   — post excerpt / body copy
+ * - cta_label (string)     — CTA link text
+ * - cta_url (string)       — CTA link destination
+ *
+ * Variant:
+ * - post_style: 'standard' (default) | 'featured'
+ */
+#}
+
+{%
+  set post_classes = [
+    'post',
+    variant_class|default(''),
+  ]
+%}
+
+<article class="{{ post_classes|join(' ')|trim }}">
+  {% if image %}
+    <div class="post__media">
+      <img src="{{ image }}" alt="{{ image_alt|default('') }}">
+    </div>
+  {% endif %}
+
+  <div class="post__text">
+    {% if eyebrow %}
+      <p class="post__eyebrow">{{ eyebrow }}</p>
+    {% endif %}
+
+    {% if variant_class == 'post--featured' %}
+      <div class="post__header">
+        {% if subtitle %}
+          <h4 class="post__subtitle">{{ subtitle }}</h4>
+        {% endif %}
+        {% if category %}
+          <p class="post__category">{{ category }}</p>
+        {% endif %}
+        {% if author %}
+          <p class="author"><span>Posted By:</span>{{ author }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if title %}
+      <h3 class="post__title">{{ title }}</h3>
+    {% endif %}
+
+    {% if description %}
+      <div class="post__description">
+        <p>{{ description }}</p>
+      </div>
+    {% endif %}
+
+    {% if cta_label and cta_url %}
+      <div class="post__footer">
+        <div class="post__cta">
+          <a href="{{ cta_url }}">{{ cta_label }}</a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</article>

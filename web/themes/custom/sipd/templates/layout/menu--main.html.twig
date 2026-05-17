@@ -1,0 +1,56 @@
+{% import _self as menus %}
+{% macro submenu_links(items) %}
+    {% import _self as menus %}
+    {% if items %}
+        <ul class="megamenu-submenu">
+            {% for item in items %}
+                <li{{ item.attributes.addClass(item.below ? 'has-submenu-item' : '') }}>
+                    {% if item.url %}
+                        {{ link(item.title, item.url) }}
+                    {% else %}
+                        <span>{{ item.title }}</span> {# url is missing #}
+                    {% endif %}
+                    {% if item.below %}
+                        {{ menus.submenu_links(item.below) }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+
+<section class="top-header-section">
+    <div class="content-container">
+        <!-- Hamburger menu button for mobile navigation toggle -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <!-- Each span is a line in the hamburger icon -->
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="megamenu-nav" id="mobile-menu">
+            {% if items %}
+                <ul class="megamenu">
+                    {% for item in items %}
+                        {% set submenu_id = 'main-submenu-' ~ loop.index %}
+                        <li{{ item.attributes.addClass(item.below ? 'has-megamenu' : '') }}>
+                            {{ link(item.title, item.url) }}
+                            {% if item.below %}
+                                <button class="submenu-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="{{ submenu_id }}" aria-label="Toggle submenu for {{ item.title|striptags|trim }}">
+                                    <span aria-hidden="true">+</span>
+                                </button>
+                            {% endif %}
+                            {% if item.below %}
+                                <div class="megamenu-dropdown" id="{{ submenu_id }}" aria-hidden="true">
+                                    <div class="megamenu-content">
+                                        {{ menus.submenu_links(item.below) }}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </nav>
+       </div>
+    </section>

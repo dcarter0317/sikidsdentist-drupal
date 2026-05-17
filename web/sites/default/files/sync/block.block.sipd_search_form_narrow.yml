@@ -1,0 +1,23 @@
+uuid: cc078e63-e2bf-4156-9618-4ab1028e4dfb
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - sipd
+_core:
+  default_config_hash: _nZjxxdypO6xrOAJkCYD81v0L7wh2zbCAVO7_C-UKIc
+id: sipd_search_form_narrow
+theme: sipd
+region: primary_menu
+weight: -4
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (narrow)'
+  label_display: '0'
+  provider: search
+  page_id: null
+visibility: {  }

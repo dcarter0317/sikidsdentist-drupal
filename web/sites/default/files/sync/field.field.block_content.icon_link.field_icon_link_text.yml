@@ -1,0 +1,19 @@
+uuid: 5929cb7b-61c5-4a99-9de2-cdbfbee14d99
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icon_link
+    - field.storage.block_content.field_icon_link_text
+id: block_content.icon_link.field_icon_link_text
+field_name: field_icon_link_text
+entity_type: block_content
+bundle: icon_link
+label: 'Icon Link Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

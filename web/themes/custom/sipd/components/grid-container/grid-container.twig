@@ -1,0 +1,34 @@
+{#
+/**
+ * @file grid-container.twig
+ *
+ * Grid Container Single Directory Component.
+ * Lays out nested Grid Item paragraphs in a CSS Grid.
+ *
+ * Props:
+ * - heading: string  — optional section heading (optional)
+ *
+ * Slots:
+ * - items — rendered Grid Item paragraph instances
+ *
+ * Variants:
+ * - columns: columns-auto (default) | columns-2 | columns-3 | columns-4 | columns-5 | columns-6
+ */
+#}
+
+{%
+  set grid_container_classes = [
+    'grid-container',
+    variant_class|default(''),
+  ]
+%}
+
+<article class="{{ grid_container_classes|join(' ')|trim }}">
+  {% if heading %}
+    <h2 class="grid-container__heading">{{ heading }}</h2>
+  {% endif %}
+
+  {% if items %}
+    {{ items }}
+  {% endif %}
+</article>

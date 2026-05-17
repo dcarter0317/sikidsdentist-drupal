@@ -1,0 +1,47 @@
+uuid: 9b4e15c4-8e07-4152-900d-981439533203
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icon_link
+    - field.field.block_content.icon_link.field_icon_link_class
+    - field.field.block_content.icon_link.field_icon_link_text
+    - field.field.block_content.icon_link.field_icon_link_url
+id: block_content.icon_link.default
+targetEntityType: block_content
+bundle: icon_link
+mode: default
+content:
+  field_icon_link_class:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_icon_link_text:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_icon_link_url:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

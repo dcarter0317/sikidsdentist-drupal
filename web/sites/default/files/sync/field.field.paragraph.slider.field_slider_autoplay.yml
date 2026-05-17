@@ -1,0 +1,21 @@
+uuid: ab7b528b-1017-4de9-9745-03a36f76aa2d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_slider_autoplay
+    - paragraphs.paragraphs_type.slider
+id: paragraph.slider.field_slider_autoplay
+field_name: field_slider_autoplay
+entity_type: paragraph
+bundle: slider
+label: 'Slider Autoplay'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

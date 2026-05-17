@@ -1,0 +1,17 @@
+type: module
+name: 'Extra Paragraph Types (EPT): Core'
+description: 'Base module for EPT paragraphs.'
+core_version_requirement: ^9.3 || ^10 || ^11
+package: 'Extra Paragraph Types'
+configure: ept_core.settings
+
+dependencies:
+  - drupal:media
+  - paragraphs:paragraphs
+  - field_group:field_group
+  - media_library_form_element:media_library_form_element
+
+# Information added by Drupal.org packaging script on 2026-04-06
+version: '1.4.24'
+project: 'ept_core'
+datestamp: 1775503051

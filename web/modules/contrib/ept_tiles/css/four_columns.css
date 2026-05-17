@@ -1,0 +1,15 @@
+.ept-paragraph-tiles.ept-tiles-four_columns .ept-tiles-wrapper {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 481px) {
+  .ept-paragraph-tiles.ept-tiles-four_columns .ept-tiles-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 769px) {
+  .ept-paragraph-tiles.ept-tiles-four_columns .ept-tiles-wrapper {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

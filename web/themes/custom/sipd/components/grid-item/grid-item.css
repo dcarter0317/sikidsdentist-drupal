@@ -1,0 +1,46 @@
+/**
+ * @file grid-item.css
+ *
+ * Styles for the Grid Item SDC.
+ * This component is a cell — layout is owned by grid-container.
+ */
+
+.grid-item {
+  --grid-item-bg: transparent;
+  --grid-item-color: var(--clr-text-3, #00334f);
+  --grid-item-border-radius: 8px;
+
+  background: var(--grid-item-bg);
+  padding: 1rem;
+  color: var(--grid-item-color);
+  border-radius: var(--grid-item-border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item__heading {
+  font-family: var(--ff-heading, 'Poppins', Arial, sans-serif);
+  font-size: var(--fs-h2, 2rem);
+  font-weight: var(--fw-bold, 700);
+  color: var(--grid-item-color);
+  margin-block-end: 0.75rem;
+  line-height: 1.2;
+}
+
+.grid-item__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.grid-item__body p {
+  line-height: 1.6;
+  margin: 0;
+}
+
+.grid-item__body a {
+  color: var(--clr-primary, #1478a3);
+}
+
+.grid-item__body a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,33 @@
+uuid: 496e24a8-a6d6-4125-8b3f-a9fbeb53c257
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_hero_style
+field_name: field_hero_style
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: centered
+      label: centered
+    -
+      value: content_left
+      label: content-left
+    -
+      value: content_right
+      label: content-right
+    -
+      value: split
+      label: split
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

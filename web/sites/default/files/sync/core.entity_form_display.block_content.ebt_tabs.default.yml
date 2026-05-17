@@ -1,0 +1,93 @@
+uuid: 6dc36fe0-43d3-4a5c-b3eb-4ad2fa78f1cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.ebt_tabs
+    - field.field.block_content.ebt_tabs.field_ebt_settings
+    - field.field.block_content.ebt_tabs.field_ebt_tabs
+  module:
+    - ebt_core
+    - field_group
+    - paragraphs
+third_party_settings:
+  field_group:
+    group_tabs:
+      children:
+        - group_content
+        - group_settings
+      label: Tabs
+      region: content
+      parent_name: ''
+      weight: 3
+      format_type: tabs
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        direction: horizontal
+        width_breakpoint: 120
+    group_content:
+      children:
+        - field_ebt_tabs
+      label: Content
+      region: content
+      parent_name: group_tabs
+      weight: 4
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_settings:
+      children:
+        - field_ebt_settings
+      label: Settings
+      region: content
+      parent_name: group_tabs
+      weight: 5
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        formatter: closed
+        description: ''
+        required_fields: true
+_core:
+  default_config_hash: FiD2k00iSxydyLNXRexQsZwtt3kdC7yWjKnIE2TPsds
+id: block_content.ebt_tabs.default
+targetEntityType: block_content
+bundle: ebt_tabs
+mode: default
+content:
+  field_ebt_settings:
+    type: ebt_settings_default
+    weight: 26
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_ebt_tabs:
+    type: entity_reference_paragraphs
+    weight: 1
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

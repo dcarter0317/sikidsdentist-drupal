@@ -1,0 +1,97 @@
+/**
+ * @file featured-post.css
+ *
+ * Styles for the Featured Post SDC.
+ */
+
+.post {
+  --post-title-color: var(--clr-text-1);
+  --post-subtitle-color: var(--clr-text-3);
+  --post-text-color: var(--clr-text-4);
+  --post-link-color: var(--clr-text-7);
+  --post-category-color: var(--clr-text-8);
+  --post-posted-by-color: var(--clr-text-6);
+
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .post {
+    grid-template-columns: 1fr;
+  }
+}
+
+.post__media img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  aspect-ratio: 21 / 9;
+}
+
+.post__text {
+  width: 95%;
+  margin-inline: auto;
+}
+
+.post__eyebrow {
+  text-transform: uppercase;
+  font-size: var(--fs-caption);
+  color: var(--clr-text-3);
+  margin-block: 0;
+}
+
+/* Post header is only rendered in the featured variant via Twig; */
+/* this rule is a CSS safety net in case markup is reused elsewhere. */
+.post__header {
+  display: none;
+}
+
+.post--featured .post__header {
+  display: block;
+}
+
+.post__subtitle {
+  font-size: 1.7rem;
+  margin-block: 0;
+  color: var(--post-subtitle-color);
+}
+
+.post__category {
+  text-transform: capitalize;
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin-block: 0;
+  color: var(--post-category-color);
+}
+
+.post__header span {
+  color: var(--post-posted-by-color);
+}
+
+.author {
+  margin-top: 0.5rem;
+}
+
+.post__title {
+  font-size: 2rem;
+  color: var(--post-title-color);
+  margin-top: 0;
+}
+
+.post__footer {
+  margin-bottom: 2rem;
+}
+
+.post__cta a,
+.post__cta a:link,
+.post__cta a:visited {
+  display: inline-block;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  font-weight: var(--fw-med);
+  color: var(--post-link-color);
+}

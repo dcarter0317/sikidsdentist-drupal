@@ -1,0 +1,19 @@
+uuid: cd629be4-3b0a-4698-9680-0decbfa7f040
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fp_eyebrow
+    - paragraphs.paragraphs_type.featured_post
+id: paragraph.featured_post.field_fp_eyebrow
+field_name: field_fp_eyebrow
+entity_type: paragraph
+bundle: featured_post
+label: Eyebrow
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

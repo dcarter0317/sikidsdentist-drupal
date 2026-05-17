@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Default EPT Settings implementation for EPT Paragraph.
+ *
+ * Available variables
+ * - ept_settings: A list of EPT Paragraph settings.
+ *
+ * @see template_preprocess_ept_settings_default()
+ *
+ * @ingroup themeable
+ */
+#}
+{% for key, setting in ept_settings %}
+  {% if setting is iterable %}
+    {% for child_key, child_setting in setting %}
+      {% if child_setting is not iterable %}
+        <div>{{ child_key }}: {{ child_setting }}</div>
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <div>{{ key }}: {{ setting }}</div>
+  {% endif %}
+{% endfor %}

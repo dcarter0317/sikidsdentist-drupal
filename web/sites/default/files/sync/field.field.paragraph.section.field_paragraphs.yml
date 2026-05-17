@@ -1,0 +1,58 @@
+uuid: 9eaac4bc-f589-4593-9c59-bda8f3f632b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraphs
+    - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_revisions
+    - paragraph_blocks
+third_party_settings:
+  paragraph_blocks:
+    status: 1
+id: paragraph.section.field_paragraphs
+field_name: field_paragraphs
+entity_type: paragraph
+bundle: section
+label: Paragraphs
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      section: section
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 10
+        enabled: false
+      accordion_item:
+        weight: 11
+        enabled: false
+      card_item:
+        weight: 12
+        enabled: false
+      card_list:
+        weight: 13
+        enabled: false
+      content:
+        weight: 14
+        enabled: true
+      from_library:
+        weight: 15
+        enabled: false
+      hero:
+        weight: 16
+        enabled: false
+      image:
+        weight: 17
+        enabled: true
+      section:
+        weight: 18
+        enabled: true
+field_type: entity_reference_revisions

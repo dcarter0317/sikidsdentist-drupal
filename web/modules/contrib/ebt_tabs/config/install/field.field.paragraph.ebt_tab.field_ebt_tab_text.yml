@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ebt_tab_text
+    - paragraphs.paragraphs_type.ebt_tab
+  module:
+    - text
+id: paragraph.ebt_tab.field_ebt_tab_text
+field_name: field_ebt_tab_text
+entity_type: paragraph
+bundle: ebt_tab
+label: 'Tab text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

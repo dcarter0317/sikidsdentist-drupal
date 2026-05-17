@@ -1,0 +1,72 @@
+name: Hero
+description: "A full-width hero banner component with headline, subheadline, body text, CTA button, and background image. Designed for use with the Paragraphs module and Layout Builder."
+group: "Paragraphs Components"
+
+# Props define the data contract between Paragraphs and this component.
+# These map directly to fields on the 'hero' paragraph bundle.
+props:
+  type: object
+  required:
+    - headline
+  properties:
+    headline:
+      type: string
+      title: "Headline"
+      description: "The main heading text for the hero."
+    subheadline:
+      type: string
+      title: "Subheadline"
+      description: "A secondary supporting line shown above the headline."
+    body:
+      type: string
+      title: "Body Text"
+      description: "Optional short paragraph of supporting copy."
+    cta_label:
+      type: string
+      title: "CTA Button Label"
+      description: "Text label for the call-to-action button."
+    cta_url:
+      type: string
+      title: "CTA Button URL"
+      description: "URL the call-to-action button links to."
+    background_image_url:
+      type: string
+      title: "Background Image URL"
+      description: "URL of the background image rendered behind the hero content."
+    background_image_alt:
+      type: string
+      title: "Background Image Alt Text"
+      description: "Alt text for the background image (for accessibility)."
+    theme:
+      type: string
+      title: "Color Theme"
+      description: "Controls the text/overlay color scheme. Options: 'light' or 'dark'."
+      default: "dark"
+      enum:
+        - light
+        - dark
+
+# Style variants let Layout Builder editors choose a pre-defined visual treatment
+# without touching code. Drupal SDC maps the selected variant key to a BEM modifier
+# class on the root element via the `variant_class` Twig variable.
+variants:
+  content_alignment:
+    title: "Content Alignment"
+    description: "Controls the horizontal position and text alignment of the hero content block."
+    default: content-left
+    options:
+      content-left:
+        title: "Left"
+        description: "Content is left-aligned (default editorial layout)."
+      centered:
+        title: "Center"
+        description: "Content is centered with centred text; ideal for bold, symmetrical layouts."
+      content-right:
+        title: "Right"
+        description: "Content is pushed to the right side of the hero."
+
+# Slots allow Drupal's render system to pass pre-rendered markup into the component.
+slots:
+  media:
+    title: "Media Slot"
+    description: "Optional rendered media entity (image/video) to display in the hero."

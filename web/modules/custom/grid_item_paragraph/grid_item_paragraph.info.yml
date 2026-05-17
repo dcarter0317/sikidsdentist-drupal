@@ -1,0 +1,8 @@
+name: 'Grid Item Paragraph'
+description: 'Provides the Grid Item paragraph type for use as a child within the Grid Container SDC component.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:text

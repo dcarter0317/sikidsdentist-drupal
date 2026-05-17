@@ -1,0 +1,24 @@
+{#
+/**
+ * @file grid-item.twig
+ *
+ * Grid Item Single Directory Component.
+ * Renders as a single cell inside a Grid Container.
+ *
+ * Props:
+ * - heading: string  — optional cell heading (optional)
+ * - content: string  — body content; supports HTML markup (optional)
+ */
+#}
+
+<div class="grid-item">
+  {% if heading %}
+    <h2 class="grid-item__heading">{{ heading }}</h2>
+  {% endif %}
+
+  {% if content %}
+    <div class="grid-item__body">
+      {{ content|raw }}
+    </div>
+  {% endif %}
+</div>

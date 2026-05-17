@@ -1,0 +1,15 @@
+uuid: 103018b1-1a82-4ac0-9982-bf17bb2056c4
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraph_block
+third_party_settings:
+  paragraph_block:
+    status: false
+id: blog_hero
+label: 'Blog Hero'
+icon_uuid: null
+icon_default: null
+description: 'Blog Hero,  Hero image with text and light opacity overlay'
+behavior_plugins: {  }

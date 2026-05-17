@@ -1,0 +1,23 @@
+uuid: 1b2e2cb2-8d24-4274-b7b3-1e7341eb6de4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_alignment
+    - paragraphs.paragraphs_type.blog_hero
+  module:
+    - options
+id: paragraph.blog_hero.field_content_alignment
+field_name: field_content_alignment
+entity_type: paragraph
+bundle: blog_hero
+label: 'Content Alignment'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: content-left
+default_value_callback: ''
+settings: {  }
+field_type: list_string

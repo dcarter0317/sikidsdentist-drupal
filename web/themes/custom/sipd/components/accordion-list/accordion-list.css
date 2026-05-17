@@ -1,0 +1,53 @@
+/**
+ * @file accordion-list.css
+ *
+ * Styles for the Accordion List SDC.
+ * Grid layout adapted from grid-container.css source.
+ */
+
+.accordion-list {
+  --accordion-list-gap: 2rem;
+  --accordion-list-heading-color: var(--clr-text-3, #00334f);
+}
+
+.accordion-list__heading {
+  margin: 0 0 1.5rem;
+  color: var(--accordion-list-heading-color);
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  line-height: 1.2;
+}
+
+/* ── Grid ─────────────────────────────────────────────────── */
+
+.accordion-list__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: var(--accordion-list-gap);
+}
+
+/* ── Column variants (desktop) ───────────────────────────── */
+
+@media (min-width: 900px) {
+  .accordion-list--columns-1 .accordion-list__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .accordion-list--columns-2 .accordion-list__grid {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+  }
+
+  .accordion-list--columns-3 .accordion-list__grid {
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+  }
+
+  .accordion-list--columns-4 .accordion-list__grid {
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+  }
+}
+
+/* ── Items align to the grid cell top ────────────────────── */
+
+.accordion-list__grid > * {
+  align-self: start;
+}

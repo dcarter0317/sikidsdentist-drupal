@@ -1,0 +1,7 @@
+ept_core.settings:
+  path: '/admin/config/content/ept-core'
+  defaults:
+    _form: '\Drupal\ept_core\Form\EptCoreSettingsForm'
+    _title: 'Extra Paragraph Types (EPT) settings'
+  requirements:
+    _permission: 'administer site configuration'

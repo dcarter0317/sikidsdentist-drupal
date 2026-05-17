@@ -1,0 +1,15 @@
+uuid: d2e91b08-fb95-4744-b579-e710cc641b31
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraph_block
+third_party_settings:
+  paragraph_block:
+    status: false
+id: featured_post
+label: 'Featured Post'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

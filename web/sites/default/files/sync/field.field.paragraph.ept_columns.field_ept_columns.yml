@@ -1,0 +1,84 @@
+uuid: ecaa3ac0-13f9-48f3-bf87-5e47a8cb1e32
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ept_columns
+    - paragraphs.paragraphs_type.accordion
+    - paragraphs.paragraphs_type.accordion_item
+    - paragraphs.paragraphs_type.ept_columns
+    - paragraphs.paragraphs_type.section
+  module:
+    - entity_reference_revisions
+    - paragraph_blocks
+third_party_settings:
+  paragraph_blocks:
+    status: 1
+_core:
+  default_config_hash: R6rkX-mPMiS67Fz1NUwV172q4Get3igbZ_JqWTdWxKU
+id: paragraph.ept_columns.field_ept_columns
+field_name: field_ept_columns
+entity_type: paragraph
+bundle: ept_columns
+label: Columns
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      accordion: accordion
+      accordion_item: accordion_item
+      section: section
+      ept_columns: ept_columns
+    negate: 1
+    target_bundles_drag_drop:
+      accordion:
+        weight: 16
+        enabled: true
+      accordion_item:
+        weight: 17
+        enabled: true
+      card_item:
+        weight: 18
+        enabled: false
+      card_list:
+        weight: 19
+        enabled: false
+      content:
+        weight: 20
+        enabled: true
+      ept_columns:
+        weight: 63
+        enabled: true
+      ept_text:
+        weight: 22
+        enabled: false
+      ept_tiles:
+        weight: 23
+        enabled: false
+      ept_tiles_item:
+        weight: 24
+        enabled: false
+      ept_video_and_image_gallery:
+        weight: 25
+        enabled: false
+      ept_video_and_image_gallery_item:
+        weight: 26
+        enabled: false
+      from_library:
+        weight: 27
+        enabled: false
+      hero:
+        weight: 28
+        enabled: false
+      image:
+        weight: 29
+        enabled: true
+      section:
+        weight: 30
+        enabled: true
+field_type: entity_reference_revisions

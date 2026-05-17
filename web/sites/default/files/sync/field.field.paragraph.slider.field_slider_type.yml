@@ -1,0 +1,21 @@
+uuid: 72cca8db-43d6-441f-8892-603e23c5a5b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_slider_type
+    - paragraphs.paragraphs_type.slider
+  module:
+    - options
+id: paragraph.slider.field_slider_type
+field_name: field_slider_type
+entity_type: paragraph
+bundle: slider
+label: 'Slider Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

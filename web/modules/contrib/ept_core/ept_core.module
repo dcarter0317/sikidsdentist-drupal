@@ -1,0 +1,380 @@
+<?php
+
+/**
+ * @file
+ * EPT Core module file.
+ */
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\paragraphs\ParagraphInterface;
+
+/**
+ * Implements hook_help().
+ */
+function ept_core_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the ept_core module.
+    case 'help.page.ept_core':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('EPT modules provide ability to add paragraphs in few clicks. You can install separate paragraph types from this bunch of EPT modules:') . '</p>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('<a href="@ept_accordion@">EPT Accordion / FAQ</a>', ['@ept_accordion@' => 'https://www.drupal.org/project/ept_accordion']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_basic_button@">EPT Bootstrap Button</a>', ['@ept_basic_button@' => 'https://www.drupal.org/project/ept_basic_button']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_bootstrap_button@">EPT Bootstrap Button</a>', ['@ept_bootstrap_button@' => 'https://www.drupal.org/project/ept_bootstrap_button']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_cta@">EPT Call to Action</a>', ['@ept_cta@' => 'https://www.drupal.org/project/ept_cta']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_carousel@">EPT Carousel</a>', ['@ept_carousel@' => 'https://www.drupal.org/project/ept_carousel']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_counter@">EPT Counter</a>', ['@ept_counter@' => 'https://www.drupal.org/project/ept_counter']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_image_gallery@">EPT Image Gallery</a>', ['@ept_image_gallery@' => 'https://www.drupal.org/project/ept_image_gallery']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_micromodal@">EPT Micromodal</a>', ['@ept_micromodal@' => 'https://www.drupal.org/project/ept_micromodal']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_quote@">EPT Quote</a>', ['@ept_quote@' => 'https://www.drupal.org/project/ept_quote']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_slick_slider@">EPT Slick Slider</a>', ['@ept_slick_slider@' => 'https://www.drupal.org/project/ept_slick_slider']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_slideshow@">EPT Slideshow</a>', ['@ept_slideshow@' => 'https://www.drupal.org/project/ept_slideshow']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_stats@">EPT Stats</a>', ['@ept_stats@' => 'https://www.drupal.org/project/ept_stats']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_tabs@">EPT Tabs</a>', ['@ept_tabs@' => 'https://www.drupal.org/project/ept_tabs']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_text@">EPT Text</a>', ['@ept_text@' => 'https://www.drupal.org/project/ept_text']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_timeline@">EPT Timeline</a>', ['@ept_timeline@' => 'https://www.drupal.org/project/ept_timeline']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_webform@">EPT Webform<</a>', ['@ept_webform@' => 'https://www.drupal.org/project/ept_webform']) . '</li>';
+      $output .= '<li>' . t('<a href="@ept_webform_popup@">EPT Webform Popup</a>', ['@ept_webform_popup@' => 'https://www.drupal.org/project/ept_webform_popup']) . '</li>';
+      $output .= '</ul>';
+      $output .= '<h3>' . t('How to use (configuration)') . '</h3>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('EPT Core has configuration form with Primary/Secondary colors and Mobile/Tablet/Desktop breakpoints') . '</li>';
+      $output .= '<li>' . t('The settings is available at: Administration » Configuration » Content authoring » Extra Paragraph Types (EPT) settings') . '</li>';
+      $output .= '<li>' . t('These configs will be applied to other EPT paragraphs by default.') . '</li>';
+      $output .= '</ul>';
+      $output .= '<h3>' . t('External Documentation') . '</h3>';
+      $output .= '<p>' . t('You can also view the EPT documentation at Drupal Book: <a href="@drupalbook_external_documentation@">@drupalbook_external_documentation@</a>', [
+        '@drupalbook_external_documentation@' => 'https://drupalbook.org/ept',
+      ]) . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function ept_core_theme_registry_alter(&$theme_registry) {
+  $module_list = \Drupal::service('extension.list.module')->getList();
+  $ept_modules = [];
+  foreach ($module_list as $module_name => $extention) {
+    if ($module_name == 'ept_core') {
+      continue;
+    }
+
+    if (str_starts_with($module_name, 'ept_') && !empty($extention->status)) {
+      $ept_modules[] = $module_name;
+    }
+  }
+
+  $base_theme = 'paragraph';
+  foreach ($ept_modules as $ept_module) {
+    $ept_module_with_dashes = str_replace('_', '-', $ept_module);
+    $module_handler = \Drupal::service('module_handler');
+    if ($module_handler->moduleExists('paragraphs')) {
+      $module_path = \Drupal::service('extension.list.module')->getPath($ept_module);
+      $theme_registry['paragraph__' . $ept_module . '__default'] = [
+        'path' => $module_path . '/templates',
+        'template' => 'paragraph--' . $ept_module_with_dashes . '--default',
+        'render element' => $theme_registry[$base_theme]['render element'],
+        'base hook' => $base_theme,
+        'type' => 'module',
+        'theme path' => $module_path,
+        'preprocess functions' => $theme_registry[$base_theme]['preprocess functions'] ?? [],
+        'initial preprocess' => 'template_preprocess_paragraph',
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function ept_core_theme_suggestions_paragraph_alter(array &$suggestions, array $variables) {
+  // Adds template suggestions for Paragraph types.
+  $content = $variables['elements'];
+  if (isset($content['#paragraph']) &&
+    $content['#paragraph'] instanceof ParagraphInterface &&
+    str_starts_with($content['#paragraph']->bundle(), 'ept_')
+  ) {
+    // Add 'paragraph--PARAGRAPH-TYPE.html.twig'.
+    if (!in_array('paragraph__' . $content['#paragraph']->bundle(), $suggestions)) {
+      $paragraph_type_suggestions[] = 'paragraph__' . $content['#paragraph']->bundle();
+    }
+    // Add 'paragraph--PARAGRAPH-TYPE--custom.html.twig'.
+    $paragraph_type_suggestions[] = 'paragraph__' . $content['#paragraph']->bundle() . '__custom';
+
+    // Add 'paragraph--PARAGRAPH-TYPE--VIEW-MODE.html.twig'.
+    if (!in_array('paragraph__' . $content['#paragraph']->bundle() . '__' . $content['#view_mode'], $suggestions)) {
+      $paragraph_type_suggestions[] = 'paragraph__' . $content['#paragraph']->bundle() . '__' . $content['#view_mode'];
+    }
+    // Add 'paragraph--PARAGRAPH-TYPE--VIEW-MODE--custom.html.twig'.
+    $paragraph_type_suggestions[] = 'paragraph__' . $content['#paragraph']->bundle() . '__' . $content['#view_mode'] . '__custom';
+
+    // Because paragraph exists twice in $suggestions,
+    // the suggestion arrays are reversed for further processing.
+    $suggestions_rev = array_reverse($suggestions);
+    $paragraph_type_suggestions = array_reverse($paragraph_type_suggestions);
+
+    // Insert the paragraph type and view mode suggestions between
+    // paragraph and the paragraph instance-specific suggestions.
+    $index = array_search('paragraph', $suggestions_rev);
+    if (is_numeric($index)) {
+      array_splice($suggestions_rev, $index, 0, $paragraph_type_suggestions);
+      $suggestions = array_reverse($suggestions_rev);
+      return;
+    }
+    // If paragraph isn't present as a suggestion.
+    $suggestions_rev = array_merge($paragraph_type_suggestions, $suggestions_rev);
+    $suggestions = array_reverse($suggestions_rev);
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ept_core_theme() {
+  return [
+    'ept_settings_default' => [
+      'variables' => ['ept_settings' => NULL],
+      'template' => 'ept-settings-default',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function ept_core_preprocess_paragraph(&$variables) {
+  if (empty($variables['elements']['#paragraph']) ||
+    !str_starts_with($variables['elements']['#paragraph']->bundle(), 'ept_')) {
+    return;
+  }
+  if (empty($variables['content']['field_ept_settings'])) {
+    return;
+  }
+
+  $service = \Drupal::service('ept_core.generate_css');
+
+  if (!$variables['elements']['#paragraph']->hasField('field_ept_settings')) {
+    return;
+  }
+
+  $ept_settings = $variables['elements']['#paragraph']->field_ept_settings->getValue();
+  if (empty($ept_settings[0]['ept_settings']['design_options'])) {
+    return;
+  }
+
+  $variables['#attached']['drupalSettings']['eptCore']['mobileBreakpoint'] = \Drupal::config('ept_core.settings')->get('ept_core_mobile_breakpoint');
+  $variables['#attached']['drupalSettings']['eptCore']['tabletBreakpoint'] = \Drupal::config('ept_core.settings')->get('ept_core_tablet_breakpoint');
+  $variables['#attached']['drupalSettings']['eptCore']['desktopBreakpoint'] = \Drupal::config('ept_core.settings')->get('ept_core_desktop_breakpoint');
+
+  if (!empty($ept_settings[0]['ept_settings']['design_options']['other_settings']['spacing'])) {
+    $variables['attributes']['class'][] = $ept_settings[0]['ept_settings']['design_options']['other_settings']['spacing'];
+    $variables['#attached']['library'][] = 'ept_core/ept_styles';
+  }
+
+  $paragraph_class = 'paragraph-id-' . $variables['elements']['#paragraph']->id();
+
+  $variables['styles'] = $service->generateFromSettings($ept_settings[0]['ept_settings']['design_options'], $paragraph_class);
+
+  $service = \Drupal::service('ept_core.generate_js');
+  $javascript_data = $service->generateFromSettings($ept_settings[0]['ept_settings']['design_options']);
+  if (!empty($javascript_data)) {
+    if (!empty($javascript_data['eptCoreParallax'])) {
+      $variables['#attached']['library'][] = 'ept_core/parallax';
+      $javascript_data['eptCoreParallax']['background_image_settings'] = _ept_core_get_background_image_settings($ept_settings);
+    }
+    if (!empty($javascript_data['eptCoreBackgroundRemoteVideo'])) {
+      if ($javascript_data['eptCoreBackgroundRemoteVideo']['mediaProvider'] == 'YouTube') {
+        $variables['#attached']['library'][] = 'ept_core/jquery_mb_ytplayer';
+      }
+      $javascript_data['eptCoreBackgroundRemoteVideo']['background_video_settings'] = _ept_core_get_background_video_settings($ept_settings);
+    }
+    if (!empty($javascript_data['eptCoreBackgroundVideo'])) {
+      $variables['#attached']['library'][] = 'ept_core/vidbg';
+      $javascript_data['eptCoreBackgroundVideo']['background_video_settings'] = _ept_core_get_background_video_settings($ept_settings);
+    }
+    $variables['#attached']['drupalSettings']['eptCore'][$paragraph_class] = $javascript_data;
+  }
+
+  if (!empty($ept_settings['0']['ept_settings']['design_options']['other_settings']['edge_to_edge'])) {
+    $variables['attributes']['class'][] = 'ept-edge-to-edge';
+  }
+
+  if (!empty($ept_settings['0']['ept_settings']['design_options']['other_settings']['container_width'])) {
+    $variables['attributes']['class'][] = 'ept-width-' . $ept_settings['0']['ept_settings']['design_options']['other_settings']['container_width'];
+  }
+
+  if (!empty($ept_settings[0]['ept_settings']['design_options']['other_settings']['spacing'])) {
+    $variables['attributes']['class'][] = $ept_settings[0]['ept_settings']['design_options']['other_settings']['spacing'];
+  }
+}
+
+/**
+ * Pass Background video settings from PHP to javascript.
+ */
+function _ept_core_get_background_video_settings($ept_settings) {
+  $background_settings = [];
+  // Get the background video settings or default to an empty array.
+  $video_settings = $ept_settings[0]['ept_settings']['design_options']['other_settings']['background_video_settings'] ?? [];
+
+  // Now safely extract each setting with defaults.
+  $background_settings['opacity'] = $video_settings['opacity'] ?? 1;
+  $background_settings['autoPlay'] = $video_settings['autoPlay'] ?? 1;
+  $background_settings['showControls'] = $video_settings['showControls'] ?? 0;
+  $background_settings['mute'] = $video_settings['mute'] ?? 1;
+  $background_settings['startAt'] = $video_settings['startAt'] ?? 0;
+  $background_settings['addOverlay'] = $video_settings['addOverlay'] ?? 1;
+  $background_settings['overlayColor'] = $video_settings['overlayColor'] ?? '#000000';
+  $background_settings['overlayAlpha'] = $video_settings['overlayAlpha'] ?? 0.3;
+  $background_settings['loop'] = $video_settings['loop'] ?? 1;
+  $background_settings['stopMovieOnBlur'] = $video_settings['stopMovieOnBlur'] ?? 1;
+  $background_settings['playOnlyIfVisible'] = $video_settings['playOnlyIfVisible'] ?? 0;
+  $background_settings['useOnMobile'] = $video_settings['useOnMobile'] ?? 1;
+
+  // For image settings, pass the value or null if it's not set.
+  $background_settings['coverImage'] = _ept_core_load_image_from_settings($video_settings['coverImage'] ?? NULL);
+  $background_settings['mobileFallbackImage'] = _ept_core_load_image_from_settings($video_settings['mobileFallbackImage'] ?? NULL);
+
+  return $background_settings;
+}
+
+/**
+ * Pass Background image settings from PHP to javascript.
+ */
+function _ept_core_get_background_image_settings($ept_settings) {
+  // Get the background image settings or default to an empty array.
+  $image_settings = $ept_settings[0]['ept_settings']['design_options']['other_settings']['background_image_settings'] ?? [];
+
+  // Build the background settings with default values.
+  $background_settings = [];
+  $background_settings['background_position'] = $image_settings['background_position'] ?? 'default';
+  $background_settings['background_position_custom'] = $image_settings['background_position_custom'] ?? '';
+  $background_settings['background_size_custom'] = $image_settings['background_size_custom'] ?? '';
+  $background_settings['addOverlay'] = $image_settings['addOverlay'] ?? 0;
+  $background_settings['overlayColor'] = $image_settings['overlayColor'] ?? '#000000';
+  $background_settings['overlayAlpha'] = $image_settings['overlayAlpha'] ?? 0.3;
+
+  return $background_settings;
+}
+
+/**
+ * Load media image from settings.
+ */
+function _ept_core_load_image_from_settings($mid) {
+  if (!is_numeric($mid)) {
+    return '';
+  }
+
+  $media_storage = \Drupal::entityTypeManager()->getStorage('media');
+  $media = $media_storage->load($mid);
+  if (empty($media) || $media->getSource()->getPluginId() !== 'image') {
+    return '';
+  }
+
+  // Identify the field that stores the file for *this* media type.
+  /** @var \Drupal\media\MediaTypeInterface $media_type */
+  $media_type = \Drupal::entityTypeManager()
+    ->getStorage('media_type')
+    ->load($media->bundle());
+
+  $source_field_name = $media_type
+    ->getSource()
+    ->getSourceFieldDefinition($media_type)
+    ->getName();
+
+  /** @var \Drupal\file\FileInterface|null $file */
+  $file = $media->get($source_field_name)->entity;
+  if (empty($file)) {
+    return '';
+  }
+
+  $uri = $file->getFileUri();
+  $file_url_generator = \Drupal::service('file_url_generator');
+  return $file_url_generator->generateAbsoluteString($uri);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function ept_core_paragraph_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if (!str_starts_with($entity->bundle(), 'ept_')) {
+    return;
+  }
+  $build['#attached']['library'][] = 'ept_core/ept_core';
+  $bundle = _ept_core_underscore_to_camel_case($entity->bundle());
+
+  // Use Paragraph ID for template css/javascript.
+  /** @var \Drupal\paragraphs\Entity\Paragraph $entity */
+  $paragraph_id = $entity->id();
+  if ($entity->hasField('field_ept_settings') &&
+    !empty($entity->field_ept_settings)) {
+    $options = $entity->get('field_ept_settings')->getValue();
+    $options = !empty($options[0]['ept_settings']) ? $options[0]['ept_settings'] : [];
+  }
+  else {
+    $options = [];
+  }
+
+  if (empty($options) || (isset($options['pass_options_to_javascript']) &&
+      $options['pass_options_to_javascript'] === FALSE)) {
+    return;
+  }
+
+  $paragraph_options = [
+    'paragraphClass' => 'paragraph-id-' . $paragraph_id,
+    'options' => $options,
+  ];
+  $build['#attached']['drupalSettings'][$bundle]['paragraph-id-' . $paragraph_id] = $paragraph_options;
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function ept_core_entity_view_alter(&$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  if ($entity->getEntityTypeId() != 'paragraph') {
+    return;
+  }
+
+  if (!str_starts_with($entity->bundle(), 'ept_')) {
+    return;
+  }
+
+  if (!$entity->hasField('field_ept_settings') ||
+    empty($entity->field_ept_settings)) {
+    return;
+  }
+
+  $options = $entity->get('field_ept_settings')->getValue();
+  $options = !empty($options[0]['ept_settings']) ? $options[0]['ept_settings'] : [];
+
+  if (!empty($options['design_options']['id'])) {
+    $build['#attributes']['id'] = Html::escape($options['design_options']['id']);
+  }
+
+  if (!empty($options['design_options']['additional_classes'])) {
+    $additional_classes = Html::escape($options['design_options']['additional_classes']);
+    $additional_classes = explode(' ', $additional_classes);
+    if (!empty($additional_classes)) {
+      if (!empty($build['#attributes']['class'])) {
+        $build['#attributes']['class'] = $build['#attributes']['class'] + $additional_classes;
+      }
+      else {
+        $build['#attributes']['class'] = $additional_classes;
+      }
+    }
+  }
+}
+
+/**
+ * Helper function to convert ept_name paragraph bundle to eptName camelcase.
+ */
+function _ept_core_underscore_to_camel_case($string) {
+  $str = str_replace(' ', '', ucwords(str_replace('_', ' ', $string)));
+  $str[0] = strtolower($str[0]);
+  return $str;
+}

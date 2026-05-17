@@ -1,0 +1,45 @@
+name: Banner
+description: "A full-width banner component with three style variants: default (title/body/CTA), button-banner (label + two-button group), and cta-banner (inline label + single CTA). Designed for use with the Paragraphs module."
+group: "Paragraphs Components"
+
+# Props map directly to fields on the 'banner' paragraph bundle.
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: "Title"
+      description: "Heading text. Used in the 'default' style."
+    body:
+      type: string
+      title: "Body Text"
+      description: "Optional supporting copy shown below the title. Used in the 'default' style."
+    label:
+      type: string
+      title: "Label"
+      description: "Short introductory text. Used as the category label in 'button-banner' or the prompt text in 'cta-banner'."
+    cta_label:
+      type: string
+      title: "Primary CTA Label"
+      description: "Text for the primary call-to-action button."
+    cta_url:
+      type: string
+      title: "Primary CTA URL"
+      description: "URL for the primary call-to-action button."
+    cta_secondary_label:
+      type: string
+      title: "Secondary CTA Label"
+      description: "Text for the secondary button. Used in 'button-banner' style only."
+    cta_secondary_url:
+      type: string
+      title: "Secondary CTA URL"
+      description: "URL for the secondary button. Used in 'button-banner' style only."
+    style:
+      type: string
+      title: "Banner Style"
+      description: "Controls the layout and visible elements of the banner."
+      default: "default"
+      enum:
+        - default
+        - button-banner
+        - cta-banner

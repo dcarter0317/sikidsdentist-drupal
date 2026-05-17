@@ -1,0 +1,22 @@
+uuid: df3134bf-929a-4717-94ff-02f086157216
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - sipd
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: sipd_content
+theme: sipd
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

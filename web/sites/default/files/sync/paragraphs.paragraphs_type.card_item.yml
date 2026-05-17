@@ -1,0 +1,15 @@
+uuid: 7c893680-0146-4e56-91a1-94dfa0872cff
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_library
+third_party_settings:
+  paragraphs_library:
+    allow_library_conversion: true
+id: card_item
+label: 'Card Item'
+icon_uuid: null
+icon_default: null
+description: "Card component also known here as a Card Item. \r\nCan you be used by itself or in a Card List for multiple cards"
+behavior_plugins: {  }

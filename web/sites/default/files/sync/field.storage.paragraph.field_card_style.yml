@@ -1,0 +1,30 @@
+uuid: 10509609-1e3e-4c6f-bd59-9ad00b235a50
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_card_style
+field_name: field_card_style
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: text_left
+      label: text_left
+    -
+      value: text_center
+      label: text-center
+    -
+      value: text_right
+      label: text-right
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

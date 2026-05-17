@@ -1,0 +1,10 @@
+uuid: 96152437-772f-4b93-a94b-dfcb98ae1a87
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: CQSPoVI2zOeWs7Xgd9ALoKdgcYScRjwZQK17EBkHKX4
+id: ebt_columns
+label: 'EBT Columns / Container'
+revision: 0
+description: 'Extra Block Type (EBT): EBT Columns / Container'

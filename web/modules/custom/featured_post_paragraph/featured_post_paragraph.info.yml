@@ -1,0 +1,11 @@
+name: 'Featured Post Paragraph'
+description: 'Provides the Featured Post paragraph type and its field configuration for use with the Featured Post SDC component.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:link
+  - drupal:text
+  - drupal:options
+  - drupal:media

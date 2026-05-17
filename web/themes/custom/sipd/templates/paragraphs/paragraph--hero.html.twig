@@ -1,0 +1,51 @@
+{#
+/**
+ * @file paragraph--hero.html.twig
+ *
+ * Paragraph template for the 'hero' bundle.
+ * Located in your theme's templates/ directory.
+ *
+ * This template's ONLY job is to map Paragraphs field values
+ * to the Hero SDC's props and slots, keeping business logic
+ * out of the component itself.
+ *
+ * Path: web/themes/custom/mytheme/templates/paragraphs/paragraph--hero.html.twig
+ *
+ * Drupal's Paragraphs module provides:
+ *   - content.field_hero_headline
+ *   - content.field_hero_subheadline
+ *   - content.field_hero_body
+ *   - content.field_hero_cta
+ *   - content.field_hero_background_image
+ *   - content.field_hero_theme
+ *   - paragraph (the paragraph entity, for direct value access)
+ */
+#}
+
+{# ── Extract raw field values from the paragraph entity ── #}
+
+{%- set headline = paragraph.field_hero_headline.value -%}
+{%- set subheadline = paragraph.field_hero_subheadline.value -%}
+{%- set body = paragraph.field_hero_body.value -%}
+{%- set theme = paragraph.field_hero_theme.value|default('dark') -%}
+
+{# CTA link field exposes .title and .url (Url object) #}
+{%- set cta_label = paragraph.field_hero_cta.title -%}
+{%- set cta_url = paragraph.field_hero_cta.url ? paragraph.field_hero_cta.url.toString() : null -%}
+
+{# Background image: resolve the file URL via Drupal's image_url filter #}
+{%- set bg_image_item = paragraph.field_hero_background_image.entity -%}
+{%- set background_image_url = bg_image_item ? file_url(bg_image_item.uri.value) : null -%}
+{%- set background_image_alt = paragraph.field_hero_background_image.alt -%}
+
+{# ── Render the Hero SDC, passing all mapped props ── #}
+{% include "sipd:hero" with {
+  headline: headline,
+  subheadline: subheadline,
+  body: body,
+  cta_label: cta_label,
+  cta_url: cta_url,
+  background_image_url: background_image_url,
+  background_image_alt: background_image_alt,
+  theme: theme,
+} only %}

@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * @file
+ * Add templates for EPT Tiles.
+ */
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function ept_tiles_theme_registry_alter(&$theme_registry) {
+  $ept_module = 'ept_tiles';
+  $module_path = \Drupal::service('extension.list.module')->getPath($ept_module);
+  $ept_module_with_dashes = str_replace('_', '-', $ept_module);
+  $base_theme = 'paragraph';
+  $theme_registry['paragraph__ept_tiles_item__default'] = [
+    'path' => $module_path . '/templates',
+    'template' => 'paragraph--ept-tiles-item--default',
+    'render element' => $theme_registry[$base_theme]['render element'],
+    'base hook' => $base_theme,
+    'type' => 'module',
+    'theme path' => $module_path,
+    'preprocess functions' => $theme_registry[$base_theme]['preprocess functions'] ?? [],
+    'initial preprocess' => 'template_preprocess_paragraph',
+  ];
+
+  $base_theme = 'field';
+  $theme_registry['field__paragraph__field_' . $ept_module . '__' . $ept_module] = [
+    'path' => $module_path . '/templates',
+    'template' => 'field--paragraph--field-' . $ept_module_with_dashes . '--' . $ept_module_with_dashes,
+    'render element' => $theme_registry[$base_theme]['render element'],
+    'base hook' => $base_theme,
+    'type' => 'module',
+    'theme path' => $module_path,
+    'preprocess functions' => $theme_registry[$base_theme]['preprocess functions'] ?? [],
+    'initial preprocess' => 'template_preprocess_field',
+  ];
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function ept_tiles_preprocess_paragraph(array &$variables) {
+  if ($variables['paragraph']->bundle() != 'ept_tiles_item') {
+    return;
+  }
+
+  if (empty($variables['paragraph']->getParentEntity())) {
+    return;
+  }
+
+  if (!$variables['paragraph']->getParentEntity()->hasField('field_ept_settings')) {
+    return;
+  }
+
+  if ($variables['paragraph']->getParentEntity()->get('field_ept_settings')->isEmpty()) {
+    return;
+  }
+
+  // Get the 'field_ept_settings' from Parent.
+  $ept_settings = $variables['paragraph']->getParentEntity()->get('field_ept_settings')->first()->getValue();
+
+  // Default value.
+  $link_in_a_new_tab = FALSE;
+
+  // If is configured to open in a new tab, return this in a variable.
+  if (!empty($ept_settings['ept_settings']['links']['link_in_a_new_tab'])) {
+    $link_in_a_new_tab = $ept_settings['ept_settings']['links']['link_in_a_new_tab'];
+  }
+
+  // Default value for "nofollow".
+  $nofollow = FALSE;
+
+  // If is configured to add "nofollow", use it.
+  if (!empty($ept_settings['ept_settings']['links']['add_nofollow'])) {
+    $nofollow = $ept_settings['ept_settings']['links']['add_nofollow'];
+  }
+
+  $variables['link_in_a_new_tab'] = $link_in_a_new_tab;
+  $variables['nofollow'] = $nofollow;
+}

@@ -1,0 +1,82 @@
+uuid: 394b5edf-a17c-4f48-92dc-5d5165483c9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_slider_slides
+    - paragraphs.paragraphs_type.slide_item
+    - paragraphs.paragraphs_type.slider
+  module:
+    - paragraph_blocks
+third_party_settings:
+  paragraph_blocks:
+    status: 1
+id: paragraph.slider.field_slider_slides
+field_name: field_slider_slides
+entity_type: paragraph
+bundle: slider
+label: 'Slider Slides'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      slide_item: slide_item
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 18
+        enabled: false
+      accordion_item:
+        weight: 19
+        enabled: false
+      blog_hero:
+        weight: 20
+        enabled: false
+      card_item:
+        weight: 21
+        enabled: false
+      card_list:
+        weight: 22
+        enabled: false
+      ebt_tab:
+        weight: 23
+        enabled: false
+      ept_columns:
+        weight: 24
+        enabled: false
+      ept_text:
+        weight: 25
+        enabled: false
+      ept_tiles:
+        weight: 26
+        enabled: false
+      ept_tiles_item:
+        weight: 27
+        enabled: false
+      ept_video_and_image_gallery:
+        weight: 28
+        enabled: false
+      ept_video_and_image_gallery_item:
+        weight: 29
+        enabled: false
+      from_library:
+        weight: 30
+        enabled: false
+      hero:
+        weight: 31
+        enabled: false
+      section:
+        weight: 32
+        enabled: false
+      slide_item:
+        weight: 34
+        enabled: true
+      slider:
+        weight: 33
+        enabled: false
+field_type: entity_reference

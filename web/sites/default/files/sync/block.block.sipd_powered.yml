@@ -1,0 +1,22 @@
+uuid: c3e45e7d-d0b1-4350-aa23-bd8a075c86b7
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - sipd
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: sipd_powered
+theme: sipd
+region: primary_menu
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

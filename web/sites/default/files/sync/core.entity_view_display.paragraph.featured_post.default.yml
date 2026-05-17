@@ -1,0 +1,99 @@
+uuid: e066b4e8-db0b-4fac-9aa3-7a3e991daddb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.featured_post.field_fp_author
+    - field.field.paragraph.featured_post.field_fp_body
+    - field.field.paragraph.featured_post.field_fp_category
+    - field.field.paragraph.featured_post.field_fp_cta
+    - field.field.paragraph.featured_post.field_fp_eyebrow
+    - field.field.paragraph.featured_post.field_fp_media
+    - field.field.paragraph.featured_post.field_fp_style
+    - field.field.paragraph.featured_post.field_fp_subtitle
+    - field.field.paragraph.featured_post.field_fp_title
+    - paragraphs.paragraphs_type.featured_post
+  module:
+    - link
+    - options
+    - text
+id: paragraph.featured_post.default
+targetEntityType: paragraph
+bundle: featured_post
+mode: default
+content:
+  field_fp_author:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_fp_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_fp_category:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_fp_cta:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_fp_eyebrow:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_fp_media:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_fp_style:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_fp_subtitle:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_fp_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+hidden: {  }

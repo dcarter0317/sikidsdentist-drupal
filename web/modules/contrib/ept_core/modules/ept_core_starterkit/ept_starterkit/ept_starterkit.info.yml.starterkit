@@ -1,0 +1,9 @@
+type: module
+name: 'Extra Paragraph Types (EPT): STARTERKIT'
+description: 'Extra Paragraph Type (EPT) module.'
+core_version_requirement: ^9.3 || ^10 || ^11
+package: 'Extra Paragraph Types'
+
+dependencies:
+  - ept_core:ept_core
+  - paragraphs:paragraphs

@@ -1,0 +1,25 @@
+uuid: a7111d51-5e4e-488d-8310-591ba750c168
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_slider_interval
+    - paragraphs.paragraphs_type.slider
+id: paragraph.slider.field_slider_interval
+field_name: field_slider_interval
+entity_type: paragraph
+bundle: slider
+label: 'Slider Interval'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 7000
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

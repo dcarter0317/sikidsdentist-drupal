@@ -1,0 +1,75 @@
+{#
+/**
+ * @file paragraph--card.html.twig
+ *
+ * Bridge template for the "card" paragraph bundle.
+ * Maps Paragraphs field values to the Card SDC props.
+ */
+#}
+
+{%- set eyebrow = null -%}
+{%- set title = null -%}
+{%- set description = null -%}
+{%- set image = null -%}
+{%- set image_alt = null -%}
+{%- set cta_label = null -%}
+{%- set cta_url = null -%}
+{%- set variant_class = null -%}
+{%- set type_class = null -%}
+
+{# Card Style field maps text_left → card--text-left #}
+{% if paragraph.field_card_style is defined and not paragraph.field_card_style.isEmpty %}
+  {%- set variant_class = 'card--' ~ paragraph.field_card_style.value|replace({'_': '-'}) -%}
+{% endif %}
+
+{# Card Type field maps wide → card--wide #}
+{% if paragraph.field_card_type is defined and not paragraph.field_card_type.isEmpty %}
+  {%- set type_class = 'card--' ~ paragraph.field_card_type.value|replace({'_': '-'}) -%}
+{% endif %}
+
+{# Optional eyebrow #}
+{% if paragraph.field_card_eyebrow is defined and not paragraph.field_card_eyebrow.isEmpty %}
+  {%- set eyebrow = paragraph.field_card_eyebrow.value -%}
+{% endif %}
+
+{# Optional title #}
+{% if paragraph.field_card_title is defined and not paragraph.field_card_title.isEmpty %}
+  {%- set title = paragraph.field_card_title.value -%}
+{% endif %}
+
+{# Description supports either field_card_description or legacy field_card_body #}
+{% if paragraph.field_card_description is defined and not paragraph.field_card_description.isEmpty %}
+  {%- set description = paragraph.field_card_description.value -%}
+{% elseif paragraph.field_card_body is defined and not paragraph.field_card_body.isEmpty %}
+  {%- set description = paragraph.field_card_body.value -%}
+{% endif %}
+
+{# field_card_media is a Media reference — traverse to the file entity #}
+{% if paragraph.field_card_media is defined and paragraph.field_card_media.entity %}
+  {%- set _media = paragraph.field_card_media.entity -%}
+  {% if _media.field_media_image is defined and _media.field_media_image.entity %}
+    {%- set image = _media.field_media_image.entity.uri.value|file_url -%}
+    {%- set image_alt = _media.field_media_image.alt|default('') -%}
+  {% endif %}
+{% endif %}
+
+{# CTA supports either field_card_cta or legacy field_card_link #}
+{% if paragraph.field_card_cta is defined and paragraph.field_card_cta.0 %}
+  {%- set cta_label = paragraph.field_card_cta.0.title|default(null) -%}
+  {%- set cta_url = paragraph.field_card_cta.0.url.toString -%}
+{% elseif paragraph.field_card_link is defined and paragraph.field_card_link.0 %}
+  {%- set cta_label = paragraph.field_card_link.0.title|default(null) -%}
+  {%- set cta_url = paragraph.field_card_link.0.url.toString -%}
+{% endif %}
+
+{% include "sipd:card" with {
+  eyebrow: eyebrow,
+  title: title,
+  description: description,
+  image: image,
+  image_alt: image_alt,
+  cta_label: cta_label,
+  cta_url: cta_url,
+  variant_class: variant_class,
+  type_class: type_class,
+} only %}

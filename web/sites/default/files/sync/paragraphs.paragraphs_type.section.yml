@@ -1,0 +1,28 @@
+uuid: 8613f7f7-5201-403a-8d0a-573ac4522509
+langcode: en
+status: true
+dependencies:
+  module:
+    - layout_paragraphs
+    - paragraph_block
+third_party_settings:
+  paragraph_block:
+    status: false
+id: section
+label: Section
+icon_uuid: null
+icon_default: null
+description: 'Container for content and layout'
+behavior_plugins:
+  layout_paragraphs:
+    enabled: true
+    available_layouts:
+      blazy_layout: 'Blazy dynamic layout'
+      layout_onecol: 'One column'
+      layout_twocol_section: 'Two column'
+      layout_twocol: 'Two column'
+      layout_twocol_bricks: 'Two column bricks'
+      layout_threecol_section: 'Three column'
+      layout_threecol_25_50_25: 'Three column 25/50/25'
+      layout_threecol_33_34_33: 'Three column 33/34/33'
+      layout_fourcol_section: 'Four column'

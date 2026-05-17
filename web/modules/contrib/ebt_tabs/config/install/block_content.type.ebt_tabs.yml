@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: ebt_tabs
+label: 'EBT Tabs'
+revision: 1
+description: 'Extra Block Type (EBT): Tabs'

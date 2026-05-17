@@ -1,0 +1,103 @@
+/**
+ * @file card.css
+ *
+ * Styles for the Card SDC.
+ */
+
+.card {
+  --card-title-color: var(--clr-text-2, #1d2d39);
+  --card-text-color: var(--clr-text-2, #1d2d39);
+  --card-eyebrow-color: var(--clr-text-7, #4c6a7d);
+  --card-link-color: var(--clr-primary, #0f7a5a);
+  --card-bg-color: var(--clr-bg-3, #ffffff);
+  --card-border-color: rgba(0, 0, 0, 0.08);
+
+  background: var(--card-bg-color);
+  color: var(--card-text-color);
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__media img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.card__content {
+  color: var(--card-text-color);
+  padding: 1rem 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.card__eyebrow {
+  margin: 0;
+  color: var(--card-eyebrow-color);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.card__title {
+  font-size: var(--fs-h4, 1.25rem);
+  font-weight: var(--fw-bold, 700);
+  line-height: 1.25;
+  margin: 0;
+  color: var(--card-title-color);
+}
+
+.card__description {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.card__link,
+.card__link:link,
+.card__link:visited {
+  margin-top: auto;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: var(--fw-bold, 700);
+  color: var(--card-link-color);
+  border-bottom: 3px solid currentColor;
+  transition: opacity 0.2s ease;
+}
+
+.card__link:hover,
+.card__link:focus-visible {
+  opacity: 0.75;
+}
+
+.card__link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Text alignment variants (from card.component.yml) */
+.card--text-left .card__content {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.card--text-center .card__content {
+  text-align: center;
+  align-items: center;
+}
+
+.card--text-right .card__content {
+  text-align: right;
+  align-items: flex-end;
+}

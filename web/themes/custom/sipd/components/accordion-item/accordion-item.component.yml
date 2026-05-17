@@ -1,0 +1,19 @@
+name: Accordion Item
+description: "Single expandable accordion item using a <details>/<summary> element. Add multiple instances as paragraph items to build an accordion list."
+group: "Paragraphs Components"
+
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: "Title"
+      description: "The accordion item heading shown in the summary bar."
+    content:
+      type: string
+      title: "Content"
+      description: "The expandable body content. Supports HTML markup."
+    open:
+      type: boolean
+      title: "Open by default"
+      description: "When true, the accordion item starts in the expanded state."

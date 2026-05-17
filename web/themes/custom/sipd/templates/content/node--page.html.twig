@@ -1,0 +1,24 @@
+{{ attach_library('sipd/global') }}
+{% set classes = [
+  'page-wrap'
+] %}
+<section {{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {% include('@sipd/templates/layout/header.html.twig') %}
+  <div{{ content_attributes.addClass('content-container') }}>
+    {% if node.body.value %}
+      <div class="node__body">
+        {{ node.body.processed }}
+      </div>
+    {% endif %}
+    {% if node.field_components is not empty %}
+      <div class="node__components">
+        {% for item in node.field_components %}
+          {{ item.entity|view }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+  {% include('@sipd/templates/layout/footer.html.twig') %}
+</section>

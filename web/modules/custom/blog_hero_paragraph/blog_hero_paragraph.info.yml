@@ -1,0 +1,10 @@
+name: 'Blog Hero Paragraph'
+description: 'Provides the Blog Hero paragraph type and its field configuration for use with the Blog Hero SDC component.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:media
+  - drupal:text
+  - drupal:options

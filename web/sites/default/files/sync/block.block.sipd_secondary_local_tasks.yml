@@ -1,0 +1,22 @@
+uuid: e960325b-440d-47a4-8a9c-ad894e03d23f
+langcode: en
+status: false
+dependencies:
+  theme:
+    - sipd
+_core:
+  default_config_hash: ydSxdq7R66I8UMC460rOzlfzvlUL4VRbdwc6z9DWaUI
+id: sipd_secondary_local_tasks
+theme: sipd
+region: primary_menu
+weight: -2
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

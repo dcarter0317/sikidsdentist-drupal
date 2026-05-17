@@ -1,0 +1,31 @@
+.ept-paragraph-tiles {
+  .ept-tiles-wrapper {
+    .inner {
+      border: 1px solid #eee;
+      display: block;
+      padding: 15px;
+      transition: box-shadow 0.3s ease-in-out;
+      text-decoration: none;
+      height: 100%;
+      &:hover {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      }
+    }
+  }
+}
+
+.paragraph--type--ept-tiles-item {
+  height: 100%;
+  > a {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+  }
+  .field--name-field-ept-tiles-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .field--name-field-media-image {
+    text-align: center;
+  }
+}

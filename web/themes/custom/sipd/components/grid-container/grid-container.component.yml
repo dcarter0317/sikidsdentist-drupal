@@ -1,0 +1,41 @@
+name: Grid Container
+description: "CSS Grid layout wrapper that arranges multiple Grid Item paragraphs into configurable columns. Column count is set via the columns variant."
+group: "Paragraphs Components"
+
+props:
+  type: object
+  properties:
+    heading:
+      type: string
+      title: "Section Heading"
+      description: "Optional heading displayed above the grid."
+
+slots:
+  items:
+    title: "Grid Items"
+    description: "Rendered Grid Item paragraph instances."
+
+variants:
+  columns:
+    title: "Columns"
+    description: "Number of grid columns on desktop. Collapses to a single column on mobile."
+    default: columns-auto
+    options:
+      columns-auto:
+        title: "Auto"
+        description: "Fills as many columns as fit at 300 px minimum — responsive by default."
+      columns-2:
+        title: "2 columns"
+        description: "Two equal columns on desktop."
+      columns-3:
+        title: "3 columns"
+        description: "Three equal columns on desktop."
+      columns-4:
+        title: "4 columns"
+        description: "Four equal columns on desktop."
+      columns-5:
+        title: "5 columns"
+        description: "Five equal columns on desktop."
+      columns-6:
+        title: "6 columns"
+        description: "Six equal columns on desktop."

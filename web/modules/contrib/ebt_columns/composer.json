@@ -1,0 +1,17 @@
+{
+    "name": "drupal/ebt_columns",
+    "type": "drupal-module",
+    "description": "EBT Columns",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://drupal.org/project/ebt_columns",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/ebt_columns",
+        "source": "https://git.drupalcode.org/project/ebt_columns"
+    },
+    "require": {
+        "drupal/block_field": "^1.0",
+        "drupal/ebt_core": "^1.4"
+    }
+}

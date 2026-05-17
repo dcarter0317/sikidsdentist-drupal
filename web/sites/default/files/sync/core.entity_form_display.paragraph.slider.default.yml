@@ -1,0 +1,65 @@
+uuid: 8315e1ab-6d35-4131-8d4a-811725208148
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.slider.field_aria_label
+    - field.field.paragraph.slider.field_slider_autoplay
+    - field.field.paragraph.slider.field_slider_interval
+    - field.field.paragraph.slider.field_slider_slides
+    - field.field.paragraph.slider.field_slider_type
+    - paragraphs.paragraphs_type.slider
+id: paragraph.slider.default
+targetEntityType: paragraph
+bundle: slider
+mode: default
+content:
+  admin_title:
+    type: string_textfield
+    weight: -10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_aria_label:
+    type: string_textarea
+    weight: -9
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_slider_autoplay:
+    type: boolean_checkbox
+    weight: -7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_slider_interval:
+    type: number
+    weight: -6
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_slider_slides:
+    type: entity_reference_autocomplete
+    weight: -5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_slider_type:
+    type: options_select
+    weight: -8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

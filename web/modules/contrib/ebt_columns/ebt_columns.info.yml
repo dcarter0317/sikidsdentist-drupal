@@ -1,0 +1,14 @@
+name: 'EBT Columns / Container'
+type: module
+description: 'Extra Block Type (EBT): EBT Columns / Container'
+package: 'Extra Block Types'
+core_version_requirement: ^9.4 || ^10 || ^11
+
+dependencies:
+  - ebt_core:ebt_core
+  - block_field:block_field
+
+# Information added by Drupal.org packaging script on 2024-07-15
+version: '1.4.1'
+project: 'ebt_columns'
+datestamp: 1721031647

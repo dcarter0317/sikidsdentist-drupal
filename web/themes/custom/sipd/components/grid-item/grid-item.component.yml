@@ -1,0 +1,15 @@
+name: Grid Item
+description: "Generic content block used as a cell inside a Grid Container. Accepts a heading and any HTML body content."
+group: "Paragraphs Components"
+
+props:
+  type: object
+  properties:
+    heading:
+      type: string
+      title: "Heading"
+      description: "Optional heading displayed at the top of the grid cell."
+    content:
+      type: string
+      title: "Content"
+      description: "Body content for the grid cell. Supports HTML markup."

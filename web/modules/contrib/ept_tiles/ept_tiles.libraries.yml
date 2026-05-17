@@ -1,0 +1,24 @@
+ept_tiles:
+  css:
+    theme:
+      css/ept_tiles.css: {}
+
+one_column:
+  css:
+    theme:
+      css/one_column.css: {}
+
+two_columns:
+  css:
+    theme:
+      css/two_columns.css: {}
+
+three_columns:
+  css:
+    theme:
+      css/three_columns.css: {}
+
+four_columns:
+  css:
+    theme:
+      css/four_columns.css: {}

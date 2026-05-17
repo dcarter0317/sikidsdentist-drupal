@@ -1,0 +1,37 @@
+name: Slider
+description: "Full-width carousel component built with Splide.js. Accepts nested Slide Item paragraphs as rendered slide content."
+group: "Paragraphs Components"
+
+props:
+  type: object
+  required:
+    - aria_label
+  properties:
+    aria_label:
+      type: string
+      title: "Accessible Label"
+      description: "Accessible label for the carousel region (e.g. 'Office tour photos')."
+    slider_type:
+      type: string
+      title: "Slider Type"
+      description: "Splide transition type."
+      default: "loop"
+      enum:
+        - loop
+        - fade
+        - slide
+    autoplay:
+      type: boolean
+      title: "Autoplay"
+      description: "Whether the slider advances automatically."
+      default: true
+    interval:
+      type: integer
+      title: "Autoplay Interval (ms)"
+      description: "Milliseconds between automatic slide advances. Only applies when autoplay is enabled."
+      default: 7000
+
+slots:
+  slides:
+    title: "Slide Items"
+    description: "Rendered nested Slide Item paragraph elements. Each item should output a <li class=\"splide__slide\"> wrapper."

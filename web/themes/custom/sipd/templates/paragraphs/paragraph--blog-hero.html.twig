@@ -1,0 +1,31 @@
+{#
+/**
+ * @file paragraph--blog-hero.html.twig
+ *
+ * Bridge template: maps Paragraphs field values to the Blog Hero SDC props.
+ *
+ * Path: web/themes/custom/sipd/templates/paragraphs/paragraph--blog-hero.html.twig
+ */
+#}
+
+{%- set title = paragraph.field_blog_hero_title.value -%}
+{%- set date = paragraph.field_blog_hero_date.value -%}
+{%- set author = paragraph.field_blog_hero_author.value -%}
+{%- set author_link = paragraph.field_blog_hero_author_link.value -%}
+{%- set background_image_alt = paragraph.field_blog_hero_bg_img_alt.value -%}
+{%- set content_alignment = paragraph.field_content_alignment.value|default('centered') -%}
+
+{# Background image via Media entity reference → File entity → URL #}
+{%- set media_entity = paragraph.field_blog_hero_background_image.entity -%}
+{%- set bg_file = media_entity ? media_entity.field_media_image.entity : null -%}
+{%- set background_image_url = bg_file ? file_url(bg_file.uri.value) : null -%}
+
+{% include "sipd:blog-hero" with {
+  title: title,
+  date: date,
+  author: author,
+  author_link: author_link,
+  background_image_url: background_image_url,
+  background_image_alt: background_image_alt,
+  content_alignment: content_alignment,
+} only %}

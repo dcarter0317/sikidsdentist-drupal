@@ -1,0 +1,35 @@
+name: Accordion List
+description: "Grid container that lays out multiple Accordion Item paragraphs. Each item renders as a grid cell; column count is controlled by the columns variant."
+group: "Paragraphs Components"
+
+props:
+  type: object
+  properties:
+    heading:
+      type: string
+      title: "Heading"
+      description: "Optional section heading shown above the accordion grid."
+
+slots:
+  items:
+    title: "Accordion Items"
+    description: "Rendered Accordion Item paragraph instances."
+
+variants:
+  columns:
+    title: "Columns"
+    description: "Number of grid columns on desktop. Collapses to a single column on mobile."
+    default: columns-1
+    options:
+      columns-1:
+        title: "1 column"
+        description: "Full-width single column — classic stacked accordion."
+      columns-2:
+        title: "2 columns"
+        description: "Two accordion columns side-by-side on desktop."
+      columns-3:
+        title: "3 columns"
+        description: "Three accordion columns on desktop."
+      columns-4:
+        title: "4 columns"
+        description: "Four accordion columns on desktop."

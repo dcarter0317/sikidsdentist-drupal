@@ -1,0 +1,21 @@
+uuid: 67134ae8-5f2a-4ff6-b72b-09e6fb0b52c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_type
+    - paragraphs.paragraphs_type.card_item
+  module:
+    - options
+id: paragraph.card_item.field_card_type
+field_name: field_card_type
+entity_type: paragraph
+bundle: card_item
+label: 'Card Type'
+description: 'Sets the card to a row layout, two column layout with the image on one side and the text on the other.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

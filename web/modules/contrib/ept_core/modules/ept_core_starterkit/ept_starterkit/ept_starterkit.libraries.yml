@@ -1,0 +1,5 @@
+ept_starterkit:
+  css:
+    component:
+      css/styles.css: {}
+

@@ -1,0 +1,21 @@
+uuid: 4258df34-95a2-48e7-a719-039c20f2e1fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fp_style
+    - paragraphs.paragraphs_type.featured_post
+  module:
+    - options
+id: paragraph.featured_post.field_fp_style
+field_name: field_fp_style
+entity_type: paragraph
+bundle: featured_post
+label: Style
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

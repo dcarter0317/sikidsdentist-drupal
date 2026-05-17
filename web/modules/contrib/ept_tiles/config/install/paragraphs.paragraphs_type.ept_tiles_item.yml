@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: ept_tiles_item
+label: 'EPT Tiles Item'
+icon_uuid: null
+icon_default: null
+description: 'Section for EPT Tiles'
+behavior_plugins: {  }

@@ -1,0 +1,55 @@
+name: Card
+description: "Reusable card component for eyebrow, image, title, description, and CTA."
+group: "Paragraphs Components"
+
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: "Eyebrow"
+      description: "Optional short text shown above the title."
+    image:
+      type: string
+      title: "Image URL"
+      description: "Optional card image URL."
+    image_alt:
+      type: string
+      title: "Image alt text"
+      description: "Alternative text for the card image."
+    title:
+      type: string
+      title: "Title"
+      description: "Optional card title."
+    description:
+      type: string
+      title: "Description"
+      description: "Optional card description/body copy."
+    cta_label:
+      type: string
+      title: "CTA label"
+      description: "Optional call-to-action label."
+    cta_url:
+      type: string
+      title: "CTA URL"
+      description: "Optional call-to-action URL."
+    type_class:
+      type: string
+      title: "Card Type class"
+      description: "Optional class appended to .card (e.g. card--wide)."
+
+variants:
+  text_alignment:
+    title: "Text Alignment"
+    description: "Controls card content alignment."
+    default: text-left
+    options:
+      text-left:
+        title: "Left"
+        description: "Left-aligned card content."
+      text-center:
+        title: "Center"
+        description: "Centered card content."
+      text-right:
+        title: "Right"
+        description: "Right-aligned card content."

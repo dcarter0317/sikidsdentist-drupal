@@ -1,0 +1,17 @@
+{
+    "name": "drupal/ept_tiles",
+    "type": "drupal-module",
+    "description": "Extra Paragraph Types (EPT): Tiles",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0-or-later",
+    "homepage": "http://drupal.org/project/ept_tiles",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/ept_tiles",
+        "source": "https://git.drupalcode.org/project/ept_tiles"
+    },
+    "require": {
+        "drupal/ept_core": "^1.4",
+        "drupal/paragraphs": "^1.0"
+    }
+}

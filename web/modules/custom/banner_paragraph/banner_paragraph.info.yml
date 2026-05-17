@@ -1,0 +1,10 @@
+name: 'Banner Paragraph'
+description: 'Provides the Banner paragraph type and its field configuration for use with the Banner SDC component.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:link
+  - drupal:text
+  - drupal:options

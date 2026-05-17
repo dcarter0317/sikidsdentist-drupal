@@ -1,0 +1,83 @@
+{#
+/**
+ * @file paragraph--featured-post.html.twig
+ *
+ * Bridge template: maps "featured_post" paragraph fields to Featured Post SDC props.
+ */
+#}
+
+{%- set eyebrow = null -%}
+{%- set subtitle = null -%}
+{%- set category = null -%}
+{%- set author = null -%}
+{%- set image = null -%}
+{%- set image_alt = null -%}
+{%- set title = null -%}
+{%- set description = null -%}
+{%- set cta_label = null -%}
+{%- set cta_url = null -%}
+{%- set variant_class = null -%}
+
+{# Style: featured | standard → post--featured | post--standard #}
+{% if paragraph.field_fp_style is defined and not paragraph.field_fp_style.isEmpty %}
+  {%- set variant_class = 'post--' ~ paragraph.field_fp_style.value|replace({'_': '-'}) -%}
+{% endif %}
+
+{# Eyebrow — typically the publication date #}
+{% if paragraph.field_fp_eyebrow is defined and not paragraph.field_fp_eyebrow.isEmpty %}
+  {%- set eyebrow = paragraph.field_fp_eyebrow.value -%}
+{% endif %}
+
+{# Subtitle (featured variant only) #}
+{% if paragraph.field_fp_subtitle is defined and not paragraph.field_fp_subtitle.isEmpty %}
+  {%- set subtitle = paragraph.field_fp_subtitle.value -%}
+{% endif %}
+
+{# Category label (featured variant only) #}
+{% if paragraph.field_fp_category is defined and not paragraph.field_fp_category.isEmpty %}
+  {%- set category = paragraph.field_fp_category.value -%}
+{% endif %}
+
+{# Author name (featured variant only) #}
+{% if paragraph.field_fp_author is defined and not paragraph.field_fp_author.isEmpty %}
+  {%- set author = paragraph.field_fp_author.value -%}
+{% endif %}
+
+{# Media entity reference → File entity → URL #}
+{% if paragraph.field_fp_media is defined and paragraph.field_fp_media.entity %}
+  {%- set _media = paragraph.field_fp_media.entity -%}
+  {% if _media.field_media_image is defined and _media.field_media_image.entity %}
+    {%- set image = _media.field_media_image.entity.uri.value|file_url -%}
+    {%- set image_alt = _media.field_media_image.alt|default('') -%}
+  {% endif %}
+{% endif %}
+
+{# Main title #}
+{% if paragraph.field_fp_title is defined and not paragraph.field_fp_title.isEmpty %}
+  {%- set title = paragraph.field_fp_title.value -%}
+{% endif %}
+
+{# Description / body copy #}
+{% if paragraph.field_fp_body is defined and not paragraph.field_fp_body.isEmpty %}
+  {%- set description = paragraph.field_fp_body.value -%}
+{% endif %}
+
+{# CTA link #}
+{% if paragraph.field_fp_cta is defined and paragraph.field_fp_cta.0 %}
+  {%- set cta_label = paragraph.field_fp_cta.0.title|default(null) -%}
+  {%- set cta_url = paragraph.field_fp_cta.0.url.toString -%}
+{% endif %}
+
+{% include "sipd:featured-post" with {
+  eyebrow: eyebrow,
+  subtitle: subtitle,
+  category: category,
+  author: author,
+  image: image,
+  image_alt: image_alt,
+  title: title,
+  description: description,
+  cta_label: cta_label,
+  cta_url: cta_url,
+  variant_class: variant_class,
+} only %}

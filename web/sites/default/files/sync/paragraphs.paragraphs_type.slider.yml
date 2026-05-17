@@ -1,0 +1,15 @@
+uuid: f6b1a3b3-8a96-4526-8435-cb111cdd4673
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraph_block
+third_party_settings:
+  paragraph_block:
+    status: false
+id: slider
+label: Slider
+icon_uuid: null
+icon_default: null
+description: 'Content Slider component'
+behavior_plugins: {  }

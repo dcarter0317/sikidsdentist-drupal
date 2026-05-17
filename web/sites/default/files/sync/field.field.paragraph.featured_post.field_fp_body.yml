@@ -1,0 +1,22 @@
+uuid: f61ddaad-1f8c-4d2c-b927-ac577b3b1045
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fp_body
+    - paragraphs.paragraphs_type.featured_post
+  module:
+    - text
+id: paragraph.featured_post.field_fp_body
+field_name: field_fp_body
+entity_type: paragraph
+bundle: featured_post
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text

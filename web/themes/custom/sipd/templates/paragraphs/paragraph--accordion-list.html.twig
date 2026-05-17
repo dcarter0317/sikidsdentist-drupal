@@ -1,0 +1,60 @@
+{#
+/**
+ * @file paragraph--accordion-list.html.twig
+ *
+ * Bridge template for the "accordion_list" paragraph bundle.
+ * Renders nested Accordion Item paragraphs into the Accordion List SDC.
+ */
+#}
+
+{%- set heading = null -%}
+{%- set variant_class = null -%}
+{%- set items = null -%}
+{%- set nested_field_name = null -%}
+
+{% if paragraph.field_accordion_list_heading is defined and not paragraph.field_accordion_list_heading.isEmpty %}
+  {%- set heading = paragraph.field_accordion_list_heading.value -%}
+{% elseif paragraph.field_heading is defined and not paragraph.field_heading.isEmpty %}
+  {%- set heading = paragraph.field_heading.value -%}
+{% endif %}
+
+{# Map columns field value to BEM modifier, e.g. "2" → "accordion-list--columns-2" #}
+{% if paragraph.field_accordion_list_columns is defined and not paragraph.field_accordion_list_columns.isEmpty %}
+  {%- set variant_class = 'accordion-list--columns-' ~ paragraph.field_accordion_list_columns.value -%}
+{% endif %}
+
+{#
+  Auto-detect the nested Accordion Item reference field by inspecting paragraph
+  field definitions for the first entity_reference_revisions field targeting
+  the accordion_item paragraph bundle.
+#}
+{% for field_name, field_definition in paragraph.getFieldDefinitions %}
+  {% if nested_field_name is null and field_name starts with 'field_' and paragraph.get(field_name) is defined %}
+    {% set field_item_list = paragraph.get(field_name) %}
+    {% set is_reference_revisions = field_definition.getType == 'entity_reference_revisions' %}
+    {% set target_type = field_definition.getSetting('target_type') %}
+    {% set handler_settings = field_definition.getSetting('handler_settings')|default({}) %}
+    {% set target_bundles = handler_settings.target_bundles|default({}) %}
+    {% set target_bundle_keys = target_bundles|keys %}
+    {% set is_accordion_item_bundle =
+      'accordion_item' in target_bundle_keys
+      or 'accordion-item' in target_bundle_keys
+      or 'accordion_item' in target_bundles
+      or 'accordion-item' in target_bundles
+    %}
+
+    {% if is_reference_revisions and target_type == 'paragraph' and is_accordion_item_bundle and not field_item_list.isEmpty %}
+      {%- set nested_field_name = field_name -%}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if nested_field_name and attribute(content, nested_field_name) is defined %}
+  {%- set items = attribute(content, nested_field_name) -%}
+{% endif %}
+
+{% include "sipd:accordion-list" with {
+  heading: heading,
+  variant_class: variant_class,
+  items: items,
+} only %}

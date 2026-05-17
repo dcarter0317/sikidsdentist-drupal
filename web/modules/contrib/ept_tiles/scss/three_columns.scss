@@ -1,0 +1,10 @@
+.ept-paragraph-tiles.ept-tiles-three_columns {
+  .ept-tiles-wrapper {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 1fr;
+    @media(min-width:720px) {
+      grid-template-columns: 1fr  1fr 1fr;
+    }
+  }
+}

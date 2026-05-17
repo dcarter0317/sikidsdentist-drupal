@@ -1,0 +1,57 @@
+{#
+/**
+ * @file paragraph--grid-container.html.twig
+ *
+ * Bridge template for the "grid_container" paragraph bundle.
+ * Renders nested Grid Item paragraphs into the Grid Container SDC.
+ */
+#}
+
+{%- set heading = null -%}
+{%- set variant_class = null -%}
+{%- set items = null -%}
+{%- set nested_field_name = null -%}
+
+{% if paragraph.field_grid_heading is defined and not paragraph.field_grid_heading.isEmpty %}
+  {%- set heading = paragraph.field_grid_heading.value -%}
+{% endif %}
+
+{# Map columns field value (e.g. "3") to BEM modifier "grid-container--columns-3" #}
+{% if paragraph.field_grid_columns is defined and not paragraph.field_grid_columns.isEmpty %}
+  {%- set variant_class = 'grid-container--columns-' ~ paragraph.field_grid_columns.value -%}
+{% endif %}
+
+{#
+  Auto-detect the nested Grid Item reference field — looks for the first
+  entity_reference_revisions field targeting the grid_item paragraph bundle.
+#}
+{% for field_name, field_definition in paragraph.getFieldDefinitions %}
+  {% if nested_field_name is null and field_name starts with 'field_' and paragraph.get(field_name) is defined %}
+    {% set field_item_list = paragraph.get(field_name) %}
+    {% set is_reference_revisions = field_definition.getType == 'entity_reference_revisions' %}
+    {% set target_type = field_definition.getSetting('target_type') %}
+    {% set handler_settings = field_definition.getSetting('handler_settings')|default({}) %}
+    {% set target_bundles = handler_settings.target_bundles|default({}) %}
+    {% set target_bundle_keys = target_bundles|keys %}
+    {% set is_grid_item_bundle =
+      'grid_item' in target_bundle_keys
+      or 'grid-item' in target_bundle_keys
+      or 'grid_item' in target_bundles
+      or 'grid-item' in target_bundles
+    %}
+
+    {% if is_reference_revisions and target_type == 'paragraph' and is_grid_item_bundle and not field_item_list.isEmpty %}
+      {%- set nested_field_name = field_name -%}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if nested_field_name and attribute(content, nested_field_name) is defined %}
+  {%- set items = attribute(content, nested_field_name) -%}
+{% endif %}
+
+{% include "sipd:grid-container" with {
+  heading: heading,
+  variant_class: variant_class,
+  items: items,
+} only %}

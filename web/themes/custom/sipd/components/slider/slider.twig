@@ -1,0 +1,38 @@
+{#
+/**
+ * @file slider.twig
+ *
+ * Slider Single Directory Component (SDC).
+ *
+ * Props (defined in slider.component.yml):
+ *   - aria_label (string, required)
+ *   - slider_type (string) - loop | fade | slide
+ *   - autoplay (bool)
+ *   - interval (int)
+ *
+ * Slots:
+ *   - slides  Rendered <li class="splide__slide"> items from nested Slide Item paragraphs.
+ */
+#}
+
+{%
+  set splide_options = {
+    type: slider_type|default('loop'),
+    autoplay: autoplay is defined ? autoplay : true,
+    interval: interval|default(7000),
+    width: '100vw',
+    perPage: 1,
+  }
+%}
+
+<section
+  class="splide sdc-slider"
+  aria-label="{{ aria_label }}"
+  data-splide="{{ splide_options|json_encode }}"
+>
+  <div class="splide__track">
+    <ul class="splide__list">
+      {{ slides }}
+    </ul>
+  </div>
+</section>

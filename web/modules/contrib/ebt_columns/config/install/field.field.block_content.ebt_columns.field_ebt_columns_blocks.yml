@@ -1,0 +1,47 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.ebt_columns
+    - field.storage.block_content.field_ebt_columns_blocks
+  module:
+    - block_field
+id: block_content.ebt_columns.field_ebt_columns_blocks
+field_name: field_ebt_columns_blocks
+entity_type: block_content
+bundle: ebt_columns
+label: Blocks
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  selection: categories
+  selection_settings:
+    categories:
+      Block: Block
+      'Comment fields': 'Comment fields'
+      'Contact message fields': 'Contact message fields'
+      'Content block': 'Content block'
+      'Content block fields': 'Content block fields'
+      'Content fields': 'Content fields'
+      core: core
+      'Custom menu link fields': 'Custom menu link fields'
+      'File fields': 'File fields'
+      Forms: Forms
+      Help: Help
+      'Inline blocks': 'Inline blocks'
+      'Lists (Views)': 'Lists (Views)'
+      'Media fields': 'Media fields'
+      Menus: Menus
+      'Paragraph fields': 'Paragraph fields'
+      'Shortcut link fields': 'Shortcut link fields'
+      System: System
+      'Taxonomy term fields': 'Taxonomy term fields'
+      'URL alias fields': 'URL alias fields'
+      User: User
+      'User fields': 'User fields'
+      Webform: Webform
+      'Webform submission fields': 'Webform submission fields'
+field_type: block_field

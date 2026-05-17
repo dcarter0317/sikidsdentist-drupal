@@ -1,0 +1,35 @@
+{#
+/**
+ * @file paragraph--accordion-item.html.twig
+ *
+ * Bridge template for the "accordion_item" paragraph bundle.
+ * Maps Paragraphs field values to the Accordion Item SDC props.
+ *
+ * Expected fields on the paragraph:
+ *   field_accordion_title   — plain text
+ *   field_accordion_content — formatted text (text_long / text_with_summary)
+ *   field_accordion_open    — boolean (optional, defaults to false)
+ */
+#}
+
+{%- set title = null -%}
+{%- set content = null -%}
+{%- set open = false -%}
+
+{% if paragraph.field_accordion_title is defined and not paragraph.field_accordion_title.isEmpty %}
+  {%- set title = paragraph.field_accordion_title.value -%}
+{% endif %}
+
+{% if paragraph.field_accordion_content is defined and not paragraph.field_accordion_content.isEmpty %}
+  {%- set content = paragraph.field_accordion_content.processed -%}
+{% endif %}
+
+{% if paragraph.field_accordion_open is defined and not paragraph.field_accordion_open.isEmpty %}
+  {%- set open = paragraph.field_accordion_open.value -%}
+{% endif %}
+
+{% include "sipd:accordion-item" with {
+  title: title,
+  content: content,
+  open: open,
+} only %}

@@ -1,0 +1,10 @@
+name: 'Grid Container Paragraph'
+description: 'Provides the Grid Container paragraph type for displaying nested Grid Item paragraphs in a configurable CSS grid.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:text
+  - drupal:options
+  - drupal:entity_reference_revisions

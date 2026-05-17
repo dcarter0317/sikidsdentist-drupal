@@ -1,0 +1,43 @@
+/**
+ * @file card-list.css
+ *
+ * Styles for the Card List SDC.
+ */
+
+.card-list {
+  --card-list-gap: 1.5rem;
+  --card-list-heading-color: var(--clr-text-2, #1d2d39);
+}
+
+.card-list__heading {
+  margin: 0 0 1rem;
+  color: var(--card-list-heading-color);
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  line-height: 1.2;
+}
+
+.card-list__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--card-list-gap);
+}
+
+@media (min-width: 700px) {
+  .card-list__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-list--columns-2 .card-list__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card-list--columns-3 .card-list__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .card-list--columns-4 .card-list__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

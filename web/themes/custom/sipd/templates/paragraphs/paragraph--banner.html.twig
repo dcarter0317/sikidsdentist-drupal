@@ -1,0 +1,32 @@
+{#
+/**
+ * @file paragraph--banner.html.twig
+ *
+ * Bridge template: maps 'banner' paragraph fields → Banner SDC props.
+ * Located in: web/themes/custom/sipd/templates/paragraphs/
+ */
+#}
+
+{%- set style     = paragraph.field_banner_style.value|default('default') -%}
+{%- set title     = paragraph.field_banner_title.value -%}
+{%- set body      = paragraph.field_banner_body.value -%}
+{%- set label     = paragraph.field_banner_label.value -%}
+
+{# Primary CTA link field exposes .title and .url (Url object) #}
+{%- set cta_label = paragraph.field_banner_cta.title -%}
+{%- set cta_url   = paragraph.field_banner_cta.url ? paragraph.field_banner_cta.url.toString() : null -%}
+
+{# Secondary CTA (button-banner only) #}
+{%- set cta_secondary_label = paragraph.field_banner_cta_secondary.title -%}
+{%- set cta_secondary_url   = paragraph.field_banner_cta_secondary.url ? paragraph.field_banner_cta_secondary.url.toString() : null -%}
+
+{% include "sipd:banner" with {
+  style:               style,
+  title:               title,
+  body:                body,
+  label:               label,
+  cta_label:           cta_label,
+  cta_url:             cta_url,
+  cta_secondary_label: cta_secondary_label,
+  cta_secondary_url:   cta_secondary_url,
+} only %}

@@ -1,0 +1,7 @@
+services:
+  ept_core.generate_css:
+    class: Drupal\ept_core\Services\GenerateCSS
+    arguments: ['@config.factory', '@theme.manager', '@file_url_generator', '@entity_type.manager']
+  ept_core.generate_js:
+    class: Drupal\ept_core\Services\GenerateJS
+    arguments: ['@config.factory', '@media.oembed.url_resolver', '@file_url_generator', '@entity_type.manager']

@@ -1,0 +1,61 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ebt_tab.field_ebt_tab_block
+    - field.field.paragraph.ebt_tab.field_ebt_tab_content
+    - field.field.paragraph.ebt_tab.field_ebt_tab_page
+    - field.field.paragraph.ebt_tab.field_ebt_tab_text
+    - field.field.paragraph.ebt_tab.field_ebt_tab_title
+    - field.field.paragraph.ebt_tab.field_ebt_tab_views
+    - paragraphs.paragraphs_type.ebt_tab
+  module:
+    - block_field
+    - text
+    - viewsreference
+id: paragraph.ebt_tab.default
+targetEntityType: paragraph
+bundle: ebt_tab
+mode: default
+content:
+  field_ebt_tab_block:
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: block_field
+    region: content
+  field_ebt_tab_page:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_ebt_tab_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_ebt_tab_title:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_ebt_tab_views:
+    weight: 5
+    label: hidden
+    settings:
+      plugin_types:
+        - block
+    third_party_settings: {  }
+    type: viewsreference_formatter
+    region: content
+hidden:
+  field_ebt_tab_content: true

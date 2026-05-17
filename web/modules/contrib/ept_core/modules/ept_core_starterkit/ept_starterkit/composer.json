@@ -1,0 +1,17 @@
+{
+    "name": "drupal/ept_starterkit",
+    "type": "drupal-module",
+    "description": "Extra Paragraph Types (EPT): STARTERKIT",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0-or-later",
+    "homepage": "http://drupal.org/project/ept_starterkit",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/ept_starterkit",
+        "source": "https://git.drupalcode.org/project/ept_starterkit"
+    },
+    "require": {
+        "drupal/ept_core": "^1.4",
+        "drupal/paragraphs": "^1.0"
+    }
+}

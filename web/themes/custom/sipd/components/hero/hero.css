@@ -1,0 +1,380 @@
+/**
+ * @file hero.css
+ *
+ * Styles for the Hero Single Directory Component.
+ * Scoped to .hero to avoid global bleed.
+ */
+
+/* ─── Design Tokens ─────────────────────────────────────────────────────────── */
+.hero {
+  --hero-min-height: 80vh;
+  --hero-padding-x: clamp(1.5rem, 5vw, 5rem);
+  --hero-padding-y: clamp(4rem, 10vh, 8rem);
+
+  /* Dark theme (default) */
+  --hero-text-color: #ffffff;
+  --hero-subheadline-color: rgba(255, 255, 255, 0.75);
+  --hero-body-color: rgba(255, 255, 255, 0.85);
+  --hero-overlay-color: rgba(0, 0, 0, 0.45);
+
+  --hero-cta-bg: #ffffff;
+  --hero-cta-text: #0a0a0a;
+  --hero-cta-bg-hover: #f0f0f0;
+
+  --hero-headline-size: clamp(2.25rem, 5.5vw, 5rem);
+  --hero-subheadline-size: clamp(0.8rem, 1.4vw, 1rem);
+  --hero-body-size: clamp(1rem, 1.5vw, 1.2rem);
+
+  --hero-font-display: 'Georgia', 'Times New Roman', serif;
+  --hero-font-body: system-ui, sans-serif;
+
+  --hero-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --hero-animate-duration: 0.9s;
+}
+
+/* Light theme override */
+.hero--light {
+  --hero-text-color: #0a0a0a;
+  --hero-subheadline-color: rgba(10, 10, 10, 0.6);
+  --hero-body-color: rgba(10, 10, 10, 0.75);
+  --hero-overlay-color: rgba(255, 255, 255, 0.35);
+
+  --hero-cta-bg: #0a0a0a;
+  --hero-cta-text: #ffffff;
+  --hero-cta-bg-hover: #2a2a2a;
+}
+
+/* ─── Base Layout ───────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--hero-min-height);
+  overflow: hidden;
+  background-color: #111; /* fallback when no bg image */
+  color: var(--hero-text-color);
+}
+
+/* ─── Background Image ──────────────────────────────────────────────────────── */
+.hero__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__background-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  /* Subtle Ken-Burns on page load */
+  animation: hero-bg-scale var(--hero-animate-duration) ease forwards;
+}
+
+@keyframes hero-bg-scale {
+  from { transform: scale(1.04); }
+  to   { transform: scale(1); }
+}
+
+/* ─── Overlay ───────────────────────────────────────────────────────────────── */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--hero-overlay-color);
+  /* Gradient-style overlay for richer depth */
+  background: linear-gradient(
+    135deg,
+    var(--hero-overlay-color) 0%,
+    transparent 100%
+  );
+}
+
+/* ─── Inner Container ───────────────────────────────────────────────────────── */
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding: var(--hero-padding-y) var(--hero-padding-x);
+}
+
+/* ─── Content ───────────────────────────────────────────────────────────────── */
+.hero__content {
+  flex: 1;
+  max-width: 680px;
+  animation: hero-fade-up var(--hero-animate-duration) ease both;
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Subheadline ───────────────────────────────────────────────────────────── */
+.hero__subheadline {
+  font-family: var(--hero-font-body);
+  font-size: var(--hero-subheadline-size);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hero-subheadline-color);
+  margin: 0 0 1rem;
+  animation: hero-fade-up var(--hero-animate-duration) 0.1s ease both;
+}
+
+/* ─── Headline ──────────────────────────────────────────────────────────────── */
+.hero__headline {
+  font-family: var(--hero-font-display);
+  font-size: var(--hero-headline-size);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--hero-text-color);
+  margin: 0 0 1.5rem;
+  animation: hero-fade-up var(--hero-animate-duration) 0.18s ease both;
+}
+
+/* ─── Body ──────────────────────────────────────────────────────────────────── */
+.hero__body {
+  font-family: var(--hero-font-body);
+  font-size: var(--hero-body-size);
+  line-height: 1.65;
+  color: var(--hero-body-color);
+  margin-bottom: 2.25rem;
+  animation: hero-fade-up var(--hero-animate-duration) 0.26s ease both;
+}
+
+.hero__body p {
+  margin: 0;
+}
+
+/* ─── CTA Button ────────────────────────────────────────────────────────────── */
+.hero__cta-wrapper {
+  animation: hero-fade-up var(--hero-animate-duration) 0.34s ease both;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  background: var(--hero-cta-bg);
+  color: var(--hero-cta-text);
+  font-family: var(--hero-font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition:
+    background var(--hero-transition),
+    color var(--hero-transition),
+    transform var(--hero-transition),
+    box-shadow var(--hero-transition);
+}
+
+.hero__cta:hover,
+.hero__cta:focus-visible {
+  background: var(--hero-cta-bg-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+.hero__cta:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+.hero__cta-arrow {
+  display: inline-block;
+  transition: transform var(--hero-transition);
+}
+
+.hero__cta:hover .hero__cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ─── Media Slot ────────────────────────────────────────────────────────────── */
+.hero__media {
+  flex: 0 0 auto;
+  max-width: 45%;
+  animation: hero-fade-up var(--hero-animate-duration) 0.2s ease both;
+}
+
+.hero__media img,
+.hero__media video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero__content {
+    max-width: 100%;
+  }
+
+  .hero__media {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    --hero-min-height: 60vh;
+  }
+}
+
+/* ─── Content Alignment Variants ───────────────────────────────────────────── */
+
+/**
+ * content-left (default)
+ * Content block sits on the left; inner row flows left → right.
+ * Text is left-aligned. No changes needed from base styles — this IS the default.
+ */
+.hero--content-left .hero__inner {
+  justify-content: flex-start;
+}
+
+.hero--content-left .hero__content {
+  text-align: left;
+}
+
+/* Keeps the CTA button left-anchored */
+.hero--content-left .hero__cta-wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/**
+ * centered
+ * Content block is centered horizontally; all text and the CTA align to center.
+ * The inner row becomes a single centered column.
+ */
+.hero--centered .hero__inner {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero--centered .hero__content {
+  text-align: center;
+  /* Allow the centered block to breathe on wide screens */
+  max-width: 760px;
+}
+
+.hero--centered .hero__subheadline,
+.hero--centered .hero__headline,
+.hero--centered .hero__body {
+  text-align: center;
+}
+
+/* Centers the CTA button under the copy */
+.hero--centered .hero__cta-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* Media slot sits below content when centered */
+.hero--centered .hero__media {
+  max-width: 60%;
+  margin-inline: auto;
+}
+
+/**
+ * content-right
+ * Content block is pushed to the right; text is right-aligned.
+ * The inner row reverses order so the media (if any) sits on the left.
+ */
+.hero--content-right .hero__inner {
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+.hero--content-right .hero__content {
+  text-align: right;
+}
+
+.hero--content-right .hero__subheadline,
+.hero--content-right .hero__headline,
+.hero--content-right .hero__body {
+  text-align: right;
+}
+
+/* Anchors the CTA button to the right edge */
+.hero--content-right .hero__cta-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ─── Responsive overrides for alignment variants ───────────────────────────── */
+/*
+ * On narrow viewports all three variants collapse to a single left-aligned
+ * column — the standard mobile reading pattern.
+ */
+@media (max-width: 900px) {
+  .hero--centered .hero__inner,
+  .hero--content-right .hero__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero--centered .hero__content,
+  .hero--content-right .hero__content {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .hero--centered .hero__subheadline,
+  .hero--centered .hero__headline,
+  .hero--centered .hero__body,
+  .hero--content-right .hero__subheadline,
+  .hero--content-right .hero__headline,
+  .hero--content-right .hero__body {
+    text-align: left;
+  }
+
+  .hero--centered .hero__cta-wrapper,
+  .hero--content-right .hero__cta-wrapper {
+    justify-content: flex-start;
+  }
+
+  .hero--centered .hero__media {
+    max-width: 100%;
+    margin-inline: 0;
+  }
+}
+
+/* ─── Reduced Motion ────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero__background-img,
+  .hero__content,
+  .hero__subheadline,
+  .hero__headline,
+  .hero__body,
+  .hero__cta-wrapper,
+  .hero__media {
+    animation: none;
+  }
+}
