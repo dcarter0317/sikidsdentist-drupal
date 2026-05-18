@@ -1,6 +1,6 @@
 :root {
   --clr-secondary: #00334F;
-  --clr-accent: hsl(175, 54%, 48%);
+  --clr-accent: #38BCB1;
   --clr-primary: #1478A3;
   --clr-bg-1: #ffffff;
   --clr-bg-2: #000000;
@@ -17,7 +17,8 @@
   --clr-text-4: #000000;
   --clr-text-5: #414549;
   --clr-text-6: #1478A3;
-  --clr-text-7: #89BBD1;
+  --clr-text-7: #89BBD1; 
+  --clr-text-8: #38BCB1;
 
   --ff-body: 'Noto Sans JP', Arial, Helvetica, sans-serif;
   --ff-heading: 'Poppins', Arial, Helvetica, sans-serif;
@@ -428,6 +429,10 @@ p{
   background:url('../assets/imgs/hero-background.jpg') no-repeat center center/cover;
   aspect-ratio: 21/9;
 
+  .btn {
+    display: inline-block;
+  }
+
   .content-container {
     padding-top: 24px;
 
@@ -761,7 +766,10 @@ p{
       color: var(--clr-text-2);
       margin-bottom: 0;
     }
-      
+    a, a:link, a:visited {
+     color: var(--clr-text-8);
+     text-decoration: none;
+    } 
   }
 }
 
@@ -789,6 +797,10 @@ p{
       box-sizing: border-box;
       padding-block: inherit;
     }
+  }
+  a, a:link, a:visited {
+    color: var(--clr-text-7);
+    text-decoration: none;
   }
 }
 

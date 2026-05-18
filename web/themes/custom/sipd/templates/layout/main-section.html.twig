@@ -1,7 +1,7 @@
 <!-- MAIN SECTION -->
     <section class="main-section">
          <!-- HERO SECTION -->
-         <section class="hero-section{{ hero_show_overlay ? ' overlay' : '' }}">
+         <section class="hero-section{{ hero_show_overlay ? ' overlay' : '' }}"{% if hero_bg_style %} style="{{ hero_bg_style }}"{% endif %}>
             <div class="content-container flex-content">
                 <div class="content-primary">
                    <img src="{{ directory }}/assets/imgs/sipd_logo.svg" alt="Staten Island Pediatric Dentistry Logo" class="logo">

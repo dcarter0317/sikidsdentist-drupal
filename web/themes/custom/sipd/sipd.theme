@@ -30,6 +30,8 @@ function sipd_preprocess_page__front(array &$variables): void {
   $theme_path = '/' . \Drupal::service('extension.list.theme')->getPath('sipd');
 
   // ── Hero Section ────────────────────────────────────────────────────────
+  $hero_bg = theme_get_setting('hero_bg_image') ?: '';
+  $variables['hero_bg_style']         = $hero_bg ? 'background-image: url(' . $hero_bg . ');' : '';
   $variables['hero_show_overlay']     = (bool) (theme_get_setting('hero_show_overlay') ?? TRUE);
   $variables['hero_contact_btn_text'] = theme_get_setting('hero_contact_btn_text') ?: 'contact us';
   $variables['hero_contact_btn_url']  = theme_get_setting('hero_contact_btn_url') ?: '/contact';

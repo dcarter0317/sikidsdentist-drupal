@@ -16,6 +16,13 @@ function sipd_form_system_theme_settings_alter(array &$form, FormStateInterface 
     '#open' => TRUE,
   ];
 
+  $form['sipd_hero']['hero_bg_image'] = [
+    '#type' => 'textfield',
+    '#title' => t('Background image URL'),
+    '#description' => t('Full URL or path from the web root (e.g. /themes/custom/sipd/assets/imgs/hero-background.jpg). Leave blank to use the CSS default.'),
+    '#default_value' => theme_get_setting('hero_bg_image') ?? '',
+  ];
+
   $form['sipd_hero']['hero_show_overlay'] = [
     '#type' => 'checkbox',
     '#title' => t('Show overlay'),
