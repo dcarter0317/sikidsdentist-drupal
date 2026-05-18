@@ -617,6 +617,10 @@ p{
   .content-container {
     margin-top: -7rem;
 
+   .card__title {
+     padding-top: 1em;
+   } 
+
     @media (width < 900px) {
       margin-top: initial;
     }
