@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: animated_banner
+label: 'Animated Banner'
+icon_uuid: null
+icon_default: null
+description: 'Page banner (animates inner content only).'
+behavior_plugins: {}

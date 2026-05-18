@@ -1,0 +1,45 @@
+uuid: fd1af303-5bd3-4822-b63d-54161261655c
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_animation_style
+field_name: field_animation_style
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: slide_in_left
+      label: 'Slide-In Left'
+    -
+      value: slide_in_content_left
+      label: 'Slide-In Content-Left'
+    -
+      value: slide_in_right
+      label: 'Slide-In Right'
+    -
+      value: slide_in_content_right
+      label: 'Slide-In Content-Right'
+    -
+      value: slide_down
+      label: Slide-Down
+    -
+      value: slide_down_content
+      label: 'Slide-Down Content'
+    -
+      value: slide_up
+      label: Slide-Up
+    -
+      value: slide_up_content
+      label: 'Slide-Up Content'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,34 @@
+{#
+/**
+ * @file paragraph--animated-banner.html.twig
+ *
+ * Bridge template: maps 'animated_banner' paragraph fields → Animated Banner SDC props.
+ * Located in: web/themes/custom/sipd/templates/paragraphs/
+ */
+#}
+
+{%- set style           = paragraph.field_ab_style.value|default('default') -%}
+{%- set title           = paragraph.field_ab_title.value -%}
+{%- set body            = paragraph.field_ab_body.value -%}
+{%- set label           = paragraph.field_ab_label.value -%}
+{%- set animation_class = paragraph.field_animation_style.value -%}
+
+{# Primary CTA link field exposes .title and .url (Url object) #}
+{%- set cta_label = paragraph.field_ab_cta.title -%}
+{%- set cta_url   = paragraph.field_ab_cta.url ? paragraph.field_ab_cta.url.toString() : null -%}
+
+{# Secondary CTA (button-banner only) #}
+{%- set cta_secondary_label = paragraph.field_ab_cta_secondary.title -%}
+{%- set cta_secondary_url   = paragraph.field_ab_cta_secondary.url ? paragraph.field_ab_cta_secondary.url.toString() : null -%}
+
+{% include "sipd:animated-banner" with {
+  style:               style,
+  title:               title,
+  body:                body,
+  label:               label,
+  cta_label:           cta_label,
+  cta_url:             cta_url,
+  cta_secondary_label: cta_secondary_label,
+  cta_secondary_url:   cta_secondary_url,
+  animation_class:     animation_class,
+} only %}

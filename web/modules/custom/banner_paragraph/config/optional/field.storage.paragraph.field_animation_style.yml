@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_animation_style
+field_name: field_animation_style
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    - value: slide-in-left
+      label: Slide In Left
+    - value: slide-in-content-left
+      label: Slide In Content Left
+    - value: slide-in-right
+      label: Slide In Right
+    - value: slide-in-content-right
+      label: Slide In Content Right
+    - value: slide-down
+      label: Slide Down
+    - value: slide-down-content
+      label: Slide Down Content
+    - value: slide-up
+      label: Slide Up
+    - value: slide-up-content
+      label: Slide Up Content
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {}
+persist_with_no_fields: false
+custom_storage: false

@@ -1,10 +1,15 @@
 {#
 /**
- * @file banner.twig
+ * @file animated-banner.twig
  *
- * Banner Single Directory Component (SDC).
+ * Animated Banner SDC.
  *
- * Available props (defined in banner.component.yml):
+ * Identical to the Banner component except the animation_class is applied
+ * to .banner__content (the inner block) rather than the <article>, so the
+ * content slides/fades in while the banner background stays in place.
+ *
+ * Available props (defined in animated-banner.component.yml):
+ *   - animation_class (string, required) - animation class from sipd.css
  *   - style (string) - 'default' | 'button-banner' | 'cta-banner'
  *   - title (string)
  *   - body (string)
@@ -13,14 +18,13 @@
  *   - cta_url (string)
  *   - cta_secondary_label (string)
  *   - cta_secondary_url (string)
- *   - animation_class (string) - optional animation class from sipd.css
  */
 #}
 
 {%- set banner_style = style|default('default') -%}
 
-<article class="banner banner--{{ banner_style }} {{ animation_class ? ' ' ~ animation_class : '' }}">
-  <div class="banner__content">
+<article class="banner banner--{{ banner_style }}">
+  <div class="banner__content {{ animation_class }}">
 
     {# ── button-banner: label + two-button group ── #}
     {% if banner_style == 'button-banner' %}

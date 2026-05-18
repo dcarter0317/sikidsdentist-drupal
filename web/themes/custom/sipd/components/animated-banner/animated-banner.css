@@ -1,0 +1,180 @@
+/*
+ * animated-banner.css
+ *
+ * Identical to banner.css with one addition: the two-class rule
+ * .banner .banner__content wins over the single-class .slide-* rules
+ * in sipd.css (which set position: relative), keeping the content
+ * block absolutely positioned so the keyframe top/left values work.
+ */
+
+/* ─── Design Tokens ─────────────────────────────────────────────────────────── */
+.banner {
+  --banner-bg-color: var(--clr-bg-4);
+  --banner-text-color: #fff;
+  --banner-overlay-color: rgba(0, 0, 0, 0.3);
+  --banner-overlay-hover-color: rgba(0, 0, 0, 0.6);
+  --banner-height: 200px;
+  --banner-height-mobile: 210px;
+  --banner-btn-radius: 4px;
+  --banner-transition: 0.3s ease;
+}
+
+/* ─── Base Layout ───────────────────────────────────────────────────────────── */
+.banner {
+  position: relative;
+  width: 100%;
+  min-height: var(--banner-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: var(--banner-bg-color);
+  color: var(--banner-text-color);
+}
+
+@media (width < 900px) {
+  .banner {
+    min-height: var(--banner-height-mobile);
+  }
+}
+
+/* ─── Content Container ─────────────────────────────────────────────────────── */
+.banner__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 1rem;
+  width: 90%;
+  max-width: 900px;
+}
+
+/*
+ * The sipd.css animation classes set `position: relative`.
+ * Two-class specificity (0,2,0) beats their single-class (0,1,0),
+ * so the content stays absolutely positioned during the animation.
+ */
+.banner .banner__content {
+  position: absolute;
+}
+
+@media (width < 900px) {
+  .banner__content {
+    width: 95%;
+  }
+}
+
+/* ─── Title ─────────────────────────────────────────────────────────────────── */
+.banner__title {
+  color: var(--banner-text-color);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-block: 0.5rem;
+}
+
+@media (width < 900px) {
+  .banner__title {
+    font-size: 1.75rem;
+    margin-block: initial;
+  }
+}
+
+/* ─── Body ──────────────────────────────────────────────────────────────────── */
+.banner__body {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  opacity: 0.85;
+}
+
+@media (width < 900px) {
+  .banner__body {
+    font-size: 1rem;
+    margin-inline: 0.75rem;
+  }
+}
+
+/* ─── Label ─────────────────────────────────────────────────────────────────── */
+.banner__label {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  opacity: 0.85;
+}
+
+@media (width < 900px) {
+  .banner__label {
+    font-size: 1rem;
+  }
+}
+
+/* ─── Button ────────────────────────────────────────────────────────────────── */
+.banner__btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  color: var(--banner-text-color);
+  text-decoration: none;
+  border-radius: var(--banner-btn-radius);
+  background: var(--banner-overlay-color);
+  border: 1px solid #fff;
+  transition: background var(--banner-transition);
+}
+
+.banner__btn i {
+  margin-left: 0.5rem;
+}
+
+.banner__btn:hover {
+  background: var(--banner-overlay-hover-color);
+}
+
+/* ─── Button Group (button-banner variant) ──────────────────────────────────── */
+.banner--button-banner .banner__label {
+  text-transform: uppercase;
+}
+
+.banner__btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (width < 900px) {
+  .banner__btn-group {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ─── CTA Banner (cta-banner variant) ──────────────────────────────────────── */
+.banner--cta-banner .banner__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.banner--cta-banner .banner__label {
+  margin-bottom: 0;
+}
+
+@media (width < 900px) {
+  .banner--cta-banner .banner__content {
+    flex-direction: column;
+  }
+
+  .banner--cta-banner .banner__btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ─── Reduced Motion ────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .banner__content {
+    animation: none !important;
+  }
+
+  .banner__btn {
+    transition: none;
+  }
+}

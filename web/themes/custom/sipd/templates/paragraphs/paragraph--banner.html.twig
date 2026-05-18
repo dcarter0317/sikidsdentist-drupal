@@ -20,6 +20,9 @@
 {%- set cta_secondary_label = paragraph.field_banner_cta_secondary.title -%}
 {%- set cta_secondary_url   = paragraph.field_banner_cta_secondary.url ? paragraph.field_banner_cta_secondary.url.toString() : null -%}
 
+{# Animation class — maps field_animation_style value directly to the CSS class #}
+{%- set animation_class = paragraph.field_animation_style.value -%}
+
 {% include "sipd:banner" with {
   style:               style,
   title:               title,
@@ -29,4 +32,5 @@
   cta_url:             cta_url,
   cta_secondary_label: cta_secondary_label,
   cta_secondary_url:   cta_secondary_url,
+  animation_class:     animation_class,
 } only %}

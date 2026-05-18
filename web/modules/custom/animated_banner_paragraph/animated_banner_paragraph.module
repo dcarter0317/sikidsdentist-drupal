@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * animated_banner_paragraph.module
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function animated_banner_paragraph_theme(): array {
+  return [
+    'paragraph__animated_banner' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_paragraph_alter().
+ */
+function animated_banner_paragraph_theme_suggestions_paragraph_alter(
+  array &$suggestions,
+  array $variables
+): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['elements']['#paragraph'];
+  $suggestions[] = 'paragraph__' . $paragraph->bundle();
+}

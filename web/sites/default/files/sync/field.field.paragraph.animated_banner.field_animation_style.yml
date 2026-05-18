@@ -1,0 +1,21 @@
+uuid: 51736a21-edcd-4f38-a27e-1884c2b5aa1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_animation_style
+    - paragraphs.paragraphs_type.animated_banner
+  module:
+    - options
+id: paragraph.animated_banner.field_animation_style
+field_name: field_animation_style
+entity_type: paragraph
+bundle: animated_banner
+label: 'Animation Style'
+description: 'Sets the animation type for the component.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

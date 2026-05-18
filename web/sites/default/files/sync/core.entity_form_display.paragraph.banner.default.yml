@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.banner.field_animation_style
     - field.field.paragraph.banner.field_banner_style
     - field.field.paragraph.banner.field_banner_title
     - field.field.paragraph.banner.field_label
@@ -18,21 +19,27 @@ mode: default
 content:
   admin_title:
     type: string_textfield
-    weight: -10
+    weight: 0
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_animation_style:
+    type: options_select
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_banner_style:
     type: options_select
-    weight: -9
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   field_banner_title:
     type: string_textfield
-    weight: -8
+    weight: 1
     region: content
     settings:
       size: 60
@@ -40,7 +47,7 @@ content:
     third_party_settings: {  }
   field_label:
     type: string_textfield
-    weight: -7
+    weight: 2
     region: content
     settings:
       size: 60
@@ -48,7 +55,7 @@ content:
     third_party_settings: {  }
   field_primary_cta:
     type: link_default
-    weight: -6
+    weight: 3
     region: content
     settings:
       placeholder_url: ''
@@ -56,7 +63,7 @@ content:
     third_party_settings: {  }
   field_secondary_cta:
     type: link_default
-    weight: -5
+    weight: 4
     region: content
     settings:
       placeholder_url: ''

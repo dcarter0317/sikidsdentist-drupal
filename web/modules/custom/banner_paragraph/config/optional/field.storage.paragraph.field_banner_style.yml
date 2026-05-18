@@ -1,9 +1,7 @@
-uuid: a15e7695-da05-40c3-be91-62db954a27f2
 langcode: en
 status: true
 dependencies:
   module:
-    - options
     - paragraphs
 id: paragraph.field_banner_style
 field_name: field_banner_style
@@ -11,20 +9,17 @@ entity_type: paragraph
 type: list_string
 settings:
   allowed_values:
-    -
-      value: default
+    - value: default
       label: Default
-    -
-      value: button_banner
-      label: 'Button Banner'
-    -
-      value: cta_banner
-      label: 'CTA Banner'
+    - value: button-banner
+      label: Button Banner
+    - value: cta-banner
+      label: CTA Banner
   allowed_values_function: ''
 module: options
 locked: false
 cardinality: 1
-translatable: true
-indexes: {  }
+translatable: false
+indexes: {}
 persist_with_no_fields: false
 custom_storage: false

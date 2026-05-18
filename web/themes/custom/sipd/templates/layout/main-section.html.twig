@@ -1,26 +1,26 @@
 <!-- MAIN SECTION -->
     <section class="main-section">
          <!-- HERO SECTION -->
-         <section class="hero-section overlay">
+         <section class="hero-section{{ hero_show_overlay ? ' overlay' : '' }}">
             <div class="content-container flex-content">
                 <div class="content-primary">
                    <img src="{{ directory }}/assets/imgs/sipd_logo.svg" alt="Staten Island Pediatric Dentistry Logo" class="logo">
                 </div>
                   <div class="content-secondary">
-                     <button class="btn btn--primary">contact us</button>
-                      <div><a href="https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=195+Bridgetown+Street+Staten+Island+NY+10314">195 Bridgetown St, Staten Island, NY</a></div>
-                     <div><a href="tel:+17187617316">(718) 761-7316</a></div>
+                     <a href="{{ hero_contact_btn_url }}" class="btn btn--primary">{{ hero_contact_btn_text }}</a>
+                      <div><a href="{{ hero_address_url }}">{{ hero_address_text }}</a></div>
+                     <div><a href="tel:+{{ hero_phone_number }}">{{ hero_phone_text }}</a></div>
                   </div>
                   <div class="content-secondary-mobile">
                         <div class="phone-number mobile-btn-v2 visible-xs">
-                        <a href="tel:7187617316" onclick="gdw.recordCall(7187617316);">
+                        <a href="tel:{{ hero_phone_number }}" onclick="gdw.recordCall({{ hero_phone_number }});">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24.638" height="24.638" viewBox="0 0 24.638 24.638">
                         <path id="Path_13" data-name="Path 13" d="M27.308,20.649l-2.2-2.2a3.521,3.521,0,0,0-4.938-.021,2.152,2.152,0,0,1-2.729.267A15.026,15.026,0,0,1,13.3,14.562a2.181,2.181,0,0,1,.284-2.739A3.521,3.521,0,0,0,13.553,6.9l-2.2-2.2a3.514,3.514,0,0,0-4.961,0l-.633.634c-3.3,3.3-3.053,10.238,3.813,17.1,4.14,4.141,8.307,5.875,11.686,5.875a7.5,7.5,0,0,0,5.418-2.061l.634-.634A3.513,3.513,0,0,0,27.308,20.649ZM25.894,24.2l-.634.634c-2.6,2.6-8.339,2.125-14.276-3.813S4.571,9.34,7.171,6.74L7.8,6.107a1.511,1.511,0,0,1,2.133,0l2.2,2.2a1.511,1.511,0,0,1,.021,2.11,4.181,4.181,0,0,0-.531,5.239,17.01,17.01,0,0,0,4.713,4.706,4.179,4.179,0,0,0,5.231-.517,1.512,1.512,0,0,1,2.118.013l2.2,2.2a1.51,1.51,0,0,1,.009,2.142Z" transform="translate(-3.698 -3.675)" fill="#fff"></path>
                         </svg>
                         </a>
                         </div>
                         <div class="make-appt mobile-btn-v2 visible-xs ">
-                        <a class="gpw-booking" href="/contact">
+                        <a class="gpw-booking" href="{{ hero_booking_url }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="27.052" height="26.991" viewBox="0 0 27.052 26.991">
                         <g id="Group_11" data-name="Group 11" transform="translate(-10 -9.9)">
                         <path id="Path_20" data-name="Path 20" d="M34.237,38.055H12.693A2.717,2.717,0,0,1,10,35.362V15.593A2.5,2.5,0,0,1,12.265,12.9h1.346v1.775H12.265c-.184,0-.428.367-.428.918V35.362a.941.941,0,0,0,.918.918H34.3a.941.941,0,0,0,.918-.918V15.593c0-.551-.306-.918-.428-.918H33.441V12.9h1.346a2.537,2.537,0,0,1,2.265,2.693V35.362a2.913,2.913,0,0,1-2.815,2.693" transform="translate(0 -1.164)" fill="#fff"></path>
@@ -30,7 +30,7 @@
                         </a>
                         </div>
                         <div class="get-directions mobile-btn-v2 visible-xs">
-                        <a target="_blank" href="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=195+Bridgetown+Street+Staten+Island+NY+10314">
+                        <a target="_blank" href="{{ hero_address_url }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="21.897" height="26.319" viewBox="0 0 21.897 26.319">
                         <g id="Group_8" data-name="Group 8" transform="translate(1 1)">
                         <path id="Path_14" data-name="Path 14" d="M19.9,9.949c0,7.738-9.949,14.37-9.949,14.37S0,17.687,0,9.949a9.949,9.949,0,1,1,19.9,0Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" fill-rule="evenodd"></path>
@@ -39,11 +39,11 @@
                         </svg>
                         </a>
                         </div>
-                 </div>               
+                 </div>
             </div>
             <div class="hero-text content-container text-center">
-                <h2 class="text-light">Providing optimum dental care to your child in a friendly environment.</h2>
-                <a href="/about-us" class="btn btn--border-bottom text-light">about our practice</a>
+                <h2 class="text-light">{{ hero_heading }}</h2>
+                <a href="{{ hero_cta_url }}" class="btn btn--border-bottom text-light">{{ hero_cta_text }}</a>
             </div>
          </section>
         <!-- TEAM SECTION -->
@@ -66,18 +66,18 @@
            </div>
         </section>
         <!-- FEATURED SECTION -->
-        <section class="featured-section">
+        <section class="featured-section"{% if featured_bg_style %} style="{{ featured_bg_style }}"{% endif %}>
             <div class="content-container flex-content">
                <div class="content-primary">
                  <img src="{{ directory }}/assets/imgs/shape-1.png" alt="Featured Services" class="featured-butterfly">
                </div>
                 <div class="content-secondary">
-                    <h2>Welcome to Staten Island Pediatric Dentistry</h2>
-                    <p>Your child is precious to you, and they are precious to us too. It takes a special group of people to work exclusively with children, and that is exactly what you’ll find at Staten Island Pediatric Dentistry.</p>
-                    <p>Many of us are parents too, and we know the level of trust required to put your child’s care in anyone’s hands but your own. Starting with your child's first interaction with our dental team, you will see how devoted we are to their comfort, safety, and well-being.</p>
+                    <h2>{{ featured_heading }}</h2>
+                    <p>{{ featured_body_1 }}</p>
+                    <p>{{ featured_body_2 }}</p>
                     <div class="btn-group">
-                        <a href="/about-us" class="btn btn--border-bottom">meet our team</a>
-                        <a href="/first-visit" class="btn btn--border-bottom">new patients</a>
+                        <a href="{{ featured_btn1_url }}" class="btn btn--border-bottom">{{ featured_btn1_text }}</a>
+                        <a href="{{ featured_btn2_url }}" class="btn btn--border-bottom">{{ featured_btn2_text }}</a>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                             <p class="card__description">Helping children develop a positive attitude about visiting the dentist means they are more likely to experience a healthier smile as an adult. Our team of pediatric dentists and specialists are pleased to provide the foundational care that kids of all ages need to maintain their healthiest smiles.</p>
                             <a href="#" class="card__cta">contact us</a>
                          </div>
-                     </div>              
+                     </div>
                    </article>
                </div>
                 <div class="content-secondary">
@@ -141,7 +141,7 @@
                         <div class="service">
                           <a href="/services/orthodontics-invisalign">
                            <figure class="service__image">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.2 64" width="71" height="64"><g data-name="Group 51"><g data-name="Group 50" fill="currentColor"><path data-name="Path 143" d="M0 54.3v-2.5a7.2 7.2 0 0 1 1.6-4.5c.2-.2.3-.5.3-.7-.8-2-.3-3.9-.2-5.8l.3-2.1a7.6 7.6 0 0 1 1.9-4.4 1.2 1.2 0 0 0 .2-1 7.3 7.3 0 0 1 0-3.7l1-4.1A7.3 7.3 0 0 1 7 22a1.9 1.9 0 0 0 .4-1 22.4 22.4 0 0 1 .5-3c.5-1.5 1.2-2.8 1.8-4.2a6.8 6.8 0 0 1 2.8-3.2 1.6 1.6 0 0 0 .7-.9A6.2 6.2 0 0 1 15.6 6 72 72 0 0 1 19 3.8a5.7 5.7 0 0 1 3.5-.9 1 1 0 0 0 .7-.3A6.4 6.4 0 0 1 28.5 0a34 34 0 0 1 5.2.2 11.6 11.6 0 0 0 3.7 0 34.2 34.2 0 0 1 6.7 0A5.3 5.3 0 0 1 48 2.5a1.3 1.3 0 0 0 1.1.4 8.8 8.8 0 0 1 3 .9 27.8 27.8 0 0 1 3.8 2.5 6 6 0 0 1 2 3.4 1.7 1.7 0 0 0 .7 1 7 7 0 0 1 3 3.3c.5 1.3 1.2 2.5 1.6 3.9a26.6 26.6 0 0 1 .6 3.3 1.6 1.6 0 0 0 .3.8 7.4 7.4 0 0 1 2.1 3.7l1 3.8a7.3 7.3 0 0 1 0 3.8 1.3 1.3 0 0 0 .2 1 7.7 7.7 0 0 1 1.8 4.3c.2 1.5.5 3 .5 4.6a28.4 28.4 0 0 1-.2 3 1.6 1.6 0 0 0 .1 1 7.2 7.2 0 0 1 1.6 4.4v5.7a7.1 7.1 0 0 1-6.9 6.7c-4 0-6.9-2-7.8-5.4a3.7 3.7 0 0 1-.2-1 70 70 0 0 1 .1-7 4 4 0 0 0-.5-3.1 7.5 7.5 0 0 1-1-4 32.8 32.8 0 0 1-.3-5.8 6 6 0 0 0-.4-3.1 59.3 59.3 0 0 1-1.9-7 1.7 1.7 0 0 1 0-1 4 4 0 0 0-.6-3.6 37.8 37.8 0 0 1-1.8-4 3.4 3.4 0 0 1-.4-1.3c0-1.2-.8-1.8-1.7-2.4l-3.5-2.8a1.3 1.3 0 0 0-.7-.2h-4.6c-1.1-.1-2.2-.6-3.4-.6-1 0-2.2.5-3.3.5-1.5.2-3 0-4.6 0a1.3 1.3 0 0 0-.7.3l-4.3 3.4a2.6 2.6 0 0 0-.7 1l-.5 1.9-2.7 5.7a1.2 1.2 0 0 0 0 .8 7 7 0 0 1 0 3.8l-1 4a3.8 3.8 0 0 1-.6 1.4 3.1 3.1 0 0 0-.5 3.3 5.3 5.3 0 0 1 .2 2.2l-.6 5a7.5 7.5 0 0 1-1.4 3.4 1.7 1.7 0 0 0-.2 1c.1 1 .4 2 .4 2.9a37.6 37.6 0 0 1-.2 5.8A7.1 7.1 0 0 1 8 64 7.2 7.2 0 0 1 .1 58a26 26 0 0 1 0-3.8Zm57.4-.2v3a5.6 5.6 0 0 0 4.3 5.4 10.5 10.5 0 0 0 3 .2 5.4 5.4 0 0 0 5-4.9 60.3 60.3 0 0 0 .2-6.6 5 5 0 0 0-1.7-3.5c-.4-.5-.4-.9-.2-1.4a9.3 9.3 0 0 0 .4-2.8c0-1.7-.3-3.3-.5-5a5.5 5.5 0 0 0-1.9-3.7 1 1 0 0 1-.3-1.4 4.9 4.9 0 0 0 .2-3.3l-1-4.3a5.8 5.8 0 0 0-2-3.2 1.4 1.4 0 0 1-.5-1 5.4 5.4 0 0 0-.5-3.4l-1.6-3.8a5 5 0 0 0-2.9-2.9 1 1 0 0 1-.7-1 4.4 4.4 0 0 0-2-3.5l-2.9-2a4.5 4.5 0 0 0-3.3-.7 1.1 1.1 0 0 1-1.3-.7 4.3 4.3 0 0 0-3.5-2.2c-1.7-.1-3.4-.2-5-.1a7 7 0 0 0-2.4.5 1.6 1.6 0 0 1-1.5 0 4.2 4.2 0 0 0-1.6-.5h-4.6a5 5 0 0 0-4.9 2.5 1.1 1.1 0 0 1-.9.4 5 5 0 0 0-3.7 1l-2.6 1.7a4.5 4.5 0 0 0-2 3.6 1 1 0 0 1-.8 1 4.7 4.7 0 0 0-2.7 2.6L9 18.4a4.4 4.4 0 0 0-.3 3 1.2 1.2 0 0 1-.6 1.3 4.9 4.9 0 0 0-1.8 2.9c-.4 1.6-1 3.1-1.2 4.7a7.8 7.8 0 0 0 .3 3c.2.7.2 1-.4 1.5a5.3 5.3 0 0 0-1.8 3.5l-.5 4a7.6 7.6 0 0 0 .4 4.3 1.3 1.3 0 0 1-.3 1.1 5.6 5.6 0 0 0-1.6 3.6v5.9a5.5 5.5 0 0 0 1.5 3.7 6.4 6.4 0 0 0 5.3 1.8 5.8 5.8 0 0 0 5.7-5.8v-5a9.5 9.5 0 0 0-.6-2.5 1.1 1.1 0 0 1 .3-1.3 5.6 5.6 0 0 0 1.5-3.4l.3-2.7c.2-2 .6-4-.5-5.8a1 1 0 0 1 .3-.8 6.4 6.4 0 0 0 1.4-3l.9-3.5a6 6 0 0 0-.1-3.8 1.3 1.3 0 0 1 .1-1c1.5-2 2.3-4.5 3.2-6.8a2.4 2.4 0 0 0 .1-1 1.2 1.2 0 0 1 .7-1.2c1.7-1.2 3.7-2 4.9-4a1 1 0 0 1 .7-.2h6a4.8 4.8 0 0 0 2-.5 1.4 1.4 0 0 1 1.2 0 6.5 6.5 0 0 0 2.1.6 37.8 37.8 0 0 0 4.4 0c1.3 0 2.4-.1 3 1.2.1.3.5.5.7.7a27.6 27.6 0 0 0 2.7 1.8 2.1 2.1 0 0 1 1.4 2.2 3.9 3.9 0 0 0 .4 1.6 22.5 22.5 0 0 0 1 2.1l1.9 3.6a1.4 1.4 0 0 1 0 .9c-.8 3.7.4 6.9 2.1 10 .5.5.5.9.3 1.5a10.7 10.7 0 0 0-.6 3c0 1.3.3 2.6.4 3.8a7.2 7.2 0 0 0 2 5 .7.7 0 0 1 0 .7c-.8 1.6-.6 3.5-.6 5Z"></path><path data-name="Path 144" d="M5.6 47.4a5 5 0 0 1-1.5-4.9l.5-4A4.5 4.5 0 0 1 7.2 35l.8-.4v-.1l-.5-.5a4 4 0 0 1-1-3.7l1-3.6a3.3 3.3 0 0 0 2.8-5.2 7.8 7.8 0 0 1 .1-2.7l1.5-3.4a4 4 0 0 1 4.2-3C15.5 10 16 9 18 7.5l1.8-1.2a3.4 3.4 0 0 1 4.4 0l.4.2a3.7 3.7 0 0 1 2-3.6 3.8 3.8 0 0 1 1.5-.3h3.4c1.6-.1 3 0 4.2 1.5 1-1.4 2.4-1.6 4-1.6a20.6 20.6 0 0 0 2.8 0 3.8 3.8 0 0 1 4.3 3.6 15.6 15.6 0 0 1 2.8-.6c1.3 0 4.9 2.6 5.4 3.8a3.8 3.8 0 0 1 0 3.1 9.4 9.4 0 0 1 1.4.2 3.6 3.6 0 0 1 2.6 2l1.4 3.2c.9 1.7 1.1 3.4-.2 5l1.1.5a4 4 0 0 1 2.3 2.6l1 4.4a4.3 4.3 0 0 1-1.4 4.2 17.1 17.1 0 0 1 1.7 1 5 5 0 0 1 1.9 4c0 1.4.3 2.7.4 4.1a4.6 4.6 0 0 1-1.5 3.7c.6.5 1.3 1 1.8 1.6a3.8 3.8 0 0 1 1.1 2.7V57a4.5 4.5 0 0 1-4.4 4.3c-2.8 0-5-1.3-5.2-3.8a33 33 0 0 1 0-6.6 9.6 9.6 0 0 1 1.3-2.8 4.7 4.7 0 0 1-2.7-4l-.5-4.4a4.7 4.7 0 0 1 1.9-4.3l-.7-.4a4.1 4.1 0 0 1-2.2-2.7l-.8-3.1a4.7 4.7 0 0 1 1.1-5.3c-1.8-.6-2.4-2-3-3.5l-.9-2a4.2 4.2 0 0 1-.1-4c-3-1-6-2.2-6.8-5.9-1 1-2.3 1.1-3.6 1h-2.7a4 4 0 0 1-3.6-1.5l-.5.5a3.6 3.6 0 0 1-2.6 1h-3.6a4.1 4.1 0 0 1-3.4-1c-.6 3.8-3.7 4.7-6.6 6 .8 1.5.3 3-.5 4.6l-.6 1.5c-.6 1.4-1.2 2.8-2.9 3.3l1 1.4a3.7 3.7 0 0 1 .3 2.8l-1 3.8a4.3 4.3 0 0 1-2.6 3.3 2 2 0 0 0-.2.1l-.1.1a4.9 4.9 0 0 1 1.8 5.1 31.6 31.6 0 0 0-.4 3.5 4.9 4.9 0 0 1-3 4.2c1.8 1.5 1.8 3.4 1.7 5.3v3.1a4.6 4.6 0 0 1-4.6 4.7c-2.6 0-4.4-1.2-5-3.3a5.8 5.8 0 0 1-.2-1.6v-4.3a4.7 4.7 0 0 1 2.7-4.5l.3-.3Zm54.4 7V57a3 3 0 0 0 2.9 3 8.5 8.5 0 0 0 1.6 0 2.9 2.9 0 0 0 2.7-2.6v-6.1a2.8 2.8 0 0 0-2.5-2.7 7 7 0 0 0-1.8 0 3 3 0 0 0-2.9 3.1v2.6Zm-48.9 0v-2.8A3 3 0 0 0 9.6 49a3.7 3.7 0 0 0-5.8 3v4.6a4.6 4.6 0 0 0 .3 1.5c.5 1.5 1.8 2.1 3.8 2a3.2 3.2 0 0 0 3.2-3.3v-2.4Zm1.9-15a3.1 3.1 0 0 0-1.1-2.7 4.1 4.1 0 0 0-2.9-.8A3 3 0 0 0 6 38.6l-.3 2.1-.3 3c-.2 2 .9 3.2 3.3 3.6a3 3 0 0 0 3.7-2.5l.7-5.4Zm49-3.5c-2.8 0-4 1.5-3.8 4.2l.6 4.6c.4 2.1 2 3 4.5 2.5a3.1 3.1 0 0 0 2.6-3.6l-.6-4.9a3 3 0 0 0-3.4-2.8ZM11.4 24a2.7 2.7 0 0 0-2.7 2.3l-1 4.2c-.4 1.8.4 3.1 2.3 3.6 2 .5 3.3-.2 3.8-2l1-3.9c.8-2.8-1.1-4-3.4-4.2ZM60 34.3c2.4 0 4-1.5 3.5-3.5l-1.2-4.6c-.4-1.7-1.8-2.4-3.7-1.9a2.8 2.8 0 0 0-2.4 3.5l1.2 4.5a2.7 2.7 0 0 0 2.6 2Zm-48.6-14a2.5 2.5 0 0 0 1.9 2.6 2.3 2.3 0 0 0 2.8-1.3l2-4.5a2.5 2.5 0 0 0-4.6-1.9l-2 4.3a5.3 5.3 0 0 0-.1.8Zm48.6.2a.7.7 0 0 0 0-.2c-.9-2-1.6-4-2.6-5.8-.6-1-2-1-3-.4a2.2 2.2 0 0 0-1.2 2.6c.7 1.8 1.4 3.5 2.3 5.2a2.1 2.1 0 0 0 2.6 1 2.5 2.5 0 0 0 1.9-2.4Zm-19.1-12 2.4-.1a2.1 2.1 0 0 0 2.2-2.1 2 2 0 0 0-2-2.4h-5.2a2 2 0 0 0-2 2.3 2.1 2.1 0 0 0 2.1 2.2h2.5Zm-10.5-.1H33a2.1 2.1 0 0 0 2-2.2A2 2 0 0 0 33 4h-5.3a2 2 0 0 0-2 2.3 2 2 0 0 0 2.1 2.2h2.5Zm-6 1A2.9 2.9 0 0 0 22.8 7a1.8 1.8 0 0 0-2.2.2l-2.9 2a2.2 2.2 0 0 0 2.5 3.6 37 37 0 0 0 3-2.2 4.5 4.5 0 0 0 1-1.2Zm29.8 1a6.2 6.2 0 0 0-1-1.3l-2.8-2a2.2 2.2 0 0 0-2.5 3.6l2.8 2a1.8 1.8 0 0 0 2.1.2 3 3 0 0 0 1.4-2.5Z"></path></g></g></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.2 64" width="71" height="64"><g data-name="Group 51"><g data-name="Group 50" fill="currentColor"><path data-name="Path 143" d="M0 54.3v-2.5a7.2 7.2 0 0 1 1.6-4.5c.2-.2.3-.5.3-.7-.8-2-.3-3.9-.2-5.8l.3-2.1a7.6 7.6 0 0 1 1.9-4.4 1.2 1.2 0 0 0 .2-1 7.3 7.3 0 0 1 0-3.7l1-4.1A7.3 7.3 0 0 1 7 22a1.9 1.9 0 0 0 .4-1 22.4 22.4 0 0 1 .5-3c.5-1.5 1.2-2.8 1.8-4.2a6.8 6.8 0 0 1 2.8-3.2 1.6 1.6 0 0 0 .7-.9A6.2 6.2 0 0 1 15.6 6 72 72 0 0 1 19 3.8a5.7 5.7 0 0 1 3.5-.9 1 1 0 0 0 .7-.3A6.4 6.4 0 0 1 28.5 0a34 34 0 0 1 5.2.2 11.6 11.6 0 0 0 3.7 0 34.2 34.2 0 0 1 6.7 0A5.3 5.3 0 0 1 48 2.5a1.3 1.3 0 0 0 1.1.4 8.8 8.8 0 0 1 3 .9 27.8 27.8 0 0 1 3.8 2.5 6 6 0 0 1 2 3.4 1.7 1.7 0 0 0 .7 1 7 7 0 0 1 3 3.3c.5 1.3 1.2 2.5 1.6 3.9a26.6 26.6 0 0 1 .6 3.3 1.6 1.6 0 0 0 .3.8 7.4 7.4 0 0 1 2.1 3.7l1 3.8a7.3 7.3 0 0 1 0 3.8 1.3 1.3 0 0 0 .2 1 7.7 7.7 0 0 1 1.8 4.3c.2 1.5.5 3 .5 4.6a28.4 28.4 0 0 1-.2 3 1.6 1.6 0 0 0 .1 1 7.2 7.2 0 0 1 1.6 4.4v5.7a7.1 7.1 0 0 1-6.9 6.7c-4 0-6.9-2-7.8-5.4a3.7 3.7 0 0 1-.2-1 70 70 0 0 1 .1-7 4 4 0 0 0-.5-3.1 7.5 7.5 0 0 1-1-4 32.8 32.8 0 0 1-.3-5.8 6 6 0 0 0-.4-3.1 59.3 59.3 0 0 1-1.9-7 1.7 1.7 0 0 1 0-1 4 4 0 0 0-.6-3.6 37.8 37.8 0 0 1-1.8-4 3.4 3.4 0 0 1-.4-1.3c0-1.2-.8-1.8-1.7-2.4l-3.5-2.8a1.3 1.3 0 0 0-.7-.2h-4.6c-1.1-.1-2.2-.6-3.4-.6-1 0-2.2.5-3.3.5-1.5.2-3 0-4.6 0a1.3 1.3 0 0 0-.7.3l-4.3 3.4a2.6 2.6 0 0 0-.7 1l-.5 1.9-2.7 5.7a1.2 1.2 0 0 0 0 .8 7 7 0 0 1 0 3.8l-1 4a3.8 3.8 0 0 1-.6 1.4 3.1 3.1 0 0 0-.5 3.3 5.3 5.3 0 0 1 .2 2.2l-.6 5a7.5 7.5 0 0 1-1.4 3.4 1.7 1.7 0 0 0-.2 1c.1 1 .4 2 .4 2.9a37.6 37.6 0 0 1-.2 5.8A7.1 7.1 0 0 1 8 64 7.2 7.2 0 0 1 .1 58a26 26 0 0 1 0-3.8Zm57.4-.2v3a5.6 5.6 0 0 0 4.3 5.4 10.5 10.5 0 0 0 3 .2 5.4 5.4 0 0 0 5-4.9 60.3 60.3 0 0 0 .2-6.6 5 5 0 0 0-1.7-3.5c-.4-.5-.4-.9-.2-1.4a9.3 9.3 0 0 0 .4-2.8c0-1.7-.3-3.3-.5-5a5.5 5.5 0 0 0-1.9-3.7 1 1 0 0 1-.3-1.4 4.9 4.9 0 0 0 .2-3.3l-1-4.3a5.8 5.8 0 0 0-2-3.2 1.4 1.4 0 0 1-.5-1 5.4 5.4 0 0 0-.5-3.4l-1.6-3.8a5 5 0 0 0-2.9-2.9 1 1 0 0 1-.7-1 4.4 4.4 0 0 0-2-3.5l-2.9-2a4.5 4.5 0 0 0-3.3-.7 1.1 1.1 0 0 1-1.3-.7 4.3 4.3 0 0 0-3.5-2.2c-1.7-.1-3.4-.2-5-.1a7 7 0 0 0-2.4.5 1.6 1.6 0 0 1-1.5 0 4.2 4.2 0 0 0-1.6-.5h-4.6a5 5 0 0 0-4.9 2.5 1.1 1.1 0 0 1-.9.4 5 5 0 0 0-3.7 1l-2.6 1.7a4.5 4.5 0 0 0-2 3.6 1 1 0 0 1-.8 1 4.7 4.7 0 0 0-2.7 2.6L9 18.4a4.4 4.4 0 0 0-.3 3 1.2 1.2 0 0 1-.6 1.3 4.9 4.9 0 0 0-1.8 2.9c-.4 1.6-1 3.1-1.2 4.7a7.8 7.8 0 0 0 .3 3c.2.7.2 1-.4 1.5a5.3 5.3 0 0 0-1.8 3.5l-.5 4a7.6 7.6 0 0 0 .4 4.3 1.3 1.3 0 0 1-.3 1.1 5.6 5.6 0 0 0-1.6 3.6v5.9a5.5 5.5 0 0 0 1.5 3.7 6.4 6.4 0 0 0 5.3 1.8 5.8 5.8 0 0 0 5.7-5.8v-5a9.5 9.5 0 0 0-.6-2.5 1.1 1.1 0 0 1 .3-1.3 5.6 5.6 0 0 0 1.5-3.4l.3-2.7c.2-2 .6-4-.5-5.8a1 1 0 0 1 .3-.8 6.4 6.4 0 0 0 1.4-3l.9-3.5a6 6 0 0 0-.1-3.8 1.3 1.3 0 0 1 .1-1c1.5-2 2.3-4.5 3.2-6.8a2.4 2.4 0 0 0 .1-1 1.2 1.2 0 0 1 .7-1.2c1.7-1.2 3.7-2 4.9-4a1 1 0 0 1 .7-.2h6a4.8 4.8 0 0 0 2-.5 1.4 1.4 0 0 1 1.2 0 6.5 6.5 0 0 0 2.1.6 37.8 37.8 0 0 0 4.4 0c1.3 0 2.4-.1 3 1.2.1.3.5.5.7.7a27.6 27.6 0 0 0 2.7 1.8 2.1 2.1 0 0 1 1.4 2.2 3.9 3.9 0 0 0 .4 1.6 22.5 22.5 0 0 0 1 2.1l1.9 3.6a1.4 1.4 0 0 1 0 .9c-.8 3.7.4 6.9 2.1 10 .5.5.5.9.3 1.5a10.7 10.7 0 0 0-.6 3c0 1.3.3 2.6.4 3.8a7.2 7.2 0 0 0 2 5 .7.7 0 0 1 0 .7c-.8 1.6-.6 3.5-.6 5Z"></path><path data-name="Path 144" d="M5.6 47.4a5 5 0 0 1-1.5-4.9l.5-4A4.5 4.5 0 0 1 7.2 35l.8-.4v-.1l-.5-.5a4 4 0 0 1-1-3.7l1-3.6a3.3 3.3 0 0 0 2.8-5.2 7.8 7.8 0 0 1 .1-2.7l1.5-3.4a4 4 0 0 1 4.2-3C15.5 10 16 9 18 7.5l1.8-1.2a3.4 3.4 0 0 1 4.4 0l.4.2a3.7 3.7 0 0 1 2-3.6 3.8 3.8 0 0 1 1.5-.3h3.4c1.6-.1 3 0 4.2 1.5 1-1.4 2.4-1.6 4-1.6a20.6 20.6 0 0 0 2.8 0 3.8 3.8 0 0 1 4.3 3.6 15.6 15.6 0 0 1 2.8-.6c1.3 0 4.9 2.6 5.4 3.8a3.8 3.8 0 0 1 0 3.1 9.4 9.4 0 0 1 1.4.2 3.6 3.6 0 0 1 2.6 2l1.4 3.2c.9 1.7 1.1 3.4-.2 5l1.1.5a4 4 0 0 1 2.3 2.6l1 4.4a4.3 4.3 0 0 1-1.4 4.2 17.1 17.1 0 0 1 1.7 1 5 5 0 0 1 1.9 4c0 1.4.3 2.7.4 4.1a4.6 4.6 0 0 1-1.5 3.7c.6.5 1.3 1 1.8 1.6a3.8 3.8 0 0 1 1.1 2.7V57a4.5 4.5 0 0 1-4.4 4.3c-2.8 0-5-1.3-5.2-3.8a33 33 0 0 1 0-6.6 9.6 9.6 0 0 1 1.3-2.8 4.7 4.7 0 0 1-2.7-4l-.5-4.4a4.7 4.7 0 0 1 1.9-4.3l-.7-.4a4.1 4.1 0 0 1-2.2-2.7l-.8-3.1a4.7 4.7 0 0 1 1.1-5.3c-1.8-.6-2.4-2-3-3.5l-.9-2a4.2 4.2 0 0 1-.1-4c-3-1-6-2.2-6.8-5.9-1 1-2.3 1.1-3.6 1h-2.7a4 4 0 0 1-3.6-1.5l-.5.5a3.6 3.6 0 0 1-2.6 1h-3.6a4.1 4.1 0 0 1-3.4-1c-.6 3.8-3.7 4.7-6.6 6 .8 1.5.3 3-.5 4.6l-.6 1.5c-.6 1.4-1.2 2.8-2.9 3.3l1 1.4a3.7 3.7 0 0 1 .3 2.8l-1 3.8a4.3 4.3 0 0 1-2.6 3.3 2 2 0 0 0-.2.1l-.1.1a4.9 4.9 0 0 1 1.8 5.1 31.6 31.6 0 0 0-.4 3.5 4.9 4.9 0 0 1-3 4.2c1.8 1.5 1.8 3.4 1.7 5.3v3.1a4.6 4.6 0 0 1-4.6 4.7c-2.6 0-4.4-1.2-5-3.3a5.8 5.8 0 0 1-.2-1.6v-4.3a4.7 4.7 0 0 1 2.7-4.5l.3-.3Zm54.4 7V57a3 3 0 0 0 2.9 3 8.5 8.5 0 0 0 1.6 0 2.9 2.9 0 0 0 2.7-2.6v-6.1a2.8 2.8 0 0 0-2.5-2.7 7 7 0 0 0-1.8 0 3 3 0 0 0-2.9 3.1v2.6Zm-48.9 0v-2.8A3 3 0 0 0 9.6 49a3.7 3.7 0 0 0-5.8 3v4.6a4.6 4.6 0 0 0 .3 1.5c.5 1.5 1.8 2.1 3.8 2a3.2 3.2 0 0 0 3.2-3.3v-2.4Zm1.9-15a3.1 3.1 0 0 0-1.1-2.7 4.1 4.1 0 0 0-2.9-.8A3 3 0 0 0 6 38.6l-.3 2.1-.3 3c-.2 2 .9 3.2 3.3 3.6a3 3 0 0 0 3.7-2.5l.7-5.4Zm49-3.5c-2.8 0-4 1.5-3.8 4.2l.6 4.6c.4 2.1 2 3 4.5 2.5a3.1 3.1 0 0 0 2.6-3.6l-.6-4.9a3 3 0 0 0-3.4-2.8ZM11.4 24a2.7 2.7 0 0 0-2.7 2.3l-1 4.2c-.4 1.8.4 3.1 2.3 3.6 2 .5 3.3-.2 3.8-2l1-3.9c.8-2.8-1.1-4-3.4-4.2ZM60 34.3c2.4 0 4-1.5 3.5-3.5l-1.2-4.6c-.4-1.7-1.8-2.4-3.7-1.9a2.8 2.8 0 0 0-2.4 3.5l1.2 4.5a2.7 2.7 0 0 0 2.6 2Zm-48.6-14a2.5 2.5 0 0 0 1.9 2.6 2.3 2.3 0 0 0 2.8-1.3l2-4.5a2.5 2.5 0 0 0-4.6-1.9l-2 4.3a5.3 5.3 0 0 0-.1.8Zm48.6.2a.7.7 0 0 0 0-.2c-.9-2-1.6-4-2.6-5.8-.6-1-2-.7-3-.4a2.2 2.2 0 0 0-1.2 2.6c.7 1.8 1.4 3.5 2.3 5.2a2.1 2.1 0 0 0 2.6 1 2.5 2.5 0 0 0 1.9-2.4Zm-19.1-12 2.4-.1a2.1 2.1 0 0 0 2.2-2.1 2 2 0 0 0-2-2.4h-5.2a2 2 0 0 0-2 2.3 2.1 2.1 0 0 0 2.1 2.2h2.5Zm-10.5-.1H33a2.1 2.1 0 0 0 2-2.2A2 2 0 0 0 33 4h-5.3a2 2 0 0 0-2 2.3 2 2 0 0 0 2.1 2.2h2.5Zm-6 1A2.9 2.9 0 0 0 22.8 7a1.8 1.8 0 0 0-2.2.2l-2.9 2a2.2 2.2 0 0 0 2.5 3.6 37 37 0 0 0 3-2.2 4.5 4.5 0 0 0 1-1.2Zm29.8 1a6.2 6.2 0 0 0-1-1.3l-2.8-2a2.2 2.2 0 0 0-2.5 3.6l2.8 2a1.8 1.8 0 0 0 2.1.2 3 3 0 0 0 1.4-2.5Z"></path></g></g></svg>
                            </figure>
                            <p>
                              Orthodontics &amp; Invisalign®
@@ -183,63 +183,63 @@
             </div>
         </section>
          <!-- OFFICE TOUR SECTION -->
-          <section class="office-tour-section splide" aria-labelledby="carousel-heading">
+          <section class="office-tour-section splide" aria-labelledby="office-tour-heading">
               <div class="slide-text flex-content">
-                 <h2 id="carousel-heading">Office Tour </h2>
-                 <a class="btn btn--border-bottom">view our photo gallery</a>
+                 <h2 id="office-tour-heading">{{ office_tour_heading }}</h2>
+                 <a href="{{ office_tour_cta_url }}" class="btn btn--border-bottom">{{ office_tour_cta_text }}</a>
               </div>
 
               <div class="splide__track">
                 <ul class="splide__list">
                   <li class="splide__slide">
                      <div>
-                       <img src="{{ directory }}/assets/imgs/slider-1.jpg" alt="Reception area of Staten Island Pediatric Dentistry">
+                       <img src="{{ office_tour_slide_1_image }}" alt="{{ office_tour_slide_1_alt }}">
                      </div>
                   </li>
                   <li class="splide__slide">
                     <div>
-                       <img src="{{ directory }}/assets/imgs/slider-2.jpg" alt="Reception area of Staten Island Pediatric Dentistry">
+                       <img src="{{ office_tour_slide_2_image }}" alt="{{ office_tour_slide_2_alt }}">
                      </div></li>
                   <li class="splide__slide">
                      <div>
-                       <img src="{{ directory }}/assets/imgs/slider-3.jpg" alt="Reception area of Staten Island Pediatric Dentistry">
+                       <img src="{{ office_tour_slide_3_image }}" alt="{{ office_tour_slide_3_alt }}">
                      </div>
                   </li>
                 </ul>
               </div>
           </section>
          <!-- TESTIMONIALS SECTION -->
-          <section class="testimonials-section content-container splide" aria-labelledby="carousel-heading" data-splide='{"width": "60vw", "interval":15000}'>
+          <section class="testimonials-section content-container splide" aria-labelledby="testimonials-heading" data-splide='{{ testimonials_splide_config|raw }}'>
               <div class="content-primary">
                  <figure class="testimonial__quote">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.6 34" width="48" height="34"><g data-name="Group 34"><g data-name="Group 33"><g data-name="Group 32" fill="#39bdb3"><path data-name="Path 127" d="M47.6 7 46 0C35 .5 27.4 5 27.4 18.5V34h19.2V14.5h-7.2c0-4.3 2.7-6.8 8.2-7.5Z"></path><path data-name="Path 128" d="m20.1 7-1.5-7C7.6.5 0 5 0 18.5V34h19.2V14.5h-7.3c0-4.3 2.7-6.8 8.2-7.5Z"></path></g></g></g></svg>
                </figure>
-              <h3 class="slide-header">What Our Patients Say About Us</h3>
+              <h3 id="testimonials-heading" class="slide-header">{{ testimonials_heading }}</h3>
               <div class="splide__track">
                 <ul class="splide__list">
                   <li class="splide__slide">
                     <p class="slide-body">
-                      “My children have always had a positive experience with Dr. Michelle and her staff. Everyone you encounter in the office is friendly and helpful. Dr. Michelle does everything she can to make children feel comfortable and takes time to explain procedures to them in ways they can understand. She also took time with me to explain the best options when I had to make a decision about how to handle my kids’ dental situations. I am very happy with their services and I highly recommend them!”
+                      {{ testimonials_slide_1_body }}
                     </p>
-                    <a class="btn btn--border-bottom" href="/testimonials">read our testimonials</a>
+                    <a class="btn btn--border-bottom" href="{{ testimonials_cta_url }}">{{ testimonials_cta_text }}</a>
                   </li>
                   <li class="splide__slide">
                     <p class="slide-body">
-                      "Every so often you meet someone who has quite simply found their perfect niche in this crazy world. Dr. Michelle is one of those people. She is the best at what she does. My 3 year old is excited to visit the dentist. Michelle makes him feel valued and special and comfortable all while actually getting him to open his mouth and get his teeth cleaned! She remembers him (and me) from one visit to the next and genuinely cares about us as people not just clients. I cannot say enough complimentary things about Dr. Michelle and her practice. They are simply phenomenal and I will recommend them to anyone who will listen!"
+                      {{ testimonials_slide_2_body }}
                     </p>
-                    <a class="btn btn--border-bottom" href="/testimonials">read our testimonials</a>
+                    <a class="btn btn--border-bottom" href="{{ testimonials_cta_url }}">{{ testimonials_cta_text }}</a>
                   </li>
                   <li class="splide__slide">
                     <p class="slide-body">
-                      "Brought my 5 year old daughter here and she absolutely loves It here!! As do i! Amazing staff! Dr Michelle is an absolute gem! My daughter had 2 cavities filled yesterday and they took such amazing care of my daughter she was so comfortable and can’t wait to go back and that means a lot. Thank you so much for taking care of my little girl! If anyone has a child this is the place to go!"
+                      {{ testimonials_slide_3_body }}
                     </p>
-                   <a class="btn btn--border-bottom" href="/testimonials">read our testimonials</a>
+                   <a class="btn btn--border-bottom" href="{{ testimonials_cta_url }}">{{ testimonials_cta_text }}</a>
                   </li>
                   <li class="splide__slide">
                     <p class="slide-body">
-                      "My daughter's first visit and it was a wonderful experience. Dr Michelle, Veronica and the staff were so thorough working and explaining everything along the way. And before I knew it, my daughter's loose teeth were both out. This felt like more than just a dental practice, it is an extended family taking care of my daughter. Thank you so much!!!"
+                      {{ testimonials_slide_4_body }}
                     </p>
-                    <a class="btn btn--border-bottom" href="/testimonials">read our testimonials</a>
+                    <a class="btn btn--border-bottom" href="{{ testimonials_cta_url }}">{{ testimonials_cta_text }}</a>
                   </li>
                 </ul>
               </div>
@@ -290,8 +290,8 @@
                   <li><img src="{{ directory }}/assets/imgs/sdds_logo.jpeg" alt="Society of Dental Surgeons Logo"></li>
                 </ul>
              </div>
-         </section>  
-         <!-- WELCOME SECTION -->        
+         </section>
+         <!-- WELCOME SECTION -->
         <section>
           <div class="content-primary content-container">
             <div class="content-container">
@@ -305,29 +305,29 @@
               <p><strong>Compassion and empathy:</strong> Our approach to treating children is to provide the same care, compassion, and empathy we want for our own children.<br>
               <strong>Integrity and honesty:</strong> Our dentists believe in honesty and transparency and doing the right thing every time.<br>
               <strong>Exceptional treatments:</strong> Our dental team is committed to continued growth and providing your child with the latest and best that dentistry has to offer.</p>
-              
+
               <h2>Comprehensive Pediatric Dentistry</h2>
               <p>At Staten Island Pediatric Dentistry, we provide the foundational dental care your child needs for excellent oral health, including dental exams, cleanings, and sealants. However, our pediatric dentists have training and skill that goes far beyond offering these basic services.</p>
               <p>Dr. Michelle and Dr. Yelena are experienced board-certified pediatric dentists with experience in treating children in clinical and hospital settings. Their specialized training allows our pediatric dentists to provide your child with any treatment they need to maintain a healthy smile.</p>
               <p>We offer emergency dentistry because kids are kids, and accidents are part of growing up. Please call us at the first sign of trouble, and our expert dental team will be happy to assist you.</p>
-            
+
               <h2>Orthodontic Treatment for All Ages</h2>
               <p>Dr. Sara Skurnick is our well-respected orthodontist who has been treating children and adults in Staten Island and surrounding areas for over 30 years. If recommended, she provides early orthodontic treatment for children. Dr. Sara also provides traditional braces and Invisalign® clear braces for older teens and adults.</p>
               <p>If you would like a consultation appointment with Dr. Sara, please call us at (718) 761-7316 to schedule.</p>
-             
+
               <h2>Leading-Edge Laser Dentistry for Children</h2>
               <p>Much of what's involved with helping children have a great dental experience is providing comfortable, pain-free, and stress-free treatment. That is why we are so excited to introduce laser dentistry to our Staten Island pediatric dental office.</p>
               <p>Laser dentistry offers numerous benefits, but the one parents find most appealing is the elimination of shots and drills in most cases. That's right! Using our Solea dental laser, your child's appointments are more efficient, meaning they spend less time in the dental chair. <a href="https://www.convergentdental.com/solea" target="_blank" rel="noopener" aria-label="Learn more about Solea laser dentistry">Learn more about the benefits of Solea laser dentistry</a>.</p>
-             
+
               <h2>Your Child's Comfort Is Our Priority</h2>
               <p>Everything we do is centered around your child's comfort and ensuring that every dental visit ends on a positive note. Some children cannot wait to hop into the dental chair, while others are much more hesitant.</p>
               <p>That is okay! As pediatric dentists, Dr. Michelle and Dr. Yelena are trained to work with each unique child, including those with special needs.</p>
               <p>As they get to know your child, our dentists learn the best ways to approach them, so that they feel safe and secure with us.</p>
-            
+
               <h2>Hospital-Based Sedation and Dentistry</h2>
               <p>Many children benefit from sedation dentistry like nitrous oxide (sweet air or laughing gas). This supportive service helps the child feel calm. A calm child will have a more positive memory of the experience and allow our dentists to work most efficiently.</p>
               <p>Some children have very special healthcare needs or extensive work that may best be addressed under general anesthesia. Staten Island Pediatric Dentistry has been providing hospital-based dentistry under the care of superb pediatric anesthesiologists since 1976.</p>
-             
+
               <h2>We Look Forward to Welcoming Your Child</h2>
               <p>We are excited that you are considering Staten Island Pediatric Dentistry for your child's new dental home. Dr. Michelle, Dr. Yelena, and Dr. Sara would love to meet you and explain more about all we offer to maintain your child's healthy smile.</p>
               <p>Our office hours are designed with our busy families in mind, and we are open six days a week, including Saturdays. We also have evening hours if your schedule does not allow you to come in during the day.</p>

@@ -1,0 +1,22 @@
+uuid: 9a6f11bb-f31e-4110-88da-68b1d77121bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ab_body
+    - paragraphs.paragraphs_type.animated_banner
+  module:
+    - text
+id: paragraph.animated_banner.field_ab_body
+field_name: field_ab_body
+entity_type: paragraph
+bundle: animated_banner
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

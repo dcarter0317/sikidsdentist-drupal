@@ -1,10 +1,11 @@
-name: Banner
-description: "A full-width banner component with three style variants: default (title/body/CTA), button-banner (label + two-button group), and cta-banner (inline label + single CTA). Designed for use with the Paragraphs module."
+name: Animated Banner
+description: "Identical to the Banner component but applies the animation class to the inner content block, so the content animates in while the banner background stays in place. Designed for use with the Paragraphs module."
 group: "Paragraphs Components"
 
-# Props map directly to fields on the 'banner' paragraph bundle.
 props:
   type: object
+  required:
+    - animation_class
   properties:
     title:
       type: string
@@ -46,7 +47,7 @@ props:
     animation_class:
       type: string
       title: "Animation Class"
-      description: "Optional CSS animation class from sipd.css applied to the banner content. Maps to field_animation_style on the paragraph."
+      description: "CSS animation class from sipd.css. Applied to the inner content block so only the content animates."
       enum:
         - slide-in-left
         - slide-in-content-left

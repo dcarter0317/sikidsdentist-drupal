@@ -1,0 +1,21 @@
+uuid: 62de9070-272f-4867-91f9-42d6ed29ab9e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ab_style
+    - paragraphs.paragraphs_type.animated_banner
+  module:
+    - options
+id: paragraph.animated_banner.field_ab_style
+field_name: field_ab_style
+entity_type: paragraph
+bundle: animated_banner
+label: Style
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

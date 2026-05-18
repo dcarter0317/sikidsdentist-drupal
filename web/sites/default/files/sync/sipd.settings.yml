@@ -1,0 +1,46 @@
+features:
+  node_user_picture: 1
+  comment_user_picture: 1
+  comment_user_verification: 1
+  favicon: 1
+logo:
+  use_default: 1
+favicon:
+  use_default: 1
+hero_show_overlay: 1
+hero_contact_btn_text: 'contact us'
+hero_contact_btn_url: /contact
+hero_address_text: '195 Bridgetown St, Staten Island, NY.'
+hero_address_url: 'https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=195+Bridgetown+Street+Staten+Island+NY+10314'
+hero_phone_text: '(718) 761-7316'
+hero_phone_number: '7187617316'
+hero_booking_url: /contact
+hero_heading: 'Providing optimum dental care to your child in a friendly environment.'
+hero_cta_text: 'about our practice'
+hero_cta_url: /about-us
+featured_bg_image: ''
+featured_heading: 'Welcome to Staten Island Pediatric Dentistry'
+featured_body_1: "Your child is precious to you, and they are precious to us too. It takes a special group of people to work exclusively with children, and that is exactly what you'll find at Staten Island Pediatric Dentistry."
+featured_body_2: "Many of us are parents too, and we know the level of trust required to put your child's care in anyone's hands but your own. Starting with your child's first interaction with our dental team, you will see how devoted we are to their comfort, safety, and well-being."
+featured_btn1_text: 'meet our team'
+featured_btn1_url: /about-us
+featured_btn2_text: 'new patients'
+featured_btn2_url: /first-visit
+office_tour_heading: 'Office Tour'
+office_tour_cta_text: 'view our photo gallery'
+office_tour_cta_url: /gallery
+office_tour_slide_1_image: ''
+office_tour_slide_1_alt: 'Reception area of Staten Island Pediatric Dentistry'
+office_tour_slide_2_image: ''
+office_tour_slide_2_alt: 'Waiting area of Staten Island Pediatric Dentistry'
+office_tour_slide_3_image: ''
+office_tour_slide_3_alt: 'Treatment room at Staten Island Pediatric Dentistry'
+testimonials_heading: 'What Our Patients Say About Us'
+testimonials_splide_width: 60vw
+testimonials_splide_interval: '15000'
+testimonials_cta_text: 'read our testimonials'
+testimonials_cta_url: /testimonials
+testimonials_slide_1_body: '"My children have always had a positive experience with Dr. Michelle and her staff. Everyone you encounter in the office is friendly and helpful. Dr. Michelle does everything she can to make children feel comfortable and takes time to explain procedures to them in ways they can understand. She also took time with me to explain the best options when I had to make a decision about how to handle my kids'' dental situations. I am very happy with their services and I highly recommend them!"'
+testimonials_slide_2_body: '"Every so often you meet someone who has quite simply found their perfect niche in this crazy world. Dr. Michelle is one of those people. She is the best at what she does. My 3 year old is excited to visit the dentist. Michelle makes him feel valued and special and comfortable all while actually getting him to open his mouth and get his teeth cleaned! She remembers him (and me) from one visit to the next and genuinely cares about us as people not just clients. I cannot say enough complimentary things about Dr. Michelle and her practice. They are simply phenomenal and I will recommend them to anyone who will listen!"'
+testimonials_slide_3_body: '"Brought my 5 year old daughter here and she absolutely loves It here!! As do i! Amazing staff! Dr Michelle is an absolute gem! My daughter had 2 cavities filled yesterday and they took such amazing care of my daughter she was so comfortable and can''t wait to go back and that means a lot. Thank you so much for taking care of my little girl! If anyone has a child this is the place to go!"'
+testimonials_slide_4_body: '"My daughter''s first visit and it was a wonderful experience. Dr Michelle, Veronica and the staff were so thorough working and explaining everything along the way. And before I knew it, my daughter''s loose teeth were both out. This felt like more than just a dental practice, it is an extended family taking care of my daughter. Thank you so much!!!"'

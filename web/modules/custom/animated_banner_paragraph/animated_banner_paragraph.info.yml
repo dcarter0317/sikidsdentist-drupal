@@ -1,0 +1,10 @@
+name: 'Animated Banner Paragraph'
+description: 'Provides the Animated Banner paragraph type. Shares field storage with banner_paragraph; the animation class is applied to the inner content block via the Animated Banner SDC.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:link
+  - drupal:text
+  - drupal:options

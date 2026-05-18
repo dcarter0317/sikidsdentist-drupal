@@ -1,0 +1,21 @@
+uuid: 117f2cf3-7213-4080-879a-00c9b99bb0cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_animation_style
+    - paragraphs.paragraphs_type.banner
+  module:
+    - options
+id: paragraph.banner.field_animation_style
+field_name: field_animation_style
+entity_type: paragraph
+bundle: banner
+label: 'Animation Style'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

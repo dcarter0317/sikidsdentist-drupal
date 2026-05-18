@@ -1,0 +1,84 @@
+uuid: b7cc5054-81b3-41b4-8ba7-4eabfa86b169
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.animated_banner.field_ab_body
+    - field.field.paragraph.animated_banner.field_ab_cta
+    - field.field.paragraph.animated_banner.field_ab_cta_secondary
+    - field.field.paragraph.animated_banner.field_ab_label
+    - field.field.paragraph.animated_banner.field_ab_style
+    - field.field.paragraph.animated_banner.field_ab_title
+    - field.field.paragraph.animated_banner.field_animation_style
+    - paragraphs.paragraphs_type.animated_banner
+  module:
+    - link
+    - text
+id: paragraph.animated_banner.default
+targetEntityType: paragraph
+bundle: animated_banner
+mode: default
+content:
+  admin_title:
+    type: string_textfield
+    weight: -10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_ab_body:
+    type: text_textarea
+    weight: -7
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_ab_cta:
+    type: link_default
+    weight: -5
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_ab_cta_secondary:
+    type: link_default
+    weight: -4
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_ab_label:
+    type: string_textfield
+    weight: -6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_ab_style:
+    type: options_select
+    weight: -3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_ab_title:
+    type: string_textfield
+    weight: -8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_animation_style:
+    type: options_select
+    weight: -4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,15 +1,11 @@
-uuid: 7bc8f573-d58b-473d-aab3-f28f449408c8
 langcode: en
 status: true
 dependencies:
   module:
-    - paragraph_block
-third_party_settings:
-  paragraph_block:
-    status: false
+    - paragraphs
 id: banner
 label: Banner
 icon_uuid: null
 icon_default: null
 description: 'Page Banner component, used for in page banners and has options to animate the banner onto the page.'
-behavior_plugins: {  }
+behavior_plugins: {}
