@@ -1,0 +1,58 @@
+{#
+/**
+ * @file paragraph--ept-columns--default.html.twig
+ *
+ * Theme override for the EPT Columns paragraph.
+ * Reads layout settings directly from `paragraph` instead of the
+ * content['#object'] chain used by the module template.
+ */
+#}
+{{ attach_library('ept_columns/ept_columns') }}
+
+{%
+  set ept = paragraph.field_ept_settings.ept_settings
+%}
+
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    'ept-paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished',
+    'ept-paragraph',
+    'ept-paragraph-columns',
+    'paragraph-id-' ~ paragraph.id(),
+    ept.layout ? 'column-' ~ ept.layout,
+    ept.column_width_two ? 'columns-' ~ ept.column_width_two,
+    ept.column_width_three ? 'columns-' ~ ept.column_width_three,
+    ept.column_width_four ? 'columns-' ~ ept.column_width_four,
+    ept.equal_height ? 'columns-equal-height',
+  ]
+%}
+
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    <div class="bg-inner"></div>
+    <div class="ept-container">
+      {% block content %}
+        {% if content.field_ept_title|render %}
+          {% set wrapper = ept.title_options.title_wrapper|default('h2') %}
+          {% if wrapper != 'none' %}
+            <{{ wrapper in ['h1','h2','h3','h4','h5'] ? wrapper : 'h2' }}>
+          {% endif %}
+          {% if ept.title_options.strip_tags %}
+            {{ content.field_ept_title|render|striptags('<span><br><i><img><svg>')|trim|raw }}
+          {% else %}
+            {{ content.field_ept_title }}
+          {% endif %}
+          {% if wrapper != 'none' %}
+            </{{ wrapper in ['h1','h2','h3','h4','h5'] ? wrapper : 'h2' }}>
+          {% endif %}
+        {% endif %}
+        {{ content|without('field_ept_settings', 'field_ept_title') }}
+      {% endblock %}
+    </div>
+  </div>
+{% endblock paragraph %}
+{{ styles|raw }}
