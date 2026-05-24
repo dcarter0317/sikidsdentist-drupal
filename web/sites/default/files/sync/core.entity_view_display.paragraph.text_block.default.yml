@@ -1,0 +1,31 @@
+uuid: d6c27653-7b79-4ab1-b99f-3d26b81bf4ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.text_block.field_tb_body
+    - field.field.paragraph.text_block.field_tb_title
+    - paragraphs.paragraphs_type.text_block
+  module:
+    - text
+id: paragraph.text_block.default
+targetEntityType: paragraph
+bundle: text_block
+mode: default
+content:
+  field_tb_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_tb_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

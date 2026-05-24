@@ -1,0 +1,39 @@
+uuid: 24174b05-da83-4e21-b26d-2b3e4e97c8de
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.grid_container.field_grid_columns
+    - field.field.paragraph.grid_container.field_grid_heading
+    - field.field.paragraph.grid_container.field_grid_items
+    - paragraphs.paragraphs_type.grid_container
+  module:
+    - layout_paragraphs
+id: paragraph.grid_container.default
+targetEntityType: paragraph
+bundle: grid_container
+mode: default
+content:
+  field_grid_columns:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_grid_items:
+    type: layout_paragraphs
+    weight: 0
+    region: content
+    settings:
+      view_mode: default
+      preview_view_mode: default
+      form_display_mode: default
+      nesting_depth: 0
+      require_layouts: 0
+      empty_message: ''
+    third_party_settings: {  }
+hidden:
+  admin_title: true
+  created: true
+  field_grid_heading: true
+  status: true

@@ -1,0 +1,15 @@
+uuid: 5103cf2f-1efe-421f-a74f-b484ab190497
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraph_block
+third_party_settings:
+  paragraph_block:
+    status: false
+id: text_block
+label: 'Text Block'
+icon_uuid: null
+icon_default: null
+description: 'A simple text block component with an optional title and body content'
+behavior_plugins: {  }

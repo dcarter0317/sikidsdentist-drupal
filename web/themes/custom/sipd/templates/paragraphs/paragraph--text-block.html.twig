@@ -1,0 +1,8 @@
+{%- set title = paragraph.field_tb_title.value -%}
+{# Body: use .processed to get the text-format-filtered HTML #}
+{%- set body = paragraph.field_tb_body.processed -%}
+
+{% include "sipd:text-block" with {
+  title:           title,
+  body:            body
+} only %}

@@ -1,0 +1,30 @@
+uuid: 40fe031d-9e4b-43c3-a657-bc9aad515aeb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tb_body
+    - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.plain_text
+    - filter.format.restricted_html
+    - paragraphs.paragraphs_type.text_block
+  module:
+    - text
+id: paragraph.text_block.field_tb_body
+field_name: field_tb_body
+entity_type: paragraph
+bundle: text_block
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+    - basic_html
+    - restricted_html
+    - plain_text
+field_type: text_long

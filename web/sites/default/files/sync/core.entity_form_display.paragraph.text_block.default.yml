@@ -1,0 +1,35 @@
+uuid: af6fe764-a95f-4419-9db9-c321e9c5b3b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.text_block.field_tb_body
+    - field.field.paragraph.text_block.field_tb_title
+    - paragraphs.paragraphs_type.text_block
+  module:
+    - text
+id: paragraph.text_block.default
+targetEntityType: paragraph
+bundle: text_block
+mode: default
+content:
+  field_tb_body:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_tb_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  admin_title: true
+  created: true
+  status: true

@@ -1,0 +1,8 @@
+<article class="text-block {{ text_block_classes|join(' ') }}"{{ attributes }}>
+  {% if title %}
+    <h2 class="text-block__title">{{ title }}</h2>
+  {% endif %}   
+   <div class="text-block__body">
+        {{ body }}
+   </div>
+</article>

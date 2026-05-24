@@ -1,0 +1,10 @@
+name: 'Text Block Paragraph'
+description: 'Provides the Text Block paragraph type and its field configuration for use with the Text Block SDC component.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:media
+  - drupal:text
+  - drupal:options

@@ -1,0 +1,35 @@
+uuid: a626a202-9526-4273-816f-5081c2625a23
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.grid_item.field_grid_item_content
+    - field.field.paragraph.grid_item.field_grid_item_heading
+    - paragraphs.paragraphs_type.grid_item
+  module:
+    - text
+id: paragraph.grid_item.default
+targetEntityType: paragraph
+bundle: grid_item
+mode: default
+content:
+  field_grid_item_content:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_grid_item_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  admin_title: true
+  created: true
+  status: true

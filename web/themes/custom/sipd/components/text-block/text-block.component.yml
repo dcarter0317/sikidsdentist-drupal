@@ -1,0 +1,15 @@
+name: Text Block
+description: "A simple text block component with an optional title and body content."
+
+# Props define the data contract between Paragraphs and this component.
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: "Title"
+      description: "Optional title for the text block."
+    body:
+      type: string
+      title: "Body Text"
+      description: "The main body content."

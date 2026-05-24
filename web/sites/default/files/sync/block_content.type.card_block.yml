@@ -1,8 +1,0 @@
-uuid: c06e9c97-0c41-4740-ba83-bcacd72e2974
-langcode: en
-status: true
-dependencies: {  }
-id: card_block
-label: 'Card Block'
-revision: false
-description: 'Card Element(Card Item)'

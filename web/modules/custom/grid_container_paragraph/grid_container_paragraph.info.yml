@@ -1,5 +1,5 @@
 name: 'Grid Container Paragraph'
-description: 'Provides the Grid Container paragraph type for displaying nested Grid Item paragraphs in a configurable CSS grid.'
+description: 'Perovides the Grid Container paragraph type for displaying nested Grid Item paragraphs in a configurable CSS grid.'
 type: module
 core_version_requirement: ^10 || ^11
 package: 'Custom'

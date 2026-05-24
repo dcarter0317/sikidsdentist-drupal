@@ -9,7 +9,7 @@ third_party_settings:
   paragraphs_library:
     allow_library_conversion: true
   paragraph_block:
-    status: true
+    status: false
 id: accordion
 label: Accordion
 icon_uuid: null

@@ -1,7 +1,5 @@
 .floated-content {
-  max-width: 900px;
   margin: 2rem auto;
-  padding: 1rem;
   overflow: hidden; /* clearfix — prevents float collapse */
 }
 

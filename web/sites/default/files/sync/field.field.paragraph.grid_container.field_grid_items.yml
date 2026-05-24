@@ -4,10 +4,15 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_grid_items
+    - paragraphs.paragraphs_type.from_library
     - paragraphs.paragraphs_type.grid_container
     - paragraphs.paragraphs_type.grid_item
   module:
     - entity_reference_revisions
+    - paragraph_blocks
+third_party_settings:
+  paragraph_blocks:
+    status: 1
 id: paragraph.grid_container.field_grid_items
 field_name: field_grid_items
 entity_type: paragraph
@@ -23,9 +28,85 @@ settings:
   handler_settings:
     target_bundles:
       grid_item: grid_item
+      from_library: from_library
     negate: 0
     target_bundles_drag_drop:
+      accordion:
+        weight: 27
+        enabled: false
+      accordion_item:
+        weight: 28
+        enabled: false
+      animated_banner:
+        weight: 29
+        enabled: false
+      banner:
+        weight: 30
+        enabled: false
+      blog_hero:
+        weight: 31
+        enabled: false
+      card_item:
+        weight: 32
+        enabled: false
+      card_list:
+        weight: 33
+        enabled: false
+      ebt_tab:
+        weight: 34
+        enabled: false
+      ept_columns:
+        weight: 35
+        enabled: false
+      ept_text:
+        weight: 36
+        enabled: false
+      ept_tiles:
+        weight: 37
+        enabled: false
+      ept_tiles_item:
+        weight: 38
+        enabled: false
+      ept_video_and_image_gallery:
+        weight: 39
+        enabled: false
+      ept_video_and_image_gallery_item:
+        weight: 40
+        enabled: false
+      featured_post:
+        weight: 41
+        enabled: false
+      floated_content:
+        weight: 42
+        enabled: false
+      from_library:
+        weight: 43
+        enabled: true
+      grid_container:
+        weight: 44
+        enabled: false
       grid_item:
         weight: 1
         enabled: true
+      hero:
+        weight: 46
+        enabled: false
+      page_hero:
+        weight: 47
+        enabled: false
+      quick_link_item:
+        weight: 49
+        enabled: false
+      quick_links:
+        weight: 48
+        enabled: false
+      section:
+        weight: 50
+        enabled: false
+      slide_item:
+        weight: 52
+        enabled: false
+      slider:
+        weight: 51
+        enabled: false
 field_type: entity_reference_revisions

@@ -24,8 +24,7 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    target_bundles:
-      section: section
+    target_bundles: null
     negate: 0
     target_bundles_drag_drop:
       accordion:
@@ -34,25 +33,76 @@ settings:
       accordion_item:
         weight: 11
         enabled: false
+      animated_banner:
+        weight: 29
+        enabled: false
+      banner:
+        weight: 30
+        enabled: false
+      blog_hero:
+        weight: 31
+        enabled: false
       card_item:
         weight: 12
         enabled: false
       card_list:
         weight: 13
         enabled: false
-      content:
-        weight: 14
-        enabled: true
+      ebt_tab:
+        weight: 34
+        enabled: false
+      ept_columns:
+        weight: 35
+        enabled: false
+      ept_text:
+        weight: 36
+        enabled: false
+      ept_tiles:
+        weight: 37
+        enabled: false
+      ept_tiles_item:
+        weight: 38
+        enabled: false
+      ept_video_and_image_gallery:
+        weight: 39
+        enabled: false
+      ept_video_and_image_gallery_item:
+        weight: 40
+        enabled: false
+      featured_post:
+        weight: 41
+        enabled: false
+      floated_content:
+        weight: 42
+        enabled: false
       from_library:
         weight: 15
+        enabled: false
+      grid_container:
+        weight: 44
+        enabled: false
+      grid_item:
+        weight: 45
         enabled: false
       hero:
         weight: 16
         enabled: false
-      image:
-        weight: 17
-        enabled: true
+      page_hero:
+        weight: 47
+        enabled: false
+      quick_link_item:
+        weight: 49
+        enabled: false
+      quick_links:
+        weight: 48
+        enabled: false
       section:
         weight: 18
-        enabled: true
+        enabled: false
+      slide_item:
+        weight: 52
+        enabled: false
+      slider:
+        weight: 51
+        enabled: false
 field_type: entity_reference_revisions
