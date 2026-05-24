@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * floated_content_paragraph.module
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function floated_content_paragraph_theme(): array {
+  return [
+    'paragraph__floated_content' => [
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_paragraph_alter().
+ */
+function floated_content_paragraph_theme_suggestions_paragraph_alter(
+  array &$suggestions,
+  array $variables
+): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['elements']['#paragraph'];
+  $suggestions[] = 'paragraph__' . $paragraph->bundle();
+}

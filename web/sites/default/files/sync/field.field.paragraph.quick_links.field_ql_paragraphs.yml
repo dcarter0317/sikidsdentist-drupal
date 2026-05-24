@@ -1,0 +1,99 @@
+uuid: 27d887db-5a00-4ed2-8864-52e0f49027fc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ql_paragraphs
+    - paragraphs.paragraphs_type.quick_links
+  module:
+    - entity_reference_revisions
+    - paragraph_blocks
+third_party_settings:
+  paragraph_blocks:
+    status: 1
+id: paragraph.quick_links.field_ql_paragraphs
+field_name: field_ql_paragraphs
+entity_type: paragraph
+bundle: quick_links
+label: Paragraphs
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 24
+        enabled: false
+      accordion_item:
+        weight: 25
+        enabled: false
+      animated_banner:
+        weight: 26
+        enabled: false
+      banner:
+        weight: 27
+        enabled: false
+      blog_hero:
+        weight: 28
+        enabled: false
+      card_item:
+        weight: 29
+        enabled: false
+      card_list:
+        weight: 30
+        enabled: false
+      ebt_tab:
+        weight: 31
+        enabled: false
+      ept_columns:
+        weight: 32
+        enabled: false
+      ept_text:
+        weight: 33
+        enabled: false
+      ept_tiles:
+        weight: 34
+        enabled: false
+      ept_tiles_item:
+        weight: 35
+        enabled: false
+      ept_video_and_image_gallery:
+        weight: 36
+        enabled: false
+      ept_video_and_image_gallery_item:
+        weight: 37
+        enabled: false
+      featured_post:
+        weight: 38
+        enabled: false
+      from_library:
+        weight: 39
+        enabled: false
+      hero:
+        weight: 40
+        enabled: false
+      page_hero:
+        weight: 41
+        enabled: false
+      quick_link_item:
+        weight: 43
+        enabled: false
+      quick_links:
+        weight: 42
+        enabled: false
+      section:
+        weight: 44
+        enabled: false
+      slide_item:
+        weight: 46
+        enabled: false
+      slider:
+        weight: 45
+        enabled: false
+field_type: entity_reference_revisions

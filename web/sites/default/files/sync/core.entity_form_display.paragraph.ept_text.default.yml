@@ -66,14 +66,6 @@ targetEntityType: paragraph
 bundle: ept_text
 mode: default
 content:
-  admin_title:
-    type: string_textfield
-    weight: -10
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_ept_settings:
     type: ept_settings_default
     weight: 21
@@ -97,5 +89,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  admin_title: true
   created: true
   status: true

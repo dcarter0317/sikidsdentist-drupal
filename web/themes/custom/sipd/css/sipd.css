@@ -1018,22 +1018,22 @@ p{
   100% { left: 50%; }
 }
 @keyframes slideDown {
-  0% { top: -100%; }
-  100% { top: 0%; }
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(0); }
 }
 @keyframes slideDownContent {
-  0% {  top: -50%; }
-  100% { top: 50%; }
+  0%   { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
 }
 
 @keyframes slideUp {
-  0% { top: 100%; }
-  100% { top: 0%; }
+  0%   { transform: translateY(100%); }
+  100% { transform: translateY(0); }
 }
 
 @keyframes slideUpContent {
-   0% { top: 150%; }
-  100% { top: 50%; }
+  0%   { transform: translateY(50%); }
+  100% { transform: translateY(0); }
 }
 
 @keyframes fadeIn {

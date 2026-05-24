@@ -1,58 +1,36 @@
 name: Banner
-description: "A full-width banner component with three style variants: default (title/body/CTA), button-banner (label + two-button group), and cta-banner (inline label + single CTA). Designed for use with the Paragraphs module."
+description: "Full-width banner with three style variants: default (title/body/CTA), button-banner (label + two buttons), cta-banner (inline label + single CTA)."
 group: "Paragraphs Components"
 
-# Props map directly to fields on the 'banner' paragraph bundle.
 props:
   type: object
   properties:
+    banner_style:
+      type: string
+      title: "Banner Style"
+      default: "default"
     title:
       type: string
       title: "Title"
-      description: "Heading text. Used in the 'default' style."
     body:
       type: string
       title: "Body Text"
-      description: "Optional supporting copy shown below the title. Used in the 'default' style."
-    label:
+    eyebrow:
       type: string
-      title: "Label"
-      description: "Short introductory text. Used as the category label in 'button-banner' or the prompt text in 'cta-banner'."
+      title: "Eyebrow"
     cta_label:
       type: string
       title: "Primary CTA Label"
-      description: "Text for the primary call-to-action button."
     cta_url:
       type: string
       title: "Primary CTA URL"
-      description: "URL for the primary call-to-action button."
     cta_secondary_label:
       type: string
       title: "Secondary CTA Label"
-      description: "Text for the secondary button. Used in 'button-banner' style only."
     cta_secondary_url:
       type: string
       title: "Secondary CTA URL"
-      description: "URL for the secondary button. Used in 'button-banner' style only."
-    style:
-      type: string
-      title: "Banner Style"
-      description: "Controls the layout and visible elements of the banner."
-      default: "default"
-      enum:
-        - default
-        - button-banner
-        - cta-banner
     animation_class:
       type: string
       title: "Animation Class"
-      description: "Optional CSS animation class from sipd.css applied to the banner content. Maps to field_animation_style on the paragraph."
-      enum:
-        - slide-in-left
-        - slide-in-content-left
-        - slide-in-right
-        - slide-in-content-right
-        - slide-down
-        - slide-down-content
-        - slide-up
-        - slide-up-content
+      description: "CSS animation class applied to the banner article element."

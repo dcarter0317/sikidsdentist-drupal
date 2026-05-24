@@ -1,0 +1,41 @@
+uuid: ab40f64e-ba50-4153-b783-21ffc760571a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.floated_content.field_fc_body
+    - field.field.paragraph.floated_content.field_fc_float_direction
+    - field.field.paragraph.floated_content.field_fc_image
+    - paragraphs.paragraphs_type.floated_content
+  module:
+    - options
+    - text
+id: paragraph.floated_content.default
+targetEntityType: paragraph
+bundle: floated_content
+mode: default
+content:
+  field_fc_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_fc_float_direction:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_fc_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

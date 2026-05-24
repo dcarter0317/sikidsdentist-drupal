@@ -9,6 +9,10 @@ props:
       type: string
       title: "Heading"
       description: "Optional heading shown above the card list."
+    variant_class:
+      type: string
+      title: "Variant class"
+      description: "BEM modifier class for column count (e.g. card-list--columns-3)."
 
 slots:
   items:

@@ -86,9 +86,9 @@ trait ComputedItemListTrait {
   /**
    * {@inheritdoc}
    */
-  public function set($property_name, $value, $notify = true) {
+  public function set($index, $value) {
     $this->ensureComputedValue();
-    return parent::set($property_name, $value, $notify);
+    return parent::set($index, $value);
   }
 
   /**

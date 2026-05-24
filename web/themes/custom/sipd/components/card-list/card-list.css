@@ -6,38 +6,58 @@
 
 .card-list {
   --card-list-gap: 1.5rem;
-  --card-list-heading-color: var(--clr-text-2, #1d2d39);
+  --card-list-min-col-width: 280px;
+  --card-list-heading-color: var(--clr-text-3, #00334f);
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-list-min-col-width), 1fr));
+  gap: var(--card-list-gap);
 }
 
 .card-list__heading {
-  margin: 0 0 1rem;
+  grid-column: 1 / -1;
+  margin-block-end: 0.5rem;
   color: var(--card-list-heading-color);
+  font-family: var(--ff-heading, 'Poppins', Arial, sans-serif);
   font-size: clamp(1.4rem, 2vw, 2rem);
   line-height: 1.2;
 }
 
-.card-list__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--card-list-gap);
+/* ── Flatten Drupal field wrappers into the grid ─────────── */
+/* Drupal renders entity_reference_revisions fields wrapped in
+   .field > .field__item divs. display:contents makes those
+   wrappers invisible to the grid so .card articles become
+   direct grid children. */
+
+.card-list > .field {
+  display: contents;
 }
 
-@media (min-width: 700px) {
-  .card-list__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.card-list > .field > .field__item {
+  display: contents;
 }
 
-@media (min-width: 1024px) {
-  .card-list--columns-2 .card-list__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+/* ── Named column variants ────────────────────────────────── */
 
-  .card-list--columns-3 .card-list__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+.card-list--columns-2 {
+  grid-template-columns: repeat(2, minmax(var(--card-list-min-col-width), 1fr));
+}
 
-  .card-list--columns-4 .card-list__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+.card-list--columns-3 {
+  grid-template-columns: repeat(3, minmax(var(--card-list-min-col-width), 1fr));
+}
+
+.card-list--columns-4 {
+  grid-template-columns: repeat(4, minmax(var(--card-list-min-col-width), 1fr));
+}
+
+/* ── Mobile — all variants collapse to 1 column ──────────── */
+
+@media (width < 900px) {
+  .card-list,
+  .card-list--columns-2,
+  .card-list--columns-3,
+  .card-list--columns-4 {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,0 +1,30 @@
+name: Floated Content
+description: "An editorial layout component that floats an image left or right of a body text block, allowing copy to wrap naturally around it. Designed for use with the Paragraphs module."
+group: "Paragraphs Components"
+
+# Props map directly to fields on the 'floated_content' paragraph bundle.
+props:
+  type: object
+  required:
+    - body
+  properties:
+    image_url:
+      type: string
+      title: "Image URL"
+      description: "URL of the image to float beside the text."
+    image_alt:
+      type: string
+      title: "Image Alt Text"
+      description: "Alt text for the floated image."
+    body:
+      type: string
+      title: "Body Text"
+      description: "The main body copy rendered as HTML. Wraps around the floated image."
+    float_direction:
+      type: string
+      title: "Float Direction"
+      description: "Controls which side the image floats to. 'left' places image on the left; 'right' places it on the right."
+      default: "left"
+      enum:
+        - left
+        - right

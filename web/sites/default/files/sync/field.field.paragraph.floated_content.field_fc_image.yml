@@ -1,0 +1,35 @@
+uuid: ecf01ce5-b820-4f8c-9268-cf55f5a103d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fc_image
+    - media.type.image
+    - media.type.remote_video
+    - media.type.vector_image
+    - media.type.video
+    - paragraphs.paragraphs_type.floated_content
+id: paragraph.floated_content.field_fc_image
+field_name: field_fc_image
+entity_type: paragraph
+bundle: floated_content
+label: Image
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      remote_video: remote_video
+      vector_image: vector_image
+      video: video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: remote_video
+field_type: entity_reference

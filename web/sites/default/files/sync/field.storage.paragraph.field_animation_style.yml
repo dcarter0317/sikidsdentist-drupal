@@ -12,26 +12,14 @@ type: list_string
 settings:
   allowed_values:
     -
-      value: slide_in_left
-      label: 'Slide-In Left'
-    -
       value: slide_in_content_left
       label: 'Slide-In Content-Left'
-    -
-      value: slide_in_right
-      label: 'Slide-In Right'
     -
       value: slide_in_content_right
       label: 'Slide-In Content-Right'
     -
-      value: slide_down
-      label: Slide-Down
-    -
       value: slide_down_content
       label: 'Slide-Down Content'
-    -
-      value: slide_up
-      label: Slide-Up
     -
       value: slide_up_content
       label: 'Slide-Up Content'

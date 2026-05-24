@@ -18,7 +18,7 @@ mode: default
 content:
   admin_title:
     type: string_textfield
-    weight: -10
+    weight: 2
     region: content
     settings:
       size: 60

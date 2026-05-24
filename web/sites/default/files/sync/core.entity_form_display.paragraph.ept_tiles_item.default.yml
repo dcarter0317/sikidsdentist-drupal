@@ -20,14 +20,6 @@ targetEntityType: paragraph
 bundle: ept_tiles_item
 mode: default
 content:
-  admin_title:
-    type: string_textfield
-    weight: -10
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_ept_clickable_tile:
     type: boolean_checkbox
     weight: 4
@@ -67,5 +59,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  admin_title: true
   created: true
   status: true

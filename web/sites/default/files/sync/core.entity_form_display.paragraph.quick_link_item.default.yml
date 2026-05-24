@@ -13,17 +13,9 @@ targetEntityType: paragraph
 bundle: quick_link_item
 mode: default
 content:
-  admin_title:
-    type: string_textfield
-    weight: -10
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_ql_icon:
     type: string_textfield
-    weight: -9
+    weight: 0
     region: content
     settings:
       size: 60
@@ -31,12 +23,13 @@ content:
     third_party_settings: {  }
   field_ql_link:
     type: link_default
-    weight: -8
+    weight: 1
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
 hidden:
+  admin_title: true
   created: true
   status: true

@@ -1,0 +1,12 @@
+uuid: fa5d80b4-7b19-4a74-bdb2-728b47a82d0d
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: grid_container
+label: 'Grid Container'
+icon_uuid: null
+icon_default: null
+description: 'A CSS grid container that holds multiple Grid Item paragraphs.'
+behavior_plugins: {  }

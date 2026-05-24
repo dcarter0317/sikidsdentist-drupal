@@ -1,0 +1,19 @@
+uuid: c593a36f-eff7-44b2-a22e-c52701be926f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ab_eyebrow
+    - paragraphs.paragraphs_type.animated_banner
+id: paragraph.animated_banner.field_ab_eyebrow
+field_name: field_ab_eyebrow
+entity_type: paragraph
+bundle: animated_banner
+label: Eyebrow
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

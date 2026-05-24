@@ -12,14 +12,6 @@ targetEntityType: paragraph
 bundle: accordion
 mode: default
 content:
-  admin_title:
-    type: string_textfield
-    weight: -10
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_accordion_items:
     type: paragraphs
     weight: 0
@@ -35,11 +27,10 @@ content:
       form_display_mode: default
       default_paragraph_type: _none
       features:
-        add_above: '0'
         collapse_edit_all: collapse_edit_all
-        convert: '0'
         duplicate: duplicate
     third_party_settings: {  }
 hidden:
+  admin_title: true
   created: true
   status: true

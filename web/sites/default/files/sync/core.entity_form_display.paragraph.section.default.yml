@@ -12,17 +12,9 @@ targetEntityType: paragraph
 bundle: section
 mode: default
 content:
-  admin_title:
-    type: string_textfield
-    weight: -10
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_paragraphs:
     type: paragraphs
-    weight: -9
+    weight: 1
     region: content
     settings:
       title: Paragraph
@@ -39,10 +31,11 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
   layout_paragraphs_fields:
-    weight: -200
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  admin_title: true
   created: true
   status: true

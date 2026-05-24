@@ -6,17 +6,6 @@
  */
 
 /**
- * Implements hook_theme().
- */
-function banner_paragraph_theme(): array {
-  return [
-    'paragraph__banner' => [
-      'base hook' => 'paragraph',
-    ],
-  ];
-}
-
-/**
  * Implements hook_theme_suggestions_paragraph_alter().
  */
 function banner_paragraph_theme_suggestions_paragraph_alter(

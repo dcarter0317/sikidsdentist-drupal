@@ -6,17 +6,6 @@
  */
 
 /**
- * Implements hook_theme().
- */
-function animated_banner_paragraph_theme(): array {
-  return [
-    'paragraph__animated_banner' => [
-      'base hook' => 'paragraph',
-    ],
-  ];
-}
-
-/**
  * Implements hook_theme_suggestions_paragraph_alter().
  */
 function animated_banner_paragraph_theme_suggestions_paragraph_alter(

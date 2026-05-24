@@ -9,7 +9,7 @@ dependencies:
     - field.field.paragraph.ept_video_and_image_gallery.field_ept_videos_and_images
     - paragraphs.paragraphs_type.ept_video_and_image_gallery
   module:
-    - ept_video_and_image_gallery
+    - ept_core
     - field_group
     - paragraphs
     - text
@@ -71,15 +71,15 @@ mode: default
 content:
   admin_title:
     type: string_textfield
-    weight: -10
+    weight: 1
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   field_ept_settings:
-    type: ept_settings_video_and_image_gallery
-    weight: 2
+    type: ept_settings_default
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }

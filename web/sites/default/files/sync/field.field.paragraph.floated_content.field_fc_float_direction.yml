@@ -1,0 +1,21 @@
+uuid: 3bee5e70-3f72-4696-8802-e8fcff4c11c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fc_float_direction
+    - paragraphs.paragraphs_type.floated_content
+  module:
+    - options
+id: paragraph.floated_content.field_fc_float_direction
+field_name: field_fc_float_direction
+entity_type: paragraph
+bundle: floated_content
+label: 'Float Direction'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,22 @@
+uuid: 4dab5093-ab6e-4086-b100-a6b4059b0432
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fc_body
+    - paragraphs.paragraphs_type.floated_content
+  module:
+    - text
+id: paragraph.floated_content.field_fc_body
+field_name: field_fc_body
+entity_type: paragraph
+bundle: floated_content
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

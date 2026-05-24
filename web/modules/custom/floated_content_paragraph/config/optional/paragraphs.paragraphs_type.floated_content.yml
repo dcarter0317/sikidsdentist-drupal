@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: floated_content
+label: 'Floated Content'
+icon_uuid: null
+icon_default: null
+description: 'An image floated left or right beside a block of body text.'
+behavior_plugins: {}

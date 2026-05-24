@@ -1,0 +1,10 @@
+name: 'Floated Content Paragraph'
+description: 'Provides the Floated Content paragraph type and its field configuration for use with the Floated Content SDC component.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:media
+  - drupal:text
+  - drupal:options

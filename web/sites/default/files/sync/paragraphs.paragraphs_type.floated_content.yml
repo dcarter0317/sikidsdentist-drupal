@@ -1,0 +1,15 @@
+uuid: 64c5539d-a089-4c09-a218-afba1e8d689b
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraph_block
+third_party_settings:
+  paragraph_block:
+    status: false
+id: floated_content
+label: 'Floated Content'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

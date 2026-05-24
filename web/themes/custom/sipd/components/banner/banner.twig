@@ -1,32 +1,76 @@
 {#
-/**
- * @file banner.twig
- *
- * Banner Single Directory Component (SDC).
- *
- * Available props (defined in banner.component.yml):
- *   - style (string) - 'default' | 'button-banner' | 'cta-banner'
- *   - title (string)
- *   - body (string)
- *   - label (string)
- *   - cta_label (string)
- *   - cta_url (string)
- *   - cta_secondary_label (string)
- *   - cta_secondary_url (string)
- *   - animation_class (string) - optional animation class from sipd.css
- */
+  banner.twig
+  Props: banner_style, title, body, eyebrow, cta_label, cta_url,
+         cta_secondary_label, cta_secondary_url, animation_class
 #}
 
-{%- set banner_style = style|default('default') -%}
+{%- set banner_style = banner_style|default('default') -%}
+{%- set article_classes = ['banner', 'banner--' ~ banner_style] -%}
+{%- if animation_class -%}
+  {%- set article_classes = article_classes|merge([animation_class]) -%}
+{%- endif -%}
 
-<article class="banner banner--{{ banner_style }} {{ animation_class ? ' ' ~ animation_class : '' }}">
+{# <article class="{{ article_classes|join(' ') }}">
   <div class="banner__content">
 
-    {# ── button-banner: label + two-button group ── #}
+   {% if banner_style == 'button-banner' %}
+
+      {% if eyebrow %}
+        <p class="banner__eyebrow ">{{ eyebrow }}</p>
+      {% endif %}
+
+      {% if title %}
+        <h2 class="banner__title">{{ title }}</h2>
+      {% endif %}
+
+      <div class="banner__btn-group">
+        {% if cta_label and cta_url %}
+          <a href="{{ cta_url }}" class="banner__btn">{{ cta_label }}</a>
+        {% endif %}
+        {% if cta_secondary_label and cta_secondary_url %}
+          <a href="{{ cta_secondary_url }}" class="banner__btn">{{ cta_secondary_label }}</a>
+        {% endif %}
+      </div>
+    {% endif %}
+
+     {% elseif banner_style == 'cta-banner' %}
+
+      {% if title %}
+        <p class="p-title">{{ title }}</p>
+      {% endif %}
+
+      {% if cta_label and cta_url %}
+        <a href="{{ cta_url }}" class="banner__btn">
+          {{ cta_label }}
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      {% endif %}
+     
+     {% endif %}
+ 
+
+      {% if title %}
+        <h2 class="banner__title">{{ title }}</h2>
+      {% endif %}
+
+    {% endif %}
+
+   
+
+  </div>
+</article> #}
+
+<article class="{{ article_classes|join(' ') }}">
+  <div class="banner__content">
+
     {% if banner_style == 'button-banner' %}
 
-      {% if label %}
-        <p class="banner__label">{{ label }}</p>
+      {% if eyebrow %}
+        <p class="banner__eyebrow">{{ eyebrow }}</p>
+      {% endif %}
+
+      {% if title %}
+        <h2 class="banner__title">{{ title }}</h2>
       {% endif %}
 
       <div class="banner__btn-group">
@@ -38,11 +82,10 @@
         {% endif %}
       </div>
 
-    {# ── cta-banner: inline label + single CTA ── #}
     {% elseif banner_style == 'cta-banner' %}
 
-      {% if label %}
-        <p class="banner__label">{{ label }}</p>
+      {% if title %}
+        <p class="p-title">{{ title }}</p>
       {% endif %}
 
       {% if cta_label and cta_url %}
@@ -52,22 +95,13 @@
         </a>
       {% endif %}
 
-    {# ── default: title + optional body + optional CTA ── #}
     {% else %}
 
       {% if title %}
         <h2 class="banner__title">{{ title }}</h2>
       {% endif %}
 
-      {% if body %}
-        <p class="banner__body">{{ body }}</p>
-      {% endif %}
-
-      {% if cta_label and cta_url %}
-        <a href="{{ cta_url }}" class="banner__btn">{{ cta_label }}</a>
-      {% endif %}
-
     {% endif %}
 
-  </div>{# /.banner__content #}
-</article>{# /.banner #}
+  </div>
+</article>

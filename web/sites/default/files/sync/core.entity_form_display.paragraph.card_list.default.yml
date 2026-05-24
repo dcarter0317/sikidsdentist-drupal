@@ -40,5 +40,6 @@ content:
         duplicate: duplicate
     third_party_settings: {  }
 hidden:
+  admin_title: true
   created: true
   status: true

@@ -1,0 +1,22 @@
+_core:
+  default_config_hash: ggLAEuktuXAD5raYDMUWMWxPplIQolyQnPk49xfOyjw
+defaults:
+  amount:
+    status: false
+    settings:
+      amount: 0
+  created:
+    status: false
+    settings:
+      age: 1
+  drafts:
+    status: false
+    settings:
+      age: 1
+  only_drafts:
+    status: true
+    settings:
+      age: 0
+disable_automatic_queueing: false
+verbose_log: false
+bulk_delete_threshold: 50

@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.banner.field_animation_style
+    - field.field.paragraph.banner.field_banner_animation_style
     - field.field.paragraph.banner.field_banner_style
     - field.field.paragraph.banner.field_banner_title
-    - field.field.paragraph.banner.field_label
+    - field.field.paragraph.banner.field_eyebrow
     - field.field.paragraph.banner.field_primary_cta
     - field.field.paragraph.banner.field_secondary_cta
     - paragraphs.paragraphs_type.banner
@@ -18,7 +18,7 @@ targetEntityType: paragraph
 bundle: banner
 mode: default
 content:
-  field_animation_style:
+  field_banner_animation_style:
     type: list_default
     label: above
     settings: {  }
@@ -40,13 +40,13 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_label:
+  field_eyebrow:
     type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 6
     region: content
   field_primary_cta:
     type: link

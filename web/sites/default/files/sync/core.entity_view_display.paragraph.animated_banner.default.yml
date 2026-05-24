@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.animated_banner.field_ab_body
     - field.field.paragraph.animated_banner.field_ab_cta
     - field.field.paragraph.animated_banner.field_ab_cta_secondary
-    - field.field.paragraph.animated_banner.field_ab_label
+    - field.field.paragraph.animated_banner.field_ab_eyebrow
     - field.field.paragraph.animated_banner.field_ab_style
     - field.field.paragraph.animated_banner.field_ab_title
     - field.field.paragraph.animated_banner.field_animation_style
@@ -51,13 +51,13 @@ content:
     third_party_settings: {  }
     weight: 4
     region: content
-  field_ab_label:
+  field_ab_eyebrow:
     type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
+    weight: 7
     region: content
   field_ab_style:
     type: list_default

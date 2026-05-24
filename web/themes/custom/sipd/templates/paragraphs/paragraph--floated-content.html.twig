@@ -1,0 +1,26 @@
+{#
+/**
+ * @file paragraph--floated-content.html.twig
+ *
+ * Bridge template: maps 'floated_content' paragraph fields → Floated Content SDC props.
+ * Located in: web/themes/custom/sipd/templates/paragraphs/
+ */
+#}
+
+{%- set float_direction = paragraph.field_fc_float_direction.value|default('left') -%}
+
+{# Body: use .processed to get the text-format-filtered HTML #}
+{%- set body = paragraph.field_fc_body.processed -%}
+
+{# Image via Media entity reference → field_media_image → File entity → URL #}
+{%- set media_entity = paragraph.field_fc_image.entity -%}
+{%- set image_file   = media_entity ? media_entity.field_media_image.entity : null -%}
+{%- set image_url    = image_file ? file_url(image_file.uri.value) : null -%}
+{%- set image_alt    = media_entity ? media_entity.field_media_image.alt : null -%}
+
+{% include "sipd:floated-content" with {
+  float_direction: float_direction,
+  body:            body,
+  image_url:       image_url,
+  image_alt:       image_alt,
+} only %}

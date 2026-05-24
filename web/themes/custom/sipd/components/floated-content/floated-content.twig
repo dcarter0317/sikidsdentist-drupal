@@ -1,0 +1,34 @@
+{#
+/**
+ * @file floated-content.twig
+ *
+ * Floated Content Single Directory Component (SDC).
+ *
+ * Available props (defined in floated-content.component.yml):
+ *   - image_url (string) - URL of the floated image
+ *   - image_alt (string) - alt text for the image
+ *   - body (string, required) - pre-rendered HTML body copy
+ *   - float_direction (string) - 'left' | 'right', defaults to 'left'
+ */
+#}
+
+{%- set direction = float_direction|default('left') -%}
+
+<div class="floated-content">
+
+  {% if image_url %}
+    <div class="floated-content__image floated-content__image--{{ direction }}">
+      <img
+        src="{{ image_url }}"
+        alt="{{ image_alt|default('') }}"
+        class="floated-content__img"
+        loading="lazy"
+      />
+    </div>
+  {% endif %}
+
+  <div class="floated-content__body">
+    {{ body|raw }}
+  </div>
+
+</div>{# /.floated-content #}

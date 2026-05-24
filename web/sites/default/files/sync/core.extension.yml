@@ -34,16 +34,13 @@ module:
   entity_usage: 0
   ept_columns: 0
   ept_core: 0
-  ept_core_starterkit: 0
-  ept_text: 0
-  ept_tiles: 0
-  ept_video_and_image_gallery: 0
   featured_post_paragraph: 0
   field: 0
   field_group: 0
   field_ui: 0
   file: 0
   filter: 0
+  floated_content_paragraph: 0
   form_decorator: 0
   glightbox: 0
   glightbox_media_video: 0
@@ -70,6 +67,7 @@ module:
   menu_ui: 0
   mysql: 0
   node: 0
+  node_revision_delete: 0
   options: 0
   page_cache: 0
   page_hero_paragraph: 0

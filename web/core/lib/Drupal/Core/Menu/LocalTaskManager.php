@@ -315,21 +315,6 @@ class LocalTaskManager extends DefaultPluginManager implements LocalTaskManagerI
         $route_name = $child->getRouteName();
         $route_parameters = $child->getRouteParameters($this->routeMatch);
 
-        // Skip tasks whose required route parameters cannot be satisfied by the
-        // current route match. This prevents a MissingMandatoryParametersException
-        // from crashing the page when a task's route requires parameters (e.g.
-        // {paragraphs_type}) that are absent from the current request context.
-        try {
-          $route = $this->routeProvider->getRouteByName($route_name);
-          $missing = array_diff($route->compile()->getVariables(), array_keys($route_parameters));
-          if (!empty($missing)) {
-            continue;
-          }
-        }
-        catch (\Exception $e) {
-          continue;
-        }
-
         // Given that the active flag depends on the route we have to add the
         // route cache context.
         $cacheability->addCacheContexts(['route']);

@@ -36,6 +36,7 @@
         "drupal/imce": "^3.1",
         "drupal/layout_builder_admin_theme": "^2.0",
         "drupal/layout_paragraphs": "^2.1",
+        "drupal/node_revision_delete": "^2.1",
         "drupal/paragraph_block": "^2.0@RC",
         "drupal/paragraph_blocks": "^4.2",
         "drupal/sdc_devel": "^1.0",

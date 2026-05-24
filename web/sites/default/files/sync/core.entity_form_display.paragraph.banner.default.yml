@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.banner.field_animation_style
+    - field.field.paragraph.banner.field_banner_animation_style
     - field.field.paragraph.banner.field_banner_style
     - field.field.paragraph.banner.field_banner_title
-    - field.field.paragraph.banner.field_label
+    - field.field.paragraph.banner.field_eyebrow
     - field.field.paragraph.banner.field_primary_cta
     - field.field.paragraph.banner.field_secondary_cta
     - paragraphs.paragraphs_type.banner
@@ -17,23 +17,15 @@ targetEntityType: paragraph
 bundle: banner
 mode: default
 content:
-  admin_title:
-    type: string_textfield
-    weight: 0
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_animation_style:
+  field_banner_animation_style:
     type: options_select
-    weight: 6
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   field_banner_style:
     type: options_select
-    weight: 5
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -45,9 +37,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_label:
+  field_eyebrow:
     type: string_textfield
-    weight: 2
+    weight: 0
     region: content
     settings:
       size: 60
@@ -55,7 +47,7 @@ content:
     third_party_settings: {  }
   field_primary_cta:
     type: link_default
-    weight: 3
+    weight: 2
     region: content
     settings:
       placeholder_url: ''
@@ -63,12 +55,13 @@ content:
     third_party_settings: {  }
   field_secondary_cta:
     type: link_default
-    weight: 4
+    weight: 3
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
 hidden:
+  admin_title: true
   created: true
   status: true

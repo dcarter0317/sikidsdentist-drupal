@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_fc_float_direction
+field_name: field_fc_float_direction
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    - value: left
+      label: 'Image Left'
+    - value: right
+      label: 'Image Right'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {}
+persist_with_no_fields: false
+custom_storage: false

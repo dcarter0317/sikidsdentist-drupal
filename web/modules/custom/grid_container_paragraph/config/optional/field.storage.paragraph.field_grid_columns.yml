@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_grid_columns
+field_name: field_grid_columns
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    - value: auto
+      label: Auto
+    - value: '2'
+      label: '2 Columns'
+    - value: '3'
+      label: '3 Columns'
+    - value: '4'
+      label: '4 Columns'
+    - value: '5'
+      label: '5 Columns'
+    - value: '6'
+      label: '6 Columns'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: false
+indexes: {}
+persist_with_no_fields: false
+custom_storage: false

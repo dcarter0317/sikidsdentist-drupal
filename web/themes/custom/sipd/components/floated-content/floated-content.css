@@ -1,0 +1,60 @@
+.floated-content {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  overflow: hidden; /* clearfix — prevents float collapse */
+}
+
+/* ── Image container (shared base) ── */
+.floated-content__image--left,
+.floated-content__image--right {
+  width: 400px;
+}
+
+.floated-content__image--left {
+  float: left;
+  margin: 0 1.5rem 1rem 0;
+}
+
+.floated-content__image--right {
+  float: right;
+  margin: 0 0 1rem 1.5rem;
+}
+
+/* ── Image ── */
+.floated-content__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+/* ── Body copy ── */
+.floated-content__body p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--clr-text-1);
+  margin-bottom: 1rem;
+}
+
+.floated-content__body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Tablet ── */
+@media (width < 768px) {
+  .floated-content__image--left,
+  .floated-content__image--right {
+    width: 50%;
+  }
+}
+
+/* ── Mobile: stack image above text ── */
+@media (width < 480px) {
+  .floated-content__image--left,
+  .floated-content__image--right {
+    float: none;
+    width: 100%;
+    margin: 0 0 1rem 0;
+  }
+}

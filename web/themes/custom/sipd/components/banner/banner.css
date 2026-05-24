@@ -13,7 +13,8 @@
 /* ─── Base Layout ───────────────────────────────────────────────────────────── */
 .banner {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
   min-height: var(--banner-height);
   display: flex;
   justify-content: center;
@@ -52,7 +53,6 @@
   color: var(--banner-text-color);
   font-size: 2.2rem;
   font-weight: 700;
-  margin-block: 0.5rem;
 }
 
 @media (width < 900px) {
@@ -76,15 +76,14 @@
   }
 }
 
-/* ─── Label ─────────────────────────────────────────────────────────────────── */
-.banner__label {
+/* ─── Eyebrow ───────────────────────────────────────────────────────────────── */
+.banner__eyebrow {
   font-size: 1.25rem;
-  margin-bottom: 1rem;
   opacity: 0.85;
 }
 
 @media (width < 900px) {
-  .banner__label {
+  .banner__eyebrow {
     font-size: 1rem;
   }
 }
@@ -110,8 +109,10 @@
 }
 
 /* ─── Button Group (button-banner variant) ──────────────────────────────────── */
-.banner--button-banner .banner__label {
-  text-transform: uppercase;
+.banner--button-banner .banner__eyebrow {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+  text-transform: capitalize;
 }
 
 .banner__btn-group {
@@ -135,9 +136,15 @@
   gap: 1rem;
 }
 
-.banner--cta-banner .banner__label {
+.banner--cta-banner .banner__eyebrow {
   margin-bottom: 0;
 }
+
+.banner--cta-banner p.p-title {
+  margin-bottom: 0;
+  font-size: 1.3rem;
+}
+
 
 @media (width < 900px) {
   .banner--cta-banner .banner__content {
