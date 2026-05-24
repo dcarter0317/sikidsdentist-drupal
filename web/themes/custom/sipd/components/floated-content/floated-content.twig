@@ -12,7 +12,8 @@
  */
 #}
 
-{%- set direction = float_direction|default('left') -%}
+{%- set direction = float_direction|default('left')|trim|lower -%}
+{%- set direction = direction in ['left', 'right'] ? direction : 'right' -%}
 
 <div class="floated-content">
 
@@ -31,4 +32,4 @@
     {{ body|raw }}
   </div>
 
-</div>{# /.floated-content #}
+</div>

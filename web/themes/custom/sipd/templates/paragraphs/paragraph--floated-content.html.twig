@@ -7,7 +7,7 @@
  */
 #}
 
-{%- set float_direction = paragraph.field_fc_float_direction.value|default('left') -%}
+{%- set float_direction = paragraph.field_fc_float_direction[0].value|default('left')|lower -%}
 
 {# Body: use .processed to get the text-format-filtered HTML #}
 {%- set body = paragraph.field_fc_body.processed -%}

@@ -11,5 +11,5 @@ id: floated_content
 label: 'Floated Content'
 icon_uuid: null
 icon_default: null
-description: ''
+description: 'use this component to float text around and image.'
 behavior_plugins: {  }
