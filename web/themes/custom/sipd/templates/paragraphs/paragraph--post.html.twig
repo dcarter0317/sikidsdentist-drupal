@@ -1,0 +1,62 @@
+{#
+/**
+ * @file paragraph--post.html.twig
+ *
+ * Bridge template: maps "post" paragraph fields to Post SDC props.
+ */
+#}
+
+{%- set eyebrow = null -%}
+{%- set title = null -%}
+{%- set subtitle = null -%}
+{%- set description = null -%}
+{%- set image = null -%}
+{%- set image_alt = null -%}
+{%- set cta_label = null -%}
+{%- set cta_url = null -%}
+
+{# Eyebrow — typically the publication date #}
+{% if paragraph.field_post_eyebrow is defined and not paragraph.field_post_eyebrow.isEmpty %}
+  {%- set eyebrow = paragraph.field_post_eyebrow.value -%}
+{% endif %}
+
+{# Title #}
+{% if paragraph.field_post_title is defined and not paragraph.field_post_title.isEmpty %}
+  {%- set title = paragraph.field_post_title.value -%}
+{% endif %}
+
+{# Subtitle #}
+{% if paragraph.field_post_subtitle is defined and not paragraph.field_post_subtitle.isEmpty %}
+  {%- set subtitle = paragraph.field_post_subtitle.value -%}
+{% endif %}
+
+{# Description / body copy #}
+{% if paragraph.field_post_body is defined and not paragraph.field_post_body.isEmpty %}
+  {%- set description = paragraph.field_post_body.value -%}
+{% endif %}
+
+{# Media entity reference → File entity → URL #}
+{% if paragraph.field_post_media is defined and paragraph.field_post_media.entity %}
+  {%- set _media = paragraph.field_post_media.entity -%}
+  {% if _media.field_media_image is defined and _media.field_media_image.entity %}
+    {%- set image = _media.field_media_image.entity.uri.value|file_url -%}
+    {%- set image_alt = _media.field_media_image.alt|default('') -%}
+  {% endif %}
+{% endif %}
+
+{# CTA link #}
+{% if paragraph.field_post_cta is defined and paragraph.field_post_cta.0 %}
+  {%- set cta_label = paragraph.field_post_cta.0.title|default(null) -%}
+  {%- set cta_url = paragraph.field_post_cta.0.url.toString -%}
+{% endif %}
+
+{% include "sipd:post" with {
+  eyebrow: eyebrow,
+  title: title,
+  subtitle: subtitle,
+  description: description,
+  image: image,
+  image_alt: image_alt,
+  cta_label: cta_label,
+  cta_url: cta_url,
+} only %}

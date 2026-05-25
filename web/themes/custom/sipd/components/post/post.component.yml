@@ -1,0 +1,40 @@
+name: Post
+description: "Standard post block with image, eyebrow, title, optional subtitle, description, and CTA link."
+type: component
+group: "Paragraphs Components"
+
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: "Eyebrow"
+      description: "Short text shown above the title — typically the publication date."
+    subtitle:
+      type: string
+      title: "Subtitle"
+      description: "Optional secondary headline (h4)."
+    image:
+      type: string
+      title: "Image URL"
+      description: "URL of the post thumbnail image."
+    image_alt:
+      type: string
+      title: "Image Alt Text"
+      description: "Alt text for the post thumbnail."
+    title:
+      type: string
+      title: "Title"
+      description: "Main post heading (h3)."
+    description:
+      type: string
+      title: "Description"
+      description: "Post excerpt / body copy."
+    cta_label:
+      type: string
+      title: "CTA Label"
+      description: "Call-to-action link text (e.g. 'Read More')."
+    cta_url:
+      type: string
+      title: "CTA URL"
+      description: "Call-to-action link destination."
