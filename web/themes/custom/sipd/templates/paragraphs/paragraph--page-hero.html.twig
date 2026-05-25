@@ -23,7 +23,11 @@
 
 {# CTA link field #}
 {%- set cta_label = paragraph.field_ph_cta.title -%}
-{%- set cta_url = paragraph.field_ph_cta.url ? paragraph.field_ph_cta.url.toString() : null -%}
+{%- set cta_url = null -%}
+{%- if paragraph.field_ph_cta.0 -%}
+  {%- set cta_url = paragraph.field_ph_cta.0.url.toString() -%}
+{%- endif -%}
+
 
 {# Media entity reference — traverse to the file entity for URL and alt text #}
 {%- set image_url = null -%}

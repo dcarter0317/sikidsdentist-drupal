@@ -8,8 +8,15 @@
 .page-hero {
   --fw-hero-title: 400;
   --page-hero-height: 500px;
-  --page-hero-card-text-width: 33%;
+  --page-hero-card-text-width: 21%;
+
+  /* Full bleed breakout styles */
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
 }
+
 
 .slide-in {
   animation: slideIn 650ms ease-out forwards, fadeIn 1400ms ease-out forwards;
@@ -44,7 +51,7 @@
 .page-hero__card__text {
   position: absolute;
   top: 0;
-  left: 10%;
+  left: 18%;
   background: var(--clr-bg-3);
   color: var(--clr-text-2);
   width: var(--page-hero-card-text-width);
@@ -64,7 +71,7 @@
   text-transform: uppercase;
   padding-block: 0.7rem;
   padding-inline: 1rem;
-  margin-top: 0;
+  margin-top: 1.8rem;
   margin-bottom: 1rem;
   width: fit-content;
   font-weight: var(--fw-light);
@@ -109,11 +116,21 @@
 }
 
 @keyframes slideIn {
-  0% { left: -100%; }
-  100% { left: 0%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 0%;
+  }
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

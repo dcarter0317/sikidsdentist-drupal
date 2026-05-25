@@ -6,8 +6,31 @@ dependencies:
     - field.storage.paragraph.field_ept_columns
     - paragraphs.paragraphs_type.accordion
     - paragraphs.paragraphs_type.accordion_item
+    - paragraphs.paragraphs_type.animated_banner
+    - paragraphs.paragraphs_type.banner
+    - paragraphs.paragraphs_type.blog_hero
+    - paragraphs.paragraphs_type.card_item
+    - paragraphs.paragraphs_type.card_list
+    - paragraphs.paragraphs_type.ebt_tab
     - paragraphs.paragraphs_type.ept_columns
+    - paragraphs.paragraphs_type.ept_text
+    - paragraphs.paragraphs_type.ept_tiles
+    - paragraphs.paragraphs_type.ept_tiles_item
+    - paragraphs.paragraphs_type.ept_video_and_image_gallery
+    - paragraphs.paragraphs_type.ept_video_and_image_gallery_item
+    - paragraphs.paragraphs_type.featured_post
+    - paragraphs.paragraphs_type.floated_content
+    - paragraphs.paragraphs_type.from_library
+    - paragraphs.paragraphs_type.grid_container
+    - paragraphs.paragraphs_type.grid_item
+    - paragraphs.paragraphs_type.hero
+    - paragraphs.paragraphs_type.page_hero
+    - paragraphs.paragraphs_type.quick_link_item
+    - paragraphs.paragraphs_type.quick_links
     - paragraphs.paragraphs_type.section
+    - paragraphs.paragraphs_type.slide_item
+    - paragraphs.paragraphs_type.slider
+    - paragraphs.paragraphs_type.text_block
   module:
     - entity_reference_revisions
     - paragraph_blocks
@@ -32,53 +55,112 @@ settings:
     target_bundles:
       accordion: accordion
       accordion_item: accordion_item
-      section: section
+      animated_banner: animated_banner
+      banner: banner
+      blog_hero: blog_hero
+      card_item: card_item
+      card_list: card_list
+      ebt_tab: ebt_tab
       ept_columns: ept_columns
-    negate: 1
+      ept_text: ept_text
+      ept_tiles: ept_tiles
+      ept_tiles_item: ept_tiles_item
+      ept_video_and_image_gallery: ept_video_and_image_gallery
+      ept_video_and_image_gallery_item: ept_video_and_image_gallery_item
+      featured_post: featured_post
+      floated_content: floated_content
+      from_library: from_library
+      grid_container: grid_container
+      grid_item: grid_item
+      hero: hero
+      page_hero: page_hero
+      quick_links: quick_links
+      quick_link_item: quick_link_item
+      section: section
+      slider: slider
+      slide_item: slide_item
+      text_block: text_block
+    negate: 0
     target_bundles_drag_drop:
       accordion:
-        weight: 16
+        weight: 0
         enabled: true
       accordion_item:
-        weight: 17
+        weight: 1
+        enabled: true
+      animated_banner:
+        weight: 2
+        enabled: true
+      banner:
+        weight: 3
+        enabled: true
+      blog_hero:
+        weight: 4
         enabled: true
       card_item:
-        weight: 18
-        enabled: false
+        weight: 5
+        enabled: true
       card_list:
-        weight: 19
-        enabled: false
-      content:
-        weight: 20
+        weight: 6
+        enabled: true
+      ebt_tab:
+        weight: 7
         enabled: true
       ept_columns:
-        weight: 63
+        weight: 8
         enabled: true
       ept_text:
-        weight: 22
-        enabled: false
+        weight: 9
+        enabled: true
       ept_tiles:
-        weight: 23
-        enabled: false
+        weight: 10
+        enabled: true
       ept_tiles_item:
-        weight: 24
-        enabled: false
+        weight: 11
+        enabled: true
       ept_video_and_image_gallery:
-        weight: 25
-        enabled: false
+        weight: 12
+        enabled: true
       ept_video_and_image_gallery_item:
-        weight: 26
-        enabled: false
+        weight: 13
+        enabled: true
+      featured_post:
+        weight: 14
+        enabled: true
+      floated_content:
+        weight: 15
+        enabled: true
       from_library:
-        weight: 27
-        enabled: false
+        weight: 16
+        enabled: true
+      grid_container:
+        weight: 17
+        enabled: true
+      grid_item:
+        weight: 18
+        enabled: true
       hero:
-        weight: 28
-        enabled: false
-      image:
-        weight: 29
+        weight: 19
+        enabled: true
+      page_hero:
+        weight: 20
+        enabled: true
+      quick_link_item:
+        weight: 22
+        enabled: true
+      quick_links:
+        weight: 21
         enabled: true
       section:
-        weight: 30
+        weight: 23
+        enabled: true
+      slide_item:
+        weight: 25
+        enabled: true
+      slider:
+        weight: 24
+        enabled: true
+      text_block:
+        weight: 26
         enabled: true
 field_type: entity_reference_revisions

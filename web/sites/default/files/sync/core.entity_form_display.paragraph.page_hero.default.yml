@@ -18,14 +18,6 @@ targetEntityType: paragraph
 bundle: page_hero
 mode: default
 content:
-  admin_title:
-    type: string_textfield
-    weight: 5
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_ph_banner_label:
     type: string_textfield
     weight: 0
@@ -66,5 +58,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  admin_title: true
   created: true
   status: true

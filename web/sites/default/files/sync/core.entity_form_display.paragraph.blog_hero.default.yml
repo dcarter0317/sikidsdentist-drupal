@@ -19,14 +19,6 @@ targetEntityType: paragraph
 bundle: blog_hero
 mode: default
 content:
-  admin_title:
-    type: string_textfield
-    weight: 7
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_blog_hero_author:
     type: string_textfield
     weight: 4
@@ -81,6 +73,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  admin_title: true
   created: true
   layout_builder__layout: true
   status: true
