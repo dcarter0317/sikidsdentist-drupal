@@ -1,3 +1,4 @@
+uuid: bf252c99-e323-4b75-aa9e-1600e4f1095a
 langcode: en
 status: true
 dependencies:
@@ -11,9 +12,9 @@ targetEntityType: paragraph
 bundle: icon_link
 mode: default
 content:
-  field_icon_link_url:
+  field_icon_link_class:
     type: string_textfield
-    weight: 0
+    weight: 2
     region: content
     settings:
       size: 60
@@ -27,9 +28,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_icon_link_class:
+  field_icon_link_url:
     type: string_textfield
-    weight: 2
+    weight: 0
     region: content
     settings:
       size: 60

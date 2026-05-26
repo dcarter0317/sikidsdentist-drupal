@@ -1,0 +1,35 @@
+uuid: 4375cc3e-d164-48f9-9db1-3024bf4a67e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_image_link_media
+    - media.type.image
+    - media.type.remote_video
+    - media.type.vector_image
+    - media.type.video
+    - paragraphs.paragraphs_type.image_link
+id: paragraph.image_link.field_image_link_media
+field_name: field_image_link_media
+entity_type: paragraph
+bundle: image_link
+label: 'Background Image'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      remote_video: remote_video
+      vector_image: vector_image
+      video: video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: vector_image
+field_type: entity_reference

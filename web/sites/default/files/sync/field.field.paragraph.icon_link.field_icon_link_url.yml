@@ -9,7 +9,7 @@ id: paragraph.icon_link.field_icon_link_url
 field_name: field_icon_link_url
 entity_type: paragraph
 bundle: icon_link
-label: 'URL'
+label: URL
 description: 'Link destination URL.'
 required: true
 translatable: false

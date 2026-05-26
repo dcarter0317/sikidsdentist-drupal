@@ -14,7 +14,8 @@ description: 'Example fa-solid fa-user-group'
 required: false
 translatable: false
 default_value:
-  - value: 'fa-solid fa-user-group'
+  -
+    value: 'fa-solid fa-user-group'
 default_value_callback: ''
 settings: {  }
 field_type: string

@@ -1,3 +1,4 @@
+uuid: 3311a28b-bd12-4753-8194-747489c97eb9
 langcode: en
 status: true
 dependencies:
@@ -11,13 +12,13 @@ targetEntityType: paragraph
 bundle: icon_link
 mode: default
 content:
-  field_icon_link_url:
+  field_icon_link_class:
     type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 0
+    weight: 2
     region: content
   field_icon_link_text:
     type: string
@@ -27,12 +28,12 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_icon_link_class:
+  field_icon_link_url:
     type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 2
+    weight: 0
     region: content
 hidden: {  }
