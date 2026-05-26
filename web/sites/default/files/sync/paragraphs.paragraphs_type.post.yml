@@ -1,0 +1,15 @@
+uuid: 2d7ad38c-e4b3-45f2-ae40-c378aac7ba34
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraph_block
+third_party_settings:
+  paragraph_block:
+    status: false
+id: post
+label: Post
+icon_uuid: null
+icon_default: null
+description: 'Post component, used the highlight a post, article or page.'
+behavior_plugins: {  }

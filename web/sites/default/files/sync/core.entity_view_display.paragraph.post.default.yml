@@ -1,0 +1,73 @@
+uuid: acad1560-557b-4ec2-9df4-1552979d38a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.post.field_post_body
+    - field.field.paragraph.post.field_post_cta
+    - field.field.paragraph.post.field_post_eyebrowv
+    - field.field.paragraph.post.field_post_media
+    - field.field.paragraph.post.field_post_subtitle
+    - field.field.paragraph.post.field_post_title
+    - paragraphs.paragraphs_type.post
+  module:
+    - link
+    - text
+id: paragraph.post.default
+targetEntityType: paragraph
+bundle: post
+mode: default
+content:
+  field_post_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_post_cta:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_post_eyebrowv:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_post_media:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_post_subtitle:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_post_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

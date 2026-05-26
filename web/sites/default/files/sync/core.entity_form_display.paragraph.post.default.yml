@@ -1,0 +1,72 @@
+uuid: fedcfa63-2cb5-46f3-a2f8-b1c247ab48d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.post.field_post_body
+    - field.field.paragraph.post.field_post_cta
+    - field.field.paragraph.post.field_post_eyebrowv
+    - field.field.paragraph.post.field_post_media
+    - field.field.paragraph.post.field_post_subtitle
+    - field.field.paragraph.post.field_post_title
+    - paragraphs.paragraphs_type.post
+  module:
+    - link
+    - media_library
+    - text
+id: paragraph.post.default
+targetEntityType: paragraph
+bundle: post
+mode: default
+content:
+  field_post_body:
+    type: text_textarea
+    weight: 4
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_post_cta:
+    type: link_default
+    weight: 5
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_post_eyebrowv:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_post_media:
+    type: media_library_widget
+    weight: 0
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_post_subtitle:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_post_title:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  admin_title: true
+  created: true
+  status: true

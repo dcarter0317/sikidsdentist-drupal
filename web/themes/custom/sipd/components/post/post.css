@@ -4,39 +4,43 @@
  * Styles for the Post SDC.
  */
 
-.post {
+.post-standard {
   --post-title-color: var(--clr-text-1, #1d2d39);
   --post-subtitle-color: var(--clr-text-3, #4c6a7d);
   --post-text-color: var(--clr-text-4, #2c3e50);
-  --post-link-color: var(--clr-text-7, #0f7a5a);
+  --post-link-color: var(--clr-text-1, #1d2d39);
   --post-category-color: var(--clr-text-8, #8b9bb4);
   --post-posted-by-color: var(--clr-text-6, #718096);
 
+  display: block;
+}
+
+/* When image is present, layout side-by-side on desktop (>900px) */
+.post-standard--with-image {
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 2rem;
 }
 
 @media (max-width: 900px) {
-  .post {
+  .post-standard--with-image {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 }
 
-.post__text {
-  width: 95%;
-  margin-inline: auto;
+.post-standard__text {
+  width: 100%;
 }
 
-.post__eyebrow {
+.post-standard__eyebrow {
   text-transform: uppercase;
   font-size: var(--fs-caption, 0.85rem);
   color: var(--clr-text-3, #4c6a7d);
   margin-block: 0;
 }
 
-.post__media img {
+.post-standard__media img {
   display: block;
   width: 100%;
   height: 200px;
@@ -44,51 +48,30 @@
   aspect-ratio: 21 / 9;
 }
 
-.post__header {
+.post-standard__header {
   display: none;
 }
 
-/* Display header if nested in a featured-post block */
-.featured-post .post__header {
-  display: block;
-}
-
-.post__subtitle {
+.post-standard__subtitle {
   font-size: 1.7rem;
   margin-block: 0;
   color: var(--post-subtitle-color);
 }
 
-.post__category {
-  text-transform: capitalize;
-  font-size: 1.3rem;
-  font-weight: 900;
-  margin-block: 0;
-  color: var(--post-category-color);
-}
-
-.post__header span {
-  color: var(--post-posted-by-color);
-}
-
-.author {
-  margin-top: 0.5rem;
-}
-
-.post__title {
+.post-standard__title {
   font-size: 2.0rem;
   color: var(--post-title-color);
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
-.post__footer {
+.post-standard__footer {
   margin-bottom: 2rem;
 }
 
-.post__cta a,
-.post__cta a:link,
-.post__cta a:visited {
+.post-standard__cta a,
+.post-standard__cta a:link,
+.post-standard__cta a:visited {
   display: inline-block;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
@@ -98,7 +81,7 @@
   transition: opacity 0.2s ease;
 }
 
-.post__cta a:hover,
-.post__cta a:focus-visible {
+.post-standard__cta a:hover,
+.post-standard__cta a:focus-visible {
   opacity: 0.8;
 }

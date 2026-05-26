@@ -14,6 +14,9 @@ settings:
     -
       value: standard
       label: Standard
+    -
+      value: featured
+      label: Featured
   allowed_values_function: ''
 module: options
 locked: false

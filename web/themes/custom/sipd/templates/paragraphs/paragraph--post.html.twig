@@ -18,6 +18,8 @@
 {# Eyebrow — typically the publication date #}
 {% if paragraph.field_post_eyebrow is defined and not paragraph.field_post_eyebrow.isEmpty %}
   {%- set eyebrow = paragraph.field_post_eyebrow.value -%}
+{% elseif paragraph.field_post_eyebrowv is defined and not paragraph.field_post_eyebrowv.isEmpty %}
+  {%- set eyebrow = paragraph.field_post_eyebrowv.value -%}
 {% endif %}
 
 {# Title #}
