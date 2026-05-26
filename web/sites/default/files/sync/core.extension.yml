@@ -8,9 +8,6 @@ module:
   automated_cron: 0
   banner_paragraph: 0
   big_pipe: 0
-  blazy: 0
-  blazy_layout: 0
-  blazy_ui: 0
   block: 0
   block_content: 0
   block_field: 0
@@ -57,7 +54,6 @@ module:
   jquery_ui: 0
   jquery_ui_tabs: 0
   layout_builder: 0
-  layout_builder_admin_theme: 0
   layout_discovery: 0
   layout_paragraphs: 0
   layout_paragraphs_library: 0
