@@ -1,0 +1,20 @@
+{#
+/**
+ * @file paragraph--icon-link.html.twig
+ *
+ * Bridge template for the Icon Link Paragraph bundle.
+ * Maps paragraph field values to the SDC component.
+ */
+#}
+
+{% set link_url = paragraph.field_icon_link_url.value|default('') %}
+{% set link_text = paragraph.field_icon_link_text.value|default('') %}
+{% set icon_class = paragraph.field_icon_link_class.value|default('fa-solid fa-user-group') %}
+
+{% if link_url and link_text %}
+  {% include 'sipd:icon-link' with {
+    url: link_url,
+    text: link_text,
+    icon_class: icon_class
+  } only %}
+{% endif %}

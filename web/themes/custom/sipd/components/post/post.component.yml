@@ -38,3 +38,18 @@ props:
       type: string
       title: "CTA URL"
       description: "Call-to-action link destination."
+    border_style:
+      type: string
+      title: "Border Style"
+      description: "Border style for the post."
+      default: standard
+      options:
+        border-top:
+          title: "Border Top"
+          description: "Border style for the post."
+        border-bottom:
+          title: "Border Bottom"
+          description: "Border style for the post."
+        border-top-bottom:
+          title: "Border Top Bottom"
+          description: "Border style for the post."

@@ -1,0 +1,23 @@
+name: Image Link
+description: A modern, highly visual link component featuring a background image, a brand-colored overlay, and centered typography.
+group: "Paragraphs Components"
+
+props:
+  type: object
+  properties:
+    url:
+      type: string
+      title: URL
+      description: Link destination URL.
+    text:
+      type: string
+      title: Text
+      description: Text displayed on the block overlay.
+    image:
+      type: string
+      title: Image URL
+      description: Background image source URL.
+    image_alt:
+      type: string
+      title: Image Alt Text
+      description: Alternative text for accessibility.

@@ -1,55 +1,57 @@
 {#
 /**
- * @file post.twig
- *
- * Post Single Directory Component.
- *
- * Props:
- * - eyebrow (string)       — publication date or short label
- * - subtitle (string)      — secondary headline
- * - image (string)         — thumbnail image URL
- * - image_alt (string)     — thumbnail alt text
- * - title (string)         — main post heading (h3)
- * - description (string)   — post excerpt / body copy
- * - cta_label (string)     — CTA link text
- * - cta_url (string)       — CTA link destination
- */
+* @file post.twig
+*
+* Post Single Directory Component.
+*
+* Props:
+* - eyebrow (string) — publication date or short label
+* - subtitle (string) — secondary headline
+* - image (string) — thumbnail image URL
+* - image_alt (string) — thumbnail alt text
+* - title (string) — main post heading (h3)
+* - description (string) — post excerpt / body copy
+* - cta_label (string) — CTA link text
+* - cta_url (string) — CTA link destination
+* - border_style (string) — border style
+*/
 #}
 
-<article class="post-standard{% if image %} post-standard--with-image{% endif %}">
+<article
+  class="post-standard{% if image %} post-standard--with-image{% endif %}{% if border_style %} {{ border_style }}{% endif %}">
   {% if image %}
-    <div class="post-standard__media">
-      <img src="{{ image }}" alt="{{ image_alt|default('') }}">
-    </div>
+  <div class="post-standard__media">
+    <img src="{{ image }}" alt="{{ image_alt|default('') }}">
+  </div>
   {% endif %}
 
   <div class="post-standard__text">
     {% if eyebrow %}
-      <p class="post-standard__eyebrow">{{ eyebrow }}</p>
+    <p class="post-standard__eyebrow">{{ eyebrow }}</p>
     {% endif %}
 
     {% if subtitle %}
-      <div class="post-standard__header">
-        <h4 class="post-standard__subtitle">{{ subtitle }}</h4>
-      </div>
+    <div class="post-standard__header">
+      <h4 class="post-standard__subtitle">{{ subtitle }}</h4>
+    </div>
     {% endif %}
 
     {% if title %}
-      <h3 class="post-standard__title">{{ title }}</h3>
+    <h3 class="post-standard__title">{{ title }}</h3>
     {% endif %}
 
     {% if description %}
-      <div class="post-standard__description">
-        {{ description }}
-      </div>
+    <div class="post-standard__description">
+      {{ description }}
+    </div>
     {% endif %}
 
     {% if cta_label and cta_url %}
-      <div class="post-standard__footer">
-        <div class="post-standard__cta">
-          <a href="{{ cta_url }}">{{ cta_label }}</a>
-        </div>
+    <div class="post-standard__footer">
+      <div class="post-standard__cta">
+        <a href="{{ cta_url }}">{{ cta_label }}</a>
       </div>
+    </div>
     {% endif %}
   </div>
 </article>

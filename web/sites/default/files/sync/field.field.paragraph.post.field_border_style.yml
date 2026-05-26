@@ -1,0 +1,21 @@
+uuid: b70b7217-1a8a-4e0d-a60d-a20a15b8fe8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_border_style
+    - paragraphs.paragraphs_type.post
+  module:
+    - options
+id: paragraph.post.field_border_style
+field_name: field_border_style
+entity_type: paragraph
+bundle: post
+label: 'Border Style'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -315,7 +315,7 @@ Bridge templates live in `templates/paragraphs/` and follow strict conventions:
 
 ## Custom Modules
 
-All custom modules live in `web/modules/custom/`. Each is a lightweight wrapper that declares the `paragraphs` module as a dependency. Paragraph types and field storage are managed via Drupal's active configuration (not via `config/install`), so modules contain only `info.yml` and `.module`.
+All custom modules live in `web/modules/custom/`. Each is a lightweight wrapper that declares the `paragraphs` or `block_content` module as a dependency. Paragraph/block types and field storage are managed via Drupal's active configuration (not via `config/install`), so modules contain only `info.yml` and `.module`.
 
 | Module | Machine Name | Purpose |
 |---|---|---|
@@ -329,8 +329,9 @@ All custom modules live in `web/modules/custom/`. Each is a lightweight wrapper 
 | Accordion List Paragraph | `accordion_list_paragraph` | Declares dependency for the `accordion_list` paragraph type |
 | Grid Item Paragraph | `grid_item_paragraph` | Declares dependency for the `grid_item` paragraph type |
 | Grid Container Paragraph | `grid_container_paragraph` | Declares dependency for the `grid_container` paragraph type |
+| Icon Link Block | `icon_link_block` | Declares dependency for the `icon_link` block type |
 
-> **Note:** Paragraph type configuration (field storage, field instances, display modes) lives in `config/sync/` and is managed via `drush cex` / `drush cim`. Do not add `config/install` to these modules — it will conflict with the active configuration.
+> **Note:** Paragraph and block type configurations (field storage, field instances, display modes) live in `config/sync/` and are managed via `drush cex` / `drush cim`. Do not add `config/install` to these modules — it will conflict with the active configuration.
 
 ---
 

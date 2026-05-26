@@ -8,8 +8,9 @@
   --post-title-color: var(--clr-text-1);
   --post-subtitle-color: var(--clr-text-3);
   --post-text-color: var(--clr-text-4);
-  --post-link-color: var(--clr-text-7);
-  --post-category-color: var(--clr-text-8);
+  --post-link-color: var(--clr-text-4);
+  --post-link-hover-color: var(--clr-text-7);
+  --post-category-color: var(--clr-text-9);
   --post-posted-by-color: var(--clr-text-6);
 
   display: grid;
@@ -94,4 +95,11 @@
   text-decoration: none;
   font-weight: var(--fw-med);
   color: var(--post-link-color);
+  transition: color 0.3s ease;
+}
+
+post__cta a:hover,
+post__cta a:active,
+post__cta a:focus {
+  color: var(--post-link-hover-color);
 }

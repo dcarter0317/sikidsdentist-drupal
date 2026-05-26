@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.post.field_border_style
     - field.field.paragraph.post.field_post_body
     - field.field.paragraph.post.field_post_cta
     - field.field.paragraph.post.field_post_eyebrowv
@@ -12,12 +13,20 @@ dependencies:
     - paragraphs.paragraphs_type.post
   module:
     - link
+    - options
     - text
 id: paragraph.post.default
 targetEntityType: paragraph
 bundle: post
 mode: default
 content:
+  field_border_style:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
   field_post_body:
     type: text_default
     label: above

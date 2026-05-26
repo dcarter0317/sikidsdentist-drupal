@@ -1,0 +1,30 @@
+uuid: 12cb52f0-bf31-4d0a-a68a-3f27f411a90b
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_fp_border_style
+field_name: field_fp_border_style
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: border-top
+      label: 'Border Top'
+    -
+      value: border-bottom
+      label: 'Border Bottom'
+    -
+      value: border-top-bottom
+      label: 'Border Top Bottom'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,9 @@
+name: "Image Link Paragraph"
+description: "Provides the Image Link custom paragraph type and its field configuration for use with the Image Link SDC component."
+type: module
+core_version_requirement: ^10 || ^11
+package: "Custom"
+dependencies:
+  - drupal:paragraphs
+  - drupal:link
+  - drupal:media

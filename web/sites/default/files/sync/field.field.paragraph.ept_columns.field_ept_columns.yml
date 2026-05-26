@@ -4,13 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_ept_columns
-    - paragraphs.paragraphs_type.accordion
-    - paragraphs.paragraphs_type.accordion_item
-    - paragraphs.paragraphs_type.animated_banner
-    - paragraphs.paragraphs_type.banner
-    - paragraphs.paragraphs_type.blog_hero
-    - paragraphs.paragraphs_type.card_item
-    - paragraphs.paragraphs_type.card_list
     - paragraphs.paragraphs_type.ebt_tab
     - paragraphs.paragraphs_type.ept_columns
     - paragraphs.paragraphs_type.ept_text
@@ -18,19 +11,6 @@ dependencies:
     - paragraphs.paragraphs_type.ept_tiles_item
     - paragraphs.paragraphs_type.ept_video_and_image_gallery
     - paragraphs.paragraphs_type.ept_video_and_image_gallery_item
-    - paragraphs.paragraphs_type.featured_post
-    - paragraphs.paragraphs_type.floated_content
-    - paragraphs.paragraphs_type.from_library
-    - paragraphs.paragraphs_type.grid_container
-    - paragraphs.paragraphs_type.grid_item
-    - paragraphs.paragraphs_type.hero
-    - paragraphs.paragraphs_type.page_hero
-    - paragraphs.paragraphs_type.quick_link_item
-    - paragraphs.paragraphs_type.quick_links
-    - paragraphs.paragraphs_type.section
-    - paragraphs.paragraphs_type.slide_item
-    - paragraphs.paragraphs_type.slider
-    - paragraphs.paragraphs_type.text_block
   module:
     - entity_reference_revisions
     - paragraph_blocks
@@ -53,62 +33,41 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      accordion: accordion
-      accordion_item: accordion_item
-      animated_banner: animated_banner
-      banner: banner
-      blog_hero: blog_hero
-      card_item: card_item
-      card_list: card_list
       ebt_tab: ebt_tab
-      ept_columns: ept_columns
       ept_text: ept_text
       ept_tiles: ept_tiles
       ept_tiles_item: ept_tiles_item
       ept_video_and_image_gallery: ept_video_and_image_gallery
       ept_video_and_image_gallery_item: ept_video_and_image_gallery_item
-      featured_post: featured_post
-      floated_content: floated_content
-      from_library: from_library
-      grid_container: grid_container
-      grid_item: grid_item
-      hero: hero
-      page_hero: page_hero
-      quick_links: quick_links
-      quick_link_item: quick_link_item
-      section: section
-      slider: slider
-      slide_item: slide_item
-      text_block: text_block
-    negate: 0
+    negate: 1
     target_bundles_drag_drop:
       accordion:
         weight: 0
-        enabled: true
+        enabled: false
       accordion_item:
         weight: 1
-        enabled: true
+        enabled: false
       animated_banner:
         weight: 2
-        enabled: true
+        enabled: false
       banner:
         weight: 3
-        enabled: true
+        enabled: false
       blog_hero:
         weight: 4
-        enabled: true
+        enabled: false
       card_item:
         weight: 5
-        enabled: true
+        enabled: false
       card_list:
         weight: 6
-        enabled: true
+        enabled: false
       ebt_tab:
         weight: 7
         enabled: true
       ept_columns:
         weight: 8
-        enabled: true
+        enabled: false
       ept_text:
         weight: 9
         enabled: true
@@ -126,41 +85,44 @@ settings:
         enabled: true
       featured_post:
         weight: 14
-        enabled: true
+        enabled: false
       floated_content:
         weight: 15
-        enabled: true
+        enabled: false
       from_library:
         weight: 16
-        enabled: true
+        enabled: false
       grid_container:
         weight: 17
-        enabled: true
+        enabled: false
       grid_item:
         weight: 18
-        enabled: true
+        enabled: false
       hero:
         weight: 19
-        enabled: true
+        enabled: false
       page_hero:
         weight: 20
-        enabled: true
+        enabled: false
+      post:
+        weight: 50
+        enabled: false
       quick_link_item:
         weight: 22
-        enabled: true
+        enabled: false
       quick_links:
         weight: 21
-        enabled: true
+        enabled: false
       section:
         weight: 23
-        enabled: true
+        enabled: false
       slide_item:
         weight: 25
-        enabled: true
+        enabled: false
       slider:
         weight: 24
-        enabled: true
+        enabled: false
       text_block:
         weight: 26
-        enabled: true
+        enabled: false
 field_type: entity_reference_revisions

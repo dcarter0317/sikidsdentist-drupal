@@ -14,6 +14,7 @@
 {%- set image_alt = null -%}
 {%- set cta_label = null -%}
 {%- set cta_url = null -%}
+{%- set border_style = null -%}
 
 {# Eyebrow — typically the publication date #}
 {% if paragraph.field_post_eyebrow is defined and not paragraph.field_post_eyebrow.isEmpty %}
@@ -52,6 +53,11 @@
   {%- set cta_url = paragraph.field_post_cta.0.url.toString -%}
 {% endif %}
 
+{# Border Style #}
+{% if paragraph.field_border_style is defined and not paragraph.field_border_style.isEmpty %}
+  {%- set border_style = paragraph.field_border_style.value -%}
+{% endif %}
+
 {% include "sipd:post" with {
   eyebrow: eyebrow,
   title: title,
@@ -61,4 +67,5 @@
   image_alt: image_alt,
   cta_label: cta_label,
   cta_url: cta_url,
+  border_style: border_style,
 } only %}

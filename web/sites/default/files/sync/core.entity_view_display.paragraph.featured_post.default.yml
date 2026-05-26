@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.featured_post.field_fp_author
     - field.field.paragraph.featured_post.field_fp_body
+    - field.field.paragraph.featured_post.field_fp_border_style
     - field.field.paragraph.featured_post.field_fp_category
     - field.field.paragraph.featured_post.field_fp_cta
     - field.field.paragraph.featured_post.field_fp_eyebrow
@@ -36,6 +37,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 7
+    region: content
+  field_fp_border_style:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
     region: content
   field_fp_category:
     type: string

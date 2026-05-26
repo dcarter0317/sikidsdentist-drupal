@@ -1,0 +1,26 @@
+{#
+/**
+ * @file image-link.twig
+ *
+ * Image Link Single Directory Component.
+ *
+ * Props:
+ * - url (string) — link destination URL
+ * - text (string) — link text displayed on top of the image overlay
+ * - image (string) — background image source URL
+ * - image_alt (string) — alt text for the background image
+ */
+#}
+
+<div class="image-link">
+  <a href="{{ url }}" class="image-link__link">
+    <div class="image-link__image-wrapper">
+      {% if image %}
+        <img src="{{ image }}" alt="{{ image_alt }}" class="image-link__image">
+      {% endif %}
+    </div>
+    {% if text %}
+      <h2 class="image-link__text">{{ text }}</h2>
+    {% endif %}
+  </a>
+</div>

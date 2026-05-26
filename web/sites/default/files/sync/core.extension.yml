@@ -50,6 +50,7 @@ module:
   hero_paragraph: 0
   history: 0
   honeypot: 0
+  icon_link_paragraph: 0
   image: 0
   imce: 0
   jquery_ui: 0

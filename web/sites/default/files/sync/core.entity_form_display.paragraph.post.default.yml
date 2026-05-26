@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.post.field_border_style
     - field.field.paragraph.post.field_post_body
     - field.field.paragraph.post.field_post_cta
     - field.field.paragraph.post.field_post_eyebrowv
@@ -19,6 +20,12 @@ targetEntityType: paragraph
 bundle: post
 mode: default
 content:
+  field_border_style:
+    type: options_select
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_post_body:
     type: text_textarea
     weight: 4

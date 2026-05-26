@@ -1,0 +1,19 @@
+uuid: b2dfc03f-ef72-47d8-a180-738d4ba8b572
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.icon_link
+    - field.storage.paragraph.field_icon_link_url
+id: paragraph.icon_link.field_icon_link_url
+field_name: field_icon_link_url
+entity_type: paragraph
+bundle: icon_link
+label: 'URL'
+description: 'Link destination URL.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

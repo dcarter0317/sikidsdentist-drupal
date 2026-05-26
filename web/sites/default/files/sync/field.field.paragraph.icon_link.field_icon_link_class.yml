@@ -1,0 +1,20 @@
+uuid: f2dfc03f-ef72-47d8-a180-738d4ba8b572
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.icon_link
+    - field.storage.paragraph.field_icon_link_class
+id: paragraph.icon_link.field_icon_link_class
+field_name: field_icon_link_class
+entity_type: paragraph
+bundle: icon_link
+label: 'Font Awesome icon class'
+description: 'Example fa-solid fa-user-group'
+required: false
+translatable: false
+default_value:
+  - value: 'fa-solid fa-user-group'
+default_value_callback: ''
+settings: {  }
+field_type: string

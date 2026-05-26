@@ -8,11 +8,12 @@
   --post-title-color: var(--clr-text-1, #1d2d39);
   --post-subtitle-color: var(--clr-text-3, #4c6a7d);
   --post-text-color: var(--clr-text-4, #2c3e50);
-  --post-link-color: var(--clr-text-1, #1d2d39);
+  --post-link-color: var(--clr-text-4);
+  --post-link-hover-color: var(--clr-text-7);
   --post-category-color: var(--clr-text-8, #8b9bb4);
   --post-posted-by-color: var(--clr-text-6, #718096);
 
-  display: block;
+  display: block
 }
 
 /* When image is present, layout side-by-side on desktop (>900px) */
@@ -78,10 +79,10 @@
   text-decoration: none;
   font-weight: var(--fw-med, 500);
   color: var(--post-link-color);
-  transition: opacity 0.2s ease;
+  transition: color 0.1s ease;
 }
 
 .post-standard__cta a:hover,
 .post-standard__cta a:focus-visible {
-  opacity: 0.8;
+  color: var(--post-link-hover-color);
 }

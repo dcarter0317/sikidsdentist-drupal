@@ -17,6 +17,7 @@
 {%- set cta_label = null -%}
 {%- set cta_url = null -%}
 {%- set variant_class = null -%}
+{%- set border_style = null -%}
 
 {# Style: featured | standard → post--featured | post--standard #}
 {% if paragraph.field_fp_style is defined and not paragraph.field_fp_style.isEmpty %}
@@ -68,6 +69,11 @@
   {%- set cta_url = paragraph.field_fp_cta.0.url.toString -%}
 {% endif %}
 
+{# Border Style #}
+{% if paragraph.field_fp_border_style is defined and not paragraph.field_fp_border_style.isEmpty %}
+  {%- set border_style = paragraph.field_fp_border_style.value -%}
+{% endif %}
+
 {% include "sipd:featured-post" with {
   eyebrow: eyebrow,
   subtitle: subtitle,
@@ -80,4 +86,5 @@
   cta_label: cta_label,
   cta_url: cta_url,
   variant_class: variant_class,
+  border_style: border_style,
 } only %}
