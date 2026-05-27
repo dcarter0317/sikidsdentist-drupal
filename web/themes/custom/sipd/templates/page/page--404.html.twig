@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Theme override for a custom 404 Page Not Found error page.
+ */
+#}
+{{ attach_library('sipd/global') }}
+{% include('@sipd/templates/layout/header.html.twig') %}
+
+<section class="page-wrap">
+  {{ page.primary_menu }}
+
+  <!-- 404 MAIN CONTENT -->
+  <main class="page-404">
+    <div class="content-container">
+      <div class="page-404__inner">
+        <div class="page-404__artwork">
+          <span class="page-404__number">4</span>
+          <div class="page-404__butterfly-wrap">
+            <img src="/{{ active_theme_path() }}/assets/imgs/shape-1.png" alt="Decorative butterfly brand shape" class="page-404__butterfly">
+          </div>
+          <span class="page-404__number">4</span>
+        </div>
+        
+        <h1 class="page-404__title">Oops! Page not found</h1>
+        <p class="page-404__description">This page seems to have wandered off. Let's help you find your way back to a healthy smile!</p>
+        
+        <div class="page-404__buttons">
+          <a href="{{ front_page }}" class="btn btn--primary">Go Back Home</a>
+          <a href="/contact" class="btn btn--border-bottom">Contact Our Office</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {% include('@sipd/templates/layout/footer.html.twig') %}
+</section>
