@@ -55,11 +55,24 @@
 }
 
 .blog-hero__title {
-    text-transform: uppercase;
-    font-size: var(--blog-hero-title-font-size);
-    padding-inline: 24rem;
-    line-height: 1.0;
+  text-transform: uppercase;
+  font-size: var(--blog-hero-title-font-size);
+  padding-inline: 24rem;
+  line-height: 1.0;
+}
 
+@media (width < 1200px) {
+  .blog-hero__title {
+    padding-inline: 4rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+  }
+}
+
+@media (width < 900px) {
+  .blog-hero__title {
+    padding-inline: 1.5rem;
+    font-size: 2rem;
+  }
 }
 
 /* Content alignment variants */

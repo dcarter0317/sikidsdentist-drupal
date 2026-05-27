@@ -7,6 +7,7 @@
 .floated-content__image--left,
 .floated-content__image--right {
   width: 400px;
+  max-width: 100%;
 }
 
 .floated-content__image--left {
@@ -39,20 +40,13 @@
   margin-bottom: 0;
 }
 
-/* ── Tablet ── */
-@media (width < 768px) {
+/* ── Tablet & Mobile: stack image above text when columns stack ── */
+@media (width < 900px) {
   .floated-content__image--left,
   .floated-content__image--right {
-    width: 50%;
-  }
-}
-
-/* ── Mobile: stack image above text ── */
-@media (width < 480px) {
-  .floated-content__image--left,
-  .floated-content__image--right {
-    float: none;
-    width: 100%;
-    margin: 0 0 1rem 0;
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 0 1.5rem 0 !important;
   }
 }
