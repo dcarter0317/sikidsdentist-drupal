@@ -7,7 +7,7 @@
   'use strict';
 
   Drupal.behaviors.sipd = {
-    attach (context, settings) {
+    attach: function (context, settings) {
 
       // Main navigation interactions (homepage menu block).
       document.querySelectorAll('.top-header-section', context).forEach(function (headerEl) {
