@@ -23,7 +23,7 @@
   gap: 2rem;
 }
 
-@media (max-width: 900px) {
+@media (width < 900px) {
   .post-standard--with-image {
     grid-template-columns: 1fr;
     gap: 1.5rem;

@@ -27,6 +27,9 @@
 @media (width < 900px) {
   .banner {
     min-height: var(--banner-height-mobile);
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
   }
 }
 

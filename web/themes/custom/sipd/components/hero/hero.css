@@ -223,7 +223,11 @@
 }
 
 /* ─── Responsive ────────────────────────────────────────────────────────────── */
-@media (max-width: 900px) {
+@media (width < 900px) {
+  .hero {
+    --hero-min-height: 60vh;
+  }
+
   .hero__inner {
     flex-direction: column;
     align-items: flex-start;
@@ -236,12 +240,6 @@
   .hero__media {
     max-width: 100%;
     width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    --hero-min-height: 60vh;
   }
 }
 
@@ -333,7 +331,7 @@
  * On narrow viewports all three variants collapse to a single left-aligned
  * column — the standard mobile reading pattern.
  */
-@media (max-width: 900px) {
+@media (width < 900px) {
   .hero--centered .hero__inner,
   .hero--content-right .hero__inner {
     flex-direction: column;

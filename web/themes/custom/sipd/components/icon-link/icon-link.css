@@ -58,7 +58,7 @@
   box-shadow: 0 2px 8px #0001;
 }
 
-@media (max-width: 480px) {
+@media (width < 900px) {
   .icon-link__icon {
     width: 72px;
     height: 72px;

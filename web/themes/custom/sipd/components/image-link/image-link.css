@@ -23,7 +23,7 @@
   background-color: var(--clr-secondary, #003f5c);
 }
 
-@media (width < 768px) {
+@media (width < 900px) {
   .image-link__image-wrapper {
     min-height: 180px;
     aspect-ratio: 16 / 9;

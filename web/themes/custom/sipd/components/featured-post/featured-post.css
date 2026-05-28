@@ -18,7 +18,7 @@
   gap: 2rem;
 }
 
-@media (max-width: 900px) {
+@media (width < 900px) {
   .post {
     grid-template-columns: 1fr;
   }
