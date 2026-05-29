@@ -4,7 +4,7 @@
          <section class="hero-section{{ hero_show_overlay ? ' overlay' : '' }}"{% if hero_bg_style %} {{ ('style="' ~ hero_bg_style ~ '"')|raw }}{% endif %}>
             <div class="content-container flex-content">
                 <div class="content-primary">
-                   <img src="{{ directory }}/assets/imgs/sipd_logo.svg" alt="Staten Island Pediatric Dentistry Logo" class="logo">
+                   <img src="/{{ directory }}/assets/imgs/sipd_logo.svg" alt="Staten Island Pediatric Dentistry Logo" class="logo">
                 </div>
                   <div class="content-secondary">
                      <a href="{{ hero_contact_btn_url }}" class="btn btn--primary">{{ hero_contact_btn_text }}</a>
@@ -51,15 +51,15 @@
            <div class="content-container">
                 <div class="team-members flex-content">
                     <div class="team-member text-center">
-                        <img src="{{ directory }}/assets/imgs/card-1.png" alt="Michelle Flanigan" class="team-member-photo">
+                        <img src="/{{ directory }}/assets/imgs/card-1.png" alt="Michelle Flanigan" class="team-member-photo">
                         <p class="text-light">Michelle Flanigan, DMD</p>
                     </div>
                     <div class="team-member text-center">
-                        <img src="{{ directory }}/assets/imgs/card-2.png" alt="Yelena Lange, DMD" class="team-member-photo">
+                        <img src="/{{ directory }}/assets/imgs/card-2.png" alt="Yelena Lange, DMD" class="team-member-photo">
                         <p class="text-light">Yelena Lange, DMD</p>
                     </div>
                     <div class="team-member text-center">
-                        <img src="{{ directory }}/assets/imgs/card-3.png" alt="Sara Skurnick" class="team-member-photo">
+                        <img src="/{{ directory }}/assets/imgs/card-3.png" alt="Sara Skurnick" class="team-member-photo">
                         <p class="text-light">Sara Skurnick, DMD</p>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
         <section class="featured-section"{% if featured_bg_style %} {{ ('style="' ~ featured_bg_style ~ '"')|raw }}{% endif %}>
             <div class="content-container flex-content">
                <div class="content-primary">
-                 <img src="{{ directory }}/assets/imgs/shape-1.png" alt="Featured Services" class="featured-butterfly">
+                 <img src="/{{ directory }}/assets/imgs/shape-1.png" alt="Featured Services" class="featured-butterfly">
                </div>
                 <div class="content-secondary">
                     <h2>{{ featured_heading }}</h2>
@@ -111,7 +111,7 @@
                         <div class="service">
                           <a href="/services/digital-xrays">
                           <figure class="service__image">
-                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.4 64" width="78" height="64"><g data-name="Group 49" fill="currentColor"><path data-name="Rectangle 26" d="M6.5 6.5H17v2.6H6.5z"></path><path data-name="Rectangle 27" d="M6.5 11.8H17v2.6H6.5z"></path><path data-name="Path 142" d="M78.4 11.7a1.4 1.4 0 0 0-.1-.3v-.1a1.3 1.3 0 0 0-.3-.4L69 .4a1.3 1.3 0 0 0-.4-.3.9.9 0 0 0-.1 0A1.3 1.3 0 0 0 68 0H1.2A1.3 1.3 0 0 0 0 1.3v61.4A1.3 1.3 0 0 0 1.3 64h75.8a1.3 1.3 0 0 0 1.3-1.3v-51Zm-9.2-7 5 5.7h-5Zm6.6 56.7H2.6V40.9a1.9 1.9 0 0 1 2.7.1l1 10.7a3.5 3.5 0 0 0 7 0l.9-9.8a1.5 1.5 0 0 1 3 0l1 9.8a3.5 3.5 0 0 0 6.8 0l1-9.1a2.4 2.4 0 0 1 3 0l.9 9.1a3.5 3.5 0 0 0 6.9 0l.9-9.8a1.5 1.5 0 0 1 3 0l1 9.8a3.5 3.5 0 0 0 6.8 0l1-9.4a2.4 2.4 0 0 1 3 0l.9 9.4a3.5 3.5 0 0 0 6.9 0l.9-9.8a1.5 1.5 0 0 1 3 0l1 9.8a3.5 3.5 0 0 0 6.8 0L73.1 41a1.9 1.9 0 0 1 2.7 0ZM5.2 27.7a4.2 4.2 0 0 1 7.3-3 4.6 4.6 0 0 0 6.4 0 4.2 4.2 0 0 1 7.2 3 28.9 28.9 0 0 1-1.5 9.2l-1 3.2a1.3 1.3 0 0 0 0 .3l-1.2 11a.9.9 0 0 1-1.7 0l-1-9.7a4.1 4.1 0 0 0-8.1 0l-1 9.8a.9.9 0 0 1-1.7 0L8 40.4a1.3 1.3 0 0 0-.1-.3l-1-3.2a28.9 28.9 0 0 1-1.6-9.2Zm21.3 11.8.6-1.8.3-1 .3 1 .6 1.8a5 5 0 0 0-1.8 0Zm2.2-11.8a4.2 4.2 0 0 1 7.3-3 4.6 4.6 0 0 0 6.4 0 4.2 4.2 0 0 1 7.2 3 28.9 28.9 0 0 1-1.5 9.2l-1 3.2a1.2 1.2 0 0 0 0 .3l-1.2 11a.9.9 0 0 1-1.7 0l-.9-9.7a4.1 4.1 0 0 0-8.2 0l-1 9.8a.9.9 0 0 1-1.6 0l-1.2-11.1a1.4 1.4 0 0 0 0-.3l-1-3.2a28.9 28.9 0 0 1-1.6-9.2Zm21.4 11.6.5-1.6.3-1 .4 1 .5 1.6a5.1 5.1 0 0 0-1.7 0Zm2.1-11.6a4.2 4.2 0 0 1 7.3-3 4.6 4.6 0 0 0 6.4 0 4.2 4.2 0 0 1 7.2 3 28.9 28.9 0 0 1-1.4 9.2L70.6 40a1.4 1.4 0 0 0 0 .3l-1.2 11a.9.9 0 0 1-1.7 0l-.9-9.7a4.1 4.1 0 0 0-8.2 0l-1 9.8a.9.9 0 0 1-1.6 0l-1.1-11.1a1.3 1.3 0 0 0-.1-.3l-1-3.2a28.9 28.9 0 0 1-1.6-9.2Zm23.6 0V38a4.4 4.4 0 0 0-1.4-.2h-.3a31.5 31.5 0 0 0 1.7-10A6.8 6.8 0 0 0 64 22.8a2 2 0 0 1-2.8 0 6.8 6.8 0 0 0-10.4.9 6.8 6.8 0 0 0-10.3-.9 2 2 0 0 1-2.8 0 6.8 6.8 0 0 0-10.4.9 6.8 6.8 0 0 0-10.4-.9 2 2 0 0 1-2.7 0 6.8 6.8 0 0 0-11.7 4.8 31.5 31.5 0 0 0 1.6 10v.1H4a4.4 4.4 0 0 0-1.3.2V2.6h64v9.2A1.3 1.3 0 0 0 68 13h7.9Zm0 0"></path></g></svg>
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 78.4 64" width="78" height="64"><g data-name="Group 49" fill="currentColor"><path data-name="Rectangle 26" d="M6.5 6.5H17v2.6H6.5z"></path><path data-name="Rectangle 27" d="M6.5 11.8H17v2.6H6.5z"></path><path data-name="Path 142" d="M78.4 11.7a1.4 1.4 0 0 0-.1-.3v-.1a1.3 1.3 0 0 0-.3-.4L69 .4a1.3 1.3 0 0 0-.4-.3.9.9 0 0 0-.1 0A1.3 1.3 0 0 0 68 0H1.2A1.3 1.3 0 0 0 0 1.3v61.4A1.3 1.3 0 0 0 1.3 64h75.8a1.3 1.3 0 0 0 1.3-1.3v-51Zm-9.2-7 5 5.7h-5Zm6.6 56.7H2.6V40.9a1.9 1.9 0 0 1 2.7.1l1 10.7a3.5 3.5 0 0 0 7 0l.9-9.8a1.5 1.5 0 0 1 3 0l1 9.8a3.5 3.5 0 0 0 6.8 0l1-9.1a2.4 2.4 0 0 1 3 0l.9 9.1a3.5 3.5 0 0 0 6.9 0l.9-9.8a1.5 1.5 0 0 1 3 0l1 9.8a3.5 3.5 0 0 0 6.8 0L73.1 41a1.9 1.9 0 0 1 2.7 0ZM5.2 27.7a4.2 4.2 0 0 1 7.3-3 4.6 4.6 0 0 0 6.4 0 4.2 4.2 0 0 1 7.2 3 28.9 28.9 0 0 1-1.5 9.2l-1 3.2a1.3 1.3 0 0 0 0 .3l-1.2 11a.9.9 0 0 1-1.7 0l-1-9.7a4.1 4.1 0 0 0-8.1 0l-1 9.8a.9.9 0 0 1-1.7 0L8 40.4a1.3 1.3 0 0 0-.1-.3l-1-3.2a28.9 28.9 0 0 1-1.6-9.2Zm21.3 11.8.6-1.8.3-1 .3 1 .6 1.8a5 5 0 0 0-1.8 0Zm2.2-11.8a4.2 4.2 0 0 1 7.3-3 4.6 4.6 0 0 0 6.4 0 4.2 4.2 0 0 1 7.2 3 28.9 28.9 0 0 1-1.5 9.2l-1 3.2a1.2 1.2 0 0 0 0 .3l-1.2 11a.9.9 0 0 1-1.7 0l-.9-9.7a4.1 4.1 0 0 0-8.2 0l-1 9.8a.9.9 0 0 1-1.6 0l-1.2-11.1a1.4 1.4 0 0 0 0-.3l-1-3.2a28.9 28.9 0 0 1-1.6-9.2Zm21.4 11.6.5-1.6.3-1 .4 1 .5 1.6a5.1 5.1 0 0 0-1.7 0Zm2.1-11.6a4.2 4.2 0 0 1 7.3-3 4.6 4.6 0 0 0 6.4 0 4.2 4.2 0 0 1 7.2 3 28.9 28.9 0 0 1-1.4 9.2L70.6 40a1.4 1.4 0 0 0 0 .3l-1.2 11a.9.9 0 0 1-1.7 0l-.9-9.7a4.1 4.1 0 0 0-8.2 0l-1 9.8a.9.9 0 0 1-1.6 0l-1.1-11.1a1.3 1.3 0 0 0-.1-.3l-1-3.2a28.9 28.9 0 0 1-1.6-9.2Zm23.6 0V38a4.4 4.4 0 0 0-1.4-.2h-.3a31.5 31.5 0 0 0 1.7-10A6.8 6.8 0 0 0 64 22.8a2 2 0 0 1-2.8 0 6.8 6.8 0 0 0-10.4.9 6.8 6.8 0 0 0-10.3-.9 2 2 0 0 1-2.8 0 6.8 6.8 0 0 0-10.4.9 6.8 6.8 0 0 0-10.4-.9 2 2 0 0 1-2.7 0 6.8 6.8 0 0 0-11.7 4.8 31.5 31.5 0 0 0 1.6 10v.1H4a4.4 4.4 0 0 0-1.3.2V2.6h64v9.2A1.3 1.3 0 0 0 68 13h7.9Zm0 0"></path></g></svg>
                           </figure>
                           <p>
                             Digital X-Rays
@@ -282,12 +282,12 @@
          <section class="board-certs-section">
              <div class="content-primary content-container">
                <ul>
-                  <li><img src="{{ directory }}/assets/imgs/ada_logo.png" alt="American Dental Association Logo"></li>
-                  <li><img src="{{ directory }}/assets/imgs/abpd_logo.jpeg" alt="American Board of Pediatric Dentistry Logo"></li>
-                  <li><img src="{{ directory }}/assets/imgs/aapd_logo.png" alt="American Academy of Pediatric Dentistry Logo"></li>
-                  <li><img src="{{ directory }}/assets/imgs/top_dentists_logo.jpeg" alt="Top Dentists Logo"></li>
-                  <li><img src="{{ directory }}/assets/imgs/aao_logo.jpeg" alt="American Academy of Orthodontics Logo"></li>
-                  <li><img src="{{ directory }}/assets/imgs/sdds_logo.jpeg" alt="Society of Dental Surgeons Logo"></li>
+                  <li><img src="/{{ directory }}/assets/imgs/ada_logo.png" alt="American Dental Association Logo"></li>
+                  <li><img src="/{{ directory }}/assets/imgs/abpd_logo.jpeg" alt="American Board of Pediatric Dentistry Logo"></li>
+                  <li><img src="/{{ directory }}/assets/imgs/aapd_logo.png" alt="American Academy of Pediatric Dentistry Logo"></li>
+                  <li><img src="/{{ directory }}/assets/imgs/top_dentists_logo.jpeg" alt="Top Dentists Logo"></li>
+                  <li><img src="/{{ directory }}/assets/imgs/aao_logo.jpeg" alt="American Academy of Orthodontics Logo"></li>
+                  <li><img src="/{{ directory }}/assets/imgs/sdds_logo.jpeg" alt="Society of Dental Surgeons Logo"></li>
                 </ul>
              </div>
          </section>
