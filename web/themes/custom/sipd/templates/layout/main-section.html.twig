@@ -4,7 +4,7 @@
          <section class="hero-section{{ hero_show_overlay ? ' overlay' : '' }}"{% if hero_bg_style %} {{ ('style="' ~ hero_bg_style ~ '"')|raw }}{% endif %}>
             <div class="content-container flex-content">
                 <div class="content-primary">
-                   <img src="/{{ directory }}/assets/imgs/sipd_logo.svg" alt="Staten Island Pediatric Dentistry Logo" class="logo">
+                   <img src="{{ base_path ~ directory }}/assets/imgs/sipd_logo.svg" alt="Staten Island Pediatric Dentistry Logo" class="logo">
                 </div>
                   <div class="content-secondary">
                      <a href="{{ hero_contact_btn_url }}" class="btn btn--primary">{{ hero_contact_btn_text }}</a>
@@ -51,15 +51,15 @@
            <div class="content-container">
                 <div class="team-members flex-content">
                     <div class="team-member text-center">
-                        <img src="/{{ directory }}/assets/imgs/card-1.png" alt="Michelle Flanigan" class="team-member-photo">
+                        <img src="{{ base_path ~ directory }}/assets/imgs/card-1.png" alt="Michelle Flanigan" class="team-member-photo">
                         <p class="text-light">Michelle Flanigan, DMD</p>
                     </div>
                     <div class="team-member text-center">
-                        <img src="/{{ directory }}/assets/imgs/card-2.png" alt="Yelena Lange, DMD" class="team-member-photo">
+                        <img src="{{ base_path ~ directory }}/assets/imgs/card-2.png" alt="Yelena Lange, DMD" class="team-member-photo">
                         <p class="text-light">Yelena Lange, DMD</p>
                     </div>
                     <div class="team-member text-center">
-                        <img src="/{{ directory }}/assets/imgs/card-3.png" alt="Sara Skurnick" class="team-member-photo">
+                        <img src="{{ base_path ~ directory }}/assets/imgs/card-3.png" alt="Sara Skurnick" class="team-member-photo">
                         <p class="text-light">Sara Skurnick, DMD</p>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
         <section class="featured-section"{% if featured_bg_style %} {{ ('style="' ~ featured_bg_style ~ '"')|raw }}{% endif %}>
             <div class="content-container flex-content">
                <div class="content-primary">
-                 <img src="/{{ directory }}/assets/imgs/shape-1.png" alt="Featured Services" class="featured-butterfly">
+                 <img src="{{ base_path ~ directory }}/assets/imgs/shape-1.png" alt="Featured Services" class="featured-butterfly">
                </div>
                 <div class="content-secondary">
                     <h2>{{ featured_heading }}</h2>
@@ -282,12 +282,12 @@
          <section class="board-certs-section">
              <div class="content-primary content-container">
                <ul>
-                  <li><img src="/{{ directory }}/assets/imgs/ada_logo.png" alt="American Dental Association Logo"></li>
-                  <li><img src="/{{ directory }}/assets/imgs/abpd_logo.jpeg" alt="American Board of Pediatric Dentistry Logo"></li>
-                  <li><img src="/{{ directory }}/assets/imgs/aapd_logo.png" alt="American Academy of Pediatric Dentistry Logo"></li>
-                  <li><img src="/{{ directory }}/assets/imgs/top_dentists_logo.jpeg" alt="Top Dentists Logo"></li>
-                  <li><img src="/{{ directory }}/assets/imgs/aao_logo.jpeg" alt="American Academy of Orthodontics Logo"></li>
-                  <li><img src="/{{ directory }}/assets/imgs/sdds_logo.jpeg" alt="Society of Dental Surgeons Logo"></li>
+                  <li><img src="{{ base_path ~ directory }}/assets/imgs/ada_logo.png" alt="American Dental Association Logo"></li>
+                  <li><img src="{{ base_path ~ directory }}/assets/imgs/abpd_logo.jpeg" alt="American Board of Pediatric Dentistry Logo"></li>
+                  <li><img src="{{ base_path ~ directory }}/assets/imgs/aapd_logo.png" alt="American Academy of Pediatric Dentistry Logo"></li>
+                  <li><img src="{{ base_path ~ directory }}/assets/imgs/top_dentists_logo.jpeg" alt="Top Dentists Logo"></li>
+                  <li><img src="{{ base_path ~ directory }}/assets/imgs/aao_logo.jpeg" alt="American Academy of Orthodontics Logo"></li>
+                  <li><img src="{{ base_path ~ directory }}/assets/imgs/sdds_logo.jpeg" alt="Society of Dental Surgeons Logo"></li>
                 </ul>
              </div>
          </section>
