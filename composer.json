@@ -27,7 +27,6 @@
         "drupal/ebt_tabs": "^1.4",
         "drupal/entity_reference_revisions": "^1.14",
         "drupal/entity_usage": "^2.0@beta",
-        "drupal/ept_columns": "^1.4",
         "drupal/ept_core": "^1.4",
         "drupal/ept_text": "^1.4",
         "drupal/ept_tiles": "^1.4",

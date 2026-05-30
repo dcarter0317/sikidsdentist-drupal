@@ -4,8 +4,8 @@
   --banner-text-color: #fff;
   --banner-overlay-color: rgba(0, 0, 0, 0.3);
   --banner-overlay-hover-color: rgba(0, 0, 0, 0.6);
-  --banner-height: 200px;
-  --banner-height-mobile: 210px;
+  --banner-height: 100px;
+  --banner-height-mobile: 110px;
   --banner-btn-radius: 4px;
   --banner-transition: 0.3s ease;
 }
@@ -161,65 +161,136 @@
 .banner .banner__content.slide-in-left {
   animation: bannerSlideInLeft 650ms ease-out forwards;
 }
+
 .banner .banner__content.slide-in-content-left {
   animation: bannerSlideInContentLeft 650ms ease-out forwards;
 }
+
 .banner .banner__content.slide-in-right {
   animation: bannerSlideInRight 650ms ease-out forwards;
 }
+
 .banner .banner__content.slide-in-content-right {
   animation: bannerSlideInContentRight 650ms ease-out forwards;
 }
+
 .banner .banner__content.slide-down {
   animation: bannerSlideDown 650ms ease-out forwards;
 }
+
 .banner .banner__content.slide-down-content {
   animation: bannerSlideDownContent 650ms ease-out forwards;
 }
+
 .banner .banner__content.slide-up {
   animation: bannerSlideUp 650ms ease-out forwards;
 }
+
 .banner .banner__content.slide-up-content {
   animation: bannerSlideUpContent 650ms ease-out forwards;
 }
 
 @keyframes bannerSlideInLeft {
-  0%   { transform: translate(-150%, -50%); opacity: 0; }
-  100% { transform: translate(-50%,  -50%); opacity: 1; }
+  0% {
+    transform: translate(-150%, -50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 }
+
 @keyframes bannerSlideInContentLeft {
-  0%   { transform: translate(-100%, -50%); opacity: 0; }
-  100% { transform: translate(-50%,  -50%); opacity: 1; }
+  0% {
+    transform: translate(-100%, -50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 }
+
 @keyframes bannerSlideInRight {
-  0%   { transform: translate(50%,  -50%); opacity: 0; }
-  100% { transform: translate(-50%, -50%); opacity: 1; }
+  0% {
+    transform: translate(50%, -50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 }
+
 @keyframes bannerSlideInContentRight {
-  0%   { transform: translate(0%,   -50%); opacity: 0; }
-  100% { transform: translate(-50%, -50%); opacity: 1; }
+  0% {
+    transform: translate(0%, -50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 }
+
 @keyframes bannerSlideDown {
-  0%   { transform: translate(-50%, -150%); opacity: 0; }
-  100% { transform: translate(-50%,  -50%); opacity: 1; }
+  0% {
+    transform: translate(-50%, -150%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 }
+
 @keyframes bannerSlideDownContent {
-  0%   { transform: translate(-50%, -100%); opacity: 0; }
-  100% { transform: translate(-50%,  -50%); opacity: 1; }
+  0% {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 }
+
 @keyframes bannerSlideUp {
-  0%   { transform: translate(-50%, 50%);  opacity: 0; }
-  100% { transform: translate(-50%, -50%); opacity: 1; }
+  0% {
+    transform: translate(-50%, 50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 }
+
 @keyframes bannerSlideUpContent {
-  0%   { transform: translate(-50%, 0%);   opacity: 0; }
-  100% { transform: translate(-50%, -50%); opacity: 1; }
+  0% {
+    transform: translate(-50%, 0%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .banner .banner__content {
     animation: none !important;
   }
+
   .banner .banner__content .banner__btn {
     transition: none;
   }

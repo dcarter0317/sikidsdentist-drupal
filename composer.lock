@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "116217b9bfb327e03eb5a8ff0cf502b2",
+    "content-hash": "c2d9ec4dfc41200c37781c0a7e83f9c7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2306,56 +2306,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/entity_usage",
                 "issues": "http://drupal.org/project/issues/entity_usage"
-            }
-        },
-        {
-            "name": "drupal/ept_columns",
-            "version": "1.4.6",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/ept_columns.git",
-                "reference": "1.4.6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ept_columns-1.4.6.zip",
-                "reference": "1.4.6",
-                "shasum": "90b2ac318b5340a8442a2c3b8a27dde74418945e"
-            },
-            "require": {
-                "drupal/core": "^9.3 || ^10 || ^11",
-                "drupal/ept_core": "^1.4",
-                "drupal/paragraphs": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "1.4.6",
-                    "datestamp": "1721384279",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "levmyshkin",
-                    "homepage": "https://www.drupal.org/user/1079574"
-                }
-            ],
-            "description": "Extra Paragraph Types (EPT): Columns / Container",
-            "homepage": "http://drupal.org/project/ept_columns",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "https://git.drupalcode.org/project/ept_columns",
-                "issues": "https://www.drupal.org/project/issues/ept_columns"
             }
         },
         {

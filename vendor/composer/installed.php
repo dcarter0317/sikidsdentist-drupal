@@ -3,7 +3,7 @@
         'name' => 'drupal/recommended-project',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '70fcda979a61911f7d7e8f9524a3b35cb5e766f3',
+        'reference' => 'ae4860359d503496098b7782d08f33697844b176',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -451,15 +451,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'drupal/ept_columns' => array(
-            'pretty_version' => '1.4.6',
-            'version' => '1.4.6.0',
-            'reference' => '1.4.6',
-            'type' => 'drupal-module',
-            'install_path' => __DIR__ . '/../../web/modules/contrib/ept_columns',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'drupal/ept_core' => array(
             'pretty_version' => '1.4.24',
             'version' => '1.4.24.0',
@@ -634,7 +625,7 @@
         'drupal/recommended-project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '70fcda979a61911f7d7e8f9524a3b35cb5e766f3',
+            'reference' => 'ae4860359d503496098b7782d08f33697844b176',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

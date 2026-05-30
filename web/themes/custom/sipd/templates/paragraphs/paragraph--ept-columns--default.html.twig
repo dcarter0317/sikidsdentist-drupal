@@ -28,11 +28,14 @@
     ept.column_width_three ? 'columns-' ~ ept.column_width_three,
     ept.column_width_four ? 'columns-' ~ ept.column_width_four,
     ept.equal_height ? 'columns-equal-height',
+    ept.full_bleed ? 'columns-full-bleed',
   ]
 %}
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
+    {{ title_prefix }}
+    {{ title_suffix }}
     <div class="bg-inner"></div>
     <div class="ept-container">
       {% block content %}

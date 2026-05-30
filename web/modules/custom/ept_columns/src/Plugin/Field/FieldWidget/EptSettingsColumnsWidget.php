@@ -111,6 +111,14 @@ class EptSettingsColumnsWidget extends EptSettingsDefaultWidget {
       '#weight' => 15,
     ];
 
+    $element['ept_settings']['full_bleed'] = [
+      '#title' => $this->t('Full bleed (end-to-end / full-width)'),
+      '#type' => 'checkbox',
+      '#default_value' => $items[$delta]->ept_settings['full_bleed'] ?? '0',
+      '#description' => $this->t('Make this columns/container section stretch full width.'),
+      '#weight' => 20,
+    ];
+
     return $element;
   }
 

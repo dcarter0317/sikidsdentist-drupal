@@ -55,16 +55,30 @@
       </div>
   </section>
 
-  <div{{ content_attributes.addClass('content-container') }}>
+  <div{{ content_attributes }}>
     {% if node.body.value %}
-      <div class="node__body">
+      <div class="node__body content-container">
         {{ node.body.processed }}
       </div>
     {% endif %}
     {% if node.field_components is not empty %}
       <div class="node__components">
         {% for item in node.field_components %}
-          {{ item.entity|view }}
+          {% set is_full_width = false %}
+          {% if item.entity.bundle == 'ept_columns' %}
+            {% set ept = item.entity.field_ept_settings.ept_settings %}
+            {% if ept.full_bleed %}
+              {% set is_full_width = true %}
+            {% endif %}
+          {% endif %}
+
+          {% if is_full_width %}
+            {{ item.entity|view }}
+          {% else %}
+            <div class="content-container">
+              {{ item.entity|view }}
+            </div>
+          {% endif %}
         {% endfor %}
       </div>
     {% endif %}

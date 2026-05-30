@@ -69,8 +69,14 @@
 {% if content.field_ept_settings['#object'].field_ept_settings.ept_settings.equal_height %}
   {% set classes = classes|merge(['columns-equal-height']) %}
 {% endif %}
+
+{% if content.field_ept_settings['#object'].field_ept_settings.ept_settings.full_bleed %}
+  {% set classes = classes|merge(['columns-full-bleed']) %}
+{% endif %}
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
+    {{ title_prefix }}
+    {{ title_suffix }}
     <div class="bg-inner"></div>
     <div class="ept-container">
     {% block content %}

@@ -1543,3 +1543,17 @@ p {
     align-items: stretch;
   }
 }
+
+/* Custom Full Bleed EPT Columns */
+.paragraph.columns-full-bleed {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: 0;
+  box-sizing: border-box;
+}
+
+.paragraph.columns-full-bleed .ept-container {
+  width: 100%;
+  max-width: 100%;
+  padding-inline: 0;
+}
