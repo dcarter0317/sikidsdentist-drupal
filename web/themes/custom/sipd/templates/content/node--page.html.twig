@@ -67,7 +67,7 @@
           {% set is_full_width = false %}
           {% if item.entity.bundle == 'ept_columns' %}
             {% set ept = item.entity.field_ept_settings.ept_settings %}
-            {% if ept.full_bleed %}
+            {% if ept.full_bleed or ept.full_bleed_bg %}
               {% set is_full_width = true %}
             {% endif %}
           {% endif %}

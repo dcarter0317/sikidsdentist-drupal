@@ -3,7 +3,10 @@
   Maps 'banner' paragraph fields to the sipd:banner SDC component.
 #}
 
-{%- set banner_style = paragraph.field_banner_style.value|default('default')|replace({'_': '-'}) -%}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set banner_style = paragraph.field_banner_style.value|default('default')|replace({'_': '-'}) -%}
 {%- set title        = paragraph.field_banner_title.value -%}
 {%- set eyebrow      = paragraph.field_eyebrow.value -%}
 {%- set cta_label    = paragraph.field_primary_cta.title -%}
@@ -27,3 +30,4 @@
 {%- endif -%}
 
 {% include "sipd:banner" with props only %}
+</div>

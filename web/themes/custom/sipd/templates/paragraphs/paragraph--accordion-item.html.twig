@@ -12,7 +12,10 @@
  */
 #}
 
-{%- set title = null -%}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set title = null -%}
 {%- set content = null -%}
 {%- set open = false -%}
 
@@ -33,3 +36,4 @@
   content: content,
   open: open,
 } only %}
+</div>

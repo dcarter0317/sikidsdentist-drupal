@@ -8,7 +8,10 @@
  */
 #}
 
-{%- set title = paragraph.field_blog_hero_title.value -%}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set title = paragraph.field_blog_hero_title.value -%}
 {%- set date = paragraph.field_blog_hero_date.value -%}
 {%- set author = paragraph.field_blog_hero_author.value -%}
 {%- set author_link = paragraph.field_blog_hero_author_link.value -%}
@@ -29,3 +32,4 @@
   background_image_alt: background_image_alt,
   content_alignment: content_alignment,
 } only %}
+</div>

@@ -4,8 +4,8 @@
   --banner-text-color: #fff;
   --banner-overlay-color: rgba(0, 0, 0, 0.3);
   --banner-overlay-hover-color: rgba(0, 0, 0, 0.6);
-  --banner-height: 100px;
-  --banner-height-mobile: 110px;
+  --banner-height: 160px;
+  --banner-height-mobile: 160px;
   --banner-btn-radius: 4px;
   --banner-transition: 0.3s ease;
 }

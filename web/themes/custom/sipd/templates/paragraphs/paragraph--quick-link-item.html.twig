@@ -11,7 +11,10 @@
  */
 #}
 
-{%- set icon_class = paragraph.field_ql_icon.value|default('fa-solid fa-link') -%}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set icon_class = paragraph.field_ql_icon.value|default('fa-solid fa-link') -%}
 {%- set link_label = paragraph.field_ql_link.title|default('') -%}
 {%- set link_url = paragraph.field_ql_link.url ? paragraph.field_ql_link.url.toString() : '#' -%}
 
@@ -20,4 +23,5 @@
     <span class="quick-link__icon"><i class="{{ icon_class }}"></i></span>
     <span class="quick-link__text">{{ link_label }}</span>
   </a>
+</div>
 </div>

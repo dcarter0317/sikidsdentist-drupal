@@ -7,7 +7,10 @@
  */
 #}
 
-{%- set float_direction = paragraph.field_fc_float_direction[0].value|default('left')|lower -%}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set float_direction = paragraph.field_fc_float_direction[0].value|default('left')|lower -%}
 
 {# Body: use .processed to get the text-format-filtered HTML #}
 {%- set body = paragraph.field_fc_body.processed -%}
@@ -24,3 +27,4 @@
   image_url:       image_url,
   image_alt:       image_alt,
 } only %}
+</div>

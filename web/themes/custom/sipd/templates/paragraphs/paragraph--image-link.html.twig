@@ -7,7 +7,10 @@
  */
 #}
 
-{%- set url = null -%}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set url = null -%}
 {%- set text = null -%}
 {%- set image = null -%}
 {%- set image_alt = null -%}
@@ -40,3 +43,4 @@
     image_alt: image_alt
   } only %}
 {% endif %}
+</div>

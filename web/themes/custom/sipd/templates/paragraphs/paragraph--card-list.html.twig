@@ -7,7 +7,10 @@
  */
 #}
 
-{%- set heading = null -%}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set heading = null -%}
 {%- set items = null -%}
 {%- set nested_field_name = null -%}
 
@@ -54,3 +57,4 @@
   items: items,
   variant_class: 'card-list--columns-3',
 } only %}
+</div>

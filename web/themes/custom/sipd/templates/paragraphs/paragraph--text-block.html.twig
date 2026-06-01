@@ -1,4 +1,7 @@
-{%- set title = paragraph.field_tb_title.value -%}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set title = paragraph.field_tb_title.value -%}
 {# Body: use .processed to get the text-format-filtered HTML #}
 {%- set body = paragraph.field_tb_body.processed -%}
 
@@ -6,3 +9,4 @@
   title:           title,
   body:            body
 } only %}
+</div>

@@ -4,8 +4,8 @@
   --banner-text-color: #fff;
   --banner-overlay-color: rgba(0, 0, 0, 0.3);
   --banner-overlay-hover-color: rgba(0, 0, 0, 0.6);
-  --banner-height: 100px;
-  --banner-height-mobile: 110px;
+  --banner-height: 160px;
+  --banner-height-mobile: 160px;
   --banner-btn-radius: 4px;
   --banner-transition: 0.3s ease;
 }
@@ -42,7 +42,7 @@
   text-align: center;
   padding: 1rem;
   width: 90%;
-  max-width: 900px;
+  max-width: 1200px;
 }
 
 @media (width < 900px) {

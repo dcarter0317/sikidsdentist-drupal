@@ -10,7 +10,10 @@
  */
 #}
 
-{%- set items = null -%}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set items = null -%}
 
 {% if paragraph.field_ql_items is defined and not paragraph.field_ql_items.isEmpty %}
   {%- set items = content.field_ql_items -%}
@@ -19,3 +22,4 @@
 {% include 'sipd:quick-links' with {
   items: items,
 } only %}
+</div>

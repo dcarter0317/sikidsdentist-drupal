@@ -14,7 +14,10 @@
  */
 #}
 
-{# ── Plain text fields ── #}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {# ── Plain text fields ── #}
 {%- set banner_label = paragraph.field_ph_banner_label.value -%}
 {%- set title = paragraph.field_ph_title.value -%}
 
@@ -48,3 +51,4 @@
   image_url: image_url,
   image_alt: image_alt,
 } only %}
+</div>

@@ -1552,7 +1552,7 @@ p {
   box-sizing: border-box;
 }
 
-.paragraph.columns-full-bleed .ept-container {
+.paragraph.columns-full-bleed .ept-container:not(.content-container) {
   width: 100%;
   max-width: 100%;
   padding-inline: 0;

@@ -26,7 +26,7 @@
 
         $elements.ColorPicker({
           onBeforeShow: function () {
-            let color = $(colorField).val();
+            let color = $(this).val();
             if (color !== undefined && color !== '') {
               color = '#' + color.replace('#', '');
               $(this).ColorPickerSetColor(color);
@@ -41,7 +41,7 @@
             return false;
           },
           onChange: function (hsb, hex, rgb) {
-            $(colorField).val('#' + hex);
+            $(this.data('colorpicker').el).val('#' + hex);
           }
         });
       });

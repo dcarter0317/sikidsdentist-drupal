@@ -3,14 +3,14 @@
  * @file paragraph--ept-columns--default.html.twig
  *
  * Theme override for the EPT Columns paragraph.
- * Reads layout settings directly from `paragraph` instead of the
- * content['#object'] chain used by the module template.
+ * Reads layout settings from `content['#object']` using the robust
+ * field property retrieval chain to ensure correct class assignment.
  */
 #}
 {{ attach_library('ept_columns/ept_columns') }}
 
 {%
-  set ept = paragraph.field_ept_settings.ept_settings
+  set ept = content.field_ept_settings['#object'].field_ept_settings.ept_settings
 %}
 
 {%
@@ -23,21 +23,39 @@
     'ept-paragraph',
     'ept-paragraph-columns',
     'paragraph-id-' ~ paragraph.id(),
-    ept.layout ? 'column-' ~ ept.layout,
-    ept.column_width_two ? 'columns-' ~ ept.column_width_two,
-    ept.column_width_three ? 'columns-' ~ ept.column_width_three,
-    ept.column_width_four ? 'columns-' ~ ept.column_width_four,
-    ept.equal_height ? 'columns-equal-height',
-    ept.full_bleed ? 'columns-full-bleed',
   ]
 %}
+
+{% if ept.layout %}
+  {% set classes = classes|merge(['column-' ~ ept.layout]) %}
+{% endif %}
+
+{% if ept.column_width_two %}
+  {% set classes = classes|merge(['columns-' ~ ept.column_width_two]) %}
+{% endif %}
+
+{% if ept.column_width_three %}
+  {% set classes = classes|merge(['columns-' ~ ept.column_width_three]) %}
+{% endif %}
+
+{% if ept.column_width_four %}
+  {% set classes = classes|merge(['columns-' ~ ept.column_width_four]) %}
+{% endif %}
+
+{% if ept.equal_height %}
+  {% set classes = classes|merge(['columns-equal-height']) %}
+{% endif %}
+
+{% if ept.full_bleed or ept.full_bleed_bg %}
+  {% set classes = classes|merge(['columns-full-bleed']) %}
+{% endif %}
 
 {% block paragraph %}
   <div{{ attributes.addClass(classes) }}>
     {{ title_prefix }}
     {{ title_suffix }}
     <div class="bg-inner"></div>
-    <div class="ept-container">
+    <div class="ept-container{{ ept.full_bleed_bg ? ' content-container' }}">
       {% block content %}
         {% if content.field_ept_title|render %}
           {% set wrapper = ept.title_options.title_wrapper|default('h2') %}

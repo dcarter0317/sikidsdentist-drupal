@@ -7,7 +7,10 @@
  */
 #}
 
-{%- set heading = null -%}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set heading = null -%}
 {%- set content = null -%}
 
 {% if paragraph.field_grid_item_heading is defined and not paragraph.field_grid_item_heading.isEmpty %}
@@ -22,3 +25,4 @@
   heading: heading,
   content: content,
 } only %}
+</div>

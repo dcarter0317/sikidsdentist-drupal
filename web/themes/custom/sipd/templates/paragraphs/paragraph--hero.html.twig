@@ -22,7 +22,10 @@
  */
 #}
 
-{# ── Extract raw field values from the paragraph entity ── #}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {# ── Extract raw field values from the paragraph entity ── #}
 
 {%- set headline = paragraph.field_hero_headline.value -%}
 {%- set subheadline = paragraph.field_hero_subheadline.value -%}
@@ -49,3 +52,4 @@
   background_image_alt: background_image_alt,
   theme: theme,
 } only %}
+</div>

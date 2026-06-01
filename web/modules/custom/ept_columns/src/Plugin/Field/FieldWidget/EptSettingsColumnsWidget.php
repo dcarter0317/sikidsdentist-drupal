@@ -119,6 +119,14 @@ class EptSettingsColumnsWidget extends EptSettingsDefaultWidget {
       '#weight' => 20,
     ];
 
+    $element['ept_settings']['full_bleed_bg'] = [
+      '#title' => $this->t('Full bleed background (centered content)'),
+      '#type' => 'checkbox',
+      '#default_value' => $items[$delta]->ept_settings['full_bleed_bg'] ?? '0',
+      '#description' => $this->t('Make only the background stretch full width, while keeping columns centered.'),
+      '#weight' => 21,
+    ];
+
     return $element;
   }
 

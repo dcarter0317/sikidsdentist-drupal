@@ -6,7 +6,10 @@
  */
 #}
 
-{%- set eyebrow = null -%}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set eyebrow = null -%}
 {%- set title = null -%}
 {%- set subtitle = null -%}
 {%- set description = null -%}
@@ -69,3 +72,4 @@
   cta_url: cta_url,
   border_style: border_style,
 } only %}
+</div>
