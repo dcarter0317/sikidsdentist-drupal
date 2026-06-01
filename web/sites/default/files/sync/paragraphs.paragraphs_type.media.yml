@@ -1,0 +1,15 @@
+uuid: f9076b6f-ef1b-4d97-86b0-c2d0e7334264
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraph_block
+third_party_settings:
+  paragraph_block:
+    status: false
+id: media
+label: Media
+icon_uuid: null
+icon_default: null
+description: 'Media component, field to add an image or video to a page.'
+behavior_plugins: {  }

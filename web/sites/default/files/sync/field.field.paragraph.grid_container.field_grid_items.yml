@@ -4,9 +4,13 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_grid_items
-    - paragraphs.paragraphs_type.from_library
+    - paragraphs.paragraphs_type.ebt_tab
+    - paragraphs.paragraphs_type.ept_text
+    - paragraphs.paragraphs_type.ept_tiles
+    - paragraphs.paragraphs_type.ept_tiles_item
+    - paragraphs.paragraphs_type.ept_video_and_image_gallery
+    - paragraphs.paragraphs_type.ept_video_and_image_gallery_item
     - paragraphs.paragraphs_type.grid_container
-    - paragraphs.paragraphs_type.grid_item
   module:
     - entity_reference_revisions
     - paragraph_blocks
@@ -27,9 +31,13 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      grid_item: grid_item
-      from_library: from_library
-    negate: 0
+      ebt_tab: ebt_tab
+      ept_text: ept_text
+      ept_tiles: ept_tiles
+      ept_tiles_item: ept_tiles_item
+      ept_video_and_image_gallery: ept_video_and_image_gallery
+      ept_video_and_image_gallery_item: ept_video_and_image_gallery_item
+    negate: 1
     target_bundles_drag_drop:
       accordion:
         weight: 27
@@ -54,25 +62,25 @@ settings:
         enabled: false
       ebt_tab:
         weight: 34
-        enabled: false
+        enabled: true
       ept_columns:
         weight: 35
         enabled: false
       ept_text:
         weight: 36
-        enabled: false
+        enabled: true
       ept_tiles:
         weight: 37
-        enabled: false
+        enabled: true
       ept_tiles_item:
         weight: 38
-        enabled: false
+        enabled: true
       ept_video_and_image_gallery:
         weight: 39
-        enabled: false
+        enabled: true
       ept_video_and_image_gallery_item:
         weight: 40
-        enabled: false
+        enabled: true
       featured_post:
         weight: 41
         enabled: false
@@ -81,18 +89,27 @@ settings:
         enabled: false
       from_library:
         weight: 43
-        enabled: true
+        enabled: false
       grid_container:
         weight: 44
         enabled: false
       grid_item:
         weight: 1
-        enabled: true
+        enabled: false
       hero:
         weight: 46
         enabled: false
+      icon_link:
+        weight: 51
+        enabled: false
+      image_link:
+        weight: 52
+        enabled: false
       page_hero:
         weight: 47
+        enabled: false
+      post:
+        weight: 54
         enabled: false
       quick_link_item:
         weight: 49
@@ -108,5 +125,8 @@ settings:
         enabled: false
       slider:
         weight: 51
+        enabled: false
+      text_block:
+        weight: 60
         enabled: false
 field_type: entity_reference_revisions
