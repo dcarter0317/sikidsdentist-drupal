@@ -1,0 +1,19 @@
+uuid: a3cc9227-c3d2-42e0-b351-bdae5152bbd9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_profile_card_name
+    - paragraphs.paragraphs_type.profile_card
+id: paragraph.profile_card.field_profile_card_name
+field_name: field_profile_card_name
+entity_type: paragraph
+bundle: profile_card
+label: Name
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

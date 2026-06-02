@@ -1,0 +1,28 @@
+uuid: 99c9ab02-a794-4c21-92e6-4406a5c5e374
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_profile_card_bio
+    - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.restricted_html
+    - paragraphs.paragraphs_type.profile_card
+  module:
+    - text
+id: paragraph.profile_card.field_profile_card_bio
+field_name: field_profile_card_bio
+entity_type: paragraph
+bundle: profile_card
+label: Bio
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+    - basic_html
+    - restricted_html
+field_type: text_long

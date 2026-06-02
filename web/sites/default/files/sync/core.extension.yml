@@ -75,6 +75,7 @@ module:
   path: 0
   path_alias: 0
   post_paragraph: 0
+  profile_card_paragraph: 0
   quick_links_paragraph: 0
   sdc_devel: 0
   search: 0
@@ -90,6 +91,7 @@ module:
   toolbar: 0
   twig_field_value: 0
   twig_tweak: 0
+  two_column_cta_block_paragraph: 0
   ui_patterns: 0
   ui_patterns_blocks: 0
   ui_patterns_field_formatters: 0

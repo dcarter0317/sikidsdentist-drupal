@@ -1,0 +1,55 @@
+uuid: 6143d5b3-91eb-447d-87fc-8b1a1e96990b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.profile_card.field_profile_card_bio
+    - field.field.paragraph.profile_card.field_profile_card_link
+    - field.field.paragraph.profile_card.field_profile_card_media
+    - field.field.paragraph.profile_card.field_profile_card_name
+    - paragraphs.paragraphs_type.profile_card
+  module:
+    - link
+    - text
+id: paragraph.profile_card.default
+targetEntityType: paragraph
+bundle: profile_card
+mode: default
+content:
+  field_profile_card_bio:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_profile_card_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_profile_card_media:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_profile_card_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

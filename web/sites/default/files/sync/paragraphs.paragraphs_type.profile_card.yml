@@ -1,0 +1,15 @@
+uuid: 8f54bb0b-bce7-4a58-a47b-bc94d6f01eae
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraph_block
+third_party_settings:
+  paragraph_block:
+    status: false
+id: profile_card
+label: 'Profile Card'
+icon_uuid: null
+icon_default: null
+description: 'Card element to highlight a profile.'
+behavior_plugins: {  }

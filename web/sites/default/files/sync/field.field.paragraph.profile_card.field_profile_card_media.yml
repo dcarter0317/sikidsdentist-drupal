@@ -1,0 +1,35 @@
+uuid: 2d6f219a-b880-4bbd-90d7-f6b1a3d4421b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_profile_card_media
+    - media.type.image
+    - media.type.remote_video
+    - media.type.vector_image
+    - media.type.video
+    - paragraphs.paragraphs_type.profile_card
+id: paragraph.profile_card.field_profile_card_media
+field_name: field_profile_card_media
+entity_type: paragraph
+bundle: profile_card
+label: Headshot
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      remote_video: remote_video
+      vector_image: vector_image
+      video: video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: vector_image
+field_type: entity_reference

@@ -1,0 +1,19 @@
+uuid: 5ac7de77-0fc1-4824-abd4-13192cb7d6db
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+id: paragraph.field_profile_card_bio
+field_name: field_profile_card_bio
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
