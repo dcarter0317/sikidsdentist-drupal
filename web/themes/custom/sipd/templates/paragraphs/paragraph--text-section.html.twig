@@ -1,0 +1,38 @@
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set title = null -%}
+  {%- set description = null -%}
+  {%- set cta_label = null -%}
+  {%- set cta_url = null -%}
+  {%- set border_top = true -%}
+
+  {# Title #}
+  {% if paragraph.field_ts_title is defined and not paragraph.field_ts_title.isEmpty %}
+    {%- set title = paragraph.field_ts_title.value -%}
+  {% endif %}
+
+  {# Description / body copy #}
+  {% if paragraph.field_ts_description is defined and not paragraph.field_ts_description.isEmpty %}
+    {%- set description = paragraph.field_ts_description.processed -%}
+  {% endif %}
+
+  {# CTA link #}
+  {% if paragraph.field_ts_cta is defined and paragraph.field_ts_cta.0 %}
+    {%- set cta_label = paragraph.field_ts_cta.0.title|default(null) -%}
+    {%- set cta_url = paragraph.field_ts_cta.0.url.toString -%}
+  {% endif %}
+
+  {# Show Top Border #}
+  {% if paragraph.field_ts_border_top is defined and not paragraph.field_ts_border_top.isEmpty %}
+    {%- set border_top = paragraph.field_ts_border_top.value ? true : false -%}
+  {% endif %}
+
+  {% include "sipd:text-section" with {
+    title: title,
+    description: description,
+    cta_label: cta_label,
+    cta_url: cta_url,
+    border_top: border_top,
+  } only %}
+</div>

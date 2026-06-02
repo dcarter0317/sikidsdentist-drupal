@@ -1,0 +1,31 @@
+name: Profile Card
+description: "Clinician profile card with headshot image, name, bio, and CTA link."
+group: "Paragraphs Components"
+
+props:
+  type: object
+  properties:
+    name:
+      type: string
+      title: "Clinician Name"
+      description: "Clinician's full name."
+    image:
+      type: string
+      title: "Image URL"
+      description: "URL to the clinician's headshot image."
+    image_alt:
+      type: string
+      title: "Image alt text"
+      description: "Alternative text for the clinician's headshot."
+    bio:
+      type: string
+      title: "Biography"
+      description: "Clinician's biography description."
+    btn_text:
+      type: string
+      title: "Button Text"
+      description: "Text for the read more/CTA button."
+    btn_url:
+      type: string
+      title: "Button URL"
+      description: "URL for the read more/CTA button."

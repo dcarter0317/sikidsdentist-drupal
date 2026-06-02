@@ -1,0 +1,52 @@
+{#
+/**
+ * @file paragraph--profile-card.html.twig
+ *
+ * Bridge template: maps "profile_card" paragraph fields to Profile Card SDC props.
+ */
+#}
+
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set name = null -%}
+  {%- set bio = null -%}
+  {%- set image = null -%}
+  {%- set image_alt = null -%}
+  {%- set btn_text = null -%}
+  {%- set btn_url = null -%}
+
+  {# Clinician Name #}
+  {% if paragraph.field_profile_card_name is defined and not paragraph.field_profile_card_name.isEmpty %}
+    {%- set name = paragraph.field_profile_card_name.value -%}
+  {% endif %}
+
+  {# Clinician Bio #}
+  {% if paragraph.field_profile_card_bio is defined and not paragraph.field_profile_card_bio.isEmpty %}
+    {%- set bio = paragraph.field_profile_card_bio.processed|default(paragraph.field_profile_card_bio.value) -%}
+  {% endif %}
+
+  {# Headshot Image #}
+  {% if paragraph.field_profile_card_media is defined and paragraph.field_profile_card_media.entity %}
+    {%- set _media = paragraph.field_profile_card_media.entity -%}
+    {% if _media.field_media_image is defined and _media.field_media_image.entity %}
+      {%- set image = _media.field_media_image.entity.uri.value|file_url -%}
+      {%- set image_alt = _media.field_media_image.alt|default(name) -%}
+    {% endif %}
+  {% endif %}
+
+  {# CTA Link #}
+  {% if paragraph.field_profile_card_link is defined and paragraph.field_profile_card_link.0 %}
+    {%- set btn_text = paragraph.field_profile_card_link.0.title|default('Read More') -%}
+    {%- set btn_url = paragraph.field_profile_card_link.0.url.toString -%}
+  {% endif %}
+
+  {% include "sipd:profile-card" with {
+    name: name,
+    bio: bio,
+    image: image,
+    image_alt: image_alt,
+    btn_text: btn_text,
+    btn_url: btn_url,
+  } only %}
+</div>

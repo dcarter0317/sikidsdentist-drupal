@@ -1,0 +1,47 @@
+/**
+ * @file text-section.css
+ *
+ * Styles for the Text Section SDC.
+ */
+
+.text-section {
+  --text-section-padding-block: 1.5em;
+  --text-section-border-color: var(--clr-bg-4, #39BDB3);
+  --text-section-cta-bg-color: var(--clr-bg-3, #00334F);
+  --text-section-cta-text-color: var(--clr-text-light, #fefefe);
+  --text-section-cta-hover-bg-color: transparent;
+  --text-section-cta-hover-text-color: var(--clr-text-3, #00334F);
+  --text-section-cta-hover-border-color: var(--clr-bg-3, #00334F);
+  --text-section-transition-duration: 350ms;
+
+  background-color: var(--text-section-bg-color);
+  padding-block: var(--text-section-padding-block);
+}
+
+.text-section.border-top {
+  border-top: 1px solid var(--text-section-border-color);
+}
+
+.text-section__description {
+  margin-block: 1em;
+}
+
+.text-section__cta {
+  display: inline-block;
+  padding: 1em;
+  background-color: var(--text-section-cta-bg-color);
+  color: var(--text-section-cta-text-color);
+  text-decoration: none;
+  font-size: 1.1rem;
+  border: 2px solid transparent;
+  text-transform: uppercase;
+  transition: all var(--text-section-transition-duration);
+}
+
+.text-section__cta:hover,
+.text-section__cta:focus,
+.text-section__cta:active {
+  background-color: var(--text-section-cta-hover-bg-color);
+  color: var(--text-section-cta-hover-text-color);
+  border: 2px solid var(--text-section-cta-hover-border-color);
+}

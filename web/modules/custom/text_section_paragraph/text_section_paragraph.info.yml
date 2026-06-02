@@ -1,0 +1,9 @@
+name: 'Text Section Paragraph'
+description: 'Provides the Text Section paragraph type and its field configuration for use with the Text Section SDC component.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:link
+  - drupal:text

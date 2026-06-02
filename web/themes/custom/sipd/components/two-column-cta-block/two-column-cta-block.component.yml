@@ -1,0 +1,40 @@
+name: Two Column CTA Block
+description: "A two-column Call-to-Action block with a central vertical divider and clean modern typography on a light teal background."
+type: component
+group: "Paragraphs Components"
+
+props:
+  type: object
+  properties:
+    left_title:
+      type: string
+      title: "Left Column Title"
+      description: "Title for the left column."
+    left_text:
+      type: string
+      title: "Left Column Text"
+      description: "Description copy for the left column."
+    left_btn_text:
+      type: string
+      title: "Left Button Text"
+      description: "Text for the CTA button on the left column."
+    left_btn_url:
+      type: string
+      title: "Left Button URL"
+      description: "URL for the CTA button on the left column."
+    right_title:
+      type: string
+      title: "Right Column Title"
+      description: "Title for the right column."
+    right_text:
+      type: string
+      title: "Right Column Text"
+      description: "Description copy for the right column."
+    right_btn_text:
+      type: string
+      title: "Right Button Text"
+      description: "Text for the CTA button on the right column."
+    right_btn_url:
+      type: string
+      title: "Right Button URL"
+      description: "URL for the CTA button on the right column."

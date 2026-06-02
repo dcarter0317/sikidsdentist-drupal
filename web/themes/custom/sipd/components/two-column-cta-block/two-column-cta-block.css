@@ -1,0 +1,131 @@
+/**
+ * @file two-column-cta-block.css
+ *
+ * Responsive styling and premium micro-animations for the Two Column CTA Block component.
+ */
+
+.two-col-cta {
+  --two-col-cta-bg: hsl(175, 54%, 93%);
+  --two-col-cta-title-color: var(--clr-text-3, #00334F);
+  --two-col-cta-text-color: var(--clr-text-5, #414549);
+  --two-col-cta-divider-color: var(--clr-bg-4, #39BDB3);
+  --two-col-cta-btn-bg: var(--clr-bg-3, #00334F);
+  --two-col-cta-btn-text: var(--clr-text-light, #fefefe);
+  --two-col-cta-btn-hover-bg: transparent;
+  --two-col-cta-btn-hover-text: var(--clr-text-3, #00334F);
+  --two-col-cta-btn-hover-border: var(--clr-bg-3, #00334F);
+
+  background-color: var(--two-col-cta-bg);
+  padding: 4rem 2rem;
+  width: 100%;
+}
+
+.two-col-cta__container {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.two-col-cta__column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.two-col-cta__title {
+  font-family: var(--ff-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--two-col-cta-title-color);
+  margin-bottom: 0.75rem;
+  line-height: 1.15;
+}
+
+.two-col-cta__text {
+  font-family: var(--ff-body);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--two-col-cta-text-color);
+  margin-bottom: 1.5rem;
+  max-width: 420px;
+  flex-grow: 1;
+}
+
+.two-col-cta__cta-wrapper {
+  margin-top: auto;
+}
+
+.two-col-cta__btn {
+  display: inline-block;
+  padding: 0.85rem 2.5rem;
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  font-weight: var(--fw-bold, 700);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--two-col-cta-btn-text);
+  background-color: var(--two-col-cta-btn-bg);
+  border: 2px solid var(--two-col-cta-btn-bg);
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.two-col-cta__btn:hover,
+.two-col-cta__btn:focus {
+  background-color: var(--two-col-cta-btn-hover-bg);
+  color: var(--two-col-cta-btn-hover-text);
+  border-color: var(--two-col-cta-btn-hover-border);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.two-col-cta__btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.two-col-cta__divider {
+  width: 3px;
+  background-color: var(--two-col-cta-divider-color);
+  align-self: stretch;
+  opacity: 0.8;
+}
+
+/* Responsive design for tablets & mobile */
+@media (max-width: 768px) {
+  .two-col-cta {
+    padding: 3rem 1.5rem;
+  }
+
+  .two-col-cta__container {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .two-col-cta__divider {
+    width: 80px;
+    height: 3px;
+    align-self: center;
+  }
+
+  .two-col-cta__column {
+    width: 100%;
+  }
+
+  .two-col-cta__title {
+    font-size: 1.85rem;
+  }
+
+  .two-col-cta__text {
+    font-size: 1rem;
+  }
+}

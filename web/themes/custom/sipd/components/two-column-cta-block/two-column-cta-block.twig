@@ -1,0 +1,55 @@
+{#
+/**
+ * @file two-column-cta-block.twig
+ *
+ * Two Column CTA Block Single Directory Component.
+ *
+ * Props:
+ * - left_title (string)
+ * - left_text (string)
+ * - left_btn_text (string)
+ * - left_btn_url (string)
+ * - right_title (string)
+ * - right_text (string)
+ * - right_btn_text (string)
+ * - right_btn_url (string)
+ */
+#}
+
+<section class="two-col-cta">
+  <div class="two-col-cta__container content-container">
+    <div class="two-col-cta__column two-col-cta__column--left">
+      {% if left_title %}
+        <h2 class="two-col-cta__title">{{ left_title }}</h2>
+      {% endif %}
+      {% if left_text %}
+        <div class="two-col-cta__text">
+          {{ left_text|raw }}
+        </div>
+      {% endif %}
+      {% if left_btn_text and left_btn_url %}
+        <div class="two-col-cta__cta-wrapper">
+          <a href="{{ left_btn_url }}" class="two-col-cta__btn" role="button">{{ left_btn_text }}</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="two-col-cta__divider"></div>
+
+    <div class="two-col-cta__column two-col-cta__column--right">
+      {% if right_title %}
+        <h2 class="two-col-cta__title">{{ right_title }}</h2>
+      {% endif %}
+      {% if right_text %}
+        <div class="two-col-cta__text">
+          {{ right_text|raw }}
+        </div>
+      {% endif %}
+      {% if right_btn_text and right_btn_url %}
+        <div class="two-col-cta__cta-wrapper">
+          <a href="{{ right_btn_url }}" class="two-col-cta__btn" role="button">{{ right_btn_text }}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

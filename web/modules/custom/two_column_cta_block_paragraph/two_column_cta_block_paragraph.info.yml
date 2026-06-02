@@ -1,0 +1,9 @@
+name: 'Two Column CTA Block Paragraph'
+description: 'Provides the Two Column CTA Block paragraph type and its field configuration for use with the Two Column CTA Block SDC component.'
+type: module
+core_version_requirement: ^10 || ^11
+package: 'Custom'
+dependencies:
+  - drupal:paragraphs
+  - drupal:link
+  - drupal:text

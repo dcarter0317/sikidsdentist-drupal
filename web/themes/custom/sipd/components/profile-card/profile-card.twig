@@ -1,0 +1,43 @@
+{#
+/**
+ * @file profile-card.twig
+ *
+ * Profile Card Single Directory Component.
+ *
+ * Props:
+ * - name (string) — Clinician's name
+ * - image (string) — URL of the image
+ * - image_alt (string) — Alternative text for image
+ * - bio (string) — Bio description copy
+ * - btn_text (string) — Button text
+ * - btn_url (string) — Button destination link
+ */
+#}
+
+<article class="profile-card">
+  {% if image %}
+    <div class="profile-card__image-container">
+      <img class="profile-card__image" src="{{ image }}" alt="{{ image_alt|default(name)|e('html_attr') }}">
+    </div>
+  {% endif %}
+
+  <div class="profile-card__content">
+    {% if name %}
+      <h2 class="profile-card__name">{{ name|nl2br }}</h2>
+    {% endif %}
+
+    <div class="profile-card__divider"></div>
+
+    {% if bio %}
+      <div class="profile-card__bio">
+        {{ bio|raw }}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if btn_text and btn_url %}
+    <div class="profile-card__footer">
+      <a href="{{ btn_url }}" role="button" class="profile-card__btn">{{ btn_text }}</a>
+    </div>
+  {% endif %}
+</article>

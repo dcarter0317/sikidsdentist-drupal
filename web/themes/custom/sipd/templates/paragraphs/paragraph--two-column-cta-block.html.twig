@@ -1,0 +1,63 @@
+{#
+/**
+ * @file paragraph--two-column-cta-block.html.twig
+ *
+ * Bridge template: maps "two_column_cta_block" paragraph fields to Two Column CTA Block SDC props.
+ */
+#}
+
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set left_title = null -%}
+  {%- set left_text = null -%}
+  {%- set left_btn_text = null -%}
+  {%- set left_btn_url = null -%}
+  {%- set right_title = null -%}
+  {%- set right_text = null -%}
+  {%- set right_btn_text = null -%}
+  {%- set right_btn_url = null -%}
+
+  {# Left Title #}
+  {% if paragraph.field_two_col_cta_left_title is defined and not paragraph.field_two_col_cta_left_title.isEmpty %}
+    {%- set left_title = paragraph.field_two_col_cta_left_title.value -%}
+  {% endif %}
+
+  {# Left Text #}
+  {% if paragraph.field_two_col_cta_left_text is defined and not paragraph.field_two_col_cta_left_text.isEmpty %}
+    {%- set left_text = paragraph.field_two_col_cta_left_text.processed|default(paragraph.field_two_col_cta_left_text.value) -%}
+  {% endif %}
+
+  {# Left Link #}
+  {% if paragraph.field_two_col_cta_left_link is defined and paragraph.field_two_col_cta_left_link.0 %}
+    {%- set left_btn_text = paragraph.field_two_col_cta_left_link.0.title|default('MEET OUR TEAM') -%}
+    {%- set left_btn_url = paragraph.field_two_col_cta_left_link.0.url.toString -%}
+  {% endif %}
+
+  {# Right Title #}
+  {% if paragraph.field_two_col_cta_right_title is defined and not paragraph.field_two_col_cta_right_title.isEmpty %}
+    {%- set right_title = paragraph.field_two_col_cta_right_title.value -%}
+  {% endif %}
+
+  {# Right Text #}
+  {% if paragraph.field_two_col_cta_right_text is defined and not paragraph.field_two_col_cta_right_text.isEmpty %}
+    {%- set right_text = paragraph.field_two_col_cta_right_text.processed|default(paragraph.field_two_col_cta_right_text.value) -%}
+  {% endif %}
+
+  {# Right Link #}
+  {% if paragraph.field_two_col_cta_right_link is defined and paragraph.field_two_col_cta_right_link.0 %}
+    {%- set right_btn_text = paragraph.field_two_col_cta_right_link.0.title|default('LEARN MORE') -%}
+    {%- set right_btn_url = paragraph.field_two_col_cta_right_link.0.url.toString -%}
+  {% endif %}
+
+  {% include "sipd:two-column-cta-block" with {
+    left_title: left_title,
+    left_text: left_text,
+    left_btn_text: left_btn_text,
+    left_btn_url: left_btn_url,
+    right_title: right_title,
+    right_text: right_text,
+    right_btn_text: right_btn_text,
+    right_btn_url: right_btn_url,
+  } only %}
+</div>

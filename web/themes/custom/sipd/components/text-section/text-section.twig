@@ -1,0 +1,32 @@
+{#
+/**
+ * @file text-section.twig
+ *
+ * Text Section Single Directory Component.
+ *
+ * Props:
+ * - title (string)          — main section heading (h2)
+ * - description (string)    — body copy / description text
+ * - cta_label (string)      — CTA button text
+ * - cta_url (string)        — CTA button URL
+ * - border_top (boolean)    — whether to show the top border line
+ */
+#}
+
+<article class="text-section{% if border_top|default(true) %} border-top{% endif %}">
+  <div class="text-section__content">
+    {% if title %}
+      <h2 class="text-section__title">{{ title }}</h2>
+    {% endif %}
+
+    {% if description %}
+      <div class="text-section__description">
+        {{ description }}
+      </div>
+    {% endif %}
+
+    {% if cta_label and cta_url %}
+      <a href="{{ cta_url }}" role="button" class="text-section__cta">{{ cta_label }}</a>
+    {% endif %}
+  </div>
+</article>

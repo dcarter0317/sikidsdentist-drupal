@@ -1,0 +1,29 @@
+name: Text Section
+description: "A text block featuring a title, body copy/description, and optional call-to-action button."
+type: component
+group: "Paragraphs Components"
+
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: "Title"
+      description: "Main section heading (h2)."
+    description:
+      type: string
+      title: "Description"
+      description: "Section body copy / description."
+    cta_label:
+      type: string
+      title: "CTA Label"
+      description: "Text for the CTA link (e.g. 'Read More')."
+    cta_url:
+      type: string
+      title: "CTA URL"
+      description: "URL destination for the CTA link."
+    border_top:
+      type: boolean
+      title: "Show Top Border"
+      description: "Toggles the top border divider accent."
+      default: true
