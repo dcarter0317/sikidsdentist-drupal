@@ -52,10 +52,10 @@
 {# Full Bleed Settings #}
 {% if paragraph.field_ept_settings is defined and not paragraph.field_ept_settings.isEmpty %}
   {%- set ept = paragraph.field_ept_settings.ept_settings -%}
-  {% if ept.full_bleed %}
+  {% if ept.full_bleed == 1 %}
     {%- set full_bleed = true -%}
   {% endif %}
-  {% if ept.full_bleed_bg %}
+  {% if ept.full_bleed_bg == 1 %}
     {%- set full_bleed_bg = true -%}
   {% endif %}
 {% endif %}

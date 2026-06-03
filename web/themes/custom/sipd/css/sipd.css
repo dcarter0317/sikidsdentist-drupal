@@ -1548,14 +1548,25 @@ p {
 
 /* Custom Full Bleed EPT Columns */
 .paragraph.columns-full-bleed {
-  width: 100%;
-  max-width: 100%;
-  margin-inline: 0;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%) !important;
+  margin-right: calc(-50vw + 50%) !important;
   box-sizing: border-box;
 }
 
+@media (width < 900px) {
+  .paragraph.columns-full-bleed {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
 .paragraph.columns-full-bleed .ept-container:not(.content-container) {
-  width: 100%;
-  max-width: 100%;
+  width: 95%;
+  max-width: 95%;
+  margin-inline: auto;
   padding-inline: 0;
 }

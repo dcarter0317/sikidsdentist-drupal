@@ -70,7 +70,7 @@
   {% set classes = classes|merge(['columns-equal-height']) %}
 {% endif %}
 
-{% if content.field_ept_settings['#object'].field_ept_settings.ept_settings.full_bleed or content.field_ept_settings['#object'].field_ept_settings.ept_settings.full_bleed_bg %}
+{% if content.field_ept_settings['#object'].field_ept_settings.ept_settings.full_bleed == 1 or content.field_ept_settings['#object'].field_ept_settings.ept_settings.full_bleed_bg == 1 %}
   {% set classes = classes|merge(['columns-full-bleed']) %}
 {% endif %}
 {% block paragraph %}
@@ -78,7 +78,7 @@
     {{ title_prefix }}
     {{ title_suffix }}
     <div class="bg-inner"></div>
-    <div class="ept-container{{ content.field_ept_settings['#object'].field_ept_settings.ept_settings.full_bleed_bg ? ' content-container' }}">
+    <div class="ept-container{{ content.field_ept_settings['#object'].field_ept_settings.ept_settings.full_bleed_bg == 1 ? ' content-container' }}">
     {% block content %}
       {% if content.field_ept_title|render %}
         {% if content.field_ept_settings['#object'].field_ept_settings.ept_settings.title_options.title_wrapper is empty %}

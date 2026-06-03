@@ -1,12 +1,9 @@
-uuid: 511fd717-82dd-4142-9722-883fb9cd8e8e
+uuid: 2093ec73-c41d-45d7-aada-eec1713ce979
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_ts_description
-    - filter.format.basic_html
-    - filter.format.full_html
-    - filter.format.restricted_html
     - paragraphs.paragraphs_type.text_section
   module:
     - text
@@ -21,8 +18,5 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  allowed_formats:
-    - full_html
-    - basic_html
-    - restricted_html
+  allowed_formats: {  }
 field_type: text_long
