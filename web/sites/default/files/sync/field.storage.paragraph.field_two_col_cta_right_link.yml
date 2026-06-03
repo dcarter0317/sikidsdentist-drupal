@@ -1,0 +1,19 @@
+uuid: 007a7442-d9ec-4bff-81e2-3c1d2fbae101
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - paragraphs
+id: paragraph.field_two_col_cta_right_link
+field_name: field_two_col_cta_right_link
+entity_type: paragraph
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

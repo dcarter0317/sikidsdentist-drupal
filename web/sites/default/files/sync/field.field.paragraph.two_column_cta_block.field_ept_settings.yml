@@ -1,0 +1,21 @@
+uuid: b7380bf9-b6a2-47b1-9e44-3dc386cf29f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_ept_settings
+    - paragraphs.paragraphs_type.two_column_cta_block
+  module:
+    - ept_core
+id: paragraph.two_column_cta_block.field_ept_settings
+field_name: field_ept_settings
+entity_type: paragraph
+bundle: two_column_cta_block
+label: Settings
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: ept_settings

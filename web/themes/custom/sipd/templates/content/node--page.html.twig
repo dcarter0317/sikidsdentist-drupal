@@ -65,10 +65,19 @@
       <div class="node__components">
         {% for item in node.field_components %}
           {% set is_full_width = false %}
-          {% if item.entity.bundle == 'ept_columns' %}
-            {% set ept = item.entity.field_ept_settings.ept_settings %}
-            {% if ept.full_bleed or ept.full_bleed_bg %}
-              {% set is_full_width = true %}
+          {% set target_entity = item.entity %}
+          {% if target_entity.bundle == 'from_library' %}
+            {% if target_entity.field_reusable_paragraph.entity.paragraphs is defined and not target_entity.field_reusable_paragraph.entity.paragraphs.isEmpty %}
+              {% set target_entity = target_entity.field_reusable_paragraph.entity.paragraphs.0.entity %}
+            {% endif %}
+          {% endif %}
+
+          {% if target_entity.bundle == 'ept_columns' or target_entity.bundle == 'two_column_cta_block' %}
+            {% if target_entity.field_ept_settings is defined and not target_entity.field_ept_settings.isEmpty %}
+              {% set ept = target_entity.field_ept_settings.ept_settings %}
+              {% if ept.full_bleed or ept.full_bleed_bg %}
+                {% set is_full_width = true %}
+              {% endif %}
             {% endif %}
           {% endif %}
 

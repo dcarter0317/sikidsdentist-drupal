@@ -1,0 +1,28 @@
+uuid: 409f439c-a4b1-4b25-b33b-aa781a6a61f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_two_col_cta_left_text
+    - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.restricted_html
+    - paragraphs.paragraphs_type.two_column_cta_block
+  module:
+    - text
+id: paragraph.two_column_cta_block.field_two_col_cta_left_text
+field_name: field_two_col_cta_left_text
+entity_type: paragraph
+bundle: two_column_cta_block
+label: 'Left Column Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+    - basic_html
+    - restricted_html
+field_type: text_long

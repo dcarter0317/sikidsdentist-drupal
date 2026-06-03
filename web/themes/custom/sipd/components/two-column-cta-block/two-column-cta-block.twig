@@ -13,11 +13,13 @@
  * - right_text (string)
  * - right_btn_text (string)
  * - right_btn_url (string)
+ * - full_bleed (boolean)
+ * - full_bleed_bg (boolean)
  */
 #}
 
-<section class="two-col-cta">
-  <div class="two-col-cta__container content-container">
+<section class="two-col-cta{{ full_bleed ? ' two-col-cta--full-bleed' }}{{ full_bleed_bg ? ' two-col-cta--full-bleed-bg' }}">
+  <div class="two-col-cta__container{{ (full_bleed_bg or not (full_bleed or full_bleed_bg)) ? ' content-container' : ' two-col-cta__container--full' }}">
     <div class="two-col-cta__column two-col-cta__column--left">
       {% if left_title %}
         <h2 class="two-col-cta__title">{{ left_title }}</h2>

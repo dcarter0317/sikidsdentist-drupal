@@ -1,0 +1,23 @@
+uuid: 415a84f1-a05c-47b4-acdd-f897e86c08e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_two_col_cta_right_link
+    - paragraphs.paragraphs_type.two_column_cta_block
+  module:
+    - link
+id: paragraph.two_column_cta_block.field_two_col_cta_right_link
+field_name: field_two_col_cta_right_link
+entity_type: paragraph
+bundle: two_column_cta_block
+label: 'Right Column Link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

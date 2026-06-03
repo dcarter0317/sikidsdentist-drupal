@@ -38,3 +38,13 @@ props:
       type: string
       title: "Right Button URL"
       description: "URL for the CTA button on the right column."
+    full_bleed:
+      type: boolean
+      title: "Full Bleed"
+      description: "Whether the component is full bleed end-to-end."
+      default: false
+    full_bleed_bg:
+      type: boolean
+      title: "Full Bleed Background"
+      description: "Whether only the background is full bleed, with content centered."
+      default: false

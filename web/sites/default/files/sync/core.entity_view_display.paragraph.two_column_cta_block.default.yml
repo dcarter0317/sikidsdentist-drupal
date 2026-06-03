@@ -1,0 +1,84 @@
+uuid: 786d7ebd-564f-4603-91b8-e13898748e4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.two_column_cta_block.field_ept_settings
+    - field.field.paragraph.two_column_cta_block.field_two_col_cta_left_link
+    - field.field.paragraph.two_column_cta_block.field_two_col_cta_left_text
+    - field.field.paragraph.two_column_cta_block.field_two_col_cta_left_title
+    - field.field.paragraph.two_column_cta_block.field_two_col_cta_right_link
+    - field.field.paragraph.two_column_cta_block.field_two_col_cta_right_text
+    - field.field.paragraph.two_column_cta_block.field_two_col_cta_right_title
+    - paragraphs.paragraphs_type.two_column_cta_block
+  module:
+    - ept_core
+    - link
+    - text
+id: paragraph.two_column_cta_block.default
+targetEntityType: paragraph
+bundle: two_column_cta_block
+mode: default
+content:
+  field_ept_settings:
+    type: ept_settings_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_two_col_cta_left_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_two_col_cta_left_text:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_two_col_cta_left_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_two_col_cta_right_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_two_col_cta_right_text:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_two_col_cta_right_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden: {  }

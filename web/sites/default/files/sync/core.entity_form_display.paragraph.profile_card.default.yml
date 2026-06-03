@@ -3,12 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.profile_card.field_ept_settings
     - field.field.paragraph.profile_card.field_profile_card_bio
     - field.field.paragraph.profile_card.field_profile_card_link
     - field.field.paragraph.profile_card.field_profile_card_media
     - field.field.paragraph.profile_card.field_profile_card_name
     - paragraphs.paragraphs_type.profile_card
   module:
+    - ept_columns
     - link
     - media_library
     - text
@@ -17,6 +19,12 @@ targetEntityType: paragraph
 bundle: profile_card
 mode: default
 content:
+  field_ept_settings:
+    type: ept_settings_columns
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_profile_card_bio:
     type: text_textarea
     weight: 1

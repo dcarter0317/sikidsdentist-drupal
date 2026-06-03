@@ -2,10 +2,11 @@
  * @file two-column-cta-block.css
  *
  * Responsive styling and premium micro-animations for the Two Column CTA Block component.
+ * Supports full bleed configurations and guarantees zero horizontal overflow on mobile viewports.
  */
 
 .two-col-cta {
-  --two-col-cta-bg: hsl(175, 54%, 93%);
+  --two-col-cta-bg: #d7f2f0;
   --two-col-cta-title-color: var(--clr-text-3, #00334F);
   --two-col-cta-text-color: var(--clr-text-5, #414549);
   --two-col-cta-divider-color: var(--clr-bg-4, #39BDB3);
@@ -14,19 +15,34 @@
   --two-col-cta-btn-hover-bg: transparent;
   --two-col-cta-btn-hover-text: var(--clr-text-3, #00334F);
   --two-col-cta-btn-hover-border: var(--clr-bg-3, #00334F);
+  --two-col-cta-padding-block: 2rem;
+  --two-col-cta-padding-inline: 2rem;
 
   background-color: var(--two-col-cta-bg);
-  padding: 4rem 2rem;
+  padding-block: var(--two-col-cta-padding-block);
+  padding-inline: var(--two-col-cta-padding-inline);
   width: 100%;
+  box-sizing: border-box;
 }
 
-.two-col-cta__container {
+.two-col-cta__container,
+.two-col-cta__container--full {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
   gap: 3rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.two-col-cta__container {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.two-col-cta__container--full {
+  max-width: 100%;
+  padding-inline: 2rem;
 }
 
 .two-col-cta__column {
@@ -35,12 +51,13 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .two-col-cta__title {
   font-family: var(--ff-heading);
   font-size: 2.2rem;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--two-col-cta-title-color);
   margin-bottom: 0.75rem;
   line-height: 1.15;
@@ -53,6 +70,8 @@
   color: var(--two-col-cta-text-color);
   margin-bottom: 1.5rem;
   max-width: 420px;
+  width: 100%;
+  box-sizing: border-box;
   flex-grow: 1;
 }
 
@@ -100,15 +119,17 @@
 }
 
 /* Responsive design for tablets & mobile */
-@media (max-width: 768px) {
+@media (width < 900px) {
   .two-col-cta {
-    padding: 3rem 1.5rem;
+    --two-col-cta-padding-inline: 1rem;
   }
 
-  .two-col-cta__container {
+  .two-col-cta__container,
+  .two-col-cta__container--full {
     flex-direction: column;
     align-items: center;
     gap: 2.5rem;
+    padding-inline: 0;
   }
 
   .two-col-cta__divider {
@@ -119,6 +140,8 @@
 
   .two-col-cta__column {
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .two-col-cta__title {
@@ -127,5 +150,18 @@
 
   .two-col-cta__text {
     font-size: 1rem;
+    max-width: 100%;
   }
+}
+
+/* ── Nested Paragraph Styles ── */
+/* Inherit background, margins, and padding when nested inside container paragraphs (like ept_columns) */
+.paragraph .paragraph .two-col-cta {
+  background-color: transparent;
+  padding-block: 2rem;
+  padding-inline: 0;
+}
+
+.paragraph .paragraph .two-col-cta__container {
+  max-width: 100%;
 }

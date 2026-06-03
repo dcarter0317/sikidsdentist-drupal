@@ -9,6 +9,7 @@
   --clr-bg-5: #f3efef;
   --clr-bg-6: #668595;
   --clr-bg-7: #287CA6;
+  --clr-bg-8: #e4f7f5;
 
   --clr-text-light: #fefefe;
   --clr-text-1: #333333;
@@ -49,6 +50,7 @@ iframe,
 video,
 embed,
 object {
+  display: block;
   max-width: 100% !important;
   height: auto;
   box-sizing: border-box;

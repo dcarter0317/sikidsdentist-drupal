@@ -1,0 +1,15 @@
+uuid: 75066f2d-b2ae-4323-b57b-db036c546853
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraph_block
+third_party_settings:
+  paragraph_block:
+    status: false
+id: two_column_cta_block
+label: 'Two Column CTA Block'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

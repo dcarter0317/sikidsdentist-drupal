@@ -6,49 +6,76 @@
  */
 #}
 
-<div{{ attributes }}>
+{%- set left_title = null -%}
+{%- set left_text = null -%}
+{%- set left_btn_text = null -%}
+{%- set left_btn_url = null -%}
+{%- set right_title = null -%}
+{%- set right_text = null -%}
+{%- set right_btn_text = null -%}
+{%- set right_btn_url = null -%}
+{%- set full_bleed = false -%}
+{%- set full_bleed_bg = false -%}
+
+{# Left Title #}
+{% if paragraph.field_two_col_cta_left_title is defined and not paragraph.field_two_col_cta_left_title.isEmpty %}
+  {%- set left_title = paragraph.field_two_col_cta_left_title.value -%}
+{% endif %}
+
+{# Left Text #}
+{% if paragraph.field_two_col_cta_left_text is defined and not paragraph.field_two_col_cta_left_text.isEmpty %}
+  {%- set left_text = paragraph.field_two_col_cta_left_text.processed|default(paragraph.field_two_col_cta_left_text.value) -%}
+{% endif %}
+
+{# Left Link #}
+{% if paragraph.field_two_col_cta_left_link is defined and paragraph.field_two_col_cta_left_link.0 %}
+  {%- set left_btn_text = paragraph.field_two_col_cta_left_link.0.title|default('MEET OUR TEAM') -%}
+  {%- set left_btn_url = paragraph.field_two_col_cta_left_link.0.url.toString -%}
+{% endif %}
+
+{# Right Title #}
+{% if paragraph.field_two_col_cta_right_title is defined and not paragraph.field_two_col_cta_right_title.isEmpty %}
+  {%- set right_title = paragraph.field_two_col_cta_right_title.value -%}
+{% endif %}
+
+{# Right Text #}
+{% if paragraph.field_two_col_cta_right_text is defined and not paragraph.field_two_col_cta_right_text.isEmpty %}
+  {%- set right_text = paragraph.field_two_col_cta_right_text.processed|default(paragraph.field_two_col_cta_right_text.value) -%}
+{% endif %}
+
+{# Right Link #}
+{% if paragraph.field_two_col_cta_right_link is defined and paragraph.field_two_col_cta_right_link.0 %}
+  {%- set right_btn_text = paragraph.field_two_col_cta_right_link.0.title|default('LEARN MORE') -%}
+  {%- set right_btn_url = paragraph.field_two_col_cta_right_link.0.url.toString -%}
+{% endif %}
+
+{# Full Bleed Settings #}
+{% if paragraph.field_ept_settings is defined and not paragraph.field_ept_settings.isEmpty %}
+  {%- set ept = paragraph.field_ept_settings.ept_settings -%}
+  {% if ept.full_bleed %}
+    {%- set full_bleed = true -%}
+  {% endif %}
+  {% if ept.full_bleed_bg %}
+    {%- set full_bleed_bg = true -%}
+  {% endif %}
+{% endif %}
+
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+{% if full_bleed or full_bleed_bg %}
+  {% set classes = classes|merge(['columns-full-bleed']) %}
+{% endif %}
+
+<div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
-  {%- set left_title = null -%}
-  {%- set left_text = null -%}
-  {%- set left_btn_text = null -%}
-  {%- set left_btn_url = null -%}
-  {%- set right_title = null -%}
-  {%- set right_text = null -%}
-  {%- set right_btn_text = null -%}
-  {%- set right_btn_url = null -%}
-
-  {# Left Title #}
-  {% if paragraph.field_two_col_cta_left_title is defined and not paragraph.field_two_col_cta_left_title.isEmpty %}
-    {%- set left_title = paragraph.field_two_col_cta_left_title.value -%}
-  {% endif %}
-
-  {# Left Text #}
-  {% if paragraph.field_two_col_cta_left_text is defined and not paragraph.field_two_col_cta_left_text.isEmpty %}
-    {%- set left_text = paragraph.field_two_col_cta_left_text.processed|default(paragraph.field_two_col_cta_left_text.value) -%}
-  {% endif %}
-
-  {# Left Link #}
-  {% if paragraph.field_two_col_cta_left_link is defined and paragraph.field_two_col_cta_left_link.0 %}
-    {%- set left_btn_text = paragraph.field_two_col_cta_left_link.0.title|default('MEET OUR TEAM') -%}
-    {%- set left_btn_url = paragraph.field_two_col_cta_left_link.0.url.toString -%}
-  {% endif %}
-
-  {# Right Title #}
-  {% if paragraph.field_two_col_cta_right_title is defined and not paragraph.field_two_col_cta_right_title.isEmpty %}
-    {%- set right_title = paragraph.field_two_col_cta_right_title.value -%}
-  {% endif %}
-
-  {# Right Text #}
-  {% if paragraph.field_two_col_cta_right_text is defined and not paragraph.field_two_col_cta_right_text.isEmpty %}
-    {%- set right_text = paragraph.field_two_col_cta_right_text.processed|default(paragraph.field_two_col_cta_right_text.value) -%}
-  {% endif %}
-
-  {# Right Link #}
-  {% if paragraph.field_two_col_cta_right_link is defined and paragraph.field_two_col_cta_right_link.0 %}
-    {%- set right_btn_text = paragraph.field_two_col_cta_right_link.0.title|default('LEARN MORE') -%}
-    {%- set right_btn_url = paragraph.field_two_col_cta_right_link.0.url.toString -%}
-  {% endif %}
 
   {% include "sipd:two-column-cta-block" with {
     left_title: left_title,
@@ -59,5 +86,7 @@
     right_text: right_text,
     right_btn_text: right_btn_text,
     right_btn_url: right_btn_url,
+    full_bleed: full_bleed,
+    full_bleed_bg: full_bleed_bg,
   } only %}
 </div>

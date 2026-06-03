@@ -3,12 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.profile_card.field_ept_settings
     - field.field.paragraph.profile_card.field_profile_card_bio
     - field.field.paragraph.profile_card.field_profile_card_link
     - field.field.paragraph.profile_card.field_profile_card_media
     - field.field.paragraph.profile_card.field_profile_card_name
     - paragraphs.paragraphs_type.profile_card
   module:
+    - ept_core
     - link
     - text
 id: paragraph.profile_card.default
@@ -16,6 +18,13 @@ targetEntityType: paragraph
 bundle: profile_card
 mode: default
 content:
+  field_ept_settings:
+    type: ept_settings_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_profile_card_bio:
     type: text_default
     label: above

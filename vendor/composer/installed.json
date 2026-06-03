@@ -3618,6 +3618,77 @@
             "install-path": "../../web/modules/contrib/paragraphs"
         },
         {
+            "name": "drupal/paragraphs_edit",
+            "version": "3.0.1",
+            "version_normalized": "3.0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/paragraphs_edit.git",
+                "reference": "3.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/paragraphs_edit-3.0.1.zip",
+                "reference": "3.0.1",
+                "shasum": "d9c66cee07e93ca0c209651f569705f274bee0de"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10 || ^11",
+                "drupal/paragraphs": "*"
+            },
+            "require-dev": {
+                "drupal/paragraphs": "^1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.1",
+                    "datestamp": "1733468697",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "anybody",
+                    "homepage": "https://www.drupal.org/user/291091"
+                },
+                {
+                    "name": "astonvictor",
+                    "homepage": "https://www.drupal.org/user/3466615"
+                },
+                {
+                    "name": "bbrala",
+                    "homepage": "https://www.drupal.org/user/3366066"
+                },
+                {
+                    "name": "casey",
+                    "homepage": "https://www.drupal.org/user/32403"
+                },
+                {
+                    "name": "grevil",
+                    "homepage": "https://www.drupal.org/user/3668491"
+                },
+                {
+                    "name": "timohuisman",
+                    "homepage": "https://www.drupal.org/user/3558376"
+                }
+            ],
+            "description": "Allows users to edit/clone and delete paragraphs.",
+            "homepage": "https://www.drupal.org/project/paragraphs_edit",
+            "support": {
+                "source": "https://git.drupalcode.org/project/paragraphs_edit"
+            },
+            "install-path": "../../web/modules/contrib/paragraphs_edit"
+        },
+        {
             "name": "drupal/sdc_devel",
             "version": "1.0.2",
             "version_normalized": "1.0.2.0",
