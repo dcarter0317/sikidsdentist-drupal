@@ -74,7 +74,7 @@
 
           {% if target_entity.bundle == 'ept_columns' or target_entity.bundle == 'two_column_cta_block' %}
             {% if target_entity.field_ept_settings is defined and not target_entity.field_ept_settings.isEmpty %}
-              {% set ept = target_entity.field_ept_settings.ept_settings %}
+              {% set ept = target_entity.field_ept_settings.0.ept_settings %}
               {% if ept.full_bleed == 1 or ept.full_bleed_bg == 1 %}
                 {% set is_full_width = true %}
               {% endif %}

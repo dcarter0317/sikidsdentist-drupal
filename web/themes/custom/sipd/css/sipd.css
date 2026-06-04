@@ -147,6 +147,10 @@ p {
   margin-bottom: 1rem;
 }
 
+ul {
+  margin-left: 2rem;
+}
+
 .overlay {
   border-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)) fill 1;
 }
@@ -1548,25 +1552,44 @@ p {
 
 /* Custom Full Bleed EPT Columns */
 .paragraph.columns-full-bleed {
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(-50vw + 50%) !important;
-  margin-right: calc(-50vw + 50%) !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  position: relative !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   box-sizing: border-box;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  z-index: 1;
 }
 
 @media (width < 900px) {
   .paragraph.columns-full-bleed {
     width: 100% !important;
     max-width: 100% !important;
+    left: auto !important;
+    transform: none !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
 }
 
 .paragraph.columns-full-bleed .ept-container:not(.content-container) {
-  width: 95%;
-  max-width: 95%;
-  margin-inline: auto;
-  padding-inline: 0;
+  width: 95% !important;
+  max-width: 95% !important;
+  margin-inline: auto !important;
+  padding-inline: 0 !important;
+}
+
+/* Ensure nested components inside container paragraphs are transparent and do not breakout */
+.paragraph .paragraph .banner,
+.paragraph .paragraph .two-col-cta,
+.paragraph .paragraph .text-section {
+  background: transparent !important;
+  background-color: transparent !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+  left: auto !important;
+  transform: none !important;
 }

@@ -10,10 +10,10 @@
 {%- set title        = paragraph.field_ab_title.value -%}
 {%- set body         = paragraph.field_ab_body.value -%}
 {%- set eyebrow      = paragraph.field_ab_eyebrow.value -%}
-{%- set cta_label    = paragraph.field_ab_cta.title -%}
-{%- set cta_url      = paragraph.field_ab_cta.uri -%}
-{%- set cta_secondary_label = paragraph.field_ab_cta_secondary.title -%}
-{%- set cta_secondary_url   = paragraph.field_ab_cta_secondary.uri -%}
+{%- set cta_label    = paragraph.field_ab_cta.0.title|default(null) -%}
+{%- set cta_url      = paragraph.field_ab_cta.0 ? paragraph.field_ab_cta.0.url.toString() : null -%}
+{%- set cta_secondary_label = paragraph.field_ab_cta_secondary.0.title|default(null) -%}
+{%- set cta_secondary_url   = paragraph.field_ab_cta_secondary.0 ? paragraph.field_ab_cta_secondary.0.url.toString() : null -%}
 
 {%- set props = {
   banner_style:        banner_style,

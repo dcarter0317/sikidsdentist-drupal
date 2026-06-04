@@ -18,9 +18,9 @@
   {% endif %}
 
   {# CTA link #}
-  {% if paragraph.field_ts_cta is defined and paragraph.field_ts_cta.0 %}
-    {%- set cta_label = paragraph.field_ts_cta.0.title|default(null) -%}
-    {%- set cta_url = paragraph.field_ts_cta.0.url.toString -%}
+  {% if paragraph.field_ts_cta_link is defined and paragraph.field_ts_cta_link.0 %}
+    {%- set cta_label = paragraph.field_ts_cta_link.0.title|default(null) -%}
+    {%- set cta_url = paragraph.field_ts_cta_link.0.url.toString -%}
   {% endif %}
 
   {# Show Top Border #}

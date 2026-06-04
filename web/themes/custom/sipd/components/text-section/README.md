@@ -24,7 +24,7 @@ Add these fields to the `text_section` paragraph bundle (machine names below):
 |---|---|---|---|
 | Title | `field_ts_title` | Text (plain) | Main h2 section heading |
 | Description | `field_ts_description` | Text (long, formatted) | Section body copy / description |
-| CTA | `field_ts_cta` | Link | Optional call-to-action button |
+| CTA | `field_ts_cta_link` | Link | Optional call-to-action button |
 | Show Top Border | `field_ts_border_top` | Boolean | Toggles the top border divider accent |
 
 ## Render Flow
