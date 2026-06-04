@@ -1409,6 +1409,27 @@ ul {
   }
 }
 
+/* EPT Paragraph Columns Equal Height Fix */
+.ept-paragraph-columns.columns-equal-height .field--name-field-ept-columns > .field__item,
+.ept-paragraph-columns.columns-equal-height .field--name-field-ept-columns > .field--item {
+  display: flex;
+  flex-direction: column;
+}
+
+.ept-paragraph-columns.columns-equal-height .field--name-field-ept-columns > .field__item > *,
+.ept-paragraph-columns.columns-equal-height .field--name-field-ept-columns > .field--item > * {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ept-paragraph-columns.columns-equal-height .field--name-field-ept-columns > .field__item > * > *,
+.ept-paragraph-columns.columns-equal-height .field--name-field-ept-columns > .field--item > * > * {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 /* ── EPT Paragraph Columns Responsive Overrides ─────────── */
 @media (width < 900px) {
 
@@ -1427,6 +1448,17 @@ ul {
 
   .ept-paragraph-columns.columns-equal-height .field--name-field-ept-columns>.field__item .paragraph,
   .ept-paragraph-columns.columns-equal-height .field--name-field-ept-columns>.field--item .paragraph {
+    height: auto !important;
+  }
+
+  .ept-paragraph-columns.columns-equal-height .field--name-field-ept-columns > .field__item > *,
+  .ept-paragraph-columns.columns-equal-height .field--name-field-ept-columns > .field--item > * {
+    height: auto !important;
+  }
+
+  .ept-paragraph-columns.columns-equal-height .field--name-field-ept-columns > .field__item > * > *,
+  .ept-paragraph-columns.columns-equal-height .field--name-field-ept-columns > .field--item > * > * {
+    flex-grow: 0 !important;
     height: auto !important;
   }
 }
