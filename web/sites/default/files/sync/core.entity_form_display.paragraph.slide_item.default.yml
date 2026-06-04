@@ -18,14 +18,6 @@ targetEntityType: paragraph
 bundle: slide_item
 mode: default
 content:
-  admin_title:
-    type: string_textfield
-    weight: 5
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_slide_alignment:
     type: options_select
     weight: 4
@@ -64,5 +56,6 @@ content:
       media_types: {  }
     third_party_settings: {  }
 hidden:
+  admin_title: true
   created: true
   status: true

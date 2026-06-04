@@ -25,7 +25,7 @@ content:
     third_party_settings: {  }
   field_ts_description:
     type: text_textarea
-    weight: 3
+    weight: 1
     region: content
     settings:
       rows: 5

@@ -10,7 +10,7 @@ dependencies:
     - paragraph_blocks
 third_party_settings:
   paragraph_blocks:
-    status: 1
+    status: 0
 id: paragraph.section.field_paragraphs
 field_name: field_paragraphs
 entity_type: paragraph
@@ -25,7 +25,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles: null
-    negate: 0
+    negate: 1
     target_bundles_drag_drop:
       accordion:
         weight: 10
@@ -87,8 +87,26 @@ settings:
       hero:
         weight: 16
         enabled: false
+      icon_link:
+        weight: 56
+        enabled: false
+      image:
+        weight: 57
+        enabled: false
+      image_link:
+        weight: 58
+        enabled: false
+      media:
+        weight: 59
+        enabled: false
       page_hero:
         weight: 47
+        enabled: false
+      post:
+        weight: 61
+        enabled: false
+      profile_card:
+        weight: 62
         enabled: false
       quick_link_item:
         weight: 49
@@ -104,5 +122,14 @@ settings:
         enabled: false
       slider:
         weight: 51
+        enabled: false
+      text_block:
+        weight: 68
+        enabled: false
+      text_section:
+        weight: 69
+        enabled: false
+      two_column_cta_block:
+        weight: 70
         enabled: false
 field_type: entity_reference_revisions

@@ -28,3 +28,5 @@ Include the component in your Twig templates using the standard Drupal SDC inclu
 - **text** (string): The text displayed on top of the background image overlay.
 - **image** (string): The URL path to the background image.
 - **image_alt** (string): Alternative text for accessibility.
+- **bg_color** (string): Overlay background color (hex format).
+- **bg_opacity** (string): Overlay background opacity (0 to 1).

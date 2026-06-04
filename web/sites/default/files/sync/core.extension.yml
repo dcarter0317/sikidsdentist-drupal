@@ -17,6 +17,7 @@ module:
   card_list_paragraph: 0
   card_paragraph: 0
   ckeditor5: 0
+  color_field: 0
   comment: 0
   config: 0
   contextual: 0

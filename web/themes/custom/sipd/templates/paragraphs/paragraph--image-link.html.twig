@@ -35,12 +35,25 @@
   {% endif %}
 {% endif %}
 
+{# Extract Background Color & Opacity #}
+{%- set bg_color = null -%}
+{%- set bg_opacity = null -%}
+{% if paragraph.field_image_link_bg_color is defined and not paragraph.field_image_link_bg_color.isEmpty %}
+  {%- set bg_color = paragraph.field_image_link_bg_color.color -%}
+  {%- set bg_opacity = paragraph.field_image_link_bg_color.opacity -%}
+  {% if bg_color and bg_color|first != '#' %}
+    {%- set bg_color = '#' ~ bg_color -%}
+  {% endif %}
+{% endif %}
+
 {% if url and image %}
   {% include 'sipd:image-link' with {
     url: url,
     text: text,
     image: image,
-    image_alt: image_alt
+    image_alt: image_alt,
+    bg_color: bg_color,
+    bg_opacity: bg_opacity
   } only %}
 {% endif %}
 </div>

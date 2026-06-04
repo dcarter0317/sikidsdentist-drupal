@@ -18,6 +18,7 @@
         "composer/installers": "^2.3",
         "drupal/blazy": "^3.0",
         "drupal/block_field": "^1.0@dev",
+        "drupal/color_field": "^3.0",
         "drupal/core-composer-scaffold": "^11.3",
         "drupal/core-project-message": "^11.3",
         "drupal/core-recipe-unpack": "^11.3",

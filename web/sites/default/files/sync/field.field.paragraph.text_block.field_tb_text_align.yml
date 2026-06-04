@@ -1,0 +1,21 @@
+uuid: b19db0d2-8da0-430d-854f-90fcf93a381e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tb_text_align
+    - paragraphs.paragraphs_type.text_block
+  module:
+    - options
+id: paragraph.text_block.field_tb_text_align
+field_name: field_tb_text_align
+entity_type: paragraph
+bundle: text_block
+label: 'Text Align'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

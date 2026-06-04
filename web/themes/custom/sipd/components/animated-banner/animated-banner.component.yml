@@ -34,3 +34,8 @@ props:
       type: string
       title: "Animation Class"
       description: "CSS animation class applied to .banner__content."
+    text_align:
+      type: string
+      title: "Text Align"
+      default: "left"
+      description: "Text align for the banner content."

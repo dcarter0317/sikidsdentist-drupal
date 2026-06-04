@@ -4,13 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.paragraph.field_slider_slides
-    - paragraphs.paragraphs_type.ebt_tab
-    - paragraphs.paragraphs_type.ept_columns
-    - paragraphs.paragraphs_type.ept_text
-    - paragraphs.paragraphs_type.ept_tiles
-    - paragraphs.paragraphs_type.ept_tiles_item
-    - paragraphs.paragraphs_type.ept_video_and_image_gallery
-    - paragraphs.paragraphs_type.ept_video_and_image_gallery_item
     - paragraphs.paragraphs_type.slider
   module:
     - paragraph_blocks
@@ -28,106 +21,11 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:paragraph'
+  handler: 'default:paragraphs_library_item'
   handler_settings:
-    target_bundles:
-      ebt_tab: ebt_tab
-      ept_columns: ept_columns
-      ept_text: ept_text
-      ept_tiles: ept_tiles
-      ept_tiles_item: ept_tiles_item
-      ept_video_and_image_gallery: ept_video_and_image_gallery
-      ept_video_and_image_gallery_item: ept_video_and_image_gallery_item
-    negate: 1
-    target_bundles_drag_drop:
-      accordion:
-        weight: 18
-        enabled: false
-      accordion_item:
-        weight: 19
-        enabled: false
-      animated_banner:
-        weight: 33
-        enabled: false
-      banner:
-        weight: 34
-        enabled: false
-      blog_hero:
-        weight: 20
-        enabled: false
-      card_item:
-        weight: 21
-        enabled: false
-      card_list:
-        weight: 22
-        enabled: false
-      ebt_tab:
-        weight: 23
-        enabled: true
-      ept_columns:
-        weight: 24
-        enabled: true
-      ept_text:
-        weight: 25
-        enabled: true
-      ept_tiles:
-        weight: 26
-        enabled: true
-      ept_tiles_item:
-        weight: 27
-        enabled: true
-      ept_video_and_image_gallery:
-        weight: 28
-        enabled: true
-      ept_video_and_image_gallery_item:
-        weight: 29
-        enabled: true
-      featured_post:
-        weight: 45
-        enabled: false
-      floated_content:
-        weight: 46
-        enabled: false
-      from_library:
-        weight: 30
-        enabled: false
-      grid_container:
-        weight: 48
-        enabled: false
-      grid_item:
-        weight: 49
-        enabled: false
-      hero:
-        weight: 31
-        enabled: false
-      icon_link:
-        weight: 51
-        enabled: false
-      image_link:
-        weight: 52
-        enabled: false
-      page_hero:
-        weight: 53
-        enabled: false
-      post:
-        weight: 54
-        enabled: false
-      quick_link_item:
-        weight: 56
-        enabled: false
-      quick_links:
-        weight: 55
-        enabled: false
-      section:
-        weight: 32
-        enabled: false
-      slide_item:
-        weight: 34
-        enabled: false
-      slider:
-        weight: 33
-        enabled: false
-      text_block:
-        weight: 60
-        enabled: false
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
 field_type: entity_reference

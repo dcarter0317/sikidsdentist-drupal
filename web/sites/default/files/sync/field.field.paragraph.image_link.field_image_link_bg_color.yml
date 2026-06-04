@@ -1,0 +1,25 @@
+uuid: f4cfaa36-e2f9-4752-87f3-8f117dbb7219
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_image_link_bg_color
+    - paragraphs.paragraphs_type.image_link
+  module:
+    - color_field
+id: paragraph.image_link.field_image_link_bg_color
+field_name: field_image_link_bg_color
+entity_type: paragraph
+bundle: image_link
+label: 'Background Color'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    color: '#003f5c'
+    opacity: 0.08
+default_value_callback: ''
+settings:
+  opacity: 1
+field_type: color_field_type

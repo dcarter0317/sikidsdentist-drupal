@@ -2,11 +2,13 @@
   {{ title_prefix }}
   {{ title_suffix }}
   {%- set title = paragraph.field_tb_title.value -%}
-{# Body: use .processed to get the text-format-filtered HTML #}
-{%- set body = paragraph.field_tb_body.processed -%}
+  {# Body: use .processed to get the text-format-filtered HTML #}
+  {%- set body = paragraph.field_tb_body.processed -%}
+  {%- set text_align = paragraph.field_tb_text_align.value|default('left') -%}
 
 {% include "sipd:text-block" with {
   title:           title,
-  body:            body
+  body:            body,
+  text_align:      text_align
 } only %}
 </div>

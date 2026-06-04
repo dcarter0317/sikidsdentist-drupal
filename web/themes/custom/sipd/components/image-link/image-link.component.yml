@@ -21,3 +21,11 @@ props:
       type: string
       title: Image Alt Text
       description: Alternative text for accessibility.
+    bg_color:
+      type: string
+      title: Background Color
+      description: Overlay background color (hex format).
+    bg_opacity:
+      type: string
+      title: Background Opacity
+      description: Overlay background opacity (0 to 1).

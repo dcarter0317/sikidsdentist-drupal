@@ -3,10 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.image_link.field_image_link_bg_color
     - field.field.paragraph.image_link.field_image_link_media
     - field.field.paragraph.image_link.field_image_link_url
     - paragraphs.paragraphs_type.image_link
   module:
+    - color_field
     - link
     - media_library
 id: paragraph.image_link.default
@@ -14,16 +16,24 @@ targetEntityType: paragraph
 bundle: image_link
 mode: default
 content:
+  field_image_link_bg_color:
+    type: color_field_widget_default
+    weight: 1
+    region: content
+    settings:
+      placeholder_color: ''
+      placeholder_opacity: ''
+    third_party_settings: {  }
   field_image_link_media:
     type: media_library_widget
-    weight: 2
+    weight: 0
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_image_link_url:
     type: link_default
-    weight: 0
+    weight: 2
     region: content
     settings:
       placeholder_url: ''

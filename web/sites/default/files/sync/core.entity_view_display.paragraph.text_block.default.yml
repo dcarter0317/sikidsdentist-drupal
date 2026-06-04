@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.text_block.field_tb_body
+    - field.field.paragraph.text_block.field_tb_text_align
     - field.field.paragraph.text_block.field_tb_title
     - paragraphs.paragraphs_type.text_block
   module:
+    - options
     - text
 id: paragraph.text_block.default
 targetEntityType: paragraph
@@ -19,6 +21,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_tb_text_align:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
     region: content
   field_tb_title:
     type: string

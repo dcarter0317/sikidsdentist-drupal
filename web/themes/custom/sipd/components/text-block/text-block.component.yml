@@ -13,3 +13,12 @@ props:
       type: string
       title: "Body Text"
       description: "The main body content."
+    text_align:
+      type: string
+      title: "Text Align"
+      description: "Controls the text alignment of the text block. Maps to field_tb_text_align on the paragraph."
+      default: "left"
+      enum:
+        - left
+        - center
+        - right
