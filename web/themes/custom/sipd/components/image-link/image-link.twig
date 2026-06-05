@@ -19,8 +19,9 @@
   {% set inline_styles = inline_styles|merge(['--image-link-bg-opacity: ' ~ bg_opacity]) %}
 {% endif %}
 {% set style_str = inline_styles|length > 0 ? inline_styles|join('; ') ~ ';' : '' %}
+{% set style_attribute = style_str ? 'style="' ~ style_str ~ '"' : '' %}
 
-<div class="image-link"{% if style_str %} style="{{ style_str }}"{% endif %}>
+<div class="image-link" {{ style_attribute|raw }}>
   <a href="{{ url }}" class="image-link__link">
     <div class="image-link__image-wrapper">
       {% if image %}
