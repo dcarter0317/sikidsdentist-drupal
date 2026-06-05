@@ -29,10 +29,10 @@
   --fw-med: 500;
   --fw-light: 300;
 
-  --fs-h1: 2.4rem;
-  --fs-h2: 2.0rem;
-  --fs-h3: 1.8rem;
-  --fs-h4: 1.5rem;
+  --fs-h1: 2.0rem;
+  --fs-h2: 1.5rem;
+  --fs-h3: 1.3rem;
+  --fs-h4: 1.2rem;
   --fs-h5: 1.125rem;
   --fs-h6: .9rem;
 }
@@ -1410,27 +1410,27 @@ ul {
 }
 
 /* EPT Paragraph Columns Equal Height Fix */
-.ept-paragraph-columns.columns-equal-height > .ept-container > .field--name-field-ept-columns > .field__item,
-.ept-paragraph-columns.columns-equal-height > .ept-container > .field--name-field-ept-columns > .field--item,
-.ept-paragraph-columns.columns-equal-height > .field--name-field-ept-columns > .field__item,
-.ept-paragraph-columns.columns-equal-height > .field--name-field-ept-columns > .field--item {
+.ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field__item,
+.ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field--item,
+.ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field__item,
+.ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field--item {
   display: flex;
   flex-direction: column;
 }
 
-.ept-paragraph-columns.columns-equal-height > .ept-container > .field--name-field-ept-columns > .field__item > *,
-.ept-paragraph-columns.columns-equal-height > .ept-container > .field--name-field-ept-columns > .field--item > *,
-.ept-paragraph-columns.columns-equal-height > .field--name-field-ept-columns > .field__item > *,
-.ept-paragraph-columns.columns-equal-height > .field--name-field-ept-columns > .field--item > * {
+.ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field__item>*,
+.ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field--item>*,
+.ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field__item>*,
+.ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field--item>* {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.ept-paragraph-columns.columns-equal-height > .ept-container > .field--name-field-ept-columns > .field__item > * > *,
-.ept-paragraph-columns.columns-equal-height > .ept-container > .field--name-field-ept-columns > .field--item > * > *,
-.ept-paragraph-columns.columns-equal-height > .field--name-field-ept-columns > .field__item > * > *,
-.ept-paragraph-columns.columns-equal-height > .field--name-field-ept-columns > .field--item > * > * {
+.ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field__item>*>*,
+.ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field--item>*>*,
+.ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field__item>*>*,
+.ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field--item>*>* {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -1439,39 +1439,39 @@ ul {
 /* ── EPT Paragraph Columns Responsive Overrides ─────────── */
 @media (width < 900px) {
 
-  .paragraph.ept-paragraph.ept-paragraph-columns > .ept-container > .field--name-field-ept-columns,
-  .paragraph.ept-paragraph.ept-paragraph-columns > .field--name-field-ept-columns {
+  .paragraph.ept-paragraph.ept-paragraph-columns>.ept-container>.field--name-field-ept-columns,
+  .paragraph.ept-paragraph.ept-paragraph-columns>.field--name-field-ept-columns {
     display: flex !important;
     flex-direction: column !important;
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
   }
 
-  .paragraph.ept-paragraph.ept-paragraph-columns > .ept-container > .field--name-field-ept-columns > .field__item,
-  .paragraph.ept-paragraph.ept-paragraph-columns > .field--name-field-ept-columns > .field__item {
+  .paragraph.ept-paragraph.ept-paragraph-columns>.ept-container>.field--name-field-ept-columns>.field__item,
+  .paragraph.ept-paragraph.ept-paragraph-columns>.field--name-field-ept-columns>.field__item {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
   }
 
-  .ept-paragraph-columns.columns-equal-height > .ept-container > .field--name-field-ept-columns > .field__item .paragraph,
-  .ept-paragraph-columns.columns-equal-height > .ept-container > .field--name-field-ept-columns > .field--item .paragraph,
-  .ept-paragraph-columns.columns-equal-height > .field--name-field-ept-columns > .field__item .paragraph,
-  .ept-paragraph-columns.columns-equal-height > .field--name-field-ept-columns > .field--item .paragraph {
+  .ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field__item .paragraph,
+  .ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field--item .paragraph,
+  .ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field__item .paragraph,
+  .ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field--item .paragraph {
     height: auto !important;
   }
 
-  .ept-paragraph-columns.columns-equal-height > .ept-container > .field--name-field-ept-columns > .field__item > *,
-  .ept-paragraph-columns.columns-equal-height > .ept-container > .field--name-field-ept-columns > .field--item > *,
-  .ept-paragraph-columns.columns-equal-height > .field--name-field-ept-columns > .field__item > *,
-  .ept-paragraph-columns.columns-equal-height > .field--name-field-ept-columns > .field--item > * {
+  .ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field__item>*,
+  .ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field--item>*,
+  .ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field__item>*,
+  .ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field--item>* {
     height: auto !important;
   }
 
-  .ept-paragraph-columns.columns-equal-height > .ept-container > .field--name-field-ept-columns > .field__item > * > *,
-  .ept-paragraph-columns.columns-equal-height > .ept-container > .field--name-field-ept-columns > .field--item > * > *,
-  .ept-paragraph-columns.columns-equal-height > .field--name-field-ept-columns > .field__item > * > *,
-  .ept-paragraph-columns.columns-equal-height > .field--name-field-ept-columns > .field--item > * > * {
+  .ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field__item>*>*,
+  .ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field--item>*>*,
+  .ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field__item>*>*,
+  .ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field--item>*>* {
     flex-grow: 0 !important;
     height: auto !important;
   }
@@ -1650,4 +1650,13 @@ ul {
   margin-inline: 0 !important;
   left: auto !important;
   transform: none !important;
+}
+
+/* Ensure floated content paragraphs and their wrappers are not flexed by column container equal-height settings */
+.paragraph--type--floated-content,
+.paragraph .field__item > div:has(.floated-content),
+.floated-content {
+  display: block !important;
+  height: auto !important;
+  flex-grow: 0 !important;
 }

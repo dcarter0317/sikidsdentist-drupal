@@ -7,7 +7,16 @@
  */
 #}
 
-<div{{ attributes }}>
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
   {%- set float_direction = paragraph.field_fc_float_direction[0].value|default('left')|lower -%}

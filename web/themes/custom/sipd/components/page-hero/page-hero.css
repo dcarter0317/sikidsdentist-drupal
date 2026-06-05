@@ -7,8 +7,8 @@
 
 .page-hero {
   --fw-hero-title: 400;
-  --page-hero-height: 500px;
-  --page-hero-card-text-width: 21%;
+  --page-hero-height: 650px;
+  --page-hero-card-text-width: 22%;
 
   /* Full bleed breakout styles */
   width: 100vw;
