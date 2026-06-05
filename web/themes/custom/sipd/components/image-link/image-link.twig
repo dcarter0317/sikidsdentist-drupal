@@ -11,8 +11,16 @@
  * - image_alt (string) — alt text for the background image
  */
 #}
+{% set inline_styles = [] %}
+{% if bg_color %}
+  {% set inline_styles = inline_styles|merge(['--image-link-bg-color: ' ~ bg_color]) %}
+{% endif %}
+{% if bg_opacity %}
+  {% set inline_styles = inline_styles|merge(['--image-link-bg-opacity: ' ~ bg_opacity]) %}
+{% endif %}
+{% set style_str = inline_styles|length > 0 ? inline_styles|join('; ') ~ ';' : '' %}
 
-<div class="image-link"{% if bg_color or bg_opacity %} style="{% if bg_color %}--image-link-bg-color: {{ bg_color }};{% endif %} {% if bg_opacity %}--image-link-bg-opacity: {{ bg_opacity }};{% endif %}"{% endif %}>
+<div class="image-link"{% if style_str %} style="{{ style_str }}"{% endif %}>
   <a href="{{ url }}" class="image-link__link">
     <div class="image-link__image-wrapper">
       {% if image %}

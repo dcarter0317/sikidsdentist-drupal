@@ -3,14 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.paragraph.profile_card.field_ept_settings
     - field.field.paragraph.profile_card.field_profile_card_bio
     - field.field.paragraph.profile_card.field_profile_card_link
     - field.field.paragraph.profile_card.field_profile_card_media
     - field.field.paragraph.profile_card.field_profile_card_name
     - paragraphs.paragraphs_type.profile_card
   module:
-    - ept_core
     - link
     - text
 id: paragraph.profile_card.default
@@ -18,23 +16,16 @@ targetEntityType: paragraph
 bundle: profile_card
 mode: default
 content:
-  field_ept_settings:
-    type: ept_settings_default
+  field_profile_card_bio:
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 3
-    region: content
-  field_profile_card_bio:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_profile_card_link:
     type: link
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -46,19 +37,19 @@ content:
     region: content
   field_profile_card_media:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 2
+    weight: 0
     region: content
   field_profile_card_name:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
 hidden: {  }
