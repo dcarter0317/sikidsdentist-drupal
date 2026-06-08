@@ -1,0 +1,20 @@
+uuid: d4b37ba9-cf7f-4480-ba29-3799bb952da9
+langcode: en
+status: true
+dependencies:
+  module:
+    - color_field
+    - paragraphs
+id: paragraph.field_tb_bg_color
+field_name: field_tb_bg_color
+entity_type: paragraph
+type: color_field_type
+settings:
+  format: '#HEXHEX'
+module: color_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

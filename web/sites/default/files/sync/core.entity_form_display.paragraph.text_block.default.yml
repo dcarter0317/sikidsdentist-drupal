@@ -3,17 +3,29 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.text_block.field_tb_bg_color
     - field.field.paragraph.text_block.field_tb_body
+    - field.field.paragraph.text_block.field_tb_dark_mode
     - field.field.paragraph.text_block.field_tb_text_align
+    - field.field.paragraph.text_block.field_tb_text_color
     - field.field.paragraph.text_block.field_tb_title
     - paragraphs.paragraphs_type.text_block
   module:
+    - color_field
     - text
 id: paragraph.text_block.default
 targetEntityType: paragraph
 bundle: text_block
 mode: default
 content:
+  field_tb_bg_color:
+    type: color_field_widget_default
+    weight: 4
+    region: content
+    settings:
+      placeholder_color: ''
+      placeholder_opacity: ''
+    third_party_settings: {  }
   field_tb_body:
     type: text_textarea
     weight: 1
@@ -22,11 +34,26 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_tb_dark_mode:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_tb_text_align:
     type: options_select
     weight: 2
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_tb_text_color:
+    type: color_field_widget_default
+    weight: 5
+    region: content
+    settings:
+      placeholder_color: ''
+      placeholder_opacity: ''
     third_party_settings: {  }
   field_tb_title:
     type: string_textfield

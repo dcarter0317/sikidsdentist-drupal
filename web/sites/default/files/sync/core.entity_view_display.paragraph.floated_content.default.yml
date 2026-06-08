@@ -3,11 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.floated_content.field_fc_bg_color
     - field.field.paragraph.floated_content.field_fc_body
+    - field.field.paragraph.floated_content.field_fc_dark_mode
     - field.field.paragraph.floated_content.field_fc_float_direction
     - field.field.paragraph.floated_content.field_fc_image
+    - field.field.paragraph.floated_content.field_fc_text_color
     - paragraphs.paragraphs_type.floated_content
   module:
+    - color_field
     - options
     - text
 id: paragraph.floated_content.default
@@ -15,12 +19,31 @@ targetEntityType: paragraph
 bundle: floated_content
 mode: default
 content:
+  field_fc_bg_color:
+    type: color_field_formatter_text
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_fc_body:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_fc_dark_mode:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_fc_float_direction:
     type: list_default
@@ -37,5 +60,14 @@ content:
       link: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_fc_text_color:
+    type: color_field_formatter_text
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 5
     region: content
 hidden: {  }

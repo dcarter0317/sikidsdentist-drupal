@@ -1,0 +1,21 @@
+uuid: 217dfb7e-0a24-4686-a4b7-3a37ca105453
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fc_dark_mode
+    - paragraphs.paragraphs_type.floated_content
+id: paragraph.floated_content.field_fc_dark_mode
+field_name: field_fc_dark_mode
+entity_type: paragraph
+bundle: floated_content
+label: 'Dark Mode'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

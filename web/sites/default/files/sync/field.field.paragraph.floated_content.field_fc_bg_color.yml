@@ -1,0 +1,25 @@
+uuid: b2aa39c3-92ff-4d48-a21d-35455f95cbec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_fc_bg_color
+    - paragraphs.paragraphs_type.floated_content
+  module:
+    - color_field
+id: paragraph.floated_content.field_fc_bg_color
+field_name: field_fc_bg_color
+entity_type: paragraph
+bundle: floated_content
+label: 'Background Color'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    color: '#00334F'
+    opacity: 1.0
+default_value_callback: ''
+settings:
+  opacity: 1
+field_type: color_field_type

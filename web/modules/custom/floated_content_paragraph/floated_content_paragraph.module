@@ -5,6 +5,8 @@
  * floated_content_paragraph.module
  */
 
+use Drupal\Core\Form\FormStateInterface;
+
 /**
  * Implements hook_theme().
  */
@@ -27,3 +29,30 @@ function floated_content_paragraph_theme_suggestions_paragraph_alter(
   $paragraph = $variables['elements']['#paragraph'];
   $suggestions[] = 'paragraph__' . $paragraph->bundle();
 }
+
+/**
+ * Implements hook_field_widget_single_element_form_alter().
+ */
+function floated_content_paragraph_field_widget_single_element_form_alter(&$element, FormStateInterface $form_state, $context) {
+  $field_name = $context['items']->getFieldDefinition()->getName();
+  
+  if (in_array($field_name, ['field_fc_bg_color', 'field_fc_text_color'])) {
+    // Build the selector for the dark mode checkbox relative to this field
+    $parents = $element['#field_parents'] ?? [];
+    $parents[] = 'field_fc_dark_mode';
+    $parents[] = 'value';
+    
+    $name = array_shift($parents);
+    if ($parents) {
+      $name .= '[' . implode('][', $parents) . ']';
+    }
+    $selector = ':input[name="' . $name . '"]';
+    
+    $element['#states'] = [
+      'visible' => [
+        $selector => ['checked' => TRUE],
+      ],
+    ];
+  }
+}
+

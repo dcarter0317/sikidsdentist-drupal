@@ -1,0 +1,21 @@
+uuid: 8458d7c1-1b5c-4f60-8323-aac684069773
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_tb_dark_mode
+    - paragraphs.paragraphs_type.text_block
+id: paragraph.text_block.field_tb_dark_mode
+field_name: field_tb_dark_mode
+entity_type: paragraph
+bundle: text_block
+label: 'Dark Mode'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

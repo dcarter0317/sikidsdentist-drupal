@@ -11,7 +11,7 @@
   color: var(--text-block-color, var(--clr-text-light, #ffffff));
   padding: 2.5rem;
   border-radius: 8px;
-  margin: 2rem auto;
+  margin: 0 auto;
 }
 
 .text-block--dark .text-block__title {

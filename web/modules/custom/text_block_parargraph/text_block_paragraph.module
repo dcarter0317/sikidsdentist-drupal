@@ -4,3 +4,31 @@
  * @file
  * Text Block Paragraph module.
  */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_field_widget_single_element_form_alter().
+ */
+function text_block_paragraph_field_widget_single_element_form_alter(&$element, FormStateInterface $form_state, $context) {
+  $field_name = $context['items']->getFieldDefinition()->getName();
+  
+  if (in_array($field_name, ['field_tb_bg_color', 'field_tb_text_color'])) {
+    // Build the selector for the dark mode checkbox relative to this field
+    $parents = $element['#field_parents'] ?? [];
+    $parents[] = 'field_tb_dark_mode';
+    $parents[] = 'value';
+    
+    $name = array_shift($parents);
+    if ($parents) {
+      $name .= '[' . implode('][', $parents) . ']';
+    }
+    $selector = ':input[name="' . $name . '"]';
+    
+    $element['#states'] = [
+      'visible' => [
+        $selector => ['checked' => TRUE],
+      ],
+    ];
+  }
+}

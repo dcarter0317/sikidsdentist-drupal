@@ -3,11 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.text_block.field_tb_bg_color
     - field.field.paragraph.text_block.field_tb_body
+    - field.field.paragraph.text_block.field_tb_dark_mode
     - field.field.paragraph.text_block.field_tb_text_align
+    - field.field.paragraph.text_block.field_tb_text_color
     - field.field.paragraph.text_block.field_tb_title
     - paragraphs.paragraphs_type.text_block
   module:
+    - color_field
     - options
     - text
 id: paragraph.text_block.default
@@ -15,6 +19,15 @@ targetEntityType: paragraph
 bundle: text_block
 mode: default
 content:
+  field_tb_bg_color:
+    type: color_field_formatter_text
+    label: hidden
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_tb_body:
     type: text_default
     label: hidden
@@ -22,12 +35,31 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
+  field_tb_dark_mode:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_tb_text_align:
     type: list_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_tb_text_color:
+    type: color_field_formatter_text
+    label: hidden
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_tb_title:
     type: string

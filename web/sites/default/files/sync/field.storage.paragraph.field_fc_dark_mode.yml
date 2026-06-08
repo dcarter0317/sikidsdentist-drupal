@@ -1,0 +1,18 @@
+uuid: ba0e10ac-ee1f-4bbc-b47b-ddae5eaa7d22
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_fc_dark_mode
+field_name: field_fc_dark_mode
+entity_type: paragraph
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
