@@ -1332,6 +1332,65 @@
             "install-path": "../doctrine/persistence"
         },
         {
+            "name": "drupal/anchor_link",
+            "version": "3.0.4",
+            "version_normalized": "3.0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/anchor_link.git",
+                "reference": "3.0.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/anchor_link-3.0.4.zip",
+                "reference": "3.0.4",
+                "shasum": "e46e48235915d46c0428e8dbee4b7a3eba21cd44"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10 || ^11",
+                "vardot/ckeditor5-anchor-drupal": "^1.0.3 || ^2.0.4"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.4",
+                    "datestamp": "1770468477",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Vardot",
+                    "homepage": "https://www.drupal.org/vardot",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Northern Commerce",
+                    "homepage": "https://www.drupal.org/northern-commerce",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "rajab natshah",
+                    "homepage": "https://www.drupal.org/user/1414312"
+                }
+            ],
+            "description": "This plugin module adds the better link dialog and anchor related features to CKEditor in Drupal.",
+            "homepage": "https://www.drupal.org/project/anchor_link",
+            "support": {
+                "source": "http://cgit.drupalcode.org/anchor_link",
+                "issues": "https://www.drupal.org/project/issues/anchor_link"
+            },
+            "install-path": "../../web/modules/contrib/anchor_link"
+        },
+        {
             "name": "drupal/blazy",
             "version": "3.0.17",
             "version_normalized": "3.0.17.0",
@@ -1516,6 +1575,53 @@
                 "issues": "https://www.drupal.org/project/issues/block_form_alter"
             },
             "install-path": "../../web/modules/contrib/block_form_alter"
+        },
+        {
+            "name": "drupal/ckeditor5_custom_paste",
+            "version": "1.0.3",
+            "version_normalized": "1.0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor5_custom_paste.git",
+                "reference": "1.0.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ckeditor5_custom_paste-1.0.3.zip",
+                "reference": "1.0.3",
+                "shasum": "763e58a5a18c1ca6ff4114bce9e69685511d2ff1"
+            },
+            "require": {
+                "drupal/core": "^9.3 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.3",
+                    "datestamp": "1710625386",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "matio89",
+                    "homepage": "https://www.drupal.org/user/2320090"
+                }
+            ],
+            "description": "Enhances CKEditor 5 by filtering and customizing the content pasted into the editor.",
+            "homepage": "https://www.drupal.org/project/ckeditor5_custom_paste",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ckeditor5_custom_paste"
+            },
+            "install-path": "../../web/modules/contrib/ckeditor5_custom_paste"
         },
         {
             "name": "drupal/ckeditor5_paste_filter",
@@ -9842,6 +9948,51 @@
                 }
             ],
             "install-path": "../twig/twig"
+        },
+        {
+            "name": "vardot/ckeditor5-anchor-drupal",
+            "version": "2.0.4",
+            "version_normalized": "2.0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Vardot/ckeditor5-anchor-drupal.git",
+                "reference": "00fbfd8d63ca29c1efd9b327ea973f99f78e9f16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Vardot/ckeditor5-anchor-drupal/zipball/00fbfd8d63ca29c1efd9b327ea973f99f78e9f16",
+                "reference": "00fbfd8d63ca29c1efd9b327ea973f99f78e9f16",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/core": ">=10.5 || >=11.2"
+            },
+            "time": "2025-12-09T10:59:53+00:00",
+            "type": "drupal-library",
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vardot",
+                    "homepage": "https://github.com/vardot",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Anchor feature for CKEditor 5, adapted for Drupal",
+            "homepage": "https://github.com/vardot/ckeditor5-anchor-drupal",
+            "keywords": [
+                "ckeditor5",
+                "drupal",
+                "plugin"
+            ],
+            "support": {
+                "issues": "http://drupal.org/project/issues/anchor_link",
+                "source": "http://cgit.drupalcode.org/anchor_link"
+            },
+            "install-path": "../../web/libraries/ckeditor5-anchor-drupal"
         }
     ],
     "dev": true,

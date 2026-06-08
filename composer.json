@@ -16,8 +16,10 @@
     ],
     "require": {
         "composer/installers": "^2.3",
+        "drupal/anchor_link": "^3.0",
         "drupal/blazy": "^3.0",
         "drupal/block_field": "^1.0@dev",
+        "drupal/ckeditor5_custom_paste": "^1.0",
         "drupal/ckeditor5_paste_filter": "^1.1",
         "drupal/color_field": "^3.0",
         "drupal/core-composer-scaffold": "^11.3",

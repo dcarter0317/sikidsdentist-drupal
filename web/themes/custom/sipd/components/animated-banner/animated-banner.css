@@ -4,6 +4,7 @@
   --banner-text-color: #fff;
   --banner-overlay-color: rgba(0, 0, 0, 0.3);
   --banner-overlay-hover-color: rgba(0, 0, 0, 0.6);
+  --banner-width: 100vw;
   --banner-height: 160px;
   --banner-height-mobile: 160px;
   --banner-btn-radius: 4px;
@@ -14,7 +15,10 @@
 /* ─── Base Layout ───────────────────────────────────────────────────────────── */
 .banner {
   position: relative;
-  width: 100%;
+  width: var(--banner-width);
+  left: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   min-height: var(--banner-height);
   display: flex;
   justify-content: center;
@@ -27,6 +31,10 @@
 @media (width < 900px) {
   .banner {
     height: var(--banner-height-mobile);
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+    left: auto !important;
   }
 }
 
@@ -46,6 +54,8 @@
   text-align: center;
   padding: 1rem;
   border-radius: 8px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 @media (width < 900px) {
@@ -71,7 +81,6 @@
 /* ─── Body / Eyebrow ────────────────────────────────────────────────────── */
 .banner .banner__content p {
   font-size: 1.25rem;
-  margin-bottom: 1rem;
   opacity: .85;
   text-transform: capitalize;
 }
@@ -152,6 +161,8 @@
     text-align: center;
   }
 }
+
+s
 
 /*
  * Animation overrides: sipd.css slide-* classes set position:relative and use

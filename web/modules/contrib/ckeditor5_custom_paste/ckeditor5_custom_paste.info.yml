@@ -1,0 +1,12 @@
+name: CKEditor 5 Custom Paste
+type: module
+description: "Enhances CKEditor 5 by filtering and customizing the content pasted into the editor."
+package: CKEditor 5
+core_version_requirement: ^9.3 || ^10 || ^11
+dependencies:
+  - drupal:ckeditor5
+
+# Information added by Drupal.org packaging script on 2024-03-16
+version: '1.0.3'
+project: 'ckeditor5_custom_paste'
+datestamp: 1710625388

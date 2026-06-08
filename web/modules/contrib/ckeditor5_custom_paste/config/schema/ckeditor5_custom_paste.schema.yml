@@ -1,0 +1,10 @@
+ckeditor5.plugin.ckeditor5_custom_paste_pasteFilter:
+  type: mapping
+  label: 'Ckeditor 5 Custom Paste'
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Plugin enabled'
+    excluded_tags:
+      type: string
+      label: 'Excluded tags'

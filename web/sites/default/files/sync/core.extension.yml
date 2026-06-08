@@ -3,6 +3,7 @@ _core:
 module:
   accordion_item_paragraph: 0
   accordion_list_paragraph: 0
+  anchor_link: 0
   animated_banner_paragraph: 0
   announcements_feed: 0
   automated_cron: 0
@@ -17,7 +18,7 @@ module:
   card_list_paragraph: 0
   card_paragraph: 0
   ckeditor5: 0
-  ckeditor5_paste_filter: 0
+  ckeditor5_custom_paste: 0
   color_field: 0
   comment: 0
   config: 0
