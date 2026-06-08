@@ -164,9 +164,48 @@
   }
 }
 
+/* ─── Animation Overrides for Full-Bleed Centering ────────────────────────── */
+@media (width >= 900px) {
+  .banner.slide-in-left,
+  .banner.slide-in-content-left {
+    left: 50% !important;
+    animation: bannerContainerSlideInLeft 650ms ease-out forwards, fadeIn 1400ms ease-out forwards;
+  }
+
+  .banner.slide-in-right,
+  .banner.slide-in-content-right {
+    left: 50% !important;
+    animation: bannerContainerSlideInRight 650ms ease-out forwards, fadeIn 1400ms ease-out forwards;
+  }
+
+  @keyframes bannerContainerSlideInLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes bannerContainerSlideInRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
 /* ─── Reduced Motion ────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .banner__btn {
     transition: none;
+  }
+  .banner.slide-in-left,
+  .banner.slide-in-content-left,
+  .banner.slide-in-right,
+  .banner.slide-in-content-right {
+    animation: none !important;
   }
 }

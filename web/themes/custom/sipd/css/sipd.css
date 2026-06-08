@@ -382,10 +382,13 @@ ul {
       padding: 0;
       min-width: unset;
       border-radius: 0;
+      width: auto;
     }
 
-    .megamenu-content a {
+    .megamenu-submenu a,
+    .megamenu-submenu span {
       padding-left: 2.5rem;
+      white-space: normal;
     }
   }
 
@@ -427,6 +430,7 @@ ul {
   left: 0;
   top: 100%;
   min-width: 220px;
+  width: max-content;
   background: var(--clr-bg-1);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   border-radius: 8px;
@@ -437,19 +441,36 @@ ul {
 .megamenu-content {
   display: flex;
   flex-direction: column;
+}
+
+.megamenu-submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
+}
 
-  a {
-    color: var(--clr-text-6);
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background 0.2s, color 0.2s;
+.megamenu-submenu .megamenu-submenu {
+  margin-left: 1rem;
+}
 
-    &:hover {
-      background: var(--clr-bg-4);
-      color: var(--clr-text-2);
-    }
-  }
+.megamenu-submenu a,
+.megamenu-submenu span {
+  color: var(--clr-text-6);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+  display: block;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.megamenu-submenu a:hover {
+  background: var(--clr-bg-4);
+  color: var(--clr-text-2);
+  text-decoration: none;
 }
 
 .btn-group {

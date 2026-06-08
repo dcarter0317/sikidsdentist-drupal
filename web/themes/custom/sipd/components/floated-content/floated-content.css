@@ -50,3 +50,16 @@
     margin: 0 0 1.5rem 0 !important;
   }
 }
+
+/* Dark Mode Option styles */
+.floated-content--dark {
+  background-color: var(--floated-content-bg, var(--clr-bg-2, #1a1a1a));
+  color: var(--floated-content-color, var(--clr-text-light, #ffffff));
+  padding: 2.5rem;
+  border-radius: 8px;
+}
+
+.floated-content--dark .floated-content__body p {
+  color: var(--floated-content-color, var(--clr-text-light, #ffffff));
+}
+

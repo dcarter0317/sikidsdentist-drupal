@@ -30,10 +30,29 @@
 {%- set image_url    = image_file ? file_url(image_file.uri.value) : null -%}
 {%- set image_alt    = media_entity ? media_entity.field_media_image.alt : null -%}
 
+{%- set dark_mode = paragraph.field_fc_dark_mode.value|default(0) -%}
+{%- set bg_color = null -%}
+{% if paragraph.field_fc_bg_color is defined and not paragraph.field_fc_bg_color.isEmpty %}
+  {%- set bg_color = paragraph.field_fc_bg_color.color -%}
+  {% if bg_color and bg_color|first != '#' %}
+    {%- set bg_color = '#' ~ bg_color -%}
+  {% endif %}
+{% endif %}
+{%- set text_color = null -%}
+{% if paragraph.field_fc_text_color is defined and not paragraph.field_fc_text_color.isEmpty %}
+  {%- set text_color = paragraph.field_fc_text_color.color -%}
+  {% if text_color and text_color|first != '#' %}
+    {%- set text_color = '#' ~ text_color -%}
+  {% endif %}
+{% endif %}
+
 {% include "sipd:floated-content" with {
   float_direction: float_direction,
   body:            body,
   image_url:       image_url,
   image_alt:       image_alt,
+  dark_mode:       dark_mode,
+  bg_color:        bg_color,
+  text_color:      text_color
 } only %}
 </div>

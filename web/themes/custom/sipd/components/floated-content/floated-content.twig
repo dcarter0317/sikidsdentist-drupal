@@ -14,8 +14,19 @@
 
 {%- set direction = float_direction|default('left')|trim|lower -%}
 {%- set direction = direction in ['left', 'right'] ? direction : 'right' -%}
+{%- set dark_mode_class = dark_mode ? 'floated-content--dark' : '' -%}
 
-<div class="floated-content">
+{% set inline_styles = [] %}
+{% if dark_mode and bg_color %}
+  {% set inline_styles = inline_styles|merge(['--floated-content-bg: ' ~ bg_color]) %}
+{% endif %}
+{% if dark_mode and text_color %}
+  {% set inline_styles = inline_styles|merge(['--floated-content-color: ' ~ text_color]) %}
+{% endif %}
+{% set style_str = inline_styles|length > 0 ? inline_styles|join('; ') ~ ';' : '' %}
+{% set style_attribute = style_str ? 'style="' ~ style_str ~ '"' : '' %}
+
+<div class="floated-content {{ dark_mode_class }}" {{ style_attribute|raw }}>
 
   {% if image_url %}
     <div class="floated-content__image floated-content__image--{{ direction }}">

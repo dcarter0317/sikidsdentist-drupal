@@ -22,3 +22,16 @@ props:
         - left
         - center
         - right
+    dark_mode:
+      type: boolean
+      title: "Dark Mode"
+      description: "Whether the component should be rendered in dark mode."
+      default: false
+    bg_color:
+      type: string
+      title: "Background Color"
+      description: "HEX color code for the background when dark mode is enabled."
+    text_color:
+      type: string
+      title: "Text Color"
+      description: "HEX color code for the text when dark mode is enabled."

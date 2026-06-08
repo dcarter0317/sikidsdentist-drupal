@@ -1,5 +1,17 @@
 {% set alignment_class = text_align ? 'text-align-' ~ text_align : '' %}
-<article class="text-block {{ alignment_class }} {{ text_block_classes|join(' ') }}"{{ attributes }}>
+{% set dark_mode_class = dark_mode ? 'text-block--dark' : '' %}
+
+{% set inline_styles = [] %}
+{% if dark_mode and bg_color %}
+  {% set inline_styles = inline_styles|merge(['--text-block-bg: ' ~ bg_color]) %}
+{% endif %}
+{% if dark_mode and text_color %}
+  {% set inline_styles = inline_styles|merge(['--text-block-color: ' ~ text_color]) %}
+{% endif %}
+{% set style_str = inline_styles|length > 0 ? inline_styles|join('; ') ~ ';' : '' %}
+{% set style_attribute = style_str ? 'style="' ~ style_str ~ '"' : '' %}
+
+<article class="text-block {{ alignment_class }} {{ dark_mode_class }} {{ text_block_classes|join(' ') }}" {{ style_attribute|raw }} {{ attributes }}>
   {% if title %}
     <h2 class="text-block__title">{{ title }}</h2>
   {% endif %}   

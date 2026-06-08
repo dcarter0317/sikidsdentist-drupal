@@ -4,3 +4,21 @@
   color: var(--clr-text-1);
   margin-bottom: 0.75rem;
 }
+
+/* Dark Mode Option styles */
+.text-block--dark {
+  background-color: var(--text-block-bg, var(--clr-bg-2, #1a1a1a));
+  color: var(--text-block-color, var(--clr-text-light, #ffffff));
+  padding: 2.5rem;
+  border-radius: 8px;
+  margin: 2rem auto;
+}
+
+.text-block--dark .text-block__title {
+  color: var(--text-block-color, var(--clr-text-light, #ffffff));
+}
+
+.text-block--dark .text-block__body,
+.text-block--dark .text-block__body p {
+  color: var(--text-block-color, var(--clr-text-light, #ffffff));
+}
