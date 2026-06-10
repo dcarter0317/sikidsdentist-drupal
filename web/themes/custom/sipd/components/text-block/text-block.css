@@ -19,6 +19,12 @@
 }
 
 .text-block--dark .text-block__body,
-.text-block--dark .text-block__body p {
+.text-block--dark .text-block__body p,
+.text-block--dark .text-block__body h1,
+.text-block--dark .text-block__body h2,
+.text-block--dark .text-block__body h3,
+.text-block--dark .text-block__body h4,
+.text-block--dark .text-block__body h5,
+.text-block--dark .text-block__body h6 {
   color: var(--text-block-color, var(--clr-text-light, #ffffff));
 }

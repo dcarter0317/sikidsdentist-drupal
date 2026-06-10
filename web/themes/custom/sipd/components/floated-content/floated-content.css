@@ -1,6 +1,7 @@
 .floated-content {
   margin: 2rem auto;
-  overflow: hidden; /* clearfix — prevents float collapse */
+  overflow: hidden;
+  /* clearfix — prevents float collapse */
 }
 
 /* ── Image container (shared base) ── */
@@ -42,6 +43,7 @@
 
 /* ── Tablet & Mobile: stack image above text when columns stack ── */
 @media (width < 900px) {
+
   .floated-content__image--left,
   .floated-content__image--right {
     float: none !important;
@@ -59,7 +61,12 @@
   border-radius: 8px;
 }
 
-.floated-content--dark .floated-content__body p {
+.floated-content--dark .floated-content__body p,
+.floated-content--dark .floated-content__body h1,
+.floated-content--dark .floated-content__body h2,
+.floated-content--dark .floated-content__body h3,
+.floated-content--dark .floated-content__body h4,
+.floated-content--dark .floated-content__body h5,
+.floated-content--dark .floated-content__body h6 {
   color: var(--floated-content-color, var(--clr-text-light, #ffffff));
 }
-

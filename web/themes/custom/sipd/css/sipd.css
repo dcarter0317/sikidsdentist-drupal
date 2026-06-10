@@ -1194,10 +1194,11 @@ ul {
 .page-footer {
   background: var(--clr-bg-7);
   padding-block: 2rem;
+  font-weight: var(--fw-light);
 
   ul {
     list-style: none;
-    padding-left: 0;
+    margin-left: 0;
 
     li {
       margin-bottom: 0.5rem;
@@ -1633,12 +1634,9 @@ ul {
 .paragraph.columns-full-bleed {
   width: 100vw !important;
   max-width: 100vw !important;
-  position: relative !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
+  margin-left: calc(-50vw + 50%) !important;
+  margin-right: calc(-50vw + 50%) !important;
   box-sizing: border-box;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
   z-index: 1;
 }
 
@@ -1646,8 +1644,6 @@ ul {
   .paragraph.columns-full-bleed {
     width: 100% !important;
     max-width: 100% !important;
-    left: auto !important;
-    transform: none !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
@@ -1675,7 +1671,7 @@ ul {
 
 /* Ensure floated content paragraphs and their wrappers are not flexed by column container equal-height settings */
 .paragraph--type--floated-content,
-.paragraph .field__item > div:has(.floated-content),
+.paragraph .field__item>div:has(.floated-content),
 .floated-content {
   display: block !important;
   height: auto !important;
