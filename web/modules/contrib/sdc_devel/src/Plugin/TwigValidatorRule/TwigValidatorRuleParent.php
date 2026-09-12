@@ -27,6 +27,7 @@ final class TwigValidatorRuleParent extends TwigValidatorRulePluginBase {
    */
   public function processNode(string $id, Node $node, array $definition, array $variableSet): array {
     $message = new TranslatableMarkup('Bad architecture for parent: Component calling components with `parent`.');
+
     return [ValidatorMessage::createForNode($id, $node, $message)];
   }
 

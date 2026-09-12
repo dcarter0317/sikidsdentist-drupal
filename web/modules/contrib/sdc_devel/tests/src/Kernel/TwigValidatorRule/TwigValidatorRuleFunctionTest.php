@@ -5,17 +5,22 @@ declare(strict_types=1);
 namespace Drupal\Tests\sdc_devel\Kernel;
 
 use Drupal\Core\Logger\RfcLogLevel;
+use Drupal\sdc_devel\Plugin\TwigValidatorRule\TwigValidatorRuleFunction;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
- * @coversDefaultClass \Drupal\sdc_devel\Plugin\TwigValidatorRule\TwigValidatorRuleFunction
+ * Test the TwigValidatorRuleFunction.
  *
- * @group sdc_devel
+ * CSpell:disable.
+ *
  * @internal
- *
- * phpcs:disable Drupal.Arrays.Array.LongLineDeclaration,Drupal.Commenting.InlineComment.SpacingBefore
- *
- * cSpell:disable
  */
+#[CoversClass(TwigValidatorRuleFunction::class)]
+#[Group('sdc_devel')]
+#[RunTestsInSeparateProcesses]
 final class TwigValidatorRuleFunctionTest extends TwigValidatorTestBase {
 
   /**
@@ -25,12 +30,7 @@ final class TwigValidatorRuleFunctionTest extends TwigValidatorTestBase {
     'sdc_devel_module_test',
   ];
 
-  /**
-   * @covers ::processNode
-   * @covers ::random
-   *
-   * @dataProvider providerTestTwigValidatorFunction
-   */
+  #[DataProvider('providerTestTwigValidatorFunction')]
   public function testTwigValidatorFunction(string $source, array $expected): void {
     $this->runTestSourceTwigValidator($source, $expected);
   }

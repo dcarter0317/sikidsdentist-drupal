@@ -25,7 +25,7 @@ final class OverviewForm extends FormBase {
    * @param \Drupal\Core\State\StateInterface $state
    *   The Drupal state service.
    */
-  public function __construct(private readonly StateInterface $state) {}
+  public function __construct(protected StateInterface $state) {}
 
   /**
    * {@inheritdoc}
@@ -55,9 +55,9 @@ final class OverviewForm extends FormBase {
     foreach ($options as $level => $name) {
       $options[$level] = \sprintf('%s (%s)', $name, $errors[$level] ?? 0);
     }
-    krsort($options);
+    \krsort($options);
 
-    $values = $this->state->get('sdc_devel_overview_severity', array_keys($options));
+    $values = $this->state->get('sdc_devel_overview_severity', \array_keys($options));
 
     $form['levels'] = [
       '#type' => 'checkboxes',

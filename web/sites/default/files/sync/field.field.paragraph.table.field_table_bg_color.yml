@@ -1,0 +1,22 @@
+uuid: c74b921e-8656-47d4-8711-85c5c870aea2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_table_bg_color
+    - paragraphs.paragraphs_type.table
+  module:
+    - color_field
+id: paragraph.table.field_table_bg_color
+field_name: field_table_bg_color
+entity_type: paragraph
+bundle: table
+label: 'Table Background Color'
+description: 'Background color for the overall table.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 1
+field_type: color_field_type

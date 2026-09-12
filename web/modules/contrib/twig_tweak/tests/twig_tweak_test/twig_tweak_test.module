@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * @file
  * Primary module hooks for Twig Tweak test module.
@@ -84,7 +82,7 @@ function twig_tweak_test_file_access(FileInterface $file): AccessResultInterface
 /**
  * Implements hook_twig_tweak_functions_alter().
  */
-function twig_tweak_test_twig_tweak_functions_alter(array &$functions): void {
+function twig_tweak_test_twig_tweak_functions_alter(array &$functions) {
   $functions[] = new TwigFunction('foo', function (string $value): string {
     return "-=$value=-";
   });
@@ -93,7 +91,7 @@ function twig_tweak_test_twig_tweak_functions_alter(array &$functions): void {
 /**
  * Implements hook_twig_tweak_filters_alter().
  */
-function twig_tweak_test_twig_tweak_filters_alter(array &$filters): void {
+function twig_tweak_test_twig_tweak_filters_alter(array &$filters) {
   $filters[] = new TwigFilter('bar', function (string $input): string {
     return str_replace('foo', 'bar', $input);
   });
@@ -102,7 +100,7 @@ function twig_tweak_test_twig_tweak_filters_alter(array &$filters): void {
 /**
  * Implements hook_twig_tweak_tests_alter().
  */
-function twig_tweak_test_twig_tweak_tests_alter(array &$tests): void {
+function twig_tweak_test_twig_tweak_tests_alter(array &$tests) {
   $tests[] = new TwigTest('ok', function ($input): bool {
     return $input == 'ok';
   });

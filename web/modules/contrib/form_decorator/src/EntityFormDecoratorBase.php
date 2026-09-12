@@ -19,7 +19,7 @@ use Drupal\Core\StringTranslation\TranslationInterface;
 class EntityFormDecoratorBase extends FormDecoratorBase implements EntityFormInterface {
 
   /**
-   * The inner entity form.
+   * The decorated entity form.
    *
    * @var \Drupal\Core\Entity\EntityFormInterface
    */
@@ -29,6 +29,7 @@ class EntityFormDecoratorBase extends FormDecoratorBase implements EntityFormInt
    * {@inheritdoc}
    */
   public function getEntity() {
+    assert($this->inner instanceof EntityFormInterface, sprintf('%s can only wrap entity forms, got %s.', static::class, get_class($this->inner)));
     return $this->inner->getEntity();
   }
 

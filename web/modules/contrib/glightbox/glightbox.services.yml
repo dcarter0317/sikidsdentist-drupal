@@ -11,3 +11,7 @@ services:
   glightbox.formatter:
     class: Drupal\glightbox\Service\GLightboxFormatterService
     arguments: ['@token', '@module_handler', '@config.factory']
+
+  Drupal\glightbox\Hook\GlightboxHooks:
+    class: Drupal\glightbox\Hook\GlightboxHooks
+    autowire: true

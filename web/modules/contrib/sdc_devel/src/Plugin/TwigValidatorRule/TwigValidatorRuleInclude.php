@@ -29,9 +29,11 @@ final class TwigValidatorRuleInclude extends TwigValidatorRulePluginBase {
   public function processNode(string $id, Node $node, array $definition, array $variableSet): array {
     $message = new TranslatableMarkup('Use slots instead of hard embedding a component in the template with `@name`.', ['@name' => $node->getNodeTag()]);
     $level = RfcLogLevel::ERROR;
-    if ('include' === $node->getNodeTag() || 'embed' === $node->getNodeTag()) {
+
+    if ($node->getNodeTag() === 'include' || $node->getNodeTag() === 'embed') {
       $level = RfcLogLevel::WARNING;
     }
+
     return [ValidatorMessage::createForNode($id, $node, $message, $level)];
   }
 

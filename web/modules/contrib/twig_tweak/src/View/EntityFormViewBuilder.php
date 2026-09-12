@@ -1,35 +1,48 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\twig_tweak\View;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityFormBuilderInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityRepositoryInterface;
 
 /**
- * {@selfdoc}
+ * Entity form view builder.
  */
-final readonly class EntityFormViewBuilder {
+class EntityFormViewBuilder {
 
   /**
-   * {@selfdoc}
+   * The entity form builder service.
+   *
+   * @var \Drupal\Core\Entity\EntityFormBuilderInterface
    */
-  public function __construct(
-    private EntityFormBuilderInterface $entityFormBuilder,
-    private EntityRepositoryInterface $entityRepository,
-  ) {
+  protected $entityFormBuilder;
+
+  /**
+   * Constructs an EntityFormViewBuilder object.
+   */
+  public function __construct(EntityFormBuilderInterface $entity_form_builder) {
+    $this->entityFormBuilder = $entity_form_builder;
   }
 
   /**
    * Gets the built and processed entity form for the given entity type.
+   *
+   * @todo Add langcode parameter.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity.
+   * @param string $form_mode
+   *   (optional) The mode identifying the form variation to be returned.
+   * @param bool $check_access
+   *   (optional) Indicates that access check is required.
+   *
+   * @return array
+   *   The processed form for the given entity type and form mode.
    */
-  public function build(EntityInterface $entity, string $form_mode = 'default', ?string $langcode = NULL, bool $check_access = TRUE): array {
+  public function build(EntityInterface $entity, string $form_mode = 'default', bool $check_access = TRUE): array {
     $build = [];
-    $entity = $this->entityRepository->getTranslationFromContext($entity, $langcode);
 
     $operation = $entity->isNew() ? 'create' : 'update';
     $access = $check_access ? $entity->access($operation, NULL, TRUE) : AccessResult::allowed();

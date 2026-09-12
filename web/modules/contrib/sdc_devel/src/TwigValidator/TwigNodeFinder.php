@@ -56,8 +56,10 @@ final class TwigNodeFinder {
    */
   public static function findParentIs(Node $node, string $class): bool {
     $currentNode = $node;
+
     while ($currentNode->hasAttribute(NodeAttribute::PARENT)) {
       $currentNode = $currentNode->getAttribute(NodeAttribute::PARENT);
+
       if (\is_a($currentNode, $class)) {
         return TRUE;
       }

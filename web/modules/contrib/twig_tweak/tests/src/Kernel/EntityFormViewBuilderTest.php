@@ -1,9 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\Tests\twig_tweak\Kernel;
 
+use Drupal\Component\Utility\DeprecationHelper;
+use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 
@@ -27,8 +27,6 @@ final class EntityFormViewBuilderTest extends AbstractTestCase {
     'node',
     'field',
     'text',
-    'views',
-    'filter',
   ];
 
   /**
@@ -48,25 +46,28 @@ final class EntityFormViewBuilderTest extends AbstractTestCase {
   /**
    * Test callback.
    *
-   * @see \twig_tweak_test_node_access
+   * @see \twig_tweak_test_node_access()
    */
   public function testEntityFormViewBuilder(): void {
+    if (version_compare(\Drupal::VERSION, '11.1.dev', '<')) {
+      $this->markTestSkipped();
+    }
+
     $view_builder = $this->container->get('twig_tweak.entity_form_view_builder');
-    $node_storage = $this->container->get('entity_type.manager')->getStorage('node');
 
     $values = [
       'type' => 'article',
       'title' => 'Public node',
     ];
-    $public_node = $node_storage->create($values);
-    $node_storage->save($public_node);
+    $public_node = Node::create($values);
+    $public_node->save();
 
     $values = [
       'type' => 'article',
       'title' => 'Private node',
     ];
-    $private_node = $node_storage->create($values);
-    $node_storage->save($private_node);
+    $private_node = Node::create($values);
+    $private_node->save();
 
     // -- Default mode.
     $build = $view_builder->build($public_node);
@@ -87,7 +88,7 @@ final class EntityFormViewBuilderTest extends AbstractTestCase {
       'max-age' => 0,
     ];
     self::assertCache($expected_cache, $build['#cache']);
-    self::assertStringContainsString('<form class="node-article-form node-form" ', $this->renderInIsolation($build));
+    self::assertStringContainsString('<form class="node-article-form node-form" ', $this->renderPlain($build));
 
     // -- Private node with access check.
     $build = $view_builder->build($private_node);
@@ -105,10 +106,10 @@ final class EntityFormViewBuilderTest extends AbstractTestCase {
       'max-age' => 50,
     ];
     self::assertCache($expected_cache, $build['#cache']);
-    self::assertSame('', $this->renderInIsolation($build));
+    self::assertSame('', $this->renderPlain($build));
 
     // -- Private node without access check.
-    $build = $view_builder->build($private_node, 'default', NULL, FALSE);
+    $build = $view_builder->build($private_node, 'default', FALSE);
 
     self::assertArrayHasKey('#form_id', $build);
     $expected_cache = [
@@ -123,16 +124,20 @@ final class EntityFormViewBuilderTest extends AbstractTestCase {
       'max-age' => 0,
     ];
     self::assertCache($expected_cache, $build['#cache']);
-    self::assertStringContainsString('<form class="node-article-form node-form" ', $this->renderInIsolation($build));
+    self::assertStringContainsString('<form class="node-article-form node-form" ', $this->renderPlain($build));
   }
 
   /**
    * Renders a render array.
    */
-  private function renderInIsolation(array $build): string {
-    return (string) $this->container
-      ->get('renderer')
-      ->renderInIsolation($build);
+  private function renderPlain(array $build): string {
+    /** @var \Drupal\Core\Render\RendererInterface $renderer */
+    $renderer = $this->container->get('renderer');
+    return DeprecationHelper::backwardsCompatibleCall(
+      \Drupal::VERSION, '10.3.0',
+      fn () => $renderer->renderInIsolation($build),
+      fn () => $renderer->renderPlain($build),
+    );
   }
 
 }

@@ -1,3 +1,4 @@
+{# @cspell:ignore doremi #}
 {% set image_attributes = {style: 'width: 30px; height: 30px;'} %}
 <style>
   main {
@@ -114,7 +115,6 @@
   <div class="tt-entity-link-edit-form">{{ node|entity_link('Edit', 'edit-form') }}</div>
   <div class="tt-translation">{{ (node|translation).title.value }}</div>
   <div class="tt-functions_alter">{{ foo('bar') }}</div>
-  <div class="tt-logger">{{ drupal_logger('twig_tweak_test', 'notice', 'Test log message') }}</div>
   <div class="tt-filters_alter">{{ 'foo'|bar }}</div>
   <div class="tt-tests_alter">{{ 'ok' is ok ? 'Yes' : 'No' }}</div>
 </div>

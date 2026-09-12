@@ -8,10 +8,12 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\node\Entity\NodeType;
 use Drupal\user\Entity\User;
 use Drupal\user\Form\UserLoginForm;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests for form_decorator examples.
  */
+#[RunTestsInSeparateProcesses]
 class FormDecoratorKernelTest extends KernelTestBase {
 
   /**

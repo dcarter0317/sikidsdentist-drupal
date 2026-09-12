@@ -1,10 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\Tests\twig_tweak\Kernel;
 
 use Drupal\block\Entity\Block;
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\Cache;
 use Drupal\Tests\user\Traits\UserCreationTrait;
@@ -27,8 +26,6 @@ final class RegionViewBuilderTest extends AbstractTestCase {
     'user',
     'system',
     'block',
-    'views',
-    'filter',
   ];
 
   /**
@@ -60,9 +57,15 @@ final class RegionViewBuilderTest extends AbstractTestCase {
    * Test callback.
    */
   public function testRegionViewBuilder(): void {
+    if (version_compare(\Drupal::VERSION, '11.1.dev', '<')) {
+      $this->markTestSkipped();
+    }
+
     $view_builder = $this->container->get('twig_tweak.region_view_builder');
+    /** @var \Drupal\Core\Render\RendererInterface $renderer */
     $renderer = $this->container->get('renderer');
 
+    $build = $view_builder->build('sidebar_first');
     // The build should be empty because 'stark' is not a default theme.
     $expected_build = [
       '#cache' => [
@@ -71,10 +74,10 @@ final class RegionViewBuilderTest extends AbstractTestCase {
         'max-age' => Cache::PERMANENT,
       ],
     ];
-    $actual_build = $view_builder->build('sidebar_first');
-    self::assertSame($expected_build, $actual_build);
+    self::assertSame($expected_build, $build);
 
     // Specify the theme name explicitly.
+    $build = $view_builder->build('sidebar_first', 'stark');
     $expected_build = [
       // Only public_block should be rendered.
       // @see twig_tweak_test_block_access()
@@ -118,8 +121,8 @@ final class RegionViewBuilderTest extends AbstractTestCase {
         'max-age' => 123,
       ],
     ];
-    $actual_build = $view_builder->build('sidebar_first', 'stark');
-    self::assertRenderArray($expected_build, $actual_build);
+
+    self::assertRenderArray($expected_build, $build);
 
     $expected_html = <<< 'HTML'
       <div>
@@ -127,8 +130,12 @@ final class RegionViewBuilderTest extends AbstractTestCase {
           <span>Powered by <a href="https://www.drupal.org">Drupal</a></span>
         </div>
       </div>
-      HTML;
-    $actual_html = (string) $renderer->renderInIsolation($actual_build);
+    HTML;
+    $actual_html = DeprecationHelper::backwardsCompatibleCall(
+      \Drupal::VERSION, '10.3.0',
+      fn () => $renderer->renderInIsolation($build),
+      fn () => $renderer->renderPlain($build),
+    );
     self::assertSame(self::normalizeHtml($expected_html), self::normalizeHtml($actual_html));
 
     // Set 'stark' as default site theme and check if the view builder without
@@ -138,11 +145,15 @@ final class RegionViewBuilderTest extends AbstractTestCase {
       ->set('default', 'stark')
       ->save();
 
-    $actual_build = $view_builder->build('sidebar_first');
-    self::assertRenderArray($expected_build, $actual_build);
+    $build = $view_builder->build('sidebar_first');
+    self::assertRenderArray($expected_build, $build);
 
     Html::resetSeenIds();
-    $actual_html = (string) $renderer->renderInIsolation($actual_build);
+    $actual_html = DeprecationHelper::backwardsCompatibleCall(
+      \Drupal::VERSION, '10.3.0',
+      fn () => $renderer->renderInIsolation($build),
+      fn () => $renderer->renderPlain($expected_build),
+    );
     self::assertSame(self::normalizeHtml($expected_html), self::normalizeHtml($actual_html));
   }
 
@@ -150,7 +161,7 @@ final class RegionViewBuilderTest extends AbstractTestCase {
    * Normalizes the provided HTML.
    */
   private static function normalizeHtml(string $html): string {
-    return \rtrim(\preg_replace(['#\s{2,}#', '#\n#'], '', $html));
+    return rtrim(preg_replace(['#\s{2,}#', '#\n#'], '', $html));
   }
 
 }

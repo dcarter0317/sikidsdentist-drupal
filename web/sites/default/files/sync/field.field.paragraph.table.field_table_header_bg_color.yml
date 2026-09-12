@@ -1,0 +1,22 @@
+uuid: 8b9a79e3-aebf-409b-a00e-b7fd73d1be57
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_table_header_bg_color
+    - paragraphs.paragraphs_type.table
+  module:
+    - color_field
+id: paragraph.table.field_table_header_bg_color
+field_name: field_table_header_bg_color
+entity_type: paragraph
+bundle: table
+label: 'Table Header Background Color'
+description: 'Background color for the table header row (thead).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 1
+field_type: color_field_type

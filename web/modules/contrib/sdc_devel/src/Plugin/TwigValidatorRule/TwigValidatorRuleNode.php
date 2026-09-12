@@ -29,13 +29,16 @@ final class TwigValidatorRuleNode extends TwigValidatorRulePluginBase {
    */
   public function processNode(string $id, Node $node, array $definition, array $variableSet): array {
     $class = \get_class($node);
+
     switch ($class) {
       case 'Twig\Node\SandboxNode':
         $message = new TranslatableMarkup('Bad architecture for sandbox: Component calling components.');
+
         return [ValidatorMessage::createForNode($id, $node, $message)];
 
       case 'Twig\Node\FlushNode':
         $message = new TranslatableMarkup('Cache management outside of Drupal.');
+
         return [ValidatorMessage::createForNode($id, $node, $message)];
 
       case 'Twig\Node\ForNode':
@@ -44,11 +47,13 @@ final class TwigValidatorRuleNode extends TwigValidatorRulePluginBase {
         }
 
         $parent = $node->getAttribute(NodeAttribute::PARENT);
+
         if (!$parent->hasAttribute(NodeAttribute::PARENT)) {
           break;
         }
 
         $firstParent = $parent->getAttribute(NodeAttribute::PARENT);
+
         if (!\is_a($firstParent, 'Twig\Node\IfNode')) {
           break;
         }
@@ -58,6 +63,7 @@ final class TwigValidatorRuleNode extends TwigValidatorRulePluginBase {
         }
 
         $message = new TranslatableMarkup('Loop in a condition can be replaced by compact syntax without if.');
+
         return [ValidatorMessage::createForNode($id, $node, $message, RfcLogLevel::NOTICE)];
     }
 
@@ -81,28 +87,41 @@ final class TwigValidatorRuleNode extends TwigValidatorRulePluginBase {
     }
 
     $seq = $forNode->getNode('seq');
+
     if (!$seq->hasAttribute('name')) {
       return FALSE;
     }
 
     $forVariableName = $seq->getAttribute('name');
+
     if (!$ifNode->hasNode('tests')) {
       return FALSE;
     }
 
     $ifNodes = $ifNode->getNode('tests');
+
     foreach ($ifNodes->getIterator() as $value) {
       $ifVariableName = FALSE;
+
+      // Twig wraps a `{% if foo %}` condition in a `true` test, the variable
+      // is under the `node` node.
+      if (\is_a($value, 'Twig\Node\Expression\Test\TrueTest') && $value->hasNode('node')) {
+        $value = $value->getNode('node');
+      }
+
       if ($value->hasAttribute('name')) {
         $ifVariableName = $value->getAttribute('name');
       }
+
       if ($value->hasNode('left')) {
         $left = $value->getNode('left');
+
         if (!$left->hasAttribute('name')) {
           return FALSE;
         }
         $ifVariableName = $left->getAttribute('name');
       }
+
       if ($ifVariableName === $forVariableName) {
         return TRUE;
       }

@@ -9,6 +9,9 @@ use Drupal\sdc_devel\TwigValidatorRuleInterface;
 use Drupal\sdc_devel\TwigValidatorRulePluginBase;
 use Drupal\sdc_devel\ValidatorMessage;
 use Drupal\Tests\UnitTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use Twig\Node\EmptyNode;
 use Twig\Node\Node;
 use Twig\Node\Nodes;
@@ -16,14 +19,13 @@ use Twig\Node\Nodes;
 /**
  * Simple test for Twig Finder helper class.
  *
- * @coversDefaultClass \Drupal\sdc_devel\TwigValidatorRulePluginBase
- *
- * @group sdc_devel
- * @internal
- *
  * phpcs:disable Drupal.Commenting.VariableComment.Missing
+ *
+ * @internal
  */
-class TwigValidatorRulePluginTest extends UnitTestCase {
+#[CoversClass(TwigValidatorRulePluginBase::class)]
+#[Group('sdc_devel')]
+final class TwigValidatorRulePluginTest extends UnitTestCase {
 
   protected string $pluginId = 'rule_test';
 
@@ -31,25 +33,12 @@ class TwigValidatorRulePluginTest extends UnitTestCase {
 
   private array $pluginDefinition = [];
 
-  /**
-   * @covers ::label
-   */
   public function testGetLabel(): void {
     $this->pluginDefinition['label'] = 'Test label';
     $rulePluginTest = $this->getRulePluginTest();
-    $this->assertSame('Test label', $rulePluginTest->label());
+    self::assertSame('Test label', $rulePluginTest->label());
   }
 
-  /**
-   * Test the getRulesByName method.
-   *
-   * @covers ::getRulesByName
-   * @covers ::getNameIgnore
-   * @covers ::getNameAllow
-   * @covers ::getNameDeprecate
-   * @covers ::getNameWarn
-   * @covers ::getNameForbid
-   */
   public function testGetRulesByName(): void {
     $rule_on_name = [
       -1 => [
@@ -72,23 +61,15 @@ class TwigValidatorRulePluginTest extends UnitTestCase {
     $this->pluginDefinition['rule_on_name'] = $rule_on_name;
     $rulePluginTest = $this->getRulePluginTest();
 
-    $this->assertSame($rule_on_name, $rulePluginTest->getRulesByName());
-    $this->assertSame($rule_on_name[-1], $rulePluginTest->getNameIgnore());
-    $this->assertSame($rule_on_name[0], $rulePluginTest->getNameAllow());
-    $this->assertSame($rule_on_name[5], $rulePluginTest->getNameDeprecate());
-    $this->assertSame($rule_on_name[4], $rulePluginTest->getNameWarn());
-    $this->assertSame($rule_on_name[3], $rulePluginTest->getNameForbid());
+    self::assertSame($rule_on_name, $rulePluginTest->getRulesByName());
+    self::assertSame($rule_on_name[-1], $rulePluginTest->getNameIgnore());
+    self::assertSame($rule_on_name[0], $rulePluginTest->getNameAllow());
+    self::assertSame($rule_on_name[5], $rulePluginTest->getNameDeprecate());
+    self::assertSame($rule_on_name[4], $rulePluginTest->getNameWarn());
+    self::assertSame($rule_on_name[3], $rulePluginTest->getNameForbid());
   }
 
-  /**
-   * Test the processNode method.
-   *
-   * @covers ::ruleAllowedForbiddenDeprecated
-   * @covers ::getRuleMethodToCall
-   * @covers ::handleNameCase
-   *
-   * @dataProvider providerTestProcessNode
-   */
+  #[DataProvider('providerTestProcessNode')]
   public function testProcessNode(int $ruleLevel, string $name, ?int $expectedLevel, ?string $tip, ?TranslatableMarkup $prefix, ?ValidatorMessage $expectedError): void {
     if ($tip) {
       $this->pluginDefinition['rule_on_name'] = [
@@ -110,7 +91,8 @@ class TwigValidatorRulePluginTest extends UnitTestCase {
     $result = $rulePluginTest->processNode('test', $node, [], []);
 
     if (!$expectedLevel) {
-      $this->assertEmpty($result);
+      self::assertEmpty($result);
+
       return;
     }
 
@@ -121,7 +103,7 @@ class TwigValidatorRulePluginTest extends UnitTestCase {
       ), $expectedLevel);
     }
 
-    $this->assertEquals($expectedError, $result[0]);
+    self::assertEquals($expectedError, $result[0]);
   }
 
   /**
@@ -244,6 +226,8 @@ class TwigValidatorRulePluginTest extends UnitTestCase {
 
 /**
  * Test Plugin.
+ *
+ * @internal
  */
 final class RulePluginTest extends TwigValidatorRulePluginBase {
 

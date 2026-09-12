@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\twig_tweak;
 
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -13,30 +11,37 @@ use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\OEmbedInterface;
 
 /**
- * The URI extractor service.
+ * URI extractor service.
  */
-final readonly class UriExtractor {
+class UriExtractor {
 
   /**
-   * {@selfdoc}
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  public function __construct(
-    private EntityTypeManagerInterface $entityTypeManager,
-  ) {}
+  protected $entityTypeManager;
+
+  /**
+   * Constructs a UrlExtractor object.
+   */
+  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+    $this->entityTypeManager = $entity_type_manager;
+  }
 
   /**
    * Returns a URI to the file.
    *
-   * @param object|null $input
+   * @param Object|null $input
    *   An object that contains the URI.
    *
-   * @return non-empty-string|null
-   *   A URI that can be used to access the file, or null if the object doesn't
-   *   contain a valid URI.
+   * @return string|null
+   *   A URI that may be used to access the file.
    */
   public function extractUri(?object $input): ?string {
     $entity = $input;
     if ($input instanceof EntityReferenceFieldItemListInterface) {
+      /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $item */
       if ($item = $input->first()) {
         $entity = $item->entity;
       }
@@ -44,8 +49,8 @@ final readonly class UriExtractor {
     elseif ($input instanceof EntityReferenceItem) {
       $entity = $input->entity;
     }
-    // Drupal doesn't clean up references to deleted entities, so the entity
-    // property might be empty even when the field item exists.
+    // Drupal does not clean up references to deleted entities. So that the
+    // entity property might be empty while the field item might not.
     // @see https://www.drupal.org/project/drupal/issues/2723323
     return $entity instanceof ContentEntityInterface ?
       $this->getUriFromEntity($entity) : NULL;
@@ -53,6 +58,12 @@ final readonly class UriExtractor {
 
   /**
    * Extracts file URI from content entity.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   Entity object that contains information about the file.
+   *
+   * @return string|null
+   *   A URI that can be used to access the file.
    */
   private function getUriFromEntity(ContentEntityInterface $entity): ?string {
     if ($entity instanceof MediaInterface) {
@@ -61,6 +72,7 @@ final readonly class UriExtractor {
       if ($source instanceof OEmbedInterface) {
         return $value;
       }
+      /** @var \Drupal\file\FileInterface $file */
       $file = $this->entityTypeManager->getStorage('file')->load($value);
       if ($file) {
         return $file->getFileUri();

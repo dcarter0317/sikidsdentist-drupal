@@ -4,7 +4,7 @@
  * Styles for the Card SDC.
  */
 
-.card {
+article.card {
   --card-title-color: var(--clr-text-2, #1d2d39);
   --card-text-color: var(--clr-text-2, #1d2d39);
   --card-eyebrow-color: var(--clr-text-7, #4c6a7d);
@@ -25,11 +25,26 @@
   flex-direction: column;
 }
 
+.card__media {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
 .card__media img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Shrink the image on mobile, where the card is full-width and the
+   tall 4/5 ratio makes the photo dominate the card. Keep object-fit:
+   cover, but use a less extreme ratio than a straight half-height
+   so the crop doesn't zoom in too tight on faces. */
+@media (width < 600px) {
+  .card__media {
+    aspect-ratio: 1 / 1;
+  }
 }
 
 .card__content {
@@ -37,8 +52,18 @@
   padding: 1rem 1rem 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
   flex: 1;
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1 0 auto;
+}
+
+.card__footer {
+  margin-top: 1rem;
 }
 
 .card__eyebrow {
@@ -66,7 +91,6 @@
 .card__link,
 .card__link:link,
 .card__link:visited {
-  margin-top: auto;
   width: fit-content;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -102,4 +126,64 @@
 .card--text-right .card__content {
   text-align: right;
   align-items: flex-end;
+}
+
+/* ── Wide (horizontal) card variant ──────────────────────────
+   Image sits beside the content instead of above it. Flex's
+   default cross-axis stretch makes .card__media fill the full
+   height of the card, so the image always matches the card's
+   (and therefore the row's tallest card's) height. */
+
+.card--wide {
+  flex-direction: row;
+}
+
+.card--wide .card__media {
+  aspect-ratio: auto;
+  flex: 0 0 40%;
+  max-width: 320px;
+}
+
+.card--wide .card__content {
+  flex: 1;
+}
+
+@media (width < 600px) {
+  .card--wide {
+    flex-direction: column;
+  }
+
+  .card--wide .card__media {
+    aspect-ratio: 1 / 1;
+    flex: none;
+    max-width: none;
+  }
+}
+
+/* ── Equal card heights inside "From library" reusable-paragraph
+   columns (ept_columns module) ──────────────────────────────────
+   Each card here is a separate reusable ("from_library") paragraph
+   placed in its own ept_columns grid column. ept_columns' own CSS
+   sets `.paragraph { height: 100% }` on the from-library wrapper
+   when the "Equal height" column setting is on, matching the grid
+   row's height (CSS Grid stretches each column to the tallest one
+   by default). But two more plain, unclassed wrapper <div>s sit
+   between that wrapper and the .card article (one from the single-
+   value field template, one from the card_item paragraph bridge
+   template), and neither stretches automatically. Flattening them
+   with display:contents lets .card's own `min-height: 100%` resolve
+   against the from-library wrapper's real height, so the card fills
+   the full column height — matching the tallest card in the row. */
+
+.paragraph--type--from-library:has(.card) {
+  height: 100%;
+}
+
+.paragraph--type--from-library:has(.card) > div,
+.paragraph--type--from-library:has(.card) > div > div {
+  display: contents;
+}
+
+.paragraph--type--from-library:has(.card) .card {
+  width: 100%;
 }

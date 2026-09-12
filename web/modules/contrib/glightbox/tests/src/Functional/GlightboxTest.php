@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\glightbox\Functional;
 
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
 
@@ -12,6 +14,8 @@ use Drupal\Tests\BrowserTestBase;
  *
  * @group glightbox
  */
+#[Group('glightbox')]
+#[RunTestsInSeparateProcesses]
 final class GlightboxTest extends BrowserTestBase {
 
   /**

@@ -14,11 +14,15 @@ use Twig\Node\Node;
  */
 abstract class TwigValidatorRulePluginBase extends PluginBase implements TwigValidatorRuleInterface {
 
-  protected const RULE_NAME_IGNORE = -1;
-  protected const RULE_NAME_ALLOW = 0;
-  protected const RULE_NAME_WARN = RfcLogLevel::WARNING;
-  protected const RULE_NAME_DEPRECATE = RfcLogLevel::NOTICE;
-  protected const RULE_NAME_FORBID = RfcLogLevel::ERROR;
+  public const RULE_NAME_IGNORE = -1;
+
+  public const RULE_NAME_ALLOW = 0;
+
+  public const RULE_NAME_WARN = RfcLogLevel::WARNING;
+
+  public const RULE_NAME_DEPRECATE = RfcLogLevel::NOTICE;
+
+  public const RULE_NAME_FORBID = RfcLogLevel::ERROR;
 
   /**
    * {@inheritdoc}
@@ -81,6 +85,7 @@ abstract class TwigValidatorRulePluginBase extends PluginBase implements TwigVal
    */
   protected static function getRuleMethodToCall(string $name): ?string {
     $func = \str_replace([' ', '-', '_'], '', \ucwords($name));
+
     return \method_exists(static::class, $func) ? $func : NULL;
   }
 
@@ -102,11 +107,12 @@ abstract class TwigValidatorRulePluginBase extends PluginBase implements TwigVal
       return NULL;
     }
 
-    if ('filter' === $name) {
+    if ($name === 'filter') {
       $target = $node->getAttribute('twig_callable')->getName();
     }
     else {
       $target = $node->getNode($name);
+
       if ($target->hasAttribute($attribute)) {
         return $target->getAttribute($attribute);
       }
@@ -185,6 +191,7 @@ abstract class TwigValidatorRulePluginBase extends PluginBase implements TwigVal
         ['@prefix' => $prefix, '@type' => $type, '@name' => $name, '@tip' => $rules[$name] ?? '']
       ), $logLevel);
     }
+
     return NULL;
   }
 

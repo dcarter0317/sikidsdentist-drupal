@@ -1,0 +1,19 @@
+uuid: 6a3194d3-5d4e-4f98-878f-aa628e75e562
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_row_cells
+    - paragraphs.paragraphs_type.table_row
+id: paragraph.table_row.field_row_cells
+field_name: field_row_cells
+entity_type: paragraph
+bundle: table_row
+label: Cells
+description: 'Cell values for this row, one per column.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

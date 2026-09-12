@@ -1,0 +1,86 @@
+{#
+/**
+ * @file table.twig
+ *
+ * Table Single Directory Component.
+ *
+ * Props:
+ * - caption
+ * - headers
+ * - rows
+ * - variant_class
+ * - dark_mode
+ * - vertical_borders
+ * - outer_border
+ * - bg_color
+ * - header_bg_color
+ * - row_bg_color
+ * - col_bg_color
+ */
+#}
+
+{%
+  set wrap_classes = [
+    'table-wrap',
+    dark_mode ? 'table-wrap--dark' : '',
+  ]
+%}
+
+{%
+  set table_classes = [
+    'table-comp',
+    variant_class|default(''),
+    dark_mode ? 'table-comp--dark' : '',
+    vertical_borders ? 'table-comp--vertical-borders' : '',
+    outer_border ? 'table-comp--outer-border' : '',
+  ]
+%}
+
+{% set inline_styles = [] %}
+{% if bg_color %}
+  {% set inline_styles = inline_styles|merge(['--table-bg: ' ~ bg_color]) %}
+{% endif %}
+{% if header_bg_color %}
+  {% set inline_styles = inline_styles|merge(['--table-header-bg: ' ~ header_bg_color]) %}
+{% endif %}
+{% if row_bg_color %}
+  {% set inline_styles = inline_styles|merge(['--table-row-bg: ' ~ row_bg_color]) %}
+{% endif %}
+{% if col_bg_color %}
+  {% set inline_styles = inline_styles|merge(['--table-col-bg: ' ~ col_bg_color]) %}
+{% endif %}
+{% set style_str = inline_styles|length > 0 ? inline_styles|join('; ') ~ ';' : '' %}
+{% set style_attribute = style_str ? 'style="' ~ style_str ~ '"' : '' %}
+
+<div class="{{ wrap_classes|join(' ')|trim }}" {{ style_attribute|raw }}>
+  <table class="{{ table_classes|join(' ')|trim }}">
+    {% if caption %}
+      <caption>{{ caption }}</caption>
+    {% endif %}
+
+    {% if headers %}
+      <thead>
+        <tr>
+          {% for heading in headers %}
+            <th scope="col">{{ heading }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+    {% endif %}
+
+    {% if rows %}
+      <tbody>
+        {% for row in rows %}
+          <tr>
+            {% if row.heading %}
+              <th scope="row">{{ row.heading }}</th>
+            {% endif %}
+            {% for cell in row.cells %}
+              <td>{{ cell }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    {% endif %}
+  </table>
+</div>

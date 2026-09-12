@@ -18,6 +18,7 @@ use Twig\Source;
 final class ValidatorMessage {
 
   private const TYPE_DEFINITION = 1;
+
   private const TYPE_TWIG = 2;
 
   private function __construct(
@@ -197,8 +198,9 @@ final class ValidatorMessage {
    */
   public function messageWithTip(): FormattableMarkup {
     if ($this->tip) {
-      return new FormattableMarkup(sprintf('%s<br>%s', $this->message, $this->tip), []);
+      return new FormattableMarkup(\sprintf('%s<br>%s', $this->message, $this->tip), []);
     }
+
     return $this->message;
   }
 
@@ -214,6 +216,7 @@ final class ValidatorMessage {
     }
 
     $lines = \explode(\PHP_EOL, $this->source->getCode());
+
     if ($this->length > 1) {
       return \implode(\PHP_EOL, \array_slice($lines, $this->line - 1, $this->length));
     }

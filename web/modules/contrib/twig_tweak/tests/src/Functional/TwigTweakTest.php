@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\Tests\twig_tweak\Functional;
 
 use Drupal\Core\Link;
@@ -43,7 +41,6 @@ final class TwigTweakTest extends BrowserTestBase {
     'responsive_image',
     'language',
     'contextual',
-    'dblog',
   ];
 
   /**
@@ -448,14 +445,6 @@ final class TwigTweakTest extends BrowserTestBase {
     // -- Hook twig_tweak_tests_alter().
     $xpath = '//div[@class = "tt-tests_alter" and text() = "Yes"]';
     $this->assertXpath($xpath);
-
-    // -- Logger:
-    $log_messages = \Drupal::database()->select('watchdog', 'w')
-      ->fields('w', ['message'])
-      ->condition('type', 'twig_tweak_test')
-      ->execute()
-      ->fetchCol();
-    self::assertContains('Test log message', $log_messages);
   }
 
   /**

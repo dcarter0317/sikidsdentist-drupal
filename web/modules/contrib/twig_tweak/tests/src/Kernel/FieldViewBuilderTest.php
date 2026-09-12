@@ -1,10 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\Tests\twig_tweak\Kernel;
 
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Core\Cache\Cache;
+use Drupal\node\Entity\Node;
+use Drupal\node\Entity\NodeType;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 
 /**
@@ -25,8 +26,6 @@ final class FieldViewBuilderTest extends AbstractTestCase {
     'user',
     'system',
     'node',
-    'views',
-    'filter',
   ];
 
   /**
@@ -36,31 +35,33 @@ final class FieldViewBuilderTest extends AbstractTestCase {
     parent::setUp();
     $this->installEntitySchema('node');
     $this->setUpCurrentUser(['name' => 'User 1'], ['access content']);
+    NodeType::create(['type' => 'article'])->save();
   }
 
   /**
    * Test callback.
    */
   public function testFieldViewBuilder(): void {
+
     $view_builder = $this->container->get('twig_tweak.field_view_builder');
-    $node_storage = $this->container->get('entity_type.manager')->getStorage('node');
 
     $values = [
       'type' => 'article',
       'title' => 'Public node',
     ];
-    $public_node = $node_storage->create($values);
-    $node_storage->save($public_node);
+    $public_node = Node::create($values);
+    $public_node->save();
 
     $values = [
       'type' => 'article',
       'title' => 'Private node',
     ];
-    $private_node = $node_storage->create($values);
-    $node_storage->save($private_node);
+    $private_node = Node::create($values);
+    $private_node->save();
 
     // -- Full mode.
     $build = $view_builder->build($public_node, 'title');
+
     self::assertArrayHasKey(0, $build);
     $expected_cache = [
       'contexts' => [
@@ -74,10 +75,12 @@ final class FieldViewBuilderTest extends AbstractTestCase {
       'max-age' => 50,
     ];
     self::assertCache($expected_cache, $build['#cache']);
-    self::assertSame('<span>Public node</span>', $this->renderInIsolation($build));
+
+    self::assertSame('<span>Public node</span>', $this->renderPlain($build));
 
     // -- Custom mode.
     $build = $view_builder->build($public_node, 'title', ['settings' => ['link_to_entity' => TRUE]]);
+
     self::assertArrayHasKey(0, $build);
     $expected_cache = [
       'contexts' => [
@@ -92,10 +95,11 @@ final class FieldViewBuilderTest extends AbstractTestCase {
     ];
     self::assertCache($expected_cache, $build['#cache']);
     $expected_html = '<span><a href="/node/1" hreflang="en">Public node</a></span>';
-    self::assertSame($expected_html, $this->renderInIsolation($build));
+    self::assertSame($expected_html, $this->renderPlain($build));
 
     // -- Private node with access check.
     $build = $view_builder->build($private_node, 'title');
+
     self::assertArrayNotHasKey(0, $build);
     $expected_cache = [
       'contexts' => [
@@ -109,10 +113,11 @@ final class FieldViewBuilderTest extends AbstractTestCase {
       'max-age' => 50,
     ];
     self::assertCache($expected_cache, $build['#cache']);
-    self::assertSame('', $this->renderInIsolation($build));
+    self::assertSame('', $this->renderPlain($build));
 
     // -- Private node without access check.
     $build = $view_builder->build($private_node, 'title', 'full', NULL, FALSE);
+
     self::assertArrayHasKey(0, $build);
     $expected_cache = [
       'contexts' => [],
@@ -120,21 +125,22 @@ final class FieldViewBuilderTest extends AbstractTestCase {
       'max-age' => Cache::PERMANENT,
     ];
     self::assertSame($expected_cache, $build['#cache']);
-    self::assertSame('<span>Private node</span>', $this->renderInIsolation($build));
-
-    // -- Not existing field.
-    self::expectExceptionObject(new \InvalidArgumentException('Field "example" does not exist in "node" entity type.'));
-    $view_builder->build($private_node, 'example', 'full', NULL, FALSE);
+    self::assertSame('<span>Private node</span>', $this->renderPlain($build));
   }
 
   /**
    * Renders a render array.
    */
-  private function renderInIsolation(array $build): string {
+  private function renderPlain(array $build): string {
+    /** @var \Drupal\Core\Render\RendererInterface $renderer */
     $renderer = $this->container->get('renderer');
-    $actual_html = (string) $renderer->renderInIsolation($build);
-    $actual_html = \preg_replace('#<footer>.+</footer>#s', '', $actual_html);
-    $actual_html = \preg_replace(['#\s{2,}#', '#\n#'], '', $actual_html);
+    $actual_html = DeprecationHelper::backwardsCompatibleCall(
+      \Drupal::VERSION, '10.3.0',
+      fn () => $renderer->renderInIsolation($build),
+      fn () => $renderer->renderPlain($build),
+    );
+    $actual_html = preg_replace('#<footer>.+</footer>#s', '', $actual_html);
+    $actual_html = preg_replace(['#\s{2,}#', '#\n#'], '', $actual_html);
     return $actual_html;
   }
 

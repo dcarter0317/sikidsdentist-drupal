@@ -38,9 +38,7 @@ use Drupal\sdc_devel\Validator;
 abstract class SdcDevelComponentKernelTestBase extends ComponentKernelTestBase {
 
   /**
-   * The component plugin manager.
-   *
-   * @var \Drupal\Core\Theme\ComponentPluginManager
+   * The sdc devel validator.
    */
   protected Validator $validator;
 
@@ -62,7 +60,7 @@ abstract class SdcDevelComponentKernelTestBase extends ComponentKernelTestBase {
    *
    * Only report Warning and above.
    *
-   * @var string[]
+   * @var int[]
    */
   protected static $levelReport = [
     RfcLogLevel::WARNING,
@@ -103,7 +101,7 @@ abstract class SdcDevelComponentKernelTestBase extends ComponentKernelTestBase {
     $components = $this->manager->getAllComponents();
 
     if (!\count($components)) {
-      $this->expectNotToPerformAssertions('No components found to test!');
+      $this->markTestSkipped('No components found to test!');
     }
 
     $results = [];
@@ -116,7 +114,8 @@ abstract class SdcDevelComponentKernelTestBase extends ComponentKernelTestBase {
         continue;
       }
 
-      $provider = $component->getPluginDefinition()['provider'] ?? '';
+      $definition = $component->getPluginDefinition();
+      $provider = \is_array($definition) ? ($definition['provider'] ?? '') : '';
 
       // Exclude any component from this module by default.
       if (\str_starts_with($provider, 'sdc_devel')) {
@@ -139,11 +138,7 @@ abstract class SdcDevelComponentKernelTestBase extends ComponentKernelTestBase {
       }
     }
 
-    if (\count($results)) {
-      $this->fail(\implode("\n", $results));
-    }
-
-    $this->assertEmpty($results, 'No component with error found.');
+    $this->assertEmpty($results, \implode("\n", $results));
   }
 
   /**

@@ -1,0 +1,21 @@
+uuid: d80f5e84-a796-4c9a-86ee-a73b7754da3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_table_dark_mode
+    - paragraphs.paragraphs_type.table
+id: paragraph.table.field_table_dark_mode
+field_name: field_table_dark_mode
+entity_type: paragraph
+bundle: table
+label: 'Dark Mode'
+description: "Render the table using the site's dark mode color pattern."
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

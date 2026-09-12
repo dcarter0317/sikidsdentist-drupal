@@ -10,6 +10,7 @@ use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 
 /**
@@ -53,7 +54,9 @@ function template_preprocess_glightbox_formatter(&$variables) {
     }
   }
 
-  $gallery_id = \Drupal::service('glightbox.gallery_id_generator')->generateId($entity, $item, $settings, $parent_entity_id, $parent_paragraph_id);
+  $gallery_bubbleable_metadata = new BubbleableMetadata();
+  $gallery_id = \Drupal::service('glightbox.gallery_id_generator')->generateId($entity, $item, $settings, $parent_entity_id, $parent_paragraph_id, $gallery_bubbleable_metadata);
+  $gallery_bubbleable_metadata->applyTo($variables);
 
   // Set up the $variables['image'] parameter.
   if ($settings['style_name'] == 'hide') {
@@ -215,7 +218,9 @@ function template_preprocess_glightbox_responsive_formatter(array &$variables) {
     $variables['url'] = $file_url_generator->generateAbsoluteString($image_uri);
   }
 
-  $gallery_id = \Drupal::service('glightbox.gallery_id_generator')->generateId($entity, $item, $settings);
+  $gallery_bubbleable_metadata = new BubbleableMetadata();
+  $gallery_id = \Drupal::service('glightbox.gallery_id_generator')->generateId($entity, $item, $settings, '', '', $gallery_bubbleable_metadata);
+  $gallery_bubbleable_metadata->applyTo($variables);
 
   $caption = $formatter_service->getCaption($variables);
   if (!empty($caption)) {

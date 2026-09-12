@@ -23,3 +23,7 @@ services:
   plugin.manager.twig_validator_rule:
     class: Drupal\sdc_devel\TwigValidatorRulePluginManager
     parent: default_plugin_manager
+
+  Drupal\sdc_devel\Hook\SdcDevelHooks:
+    class: Drupal\sdc_devel\Hook\SdcDevelHooks
+    autowire: true

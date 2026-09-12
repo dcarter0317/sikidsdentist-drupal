@@ -10,12 +10,19 @@
         "source": "https://git.drupalcode.org/project/twig_tweak"
     },
     "require": {
-        "php": ">=8.4",
+        "php": ">=8.1",
         "ext-json": "*",
-        "drupal/core": "^11.2",
-        "twig/twig": "^3.21"
+        "drupal/core": "^10.3 || ^11.0",
+        "twig/twig": "^3.10.3"
     },
     "suggest": {
         "symfony/var-dumper": "Better dump() function for debugging Twig variables"
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^10 || ^11"
+            }
+        }
     }
 }

@@ -27,6 +27,9 @@ class Source extends Plugin {
    * @param ?\Drupal\Core\StringTranslation\TranslatableMarkup $description
    *   = NULL
    *   Translatable description for the source plugin.
+   * @param bool $no_ui
+   *   (optional) A boolean stating that sources of this type cannot be added
+   *   from the UI.
    * @param ?array $prop_types
    *   Prop types for this source.
    * @param class-string|null $deriver
@@ -34,7 +37,8 @@ class Source extends Plugin {
    * @param ?array $tags
    *   Array of tags.
    * @param ?array $context_requirements
-   *   Array of tags.
+   *   Requirements the contexts must carry. A list of strings means one of
+   *   them is enough.
    * @param ?array $metadata
    *   Array of metadata.
    * @param ?array $context_definitions
@@ -44,6 +48,7 @@ class Source extends Plugin {
     public readonly string $id,
     public readonly TranslatableMarkup $label,
     public readonly ?TranslatableMarkup $description = NULL,
+    public readonly bool $no_ui = FALSE,
     public readonly ?array $prop_types = NULL,
     public readonly ?string $deriver = NULL,
     public readonly ?array $tags = [],

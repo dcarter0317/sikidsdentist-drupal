@@ -106,7 +106,7 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
 
     $name = $attribute->getName();
 
-    if (!\is_string($name) || in_array($name, $this->getNameIgnore())) {
+    if (!\is_string($name) || \in_array($name, $this->getNameIgnore(), TRUE)) {
       return [];
     }
 
@@ -146,7 +146,7 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
         elseif (\is_bool($value)) {
           $errors[] = ValidatorMessage::createForNode($id, $node, new TranslatableMarkup('Filter `abs` can only be applied on number, @type found!', ['@type' => 'boolean']));
         }
-        elseif (NULL === $value) {
+        elseif ($value === NULL) {
           $errors[] = ValidatorMessage::createForNode($id, $node, new TranslatableMarkup('Filter `abs` can only be applied on number, @type found!', ['@type' => 'null']));
         }
       }
@@ -233,7 +233,8 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
 
     if (\is_a($parent, 'Twig\Node\Expression\ConstantExpression') && $parent->hasAttribute('value')) {
       $value = $parent->getAttribute('value');
-      if (\is_bool($value) || NULL === $value) {
+
+      if (\is_bool($value) || $value === NULL) {
         $errors[] = ValidatorMessage::createForNode($id, $node, new TranslatableMarkup('Filter `default` is not for booleans or null!'));
       }
     }
@@ -247,13 +248,15 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
           continue;
         }
 
+        $expr = self::unwrapCheckToString($expr);
+
         if (!self::validateFilterExpression($expr)) {
           continue;
         }
 
         $variable_name = $expr->getNode('node')->getNode('expr')->getAttribute('name');
 
-        if (!isset($definition[$variable_name]) || 'boolean' !== $definition[$variable_name]) {
+        if (!isset($definition[$variable_name]) || $definition[$variable_name] !== 'boolean') {
           continue;
         }
 
@@ -261,14 +264,16 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
       }
     }
 
-    if ('Twig\Node\Expression\Filter\DefaultFilter' !== get_class($node)) {
+    if (\get_class($node) !== 'Twig\Node\Expression\Filter\DefaultFilter') {
       return $errors;
     }
 
     $inside_default = NULL;
+
     // $inside_default_is_variable = FALSE;
     if ($parent->hasNode('right')) {
-      $right = $parent->getNode('right');
+      $right = self::unwrapCheckToString($parent->getNode('right'));
+
       if ($right->hasAttribute('name')) {
         // $inside_default_is_variable = TRUE;
         $inside_default = $right->getAttribute('name');
@@ -280,10 +285,16 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
 
     // Get variable on which default filter is applied.
     $left_default = NULL;
+
     if ($parent->hasNode('test')) {
       $node_parent = $parent->getNode('test');
-      if ($node_parent->hasNode('node') && $node_parent->getNode('node')->hasAttribute('name')) {
-        $left_default = $node_parent->getNode('node')->getAttribute('name');
+
+      if ($node_parent->hasNode('node')) {
+        $test_node = self::unwrapCheckToString($node_parent->getNode('node'));
+
+        if ($test_node->hasAttribute('name')) {
+          $left_default = $test_node->getAttribute('name');
+        }
       }
     }
 
@@ -293,11 +304,31 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
     }
 
     // Detect {{ foo|default(false) }} or {{ foo|default(true) }} case.
-    if (is_bool($inside_default)) {
+    if (\is_bool($inside_default)) {
       $errors[] = ValidatorMessage::createForNode($id, $node, new TranslatableMarkup("Don't use `default` filter with boolean."), RfcLogLevel::WARNING);
     }
 
     return $errors;
+  }
+
+  /**
+   * Remove the Drupal escaping wrapper around an expression.
+   *
+   * Drupal wraps most of the expressions in a `CheckToStringNode`, the real
+   * expression is under the `expr` node.
+   *
+   * @param \Twig\Node\Node $node
+   *   The Twig node being processed.
+   *
+   * @return \Twig\Node\Node
+   *   The wrapped node if any, the node itself otherwise.
+   */
+  private static function unwrapCheckToString(Node $node): Node {
+    while (\is_a($node, 'Twig\Node\CheckToStringNode') && $node->hasNode('expr')) {
+      $node = $node->getNode('expr');
+    }
+
+    return $node;
   }
 
   /**
@@ -310,10 +341,10 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
    *   If we can have a name.
    */
   private static function validateFilterExpression(Node $expr): bool {
-    return \is_a($expr, 'Twig\Node\Expression\FilterExpression') &&
-        $expr->hasNode('node') &&
-        $expr->getNode('node')->hasNode('expr') &&
-        $expr->getNode('node')->getNode('expr')->hasAttribute('name');
+    return \is_a($expr, 'Twig\Node\Expression\FilterExpression')
+        && $expr->hasNode('node')
+        && $expr->getNode('node')->hasNode('expr')
+        && $expr->getNode('node')->getNode('expr')->hasAttribute('name');
   }
 
   /**
@@ -332,8 +363,10 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
   private static function setAttribute(string $id, Node $node, Node $parent): array {
     $errors = [];
 
-    if (\is_a($parent, 'Twig\Node\Expression\FilterExpression')) {
-      $filter_name = $parent->getAttribute('twig_callable')->getName();
+    $previous = self::unwrapCheckToString($parent);
+
+    if (\is_a($previous, 'Twig\Node\Expression\FilterExpression')) {
+      $filter_name = $previous->getAttribute('twig_callable')->getName();
       $allowed_previous_filters = ['map', 'reverse', 'split', 'first', 'last', 'default', 'set_attribute'];
 
       if (!\in_array($filter_name, $allowed_previous_filters, TRUE)) {
@@ -351,10 +384,12 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
     }
 
     $target = $node->getNode('arguments');
+
     foreach ($target->getIterator() as $index => $arg) {
-      if (1 !== $index) {
+      if ($index !== 1) {
         continue;
       }
+
       if (!\is_object($arg)) {
         continue;
       }
@@ -365,7 +400,7 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
             continue;
           }
 
-          if (0 !== $key || 0 === $value->getAttribute('value')) {
+          if ($key !== 0 || $value->getAttribute('value') === 0) {
             continue;
           }
 
@@ -383,7 +418,7 @@ final class TwigValidatorRuleFilter extends TwigValidatorRulePluginBase {
 
       $value = $arg->getAttribute('value');
 
-      if (NULL !== $value) {
+      if ($value !== NULL) {
         continue;
       }
 

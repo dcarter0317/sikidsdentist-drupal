@@ -5,31 +5,26 @@ declare(strict_types=1);
 namespace Drupal\Tests\sdc_devel\Kernel\TwigValidatorRule;
 
 use Drupal\Core\Logger\RfcLogLevel;
+use Drupal\sdc_devel\Plugin\TwigValidatorRule\TwigValidatorRuleFilter;
 use Drupal\Tests\sdc_devel\Kernel\TwigValidatorTestBase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
- * @coversDefaultClass \Drupal\sdc_devel\Plugin\TwigValidatorRule\TwigValidatorRuleFilter
+ * Test the TwigValidatorRuleFilter.
  *
- * @group sdc_devel
+ * CSpell:disable.
+ *
  * @internal
- *
- * phpcs:disable Drupal.Arrays.Array.LongLineDeclaration,Drupal.Commenting.InlineComment.SpacingBefore,Drupal.Files.LineLength.TooLong
- * cSpell:disable
  */
+#[CoversClass(TwigValidatorRuleFilter::class)]
+#[Group('sdc_devel')]
+#[RunTestsInSeparateProcesses]
 final class TwigValidatorRuleFilterTest extends TwigValidatorTestBase {
 
-  /**
-   * @covers ::processNode
-   * @covers ::abs
-   * @covers ::addClass
-   * @covers ::cleanId
-   * @covers ::default
-   * @covers ::validateFilterExpression
-   * @covers ::setAttribute
-   * @covers ::t
-   *
-   * @dataProvider providerTestTwigValidatorFilter
-   */
+  #[DataProvider('providerTestTwigValidatorFilter')]
   public function testTwigValidatorFilter(string $source, array $expected): void {
     $this->runTestSourceTwigValidator($source, $expected);
   }
@@ -146,10 +141,10 @@ final class TwigValidatorRuleFilterTest extends TwigValidatorTestBase {
         {% set safe_test = ['foo', 'bar'] %}{{ safe_test|safe_join(', ') }}
         {{ ' foo '|spaceless }}
       ",
-        [
-          [2, RfcLogLevel::WARNING],
-          [3, RfcLogLevel::WARNING],
-        ],
+      [
+        [2, RfcLogLevel::WARNING],
+        [3, RfcLogLevel::WARNING],
+      ],
     ];
 
     yield 'forbid' => [
@@ -198,12 +193,12 @@ final class TwigValidatorRuleFilterTest extends TwigValidatorTestBase {
 
     // Test function function TwigValidatorRuleFilter::clean_id().
     yield 'clean_id' => [
-      "
+      '
         {{ 3 | clean_id }}
         {{ -5 | clean_id }}
         {{ 2.33 | clean_id }}
         {{ true | clean_id }}
-      ",
+      ',
       [
         [2, RfcLogLevel::ERROR],
         [3, RfcLogLevel::ERROR],

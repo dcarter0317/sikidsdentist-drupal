@@ -56,8 +56,9 @@ final class TwigValidator extends ValidatorBase {
   public function validateComponent(string $id, Component $component): void {
     $path = $component->getTemplatePath();
 
-    if (NULL === $path) {
+    if ($path === NULL) {
       $this->addMessage(ValidatorMessage::createForString($id, new TranslatableMarkup('This component has no template!'), RfcLogLevel::CRITICAL));
+
       return;
     }
 
@@ -88,7 +89,7 @@ final class TwigValidator extends ValidatorBase {
       $this->addMessage(ValidatorMessage::createFromTwigError('', $error));
     }
 
-    if (NULL === $this->template) {
+    if ($this->template === NULL) {
       return;
     }
 
@@ -110,6 +111,7 @@ final class TwigValidator extends ValidatorBase {
     }
     catch (Error $error) {
       $this->addMessage(ValidatorMessage::createFromTwigError($id, $error));
+
       return;
     }
 
@@ -153,7 +155,7 @@ final class TwigValidator extends ValidatorBase {
     $diff = \array_diff_key($variableCollector->getVariableSetList() + $definitionVariables, $variableCollector->getVariablePrintList());
 
     $allowed = $variableCollector::ALLOW_NOT_SET_VARIABLE;
-    $unusedVarList = \array_filter(\array_keys($diff), static fn($varName) => !isset($allowed[$varName]));
+    $unusedVarList = \array_filter(\array_keys($diff), static fn ($varName) => !isset($allowed[$varName]));
 
     if (!empty($unusedVarList)) {
       $message = new TranslatableMarkup('Unused variables: @list', ['@list' => \implode(', ', $unusedVarList)]);

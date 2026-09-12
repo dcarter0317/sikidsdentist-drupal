@@ -2,6 +2,7 @@
 
 namespace Drupal\glightbox\Plugin\Field\FieldFormatter;
 
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\Core\Asset\LibraryDiscoveryInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -156,7 +157,7 @@ class GLightboxFormatter extends ImageFormatterBase implements ContainerFactoryP
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $image_styles = image_style_options(FALSE);
+    $image_styles = DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '11.4.0', fn() => \Drupal::service('Drupal\image\ImageDerivativeUtilities')->styleOptions(FALSE), fn() => image_style_options(FALSE));
     $image_styles_hide = $image_styles;
     $image_styles_hide['hide'] = $this->t('Hide (do not display image)');
     $description_link = Link::fromTextAndUrl(
@@ -351,7 +352,7 @@ class GLightboxFormatter extends ImageFormatterBase implements ContainerFactoryP
   public function settingsSummary() {
     $summary = [];
 
-    $image_styles = image_style_options(FALSE);
+    $image_styles = DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '11.4.0', fn() => \Drupal::service('Drupal\image\ImageDerivativeUtilities')->styleOptions(FALSE), fn() => image_style_options(FALSE));
     // Unset possible 'No defined styles' option.
     unset($image_styles['']);
     // Styles could be lost because of enabled/disabled modules that defines

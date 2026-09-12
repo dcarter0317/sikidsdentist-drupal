@@ -29,6 +29,7 @@ final class TwigValidatorRuleRangeBinary extends TwigValidatorRulePluginBase {
   public function processNode(string $id, Node $node, array $definition, array $variableSet): array {
     $message = new TranslatableMarkup('Use range() function instead of alias ".."');
     $tip = new TranslatableMarkup('This increase compatibility template engines.');
+
     return [ValidatorMessage::createForNode($id, $node, $message, RfcLogLevel::WARNING, $tip)];
   }
 

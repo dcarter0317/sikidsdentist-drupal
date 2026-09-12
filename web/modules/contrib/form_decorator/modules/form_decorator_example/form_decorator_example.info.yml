@@ -2,11 +2,11 @@ name: 'Form decorator example'
 type: module
 description: 'Provides some example form decorators'
 package: Forms
-core_version_requirement: ^10 || ^11
+core_version_requirement: ^10 || ^11 || ^12
 dependencies:
   - form_decorator:form_decorator
 
-# Information added by Drupal.org packaging script on 2026-01-27
-version: '1.0.1'
+# Information added by Drupal.org packaging script on 2026-07-12
+version: '1.1.0'
 project: 'form_decorator'
-datestamp: 1769524617
+datestamp: 1783880915

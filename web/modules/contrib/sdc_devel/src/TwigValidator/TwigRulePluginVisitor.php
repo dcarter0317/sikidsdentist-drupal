@@ -31,6 +31,8 @@ final class TwigRulePluginVisitor implements NodeVisitorInterface {
 
   /**
    * {@inheritdoc}
+   *
+   * phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceAfterLastUsed
    */
   public function enterNode(Node $node, Environment $env): Node {
     foreach ($this->rules as $rule) {
@@ -40,6 +42,7 @@ final class TwigRulePluginVisitor implements NodeVisitorInterface {
 
       /** @var \Drupal\sdc_devel\TwigValidatorRuleInterface $rule_instance */
       $rule_instance = $this->rulePluginManager->createInstance($rule['id']);
+
       foreach ($rule_instance->processNode($this->id, $node, $this->definition, $this->variableSet) as $error) {
         $this->errors[] = $error;
       }

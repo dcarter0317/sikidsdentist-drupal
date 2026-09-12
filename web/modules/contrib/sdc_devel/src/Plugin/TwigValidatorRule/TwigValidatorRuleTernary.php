@@ -51,6 +51,7 @@ final class TwigValidatorRuleTernary extends TwigValidatorRulePluginBase {
    */
   private function checkChainedTernary(string $id, Node $node, array &$errors): void {
     $right = $node->getNode('right');
+
     if (\is_a($right, 'Twig\Node\Expression\Ternary\ConditionalTernary')) {
       $message = new TranslatableMarkup('No chained ternary');
       $errors[] = ValidatorMessage::createForNode($id, $node, $message);

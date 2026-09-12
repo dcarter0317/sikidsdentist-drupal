@@ -20,6 +20,17 @@ slots:
     description: "Rendered nested Card Item paragraph items."
 
 variants:
+  layout:
+    title: "Layout"
+    description: "Controls whether cards wrap into a responsive grid or sit in a single horizontal row."
+    default: grid
+    options:
+      grid:
+        title: "Grid"
+        description: "Cards wrap into a responsive grid (see Columns variant)."
+      horizontal:
+        title: "Horizontal"
+        description: "Cards sit side-by-side in a single scrollable row, each stretched to the tallest card's height."
   columns:
     title: "Columns"
     description: "Controls how many columns are shown on desktop."

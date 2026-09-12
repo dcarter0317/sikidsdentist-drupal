@@ -25,7 +25,7 @@ use Twig\Node\Node;
 final class TwigValidatorRuleGetAttr extends TwigValidatorRulePluginBase {
 
   /**
-   * Allow methods from Attribute.php.
+   * Allow methods from web/core/lib/Drupal/Core/Template/Attribute.php.
    */
   private const ALLOWED_METHOD = [
     'offsetGet',
@@ -42,9 +42,9 @@ final class TwigValidatorRuleGetAttr extends TwigValidatorRulePluginBase {
     'toArray',
     'getIterator',
     'storage',
-    'storage',
     'jsonSerialize',
     'merge',
+    'apply',
   ];
 
   /**
@@ -60,9 +60,10 @@ final class TwigValidatorRuleGetAttr extends TwigValidatorRulePluginBase {
     $parent = $attribute->getAttribute(NodeAttribute::PARENT);
 
     if ($parent->hasAttribute('type')) {
-      if ('method' === $parent->getAttribute('type')) {
+      if ($parent->getAttribute('type') === 'method') {
         $methodName = $attribute->getAttribute('value');
-        if (!\in_array($methodName, self::ALLOWED_METHOD)) {
+
+        if (!\in_array($methodName, self::ALLOWED_METHOD, TRUE)) {
           $errors[] = ValidatorMessage::createForNode($id, $node, new TranslatableMarkup('Direct method call are forbidden.'));
         }
       }
@@ -73,7 +74,8 @@ final class TwigValidatorRuleGetAttr extends TwigValidatorRulePluginBase {
     }
 
     $name = $attribute->getAttribute('value');
-    if (TRUE === \str_starts_with((string) $name, '#')) {
+
+    if (\str_starts_with((string) $name, '#') === TRUE) {
       $errors[] = ValidatorMessage::createForNode($id, $node, new TranslatableMarkup('Keep slots opaque by not manipulating renderables in the template.'), RfcLogLevel::WARNING);
     }
 

@@ -1,0 +1,10 @@
+uuid: 437fd4d7-0eb9-4af3-8b89-1f0f0ee2f877
+langcode: en
+status: true
+dependencies: {  }
+id: table_row
+label: 'Table Row'
+icon_uuid: null
+icon_default: null
+description: 'A single row within a Table paragraph.'
+behavior_plugins: {  }

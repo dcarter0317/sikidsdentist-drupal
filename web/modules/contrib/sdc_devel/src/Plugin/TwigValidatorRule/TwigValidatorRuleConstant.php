@@ -28,7 +28,6 @@ final class TwigValidatorRuleConstant extends TwigValidatorRulePluginBase {
    * {@inheritdoc}
    */
   public function processNode(string $id, Node $node, array $definition, array $variableSet): array {
-
     if (!$node->hasAttribute('value')) {
       return [];
     }
@@ -40,7 +39,6 @@ final class TwigValidatorRuleConstant extends TwigValidatorRulePluginBase {
     }
 
     if ($node->hasAttribute(NodeAttribute::PARENT)) {
-
       $parent = $node->getAttribute(NodeAttribute::PARENT);
 
       if (\is_a($parent, 'Twig\Node\IncludeNode')) {
@@ -50,12 +48,14 @@ final class TwigValidatorRuleConstant extends TwigValidatorRulePluginBase {
 
       if (\is_a($parent, 'Twig\Node\Expression\BlockReferenceExpression')) {
         $message = new TranslatableMarkup('Forbidden Twig function: `block`. Use slots instead of hard embedding a component in the template.');
+
         return [ValidatorMessage::createForNode($id, $node, $message, RfcLogLevel::WARNING)];
       }
     }
 
     if (\str_ends_with($value, '.twig')) {
       $message = new TranslatableMarkup('Use slots instead of hard embedding a component in the template.');
+
       return [ValidatorMessage::createForNode($id, $node, $message)];
     }
 

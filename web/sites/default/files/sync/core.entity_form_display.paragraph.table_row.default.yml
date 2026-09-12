@@ -1,0 +1,40 @@
+uuid: 14bcd720-e344-4f93-b95e-4b79ad8fb835
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.table_row.field_row_cells
+    - field.field.paragraph.table_row.field_row_heading
+    - paragraphs.paragraphs_type.table_row
+id: paragraph.table_row.default
+targetEntityType: paragraph
+bundle: table_row
+mode: default
+content:
+  admin_title:
+    type: string_textfield
+    weight: -10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_row_cells:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_row_heading:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

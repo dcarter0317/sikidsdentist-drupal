@@ -45,6 +45,7 @@ module:
   form_decorator: 0
   glightbox: 0
   glightbox_media_video: 0
+  googlereviews: 0
   grid_container_paragraph: 0
   grid_item_paragraph: 0
   help: 0
@@ -67,13 +68,13 @@ module:
   media_library_form_element: 0
   menu_link_content: 0
   menu_ui: 0
+  metatag: 0
   mysql: 0
   node: 0
   node_revision_delete: 0
   options: 0
   page_cache: 0
   page_hero_paragraph: 0
-  paragraph_block: 0
   paragraph_blocks: 0
   paragraphs_edit: 0
   paragraphs_library: 0
@@ -82,8 +83,11 @@ module:
   post_paragraph: 0
   profile_card_paragraph: 0
   quick_links_paragraph: 0
+  schema_metatag: 0
   sdc_devel: 0
   search: 0
+  search_help: 0
+  search_node: 0
   shortcut: 0
   svg_image_field: 0
   svg_image_field_media_bundle: 0
@@ -112,6 +116,7 @@ module:
   pathauto: 1
   views: 10
   paragraphs: 11
+  paragraph_block: 20
   standard: 1000
 theme:
   olivero: 0

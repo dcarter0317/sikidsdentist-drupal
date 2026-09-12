@@ -1,0 +1,109 @@
+uuid: 04114e4a-4425-4721-ae6d-8fba378bc59c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.table.field_table_alignment
+    - field.field.paragraph.table.field_table_bg_color
+    - field.field.paragraph.table.field_table_caption
+    - field.field.paragraph.table.field_table_col_bg_color
+    - field.field.paragraph.table.field_table_dark_mode
+    - field.field.paragraph.table.field_table_header_bg_color
+    - field.field.paragraph.table.field_table_headers
+    - field.field.paragraph.table.field_table_outer_border
+    - field.field.paragraph.table.field_table_row_bg_color
+    - field.field.paragraph.table.field_table_rows
+    - field.field.paragraph.table.field_table_vertical_borders
+    - paragraphs.paragraphs_type.table
+  module:
+    - color_field
+    - entity_reference_revisions
+    - options
+id: paragraph.table.default
+targetEntityType: paragraph
+bundle: table
+mode: default
+content:
+  field_table_alignment:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_table_bg_color:
+    type: color_field_formatter_text
+    label: hidden
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_table_caption:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_table_col_bg_color:
+    type: color_field_formatter_text
+    label: hidden
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_table_dark_mode:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_table_header_bg_color:
+    type: color_field_formatter_text
+    label: hidden
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_table_headers:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_table_row_bg_color:
+    type: color_field_formatter_text
+    label: hidden
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_table_rows:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  field_table_outer_border: true
+  field_table_vertical_borders: true

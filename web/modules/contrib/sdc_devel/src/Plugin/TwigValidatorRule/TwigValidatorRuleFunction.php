@@ -58,6 +58,7 @@ use Twig\Node\Node;
       'range',
       'include',
       'icon',
+      'html_cva',
     ],
   ],
   label: new TranslatableMarkup('Function rules'),
@@ -106,6 +107,7 @@ final class TwigValidatorRuleFunction extends TwigValidatorRulePluginBase {
     if (!$inDefaultFilter) {
       $errors[] = ValidatorMessage::createForNode($id, $node, new TranslatableMarkup('Function `random()` must be used in a `default()` filter!'));
     }
+
     return $errors;
   }
 
@@ -134,6 +136,7 @@ final class TwigValidatorRuleFunction extends TwigValidatorRulePluginBase {
 
     if ($isComponent) {
       $hasContextKey = self::includeHasWithContextKey($children, $id, $node, $message, $errors);
+
       if (!$hasContextKey) {
         $errors[] = ValidatorMessage::createForNode($id, $node, $message, RfcLogLevel::WARNING);
       }
@@ -155,9 +158,11 @@ final class TwigValidatorRuleFunction extends TwigValidatorRulePluginBase {
     foreach ($children as $key => $value) {
       if ($key === 0) {
         $componentId = $value->getAttribute('value');
-        return is_string($componentId) && preg_match('/^[a-z][a-zA-Z0-9_-]*:[a-z][a-zA-Z0-9_-]*$/', $componentId);
+
+        return \is_string($componentId) && \preg_match('/^[a-z][a-zA-Z0-9_-]*:[a-z][a-zA-Z0-9_-]*$/', $componentId);
       }
     }
+
     return FALSE;
   }
 
@@ -185,9 +190,11 @@ final class TwigValidatorRuleFunction extends TwigValidatorRulePluginBase {
         if ($value->getAttribute('value') !== FALSE) {
           $errors[] = ValidatorMessage::createForNode($id, $node, $message, RfcLogLevel::WARNING);
         }
+
         return TRUE;
       }
     }
+
     return FALSE;
   }
 

@@ -7,51 +7,53 @@ namespace Drupal\Tests\sdc_devel\Unit;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\sdc_devel\ValidatorMessage;
 use Drupal\Tests\UnitTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Simple test for validator message class.
  *
- * @coversDefaultClass \Drupal\sdc_devel\ValidatorMessage
- *
- * @group sdc_devel
  * @internal
  */
-class ValidatorMessageTest extends UnitTestCase {
+#[CoversClass(ValidatorMessage::class)]
+#[Group('sdc_devel')]
+final class ValidatorMessageTest extends UnitTestCase {
 
-  /**
-   * @covers ::getType
-   */
   public function testGetTypeForTwig(): void {
     $message = new TranslatableMarkup('Test message');
     $message = ValidatorMessage::createForTwigString('test', $message);
 
     $expected = new TranslatableMarkup('Twig', [], ['context' => 'sdc_devel']);
-    $this->assertEquals($expected, $message->getType());
+    self::assertEquals($expected, $message->getType());
   }
 
-  /**
-   * @covers ::getType
-   */
   public function testGetTypeForSchema(): void {
     $message = new TranslatableMarkup('Test message');
     $message = ValidatorMessage::createForString('test', $message, 3, 0, 0);
 
     $expected = new TranslatableMarkup('Schema', [], ['context' => 'sdc_devel']);
-    $this->assertEquals($expected, $message->getType());
+    self::assertEquals($expected, $message->getType());
   }
 
-  /**
-   * @covers ::getSourceCode
-   *
-   * @dataProvider sourceCodeProvider
-   */
+  #[DataProvider('sourceCodeProvider')]
   public function testGetSourceCode(string $id, TranslatableMarkup $message, int $level, int $line, int $length, ?string $source, string $expected): void {
     $validatorMessage = ValidatorMessage::createForString($id, $message, $level, $line, $length, $source);
-    $this->assertSame($expected, $validatorMessage->getSourceCode());
+    self::assertSame($expected, $validatorMessage->getSourceCode());
   }
 
   /**
-   * Data provider for testGetSourceCode.
+   * Provides tests data for testGetSourceCode.
+   *
+   * @return array
+   *   An array of test data:
+   *   - component id
+   *   - Message to test
+   *   - level number
+   *   - line number
+   *   - length number
+   *   - source text
+   *   - array of error line and levels expected.
    */
   public static function sourceCodeProvider(): array {
     return [

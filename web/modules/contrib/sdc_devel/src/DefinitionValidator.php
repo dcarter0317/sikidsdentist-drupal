@@ -25,7 +25,8 @@ final class DefinitionValidator extends ValidatorBase {
   public function validateComponent(string $id, Component $component): void {
     $definition = (array) $component->getPluginDefinition();
     $source = \file_get_contents($definition['_discovered_file_path']);
-    if (FALSE === $source) {
+
+    if ($source === FALSE) {
       $source = '';
     }
     $this->validateDefinition($id, $definition, $source);
@@ -43,12 +44,15 @@ final class DefinitionValidator extends ValidatorBase {
    */
   protected function checkIdenticalMetaEnum(array $enum_meta): bool {
     $is_identical = TRUE;
+
     foreach ($enum_meta as $key => $value) {
       if ($key !== $value) {
         $is_identical = FALSE;
+
         break;
       }
     }
+
     return $is_identical;
   }
 
@@ -68,7 +72,7 @@ final class DefinitionValidator extends ValidatorBase {
     $source = \explode("\n", $source);
 
     // Rule only one variant, then not needed.
-    if (isset($definition['variants']) && 1 === count($definition['variants'])) {
+    if (isset($definition['variants']) && \count($definition['variants']) === 1) {
       $this->addValidationMessage($id, 'variants:', $source, new TranslatableMarkup('A single variant do not need to be declared.'));
     }
 
@@ -133,7 +137,7 @@ final class DefinitionValidator extends ValidatorBase {
    */
   private function checkEnumDefault(string $id, array $properties, array $source): void {
     foreach ($properties as $name => $prop) {
-      if (isset($prop['enum']) && isset($prop['default']) && !\in_array($prop['default'], $prop['enum'])) {
+      if (isset($prop['enum'], $prop['default']) && !\in_array($prop['default'], $prop['enum'], TRUE)) {
         $this->addValidationMessage($id, $name . ':', $source, new TranslatableMarkup('Default value must be in the enum.'));
       }
 
@@ -200,6 +204,7 @@ final class DefinitionValidator extends ValidatorBase {
     foreach ($properties as $name => $prop) {
       if (!isset($prop['type']) && !isset($prop['$ref']) && !isset($prop['patternProperties'])) {
         $this->addValidationMessage($id, $name . ':', $source, new TranslatableMarkup('Missing type for this property.'));
+
         continue;
       }
 
@@ -207,22 +212,25 @@ final class DefinitionValidator extends ValidatorBase {
         continue;
       }
 
-      if ('object' === $prop['type'] && !isset($prop['properties']) && !isset($prop['patternProperties'])) {
+      if ($prop['type'] === 'object' && !isset($prop['properties']) && !isset($prop['patternProperties'])) {
         $this->addValidationMessage($id, $name . ':', $source, new TranslatableMarkup('Empty object.'));
+
         continue;
       }
 
-      if ('array' !== $prop['type']) {
+      if ($prop['type'] !== 'array') {
         continue;
       }
 
       if (!isset($prop['items'])) {
         $this->addValidationMessage($id, $name . ':', $source, new TranslatableMarkup('Empty array.'));
+
         continue;
       }
 
       if (!isset($prop['items']['type']) && !isset($prop['items']['enum'])) {
         $this->addValidationMessage($id, $name . ':', $source, new TranslatableMarkup('Missing type for this property.'));
+
         continue;
       }
 
@@ -230,7 +238,7 @@ final class DefinitionValidator extends ValidatorBase {
         continue;
       }
 
-      if ('object' === $prop['items']['type'] && !isset($prop['items']['properties']) && !isset($prop['items']['patternProperties'])) {
+      if ($prop['items']['type'] === 'object' && !isset($prop['items']['properties']) && !isset($prop['items']['patternProperties'])) {
         $this->addValidationMessage($id, $name . ':', $source, new TranslatableMarkup('Array of empty object.'));
       }
     }
@@ -272,6 +280,7 @@ final class DefinitionValidator extends ValidatorBase {
         return $lineNumber;
       }
     }
+
     return 0;
   }
 

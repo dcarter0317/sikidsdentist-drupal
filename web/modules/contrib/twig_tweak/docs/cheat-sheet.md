@@ -148,11 +148,6 @@ See Drupal\Core\Utility\Token::replace()
 {{ drupal_config('system.site', 'name') }}
 ```
 
-## Drupal Logger
-```twig
-{{ drupal_logger('my_module', 'notice', 'Missing expected field XYZ') }}
-```
-
 ## Drupal Dump
 ```twig
 {# Basic usage. #}

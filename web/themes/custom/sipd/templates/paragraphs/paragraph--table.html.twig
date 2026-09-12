@@ -1,0 +1,161 @@
+{#
+/**
+ * @file paragraph--table.html.twig
+ *
+ * Bridge template for the "table" paragraph bundle.
+ * Maps Paragraphs field values to the Table SDC props.
+ *
+ * Expected fields (first match wins per group):
+ * - Caption: field_table_caption / field_caption
+ * - Headers: field_table_headers / field_headers (multi-value text field)
+ * - Rows: an entity_reference_revisions field targeting nested "table_row" /
+ *   "table-row" paragraphs, each with:
+ *     - Row heading: field_row_heading / field_table_row_heading
+ *     - Cells: field_row_cells / field_table_row_cells (multi-value text field)
+ * - Alignment: field_table_alignment (align_left|align_center|align_right)
+ * - Dark mode: field_table_dark_mode (boolean)
+ * - Vertical borders: field_table_vertical_borders (boolean)
+ * - Outer border: field_table_outer_border (boolean)
+ * - Background colors (color_field, .0.color): field_table_bg_color,
+ *   field_table_header_bg_color, field_table_row_bg_color,
+ *   field_table_col_bg_color
+ */
+#}
+
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {%- set caption = null -%}
+{%- set headers = [] -%}
+{%- set rows = [] -%}
+{%- set variant_class = null -%}
+{%- set rows_field_name = null -%}
+{%- set dark_mode = paragraph.field_table_dark_mode.value ? true : false -%}
+{%- set vertical_borders = paragraph.field_table_vertical_borders.value ? true : false -%}
+{%- set outer_border = paragraph.field_table_outer_border.value ? true : false -%}
+{%- set bg_color = null -%}
+{%- set header_bg_color = null -%}
+{%- set row_bg_color = null -%}
+{%- set col_bg_color = null -%}
+
+{# Caption #}
+{% if paragraph.field_table_caption is defined and not paragraph.field_table_caption.isEmpty %}
+  {%- set caption = paragraph.field_table_caption.value -%}
+{% elseif paragraph.field_caption is defined and not paragraph.field_caption.isEmpty %}
+  {%- set caption = paragraph.field_caption.value -%}
+{% endif %}
+
+{# Column headings — multi-value text field #}
+{% if paragraph.field_table_headers is defined and not paragraph.field_table_headers.isEmpty %}
+  {% for item in paragraph.field_table_headers %}
+    {%- set headers = headers|merge([item.value]) -%}
+  {% endfor %}
+{% elseif paragraph.field_headers is defined and not paragraph.field_headers.isEmpty %}
+  {% for item in paragraph.field_headers %}
+    {%- set headers = headers|merge([item.value]) -%}
+  {% endfor %}
+{% endif %}
+
+{# Alignment variant maps align_left → align-left, etc. #}
+{% if paragraph.field_table_alignment is defined and not paragraph.field_table_alignment.isEmpty %}
+  {%- set variant_class = paragraph.field_table_alignment.value|replace({'_': '-'}) -%}
+{% endif %}
+
+{# Background colors — color_field fields expose their value as .0.color #}
+{% if paragraph.field_table_bg_color is defined and not paragraph.field_table_bg_color.isEmpty %}
+  {%- set bg_color = paragraph.field_table_bg_color.0.color -%}
+  {% if bg_color and bg_color|first != '#' %}
+    {%- set bg_color = '#' ~ bg_color -%}
+  {% endif %}
+{% endif %}
+
+{% if paragraph.field_table_header_bg_color is defined and not paragraph.field_table_header_bg_color.isEmpty %}
+  {%- set header_bg_color = paragraph.field_table_header_bg_color.0.color -%}
+  {% if header_bg_color and header_bg_color|first != '#' %}
+    {%- set header_bg_color = '#' ~ header_bg_color -%}
+  {% endif %}
+{% endif %}
+
+{% if paragraph.field_table_row_bg_color is defined and not paragraph.field_table_row_bg_color.isEmpty %}
+  {%- set row_bg_color = paragraph.field_table_row_bg_color.0.color -%}
+  {% if row_bg_color and row_bg_color|first != '#' %}
+    {%- set row_bg_color = '#' ~ row_bg_color -%}
+  {% endif %}
+{% endif %}
+
+{% if paragraph.field_table_col_bg_color is defined and not paragraph.field_table_col_bg_color.isEmpty %}
+  {%- set col_bg_color = paragraph.field_table_col_bg_color.0.color -%}
+  {% if col_bg_color and col_bg_color|first != '#' %}
+    {%- set col_bg_color = '#' ~ col_bg_color -%}
+  {% endif %}
+{% endif %}
+
+{#
+  Auto-detect the nested Table Row reference field by inspecting paragraph
+  field definitions, the same way paragraph--card-list.html.twig locates its
+  Card Item field. We look for the first entity_reference_revisions field
+  targeting Paragraph entities with an allowed bundle of table_row/table-row.
+#}
+{% for field_name, field_definition in paragraph.getFieldDefinitions %}
+  {% if rows_field_name is null and field_name starts with 'field_' and paragraph.get(field_name) is defined %}
+    {% set field_item_list = paragraph.get(field_name) %}
+    {% set is_reference_revisions = field_definition.getType == 'entity_reference_revisions' %}
+    {% set target_type = field_definition.getSetting('target_type') %}
+    {% set handler_settings = field_definition.getSetting('handler_settings')|default({}) %}
+    {% set target_bundles = handler_settings.target_bundles|default({}) %}
+    {% set target_bundle_keys = target_bundles|keys %}
+    {% set is_table_row_bundle =
+      'table_row' in target_bundle_keys
+      or 'table-row' in target_bundle_keys
+      or 'table_row' in target_bundles
+      or 'table-row' in target_bundles
+    %}
+
+    {% if is_reference_revisions and target_type == 'paragraph' and is_table_row_bundle and not field_item_list.isEmpty %}
+      {%- set rows_field_name = field_name -%}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if rows_field_name %}
+  {% for row_item in attribute(paragraph, rows_field_name) %}
+    {% set row_paragraph = row_item.entity %}
+    {% if row_paragraph %}
+      {%- set row_heading = null -%}
+      {%- set row_cells = [] -%}
+
+      {% if row_paragraph.field_row_heading is defined and not row_paragraph.field_row_heading.isEmpty %}
+        {%- set row_heading = row_paragraph.field_row_heading.value -%}
+      {% elseif row_paragraph.field_table_row_heading is defined and not row_paragraph.field_table_row_heading.isEmpty %}
+        {%- set row_heading = row_paragraph.field_table_row_heading.value -%}
+      {% endif %}
+
+      {% if row_paragraph.field_row_cells is defined and not row_paragraph.field_row_cells.isEmpty %}
+        {% for cell in row_paragraph.field_row_cells %}
+          {%- set row_cells = row_cells|merge([cell.value]) -%}
+        {% endfor %}
+      {% elseif row_paragraph.field_table_row_cells is defined and not row_paragraph.field_table_row_cells.isEmpty %}
+        {% for cell in row_paragraph.field_table_row_cells %}
+          {%- set row_cells = row_cells|merge([cell.value]) -%}
+        {% endfor %}
+      {% endif %}
+
+      {%- set rows = rows|merge([{ heading: row_heading, cells: row_cells }]) -%}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% include "sipd:table" with {
+  caption: caption,
+  headers: headers,
+  rows: rows,
+  variant_class: variant_class,
+  dark_mode: dark_mode,
+  vertical_borders: vertical_borders,
+  outer_border: outer_border,
+  bg_color: bg_color,
+  header_bg_color: header_bg_color,
+  row_bg_color: row_bg_color,
+  col_bg_color: col_bg_color,
+} only %}
+</div>

@@ -1,0 +1,139 @@
+/**
+ * @file table.css
+ *
+ * Styles for the Table SDC.
+ */
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  background-color: var(--table-bg, var(--clr-bg-1, #ffffff));
+}
+
+.table-comp {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  background-color: var(--table-bg, var(--clr-bg-1, #ffffff));
+}
+
+.table-comp thead th {
+  font-family: var(--ff-body);
+  font-weight: var(--fw-bold);
+  font-size: 1rem;
+  color: var(--table-header-color, var(--clr-text-3, #163b5c));
+  background-color: var(--table-header-bg, #f5f7fa);
+  border: none;
+  border-bottom: 1px solid var(--table-border, #e5e7eb);
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table-comp tbody tr {
+  background-color: var(--table-row-bg, transparent);
+}
+
+.table-comp tbody th,
+.table-comp tbody td {
+  padding: 1.5rem;
+  text-align: left;
+  vertical-align: top;
+  border: none;
+  border-bottom: 1px solid var(--table-border, #e5e7eb);
+}
+
+.table-comp tbody th {
+  font-family: var(--ff-body);
+  font-weight: var(--fw-bold);
+  color: var(--table-text, var(--clr-text-3, #163b5c));
+  background-color: var(--table-row-bg, transparent);
+}
+
+.table-comp tbody td {
+  color: var(--table-text, var(--clr-text-5, #4b5563));
+  font-weight: var(--fw-normal);
+  background-color: var(--table-col-bg, transparent);
+}
+
+/* Text Alignment Options */
+
+/* Table-level defaults (applies alignment to all cells in the table) */
+.table-comp.align-left th,
+.table-comp.align-left td {
+  text-align: left;
+}
+
+.table-comp.align-center th,
+.table-comp.align-center td {
+  text-align: center;
+}
+
+.table-comp.align-right th,
+.table-comp.align-right td {
+  text-align: right;
+}
+
+/* Cell-level / Column-level overrides (can override table-level defaults) */
+.table-comp th.align-left,
+.table-comp td.align-left {
+  text-align: left;
+}
+
+.table-comp th.align-center,
+.table-comp td.align-center {
+  text-align: center;
+}
+
+.table-comp th.align-right,
+.table-comp td.align-right {
+  text-align: right;
+}
+
+/* Dark Mode Option styles */
+.table-wrap--dark {
+  --table-bg: var(--clr-bg-2, #1a1a1a);
+  --table-header-bg: var(--clr-bg-2, #1a1a1a);
+  --table-header-color: var(--clr-text-light, #ffffff);
+  --table-text: var(--clr-text-light, #ffffff);
+  --table-border: rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+.table-comp--dark {
+  color: var(--table-text, var(--clr-text-light, #ffffff));
+}
+
+/* Vertical Borders Option */
+.table-comp--vertical-borders thead th,
+.table-comp--vertical-borders tbody th,
+.table-comp--vertical-borders tbody td {
+  border-right: 1px solid var(--table-border, #e5e7eb);
+}
+
+.table-comp--vertical-borders thead th:last-child,
+.table-comp--vertical-borders tbody th:last-child,
+.table-comp--vertical-borders tbody td:last-child {
+  border-right: none;
+}
+
+/* Outer Border Option */
+.table-comp--outer-border {
+  border: 1px solid var(--table-border, #e5e7eb);
+}
+
+/* Optional mobile styles: since we have overflow-x: auto on wrapper, it will scroll. */
+@media (width < 768px) {
+  .table-wrap {
+    padding: 1rem 0.5rem;
+  }
+
+  .table-comp thead th,
+  .table-comp tbody th,
+  .table-comp tbody td {
+    padding: 1rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}

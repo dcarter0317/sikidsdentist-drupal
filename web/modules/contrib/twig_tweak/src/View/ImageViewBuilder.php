@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\twig_tweak\View;
 
 use Drupal\Core\Access\AccessResult;
@@ -12,18 +10,42 @@ use Drupal\file\FileInterface;
 /**
  * Image view builder.
  */
-final readonly class ImageViewBuilder {
+class ImageViewBuilder {
 
   /**
-   * {@selfdoc}
+   * The provider image factory.
+   *
+   * @var \Drupal\Core\Image\ImageFactory
    */
-  public function __construct(private ImageFactory $imageFactory) {}
+  protected $imageFactory;
+
+  /**
+   * Constructs an ImageViewBuilder object.
+   */
+  public function __construct(ImageFactory $imageFactory) {
+    $this->imageFactory = $imageFactory;
+  }
 
   /**
    * Builds an image.
+   *
+   * @param \Drupal\file\FileInterface $file
+   *   The file object.
+   * @param string $style
+   *   (optional) Image style.
+   * @param array $attributes
+   *   (optional) Image attributes.
+   * @param bool $responsive
+   *   (optional) Indicates that the provided image style is responsive.
+   * @param bool $check_access
+   *   (optional) Indicates that access check is required.
+   *
+   * @return array
+   *   A renderable array to represent the image.
    */
   public function build(FileInterface $file, ?string $style = NULL, array $attributes = [], bool $responsive = FALSE, bool $check_access = TRUE): array {
     $access = $check_access ? $file->access('view', NULL, TRUE) : AccessResult::allowed();
+
     $build = $access->isAllowed() ? $this->doBuild($file, $style, $attributes, $responsive) : [];
 
     CacheableMetadata::createFromRenderArray($build)

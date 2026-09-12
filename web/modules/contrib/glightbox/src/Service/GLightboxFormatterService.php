@@ -5,6 +5,7 @@ namespace Drupal\glightbox\Service;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Utility\Token;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Component\Utility\Xss;
@@ -149,11 +150,14 @@ class GLightboxFormatterService {
             }
           }
         }
+        $bubbleable_metadata = new BubbleableMetadata();
         $caption = $this->tokenService->replace(
           $settings["{$caption_field}_custom"],
           $data,
           ['clear' => TRUE],
+          $bubbleable_metadata,
         );
+        $bubbleable_metadata->applyTo($variables);
         break;
 
       default:

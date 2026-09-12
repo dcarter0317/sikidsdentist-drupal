@@ -5,7 +5,6 @@ namespace Drupal\paragraph_blocks;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\RevisionableStorageInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -64,11 +63,11 @@ class ParagraphBlocksLabeller {
   protected ModuleHandlerInterface $moduleHandler;
 
   /**
-   * Paragraphs entity storage instance.
+   * The entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  private EntityStorageInterface $paragraphStorage;
+  protected EntityTypeManagerInterface $entityTypeManager;
 
   /**
    * The config factory.
@@ -102,7 +101,7 @@ class ParagraphBlocksLabeller {
     $this->entity = $this->paragraphBlocksEntityManager->getRefererEntity();
     $this->entityFieldManager = $entity_field_manager;
     $this->moduleHandler = $module_handler;
-    $this->paragraphStorage = $entity_type_manager->getStorage('paragraph');
+    $this->entityTypeManager = $entity_type_manager;
     $this->configFactory = $config_factory;
   }
 
@@ -241,14 +240,15 @@ class ParagraphBlocksLabeller {
     if ($paragraph->hasField('field_reusable_paragraph')
       && $library_item = LibraryItem::load($paragraph->get('field_reusable_paragraph')->target_id)
     ) {
-      if ($this->paragraphStorage instanceof RevisionableStorageInterface) {
-        $result = $this->paragraphStorage->loadRevision($library_item->get('paragraphs')->target_revision_id);
+      $paragraph_storage = $this->entityTypeManager->getStorage('paragraph');
+      if ($paragraph_storage instanceof RevisionableStorageInterface) {
+        $result = $paragraph_storage->loadRevision($library_item->get('paragraphs')->target_revision_id);
         if ($result) {
           return $result;
         }
       }
       // Fall back to loading by entity ID if revision loading fails.
-      return $this->paragraphStorage->load($library_item->get('paragraphs')->target_id);
+      return $paragraph_storage->load($library_item->get('paragraphs')->target_id);
     }
     return NULL;
   }

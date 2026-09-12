@@ -81,12 +81,12 @@ class ParagraphBlocksEntityManager {
     /** @var \Drupal\Core\Entity\RevisionableStorageInterface $storage */
     $storage = $this->entityTypeManager->getStorage($entity_type_id);
 
-    // Load the latest revision directly from the database.
+    // Load the latest revision directly from the database. Adding a paragraph
+    // does not always mark the revision as translation affected, so the latest
+    // translation affected revision can predate the paragraph and hide it from
+    // the block listing.
     if ($entity->getEntityType()->isRevisionable()) {
-      $latest_revision_id = $storage->getLatestTranslationAffectedRevisionId(
-        $entity->id(),
-        $entity->language()->getId()
-      );
+      $latest_revision_id = $storage->getLatestRevisionId($entity->id());
       if ($latest_revision_id) {
         return $storage->loadRevision($latest_revision_id);
       }

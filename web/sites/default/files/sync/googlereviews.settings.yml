@@ -1,0 +1,5 @@
+_core:
+  default_config_hash: '-bxxc8fPXLRDD7iT_1V8XnUTOF17jmo3-ExBGmZ0Z7o'
+google_places_api: 0
+google_api_url: 'https://maps.googleapis.com/maps/api/place/details/json'
+cache_max_age: 86400

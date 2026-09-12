@@ -5,23 +5,26 @@ declare(strict_types=1);
 namespace Drupal\Tests\sdc_devel\Kernel\TwigValidatorRule;
 
 use Drupal\Core\Logger\RfcLogLevel;
+use Drupal\sdc_devel\Plugin\TwigValidatorRule\TwigValidatorRuleNullCoalesceBinary;
 use Drupal\Tests\sdc_devel\Kernel\TwigValidatorTestBase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
- * @coversDefaultClass \Drupal\sdc_devel\Plugin\TwigValidatorRule\TwigValidatorRuleTestNullCoalesceBinary
+ * Test the TwigValidatorRuleNullCoalesceBinary.
  *
- * @group sdc_devel
  * @internal
  *
- * cSpell:disable
+ * CSpell:disable.
  */
+#[CoversClass(TwigValidatorRuleNullCoalesceBinary::class)]
+#[Group('sdc_devel')]
+#[RunTestsInSeparateProcesses]
 final class TwigValidatorRuleTestNullCoalesceBinaryTest extends TwigValidatorTestBase {
 
-  /**
-   * @covers ::processNode
-   *
-   * @dataProvider providerTestTwigValidatorTest
-   */
+  #[DataProvider('providerTestTwigValidatorTest')]
   public function testTwigValidatorTest(string $source, array $expected): void {
     $this->runTestSourceTwigValidator($source, $expected);
   }

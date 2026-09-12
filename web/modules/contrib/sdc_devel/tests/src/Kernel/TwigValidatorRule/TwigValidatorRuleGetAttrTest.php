@@ -5,24 +5,26 @@ declare(strict_types=1);
 namespace Drupal\Tests\sdc_devel\Kernel\TwigValidatorRule;
 
 use Drupal\Core\Logger\RfcLogLevel;
+use Drupal\sdc_devel\Plugin\TwigValidatorRule\TwigValidatorRuleGetAttr;
 use Drupal\Tests\sdc_devel\Kernel\TwigValidatorTestBase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
- * @coversDefaultClass \Drupal\sdc_devel\Plugin\TwigValidatorRule\TwigValidatorRuleGetAttr
+ * Test the TwigValidatorRuleGetAttr.
  *
- * @group sdc_devel
+ * CSpell:disable.
+ *
  * @internal
- *
- * phpcs:disable Drupal.Arrays.Array.LongLineDeclaration
- * cSpell:disable
  */
+#[CoversClass(TwigValidatorRuleGetAttr::class)]
+#[Group('sdc_devel')]
+#[RunTestsInSeparateProcesses]
 final class TwigValidatorRuleGetAttrTest extends TwigValidatorTestBase {
 
-  /**
-   * @covers ::processNode
-   *
-   * @dataProvider providerTestTwigValidatorFilter
-   */
+  #[DataProvider('providerTestTwigValidatorFilter')]
   public function testTwigValidatorFilter(string $source, array $expected): void {
     $this->runTestSourceTwigValidator($source, $expected);
   }
@@ -50,7 +52,7 @@ final class TwigValidatorRuleGetAttrTest extends TwigValidatorTestBase {
         ],
       ],
       [
-        "{% set test_prop_object = {} %} {{ test_prop_object.bundle() }}",
+        '{% set test_prop_object = {} %} {{ test_prop_object.bundle() }}',
         [
           [1, RfcLogLevel::ERROR],
         ],

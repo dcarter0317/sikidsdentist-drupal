@@ -1,0 +1,24 @@
+{
+    "name": "drupal/form_decorator",
+    "type": "drupal-module",
+    "description": "Form decorator module.",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://www.drupal.org/project/form_decorator",
+    "authors": [
+        {
+            "name": "Pascal Crott",
+            "homepage": "https://www.drupal.org/u/hydra",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/form_decorator",
+        "source": "https://git.drupalcode.org/project/form_decorator"
+    },
+    "require": {
+        "drupal/core": "^10 || ^11 || ^12"
+    },
+    "require-dev": {
+        "drupal/core-dev": "^10 || ^11 || ^12"
+    }
+}

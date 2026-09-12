@@ -7,10 +7,52 @@
 
 declare(strict_types=1);
 
+use Drupal\Core\Update\UpdateHookRegistry;
+
 /**
  * Implements hook_update_last_removed().
  */
 function ui_patterns_views_update_last_removed(): int {
-  // The update in 1.x with the try to merge ui_patterns_views_style.
-  return 9101;
+  $currentInstalledVersion = Drupal::service(UpdateHookRegistry::class)
+    ->getInstalledVersion('ui_patterns_views');
+  if ($currentInstalledVersion >= 9101) {
+    // The update in 1.x with the try to merge ui_patterns_views_style.
+    return 9101;
+  }
+  return 0;
+}
+
+/**
+ * Implements hook_install().
+ */
+function ui_patterns_views_install(): void {
+  \_ui_patterns_views_enable_display_extender();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function ui_patterns_views_uninstall(): void {
+  $config = Drupal::configFactory()->getEditable('views.settings');
+  $extenders = \array_values(\array_diff((array) $config->get('display_extenders'), ['ui_patterns']));
+  $config->set('display_extenders', $extenders)->save();
+}
+
+/**
+ * Enables the "Component (UI Patterns)" display extender.
+ */
+function ui_patterns_views_update_10201(): void {
+  \_ui_patterns_views_enable_display_extender();
+}
+
+/**
+ * Lists the display extender in the views settings.
+ */
+function _ui_patterns_views_enable_display_extender(): void {
+  $config = Drupal::configFactory()->getEditable('views.settings');
+  $extenders = (array) $config->get('display_extenders');
+  if (!\in_array('ui_patterns', $extenders, TRUE)) {
+    $extenders[] = 'ui_patterns';
+    $config->set('display_extenders', $extenders)->save();
+  }
 }

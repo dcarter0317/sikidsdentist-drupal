@@ -55,13 +55,13 @@ abstract class TwigValidatorTestBase extends ComponentKernelTestBase {
     $errors = $this->twigValidator->getMessagesSortedByGroupAndLine();
 
     foreach ($errors as $key => $error) {
-      if (TRUE === $debug) {
+      if ($debug === TRUE) {
         $tmp_error = ['EMERGENCY', 'ALERT', 'CRITICAL', 'ERROR', 'WARNING', 'NOTICE', 'INFO', 'DEBUG'];
-        $debug_output[] = "\n[" . $error->line() . ', \'' . $error->message() . '\', RfcLogLevel::' . $tmp_error[$error->level()] . "],";
-        $debug_list[] = "\n[" . $error->line() . ', RfcLogLevel::' . $tmp_error[$error->level()] . "],";
+        $debug_output[] = "\n[" . $error->line() . ', \'' . $error->message() . '\', RfcLogLevel::' . $tmp_error[$error->level()] . '],';
+        $debug_list[] = "\n[" . $error->line() . ', RfcLogLevel::' . $tmp_error[$error->level()] . '],';
       }
 
-      if (TRUE === $debug) {
+      if ($debug === TRUE) {
         continue;
       }
 
@@ -69,17 +69,16 @@ abstract class TwigValidatorTestBase extends ComponentKernelTestBase {
       self::assertEquals($expected[$key][1] ?? 0, $error->level(), \sprintf('Error level do not match for case: %s', $key));
     }
 
-    if (FALSE === $debug) {
+    if ($debug === FALSE) {
       self::assertEquals(\count($expected), \count($errors), 'Error count do not match');
+
       return;
     }
 
-    if (TRUE === $debug) {
-      print(implode('', $debug_output));
-      print("\n");
-      print(implode('', $debug_list));
-      print("\n");
-    }
+    print \implode('', $debug_output);
+    print "\n";
+    print \implode('', $debug_list);
+    print "\n";
   }
 
 }

@@ -1,0 +1,11 @@
+name: Google Reviews
+type: module
+description: Show Google reviews and Google rating in a block
+package: Google
+core_version_requirement: ^10.1 || ^11
+configure: googlereviews.settings_form
+
+# Information added by Drupal.org packaging script on 2026-07-23
+version: '1.1.4'
+project: 'googlereviews'
+datestamp: 1784835003

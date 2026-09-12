@@ -49,22 +49,27 @@ final class TwigValidatorRuleTestExpr extends TwigValidatorRulePluginBase {
     ];
 
     if (isset($nodeClassToMessage[$class])) {
-      $message = "";
+      $message = '';
       $level = NULL;
       $processData = $nodeClassToMessage[$class];
+
       if (isset($processData['message'])) {
         $message = $processData['message'];
       }
-      if (isset($processData['process']) && method_exists(self::class, $processData['process'])) {
+
+      if (isset($processData['process']) && \method_exists(self::class, $processData['process'])) {
         $method_name = $processData['process'];
         $level = self::$method_name($node, $message);
       }
+
       if (!empty($message)) {
         // @phpcs:disable Drupal.Semantics.FunctionT.NotLiteralString
         $message = new TranslatableMarkup($message);
+
         return ($level === NULL) ? [ValidatorMessage::createForNode($id, $node, $message)] : [ValidatorMessage::createForNode($id, $node, $message, $level)];
       }
     }
+
     return [];
   }
 
@@ -79,17 +84,19 @@ final class TwigValidatorRuleTestExpr extends TwigValidatorRulePluginBase {
    * @return int|null
    *   The log level.
    */
-  protected static function processNullTest(Node $node, string &$message) : ?int {
+  protected static function processNullTest(Node $node, string &$message): ?int {
     if (!\is_a($node, 'Twig\Node\Expression\Test\NullTest')) {
       return NULL;
     }
 
     if ($node->hasAttribute('parent')) {
       $parent = $node->getAttribute('parent');
+
       if (\is_a($parent, 'Twig\Node\Expression\Unary\NotUnary')) {
         return NULL;
       }
       $message = 'Not needed in Drupal because strict_variables=false.';
+
       return RfcLogLevel::WARNING;
     }
 
@@ -107,7 +114,7 @@ final class TwigValidatorRuleTestExpr extends TwigValidatorRulePluginBase {
    * @return int|null
    *   The log level.
    */
-  protected static function processDefinedTest(Node $node, string &$message) : ?int {
+  protected static function processDefinedTest(Node $node, string &$message): ?int {
     $inDefaultFilter = TwigNodeFinder::findParentIs(
       $node,
       'Twig\Node\Expression\Filter\DefaultFilter'
@@ -116,12 +123,15 @@ final class TwigValidatorRuleTestExpr extends TwigValidatorRulePluginBase {
     if (!$inDefaultFilter) {
       if ($node->hasAttribute('parent')) {
         $parent = $node->getAttribute('parent');
+
         if (!\is_a($parent, 'Twig\Node\Expression\Binary\AndBinary')) {
           $message = 'Not needed in Drupal because strict_variables=false.';
+
           return RfcLogLevel::WARNING;
         }
       }
     }
+
     return NULL;
   }
 
@@ -136,20 +146,24 @@ final class TwigValidatorRuleTestExpr extends TwigValidatorRulePluginBase {
    * @return int|null
    *   The log level.
    */
-  protected static function processTestExpression(Node $node, string &$message) : ?int {
+  protected static function processTestExpression(Node $node, string &$message): ?int {
     if (!$node->hasAttribute('name')) {
       return NULL;
     }
     $name = $node->getAttribute('name');
+
     switch ($name) {
       case 'empty':
         $message = 'The exact same as just testing the variable, empty is not needed.';
+
         break;
 
       case 'iterable':
         $message = '`is iterable` test is too ambiguous. Use `is sequence` or `is mapping`.';
+
         break;
     }
+
     return RfcLogLevel::WARNING;
   }
 

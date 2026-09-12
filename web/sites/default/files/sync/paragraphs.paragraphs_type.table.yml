@@ -1,0 +1,10 @@
+uuid: e8c969b8-7d89-458f-86dc-200a648fa6fc
+langcode: en
+status: true
+dependencies: {  }
+id: table
+label: Table
+icon_uuid: null
+icon_default: null
+description: 'A responsive data table built from column headings and rows.'
+behavior_plugins: {  }

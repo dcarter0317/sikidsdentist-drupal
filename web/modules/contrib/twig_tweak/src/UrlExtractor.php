@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\twig_tweak;
 
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -16,22 +14,36 @@ use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\OEmbedInterface;
 
 /**
- * The URL extractor service.
+ * URL extractor service.
  */
-final readonly class UrlExtractor {
+class UrlExtractor {
 
   /**
-   * {@selfdoc}
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  public function __construct(
-    private EntityTypeManagerInterface $entityTypeManager,
-    private FileUrlGeneratorInterface $fileUrlGenerator,
-  ) {}
+  protected $entityTypeManager;
+
+  /**
+   * The file URL generator.
+   *
+   * @var \Drupal\Core\File\FileUrlGeneratorInterface
+   */
+  protected $fileUrlGenerator;
+
+  /**
+   * Constructs a UrlExtractor object.
+   */
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, FileUrlGeneratorInterface $file_url_generator) {
+    $this->entityTypeManager = $entity_type_manager;
+    $this->fileUrlGenerator = $file_url_generator;
+  }
 
   /**
    * Extracts file URL from a string or object.
    *
-   * @param object|string|null $input
+   * @param string|object $input
    *   Can be either file URI or an object that contains the URI.
    * @param bool $relative
    *   (optional) Whether the URL should be root-relative, defaults to true.
@@ -39,8 +51,8 @@ final readonly class UrlExtractor {
    * @return string|null
    *   A URL that may be used to access the file.
    */
-  public function extractUrl(object|string|null $input, bool $relative = TRUE): ?string {
-    if (\is_string($input)) {
+  public function extractUrl($input, bool $relative = TRUE): ?string {
+    if (is_string($input)) {
       return $this->fileUrlGenerator->{$relative ? 'generateString' : 'generateAbsoluteString'}($input);
     }
     elseif ($input instanceof LinkItemInterface) {
@@ -52,6 +64,7 @@ final readonly class UrlExtractor {
 
     $entity = $input;
     if ($input instanceof EntityReferenceFieldItemListInterface) {
+      /** @var \Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem $item */
       if ($item = $input->first()) {
         $entity = $item->entity;
       }
@@ -59,8 +72,8 @@ final readonly class UrlExtractor {
     elseif ($input instanceof EntityReferenceItem) {
       $entity = $input->entity;
     }
-    // Drupal doesn't clean up references to deleted entities, so the entity
-    // property might be empty even when the field item exists.
+    // Drupal does not clean up references to deleted entities. So that the
+    // entity property might be empty while the field item might not.
     // @see https://www.drupal.org/project/drupal/issues/2723323
     return $entity instanceof ContentEntityInterface ?
       $this->getUrlFromEntity($entity, $relative) : NULL;
@@ -68,17 +81,31 @@ final readonly class UrlExtractor {
 
   /**
    * Extracts file URL from content entity.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   Entity object that contains information about the file.
+   * @param bool $relative
+   *   (optional) Whether the URL should be root-relative, defaults to true.
+   *
+   * @return string|null
+   *   A URL that may be used to access the file.
    */
   private function getUrlFromEntity(ContentEntityInterface $entity, bool $relative = TRUE): ?string {
     if ($entity instanceof MediaInterface) {
       $source = $entity->getSource();
       $value = $source->getSourceFieldValue($entity);
-      if ($source instanceof OEmbedInterface) {
+      if (!$value) {
+        return NULL;
+      }
+      elseif ($source instanceof OEmbedInterface) {
         return $value;
       }
-      $file = $this->entityTypeManager->getStorage('file')->load($value);
-      if ($file) {
-        return $file->createFileUrl($relative);
+      else {
+        /** @var \Drupal\file\FileInterface $file */
+        $file = $this->entityTypeManager->getStorage('file')->load($value);
+        if ($file) {
+          return $file->createFileUrl($relative);
+        }
       }
     }
     elseif ($entity instanceof FileInterface) {

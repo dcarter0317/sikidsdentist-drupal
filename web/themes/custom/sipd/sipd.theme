@@ -11,7 +11,20 @@ declare(strict_types=1);
  * Implements hook_preprocess_HOOK() for html.html.twig.
  */
 function sipd_preprocess_html(array &$variables): void {
-
+  $host = \Drupal::request()->getHost();
+  if (str_ends_with($host, '.ts.net')) {
+    // Livereload runs on the dev host; ddev tailscale share forwards it to
+    // this same tailnet hostname on a separate HTTPS port (see
+    // .ddev/commands/host/tailscale) so mobile devices on the tailnet get
+    // hot reload too.
+    $variables['#attached']['html_head'][] = [
+      [
+        '#tag' => 'script',
+        '#attributes' => ['src' => 'https://' . $host . ':8443/livereload.js'],
+      ],
+      'sipd_livereload',
+    ];
+  }
 }
 
 /**

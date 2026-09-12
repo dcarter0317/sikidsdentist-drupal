@@ -96,4 +96,10 @@ settings:
       slider:
         weight: 39
         enabled: false
+      table:
+        weight: 44
+        enabled: true
+      table_row:
+        weight: 45
+        enabled: false
 field_type: entity_reference_revisions

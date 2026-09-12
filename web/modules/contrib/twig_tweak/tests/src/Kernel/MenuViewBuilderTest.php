@@ -1,11 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\Tests\twig_tweak\Kernel;
 
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\KernelTests\KernelTestBase;
-use PHPUnit\Framework\Attributes\DataProvider;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 /**
  * A test for MenuViewBuilder.
@@ -23,8 +22,6 @@ final class MenuViewBuilderTest extends KernelTestBase {
     'system',
     'link',
     'menu_link_content',
-    'views',
-    'filter',
   ];
 
   /**
@@ -35,9 +32,7 @@ final class MenuViewBuilderTest extends KernelTestBase {
 
     $this->installEntitySchema('menu_link_content');
 
-    $entity_type_manager = $this->container->get('entity_type.manager');
-
-    $entity_type_manager
+    $this->container->get('entity_type.manager')
       ->getStorage('menu')
       ->create([
         'id' => 'test-menu',
@@ -46,127 +41,90 @@ final class MenuViewBuilderTest extends KernelTestBase {
       ])
       ->save();
 
-    $link_content_storage = $entity_type_manager->getStorage('menu_link_content');
-
-    $link_1 = $link_content_storage->create([
+    $link_1 = MenuLinkContent::create([
       'expanded' => TRUE,
       'title' => 'Link 1',
       'link' => ['uri' => 'internal:/foo/1'],
       'menu_name' => 'test-menu',
     ]);
-    $link_content_storage->save($link_1);
+    $link_1->save();
 
-    $link_1_1 = $link_content_storage->create([
+    MenuLinkContent::create([
       'title' => 'Link 1.1',
       'link' => ['uri' => 'internal:/foo/1/1'],
       'menu_name' => 'test-menu',
       'parent' => $link_1->getPluginId(),
-    ]);
-    $link_content_storage->save($link_1_1);
+    ])->save();
 
-    $link_1_2 = $link_content_storage->create([
+    MenuLinkContent::create([
       'title' => 'Link 2',
       'link' => ['uri' => 'internal:/foo/2'],
       'menu_name' => 'test-menu',
-    ]);
-    $link_content_storage->save($link_1_2);
+    ])->save();
   }
 
   /**
-   * {@selfdoc}
-   *
-   * @todo Figure out how to test 'expanded' option.
+   * Test callback.
    */
-  #[DataProvider('dataProvider')]
-  public function testMenuViewBuilder(?int $level, ?int $depth, string $expected_output): void {
+  public function testMenuViewBuilder(): void {
+
     $view_builder = $this->container->get('twig_tweak.menu_view_builder');
-    $build = $level === NULL && $depth === NULL ?
-      $view_builder->build('test-menu') : $view_builder->build('test-menu', $level, $depth);
+
+    $build = $view_builder->build('test-menu');
+    $expected_output = <<< 'HTML'
+      <ul>
+        <li>
+          <a href="/foo/1">Link 1</a>
+          <ul>
+            <li>
+              <a href="/foo/1/1">Link 1.1</a>
+            </li>
+           </ul>
+        </li>
+        <li>
+          <a href="/foo/2">Link 2</a>
+        </li>
+      </ul>
+    HTML;
     $this->assertMarkup($expected_output, $build);
-  }
 
-  /**
-   * {@selfdoc}
-   */
-  public static function dataProvider(): \Generator {
-    $build_data = static fn (?int $level, ?int $depth, string $expected_output): array
-      => \func_get_args();
+    $build = $view_builder->build('test-menu', 2);
+    $expected_output = <<< 'HTML'
+      <ul>
+        <li>
+          <a href="/foo/1/1">Link 1.1</a>
+        </li>
+       </ul>
+    HTML;
+    $this->assertMarkup($expected_output, $build);
 
-    yield 'Default arguments' => $build_data(
-      level: NULL,
-      depth: NULL,
-      expected_output: <<< 'HTML'
-        <ul>
-          <li>
-            <a href="/foo/1">Link 1</a>
-            <ul>
-              <li>
-                <a href="/foo/1/1">Link 1.1</a>
-              </li>
-             </ul>
-          </li>
-          <li>
-            <a href="/foo/2">Link 2</a>
-          </li>
-        </ul>
-        HTML,
-    );
-
-    yield 'Level = 1; Depth = 0;' => $build_data(
-      level: 1,
-      depth: 0,
-      expected_output: <<< 'HTML'
-        <ul>
-          <li>
-            <a href="/foo/1">Link 1</a>
-            <ul>
-              <li>
-                <a href="/foo/1/1">Link 1.1</a>
-              </li>
-             </ul>
-          </li>
-          <li>
-            <a href="/foo/2">Link 2</a>
-          </li>
-        </ul>
-        HTML,
-    );
-
-    yield 'Level = 2; Depth = 0;' => $build_data(
-      level: 2,
-      depth: 0,
-      expected_output: <<< 'HTML'
-        <ul>
-          <li>
-            <a href="/foo/1/1">Link 1.1</a>
-          </li>
-         </ul>
-        HTML,
-    );
-
-    yield 'Level = 1; Depth = 1;' => $build_data(
-      level: 1,
-      depth: 1,
-      expected_output: <<< 'HTML'
-        <ul>
-          <li>
-            <a href="/foo/1">Link 1</a>
-          </li>
-          <li>
-            <a href="/foo/2">Link 2</a>
-          </li>
-        </ul>
-        HTML,
-    );
+    $build = $view_builder->build('test-menu', 1, 1);
+    $expected_output = <<< 'HTML'
+      <ul>
+        <li>
+          <a href="/foo/1">Link 1</a>
+        </li>
+        <li>
+          <a href="/foo/2">Link 2</a>
+        </li>
+      </ul>
+    HTML;
+    $this->assertMarkup($expected_output, $build);
   }
 
   /**
    * Asserts menu markup.
    */
   private function assertMarkup(string $expected_markup, array $build): void {
-    $expected_markup = \trim(\preg_replace('#>\s+<#', '><', $expected_markup));
+    $expected_markup = preg_replace('#\s{2,}#', '', $expected_markup);
+    /** @var \Drupal\Core\Render\RendererInterface $renderer */
     $renderer = $this->container->get('renderer');
-    $actual_markup = \trim(\preg_replace('#>\s+<#', '><', (string) $renderer->renderInIsolation($build)));
+    $actual_html = DeprecationHelper::backwardsCompatibleCall(
+      \Drupal::VERSION, '10.3.0',
+      fn () => $renderer->renderInIsolation($build),
+      fn () => $renderer->renderPlain($build),
+    );
+    $actual_markup = preg_replace('#\s{2,}#', '', $actual_html);
     self::assertSame($expected_markup, $actual_markup);
   }
 

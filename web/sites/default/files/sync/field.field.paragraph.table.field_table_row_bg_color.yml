@@ -1,0 +1,22 @@
+uuid: f924296c-cad9-41eb-b00d-2eddf4f57db0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_table_row_bg_color
+    - paragraphs.paragraphs_type.table
+  module:
+    - color_field
+id: paragraph.table.field_table_row_bg_color
+field_name: field_table_row_bg_color
+entity_type: paragraph
+bundle: table
+label: 'Row Background Color'
+description: 'Background color applied behind each table row, including row heading cells.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 1
+field_type: color_field_type

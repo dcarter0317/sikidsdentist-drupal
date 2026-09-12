@@ -9,16 +9,21 @@ use Drupal\KernelTests\Components\ComponentKernelTestBase;
 use Drupal\sdc_devel\DefinitionValidator;
 use Drupal\sdc_devel\TwigValidator\TwigValidator;
 use Drupal\sdc_devel\Validator;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
- * @coversDefaultClass \Drupal\sdc_devel\Validator
- *
- * @group sdc_devel
- * @internal
+ * Test the Validator.
  *
  * phpcs:disable Drupal.Commenting.VariableComment.Missing
+ *
+ * @internal
  */
-class ValidatorTest extends ComponentKernelTestBase {
+#[CoversClass(Validator::class)]
+#[Group('sdc_devel')]
+#[RunTestsInSeparateProcesses]
+final class ValidatorTest extends ComponentKernelTestBase {
 
   protected static $modules = [
     'system',
@@ -54,13 +59,7 @@ class ValidatorTest extends ComponentKernelTestBase {
   }
 
   /**
-   * @covers ::validate
-   * @covers ::validateComponent
-   * @covers ::checkEnumDefault
-   * @covers ::validatePropsFromStories
-   * @covers ::checkEmptyArrayObject
-   * @covers \Drupal\sdc_devel\DefinitionValidator::validateComponent
-   * @covers \Drupal\sdc_devel\TwigValidator\TwigValidator::validateComponent
+   * Test the validate workflow.
    */
   public function testValidate(): void {
     $component_id = 'sdc_devel_theme_test:foo';
@@ -69,17 +68,11 @@ class ValidatorTest extends ComponentKernelTestBase {
     $this->validator->validate($component_id, $component);
     $errors = $this->validator->getMessages();
 
-    $this->assertEmpty($errors, \sprintf('Found errors in the component: %s', $component_id));
+    self::assertEmpty($errors, \sprintf('Found errors in the component: %s', $component_id));
   }
 
   /**
-   * @covers ::validate
-   * @covers ::validateComponent
-   * @covers ::checkEnumDefault
-   * @covers ::validatePropsFromStories
-   * @covers ::checkEmptyArrayObject
-   * @covers \Drupal\sdc_devel\DefinitionValidator::validateComponent
-   * @covers \Drupal\sdc_devel\TwigValidator\TwigValidator::validateComponent
+   * Test the validate workflow.
    */
   public function testValidateError(): void {
     $component_id = 'sdc_devel_theme_test:error';
@@ -105,18 +98,12 @@ class ValidatorTest extends ComponentKernelTestBase {
     ];
 
     foreach ($errors as $key => $error) {
-      $this->assertSame($expected[$key], (string) $error->message(), sprintf('Message %s do not match.', $key));
+      self::assertSame($expected[$key], (string) $error->message(), \sprintf('Message %s do not match.', $key));
     }
   }
 
   /**
-   * @covers ::validate
-   * @covers ::validateComponent
-   * @covers ::checkEnumDefault
-   * @covers ::validatePropsFromStories
-   * @covers ::checkEmptyArrayObject
-   * @covers \Drupal\sdc_devel\DefinitionValidator::validateComponent
-   * @covers \Drupal\sdc_devel\TwigValidator\TwigValidator::validateComponent
+   * Test the validate workflow.
    */
   public function testValidateFail(): void {
     $component_id = 'sdc_devel_theme_test:fail';
@@ -128,14 +115,14 @@ class ValidatorTest extends ComponentKernelTestBase {
     // @todo fix duplicate.
     $expected = [
       // 'An exception has been thrown during the rendering of a template',
-      'Unexpected "}".',
-      'Unexpected "}".',
+      'Unexpected "}"',
+      'Unexpected "}"',
     ];
 
-    $this->assertCount(\count($expected), $errors);
+    self::assertCount(\count($expected), $errors);
 
     foreach ($errors as $key => $error) {
-      $this->assertSame($expected[$key], (string) $error->message(), sprintf('Message %s do not match.', $key));
+      self::assertStringStartsWith($expected[$key], (string) $error->message(), \sprintf('Message %s do not match.', $key));
     }
   }
 

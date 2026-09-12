@@ -1,0 +1,31 @@
+uuid: fb37513a-f9a4-4e68-a550-bce89a9c283a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_table_rows
+    - paragraphs.paragraphs_type.table
+    - paragraphs.paragraphs_type.table_row
+  module:
+    - entity_reference_revisions
+id: paragraph.table.field_table_rows
+field_name: field_table_rows
+entity_type: paragraph
+bundle: table
+label: Rows
+description: 'Table row paragraphs.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      table_row: table_row
+    negate: 0
+    target_bundles_drag_drop:
+      table_row:
+        weight: 0
+        enabled: true
+field_type: entity_reference_revisions

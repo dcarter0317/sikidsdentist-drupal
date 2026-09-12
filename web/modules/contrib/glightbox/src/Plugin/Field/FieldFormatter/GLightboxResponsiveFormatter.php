@@ -2,6 +2,7 @@
 
 namespace Drupal\glightbox\Plugin\Field\FieldFormatter;
 
+use Drupal\Component\Utility\DeprecationHelper;
 use Drupal\glightbox\ElementAttachmentInterface;
 use Drupal\Core\Asset\LibraryDiscoveryInterface;
 use Drupal\Core\Cache\Cache;
@@ -169,7 +170,7 @@ class GLightboxResponsiveFormatter extends ImageFormatterBase implements Contain
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $image_styles = image_style_options(FALSE);
+    $image_styles = DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '11.4.0', fn() => \Drupal::service('Drupal\image\ImageDerivativeUtilities')->styleOptions(FALSE), fn() => image_style_options(FALSE));
     $description_link = Link::fromTextAndUrl(
       $this->t('Configure Image Styles'),
       Url::fromRoute('entity.image_style.collection')
@@ -372,7 +373,7 @@ class GLightboxResponsiveFormatter extends ImageFormatterBase implements Contain
    */
   public function settingsSummary() {
     $summary = [];
-    $image_styles = image_style_options(FALSE);
+    $image_styles = DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '11.4.0', fn() => \Drupal::service('Drupal\image\ImageDerivativeUtilities')->styleOptions(FALSE), fn() => image_style_options(FALSE));
     // Unset possible 'No defined styles' option.
     unset($image_styles['']);
     // Styles could be lost because of enabled/disabled modules that defines.

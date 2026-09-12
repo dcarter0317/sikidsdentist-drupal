@@ -12,11 +12,7 @@
     <exclude name="Drupal.Semantics.FunctionTriggerError.TriggerErrorTextLayoutRelaxed"/>
     <!-- Code examples have rather long lines. -->
     <exclude name="Drupal.Files.LineLength.TooLong"/>
-    <!-- Redundant docblocks. -->
-    <exclude name="Drupal.Commenting.DocComment.ShortNotCapital"/>
-    <exclude name="Drupal.Commenting.DocComment.ShortFullStop"/>
-    <exclude name="Drupal.Commenting.DocComment.Empty"/>
-    <exclude name="Drupal.Commenting.ClassComment.Missing"/>
-    <exclude name="Drupal.Commenting.DocComment.ShortSingleLine"/>
+    <!-- This requires changing method signatures which may cause BC break. -->
+    <exclude name="SlevomatCodingStandard.TypeHints.NullableTypeForNullDefaultValue.NullabilityTypeMissing"/>
   </rule>
 </ruleset>

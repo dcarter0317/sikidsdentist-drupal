@@ -1,0 +1,21 @@
+uuid: 6f8fd6a3-e25b-4add-8130-03aa4ba5971d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_table_alignment
+    - paragraphs.paragraphs_type.table
+  module:
+    - options
+id: paragraph.table.field_table_alignment
+field_name: field_table_alignment
+entity_type: paragraph
+bundle: table
+label: Alignment
+description: 'Text alignment applied to every cell in the table.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

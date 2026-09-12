@@ -66,12 +66,12 @@ final class ComponentValidatorOverview extends ControllerBase {
    *   The built response array.
    */
   public function overviewDetails(): array {
-
     $build = [];
     $components = $this->componentPluginManager->getAllComponents();
 
     foreach ($components as $component) {
       $overview = $this->overviewComponent($component);
+
       if (empty($overview)) {
         continue;
       }
@@ -100,7 +100,6 @@ final class ComponentValidatorOverview extends ControllerBase {
    *   The built response array.
    */
   public function overview(): array {
-
     $components = $this->componentPluginManager->getAllComponents();
 
     $build = [];
@@ -115,7 +114,8 @@ final class ComponentValidatorOverview extends ControllerBase {
     $build['summary'] = $this->buildMessagesSummary();
 
     $empty = $this->t('No messages found.');
-    if (!empty($this->levels) && count(array_filter($this->levels)) < 4) {
+
+    if (!empty($this->levels) && \count(\array_filter($this->levels)) < 4) {
       $empty = $this->t('No messages found for this severity, check filter in this form.');
     }
 
@@ -161,15 +161,16 @@ final class ComponentValidatorOverview extends ControllerBase {
    *   The built response array.
    */
   public function overviewSingle(string $component_id): array|RedirectResponse {
-
     if (!$this->componentPluginManager->hasDefinition($component_id)) {
       $this->messenger()->addError($this->t('Unknown component: @cid', ['@cid' => $component_id]));
+
       return $this->redirect('sdc_devel.twig_validator');
     }
 
     $component = $this->componentPluginManager->createInstance($component_id);
 
     $this->singleDisplay = TRUE;
+
     return $this->overviewComponent($component, TRUE);
   }
 
@@ -246,7 +247,8 @@ final class ComponentValidatorOverview extends ControllerBase {
     }
 
     $empty = $this->t('No messages found.');
-    if (!empty($this->levels) && count(array_filter($this->levels)) < 4) {
+
+    if (!empty($this->levels) && \count(\array_filter($this->levels)) < 4) {
       $empty = $this->t('No messages found for this severity, check filter in this form.');
     }
 
@@ -294,9 +296,11 @@ final class ComponentValidatorOverview extends ControllerBase {
 
     foreach ($messages as $message) {
       $level = $levels[$message->level()] ?? 'Unknown';
+
       if ($message->level() < RfcLogLevel::CRITICAL) {
         $level = new FormattableMarkup('<strong>@level</strong>', ['@level' => $level]);
       }
+
       // Summary messages.
       if (!empty($level)) {
         $this->countMessages[$message->level()] = ($this->countMessages[$message->level()] ?? 0) + 1;
@@ -306,13 +310,14 @@ final class ComponentValidatorOverview extends ControllerBase {
         $this->componentHasCritical[$component_id] = TRUE;
       }
 
-      if (!in_array($message->level(), $this->levels)) {
+      if (!\in_array($message->level(), $this->levels, TRUE)) {
         continue;
       }
 
-      $line = (0 === $message->line()) ? '-' : $message->line();
+      $line = ($message->line() === 0) ? '-' : $message->line();
       $source = new FormattableMarkup('<pre><code>@code</code></pre>', ['@code' => $message->getSourceCode()]);
       $data = [];
+
       if ($with_name) {
         $data = [
           Link::createFromRoute($component_id, 'sdc_devel.twig_validator.component', ['component_id' => $component_id]),
@@ -378,12 +383,13 @@ final class ComponentValidatorOverview extends ControllerBase {
    *   The built response array containing summary.
    */
   private function buildMessagesSummary(): array {
-    $form = $this->formBuilder()->getForm('Drupal\sdc_devel\\Form\\OverviewForm', $this->countMessages);
+    $form = $this->formBuilder()->getForm('Drupal\sdc_devel\Form\OverviewForm', $this->countMessages);
 
     $warning = $this->countMessages[RfcLogLevel::WARNING] ?? 0;
     $error = $this->countMessages[RfcLogLevel::ERROR] ?? 0;
     $critical = $this->countMessages[RfcLogLevel::CRITICAL] ?? 0;
     $notice = $this->countMessages[RfcLogLevel::NOTICE] ?? 0;
+
     if ($notice > 0) {
       $notice = $this->formatPlural($notice, 'Total of @count notice.', 'Total of @count notices.');
     }
@@ -392,7 +398,8 @@ final class ComponentValidatorOverview extends ControllerBase {
     }
 
     $open = FALSE;
-    if (!empty($this->levels) && count(array_filter($this->levels)) < 4) {
+
+    if (!empty($this->levels) && \count(\array_filter($this->levels)) < 4) {
       $open = TRUE;
     }
 
@@ -400,24 +407,24 @@ final class ComponentValidatorOverview extends ControllerBase {
       'report' => [
         '#theme' => 'status_report_page',
         '#counters' => [
-        [
-          '#theme' => 'status_report_errors',
-          '#amount' => $warning,
-          '#text' => $this->formatPlural($warning, 'Warning', 'Warnings'),
-          '#severity' => (0 === $warning) ? 'checked' : 'warning',
-        ],
-        [
-          '#theme' => 'status_report_errors',
-          '#amount' => $error,
-          '#text' => $this->formatPlural($error, 'Error', 'Errors'),
-          '#severity' => (0 === $error) ? 'checked' : 'error',
-        ],
-        [
-          '#theme' => 'status_report_errors',
-          '#amount' => $critical,
-          '#text' => $this->formatPlural($critical, 'Critical', 'Criticals'),
-          '#severity' => (0 === $critical) ? 'checked' : 'error',
-        ],
+          [
+            '#theme' => 'status_report_errors',
+            '#amount' => $warning,
+            '#text' => $this->formatPlural($warning, 'Warning', 'Warnings'),
+            '#severity' => ($warning === 0) ? 'checked' : 'warning',
+          ],
+          [
+            '#theme' => 'status_report_errors',
+            '#amount' => $error,
+            '#text' => $this->formatPlural($error, 'Error', 'Errors'),
+            '#severity' => ($error === 0) ? 'checked' : 'error',
+          ],
+          [
+            '#theme' => 'status_report_errors',
+            '#amount' => $critical,
+            '#text' => $this->formatPlural($critical, 'Critical', 'Criticals'),
+            '#severity' => ($critical === 0) ? 'checked' : 'error',
+          ],
         ],
       ],
       'notices' => [
@@ -447,8 +454,10 @@ final class ComponentValidatorOverview extends ControllerBase {
     $build = [];
 
     $schema = '';
+
     if (isset($definition['_discovered_file_path'])) {
       $schema = \file_get_contents($definition['_discovered_file_path']);
+
       if ($schema) {
         $schema = \htmlentities((string) $schema);
       }
@@ -499,9 +508,11 @@ final class ComponentValidatorOverview extends ControllerBase {
     }
 
     $build = [];
+    // phpcs:disable DrupalPractice.Objects.GlobalDrupal.GlobalDrupal
     /** @var \Drupal\ui_patterns_library\StoryPluginManager $story */
     $story = \Drupal::service('plugin.manager.component_story');
     $stories = $story->getComponentStories($component_id);
+
     if (empty($stories)) {
       return ['#markup' => $this->t('<i>Note</i>: No preview available for this component.')];
     }

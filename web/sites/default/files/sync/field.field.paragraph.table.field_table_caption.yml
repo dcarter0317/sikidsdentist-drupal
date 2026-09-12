@@ -1,0 +1,19 @@
+uuid: 0a286386-0a64-4440-93e3-764a58349d96
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_table_caption
+    - paragraphs.paragraphs_type.table
+id: paragraph.table.field_table_caption
+field_name: field_table_caption
+entity_type: paragraph
+bundle: table
+label: Caption
+description: 'Optional caption describing the table content.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

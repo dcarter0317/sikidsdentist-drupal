@@ -6,10 +6,12 @@ namespace Drupal\Tests\form_decorator\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 use Drupal\user\UserInterface;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests registration of a user with short name.
  */
+#[RunTestsInSeparateProcesses]
 class UserRegistrationTest extends BrowserTestBase {
 
   /**

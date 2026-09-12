@@ -8,7 +8,7 @@ configure: glightbox.admin_settings
 dependencies:
   - drupal:image
 
-# Information added by Drupal.org packaging script on 2026-03-27
-version: '1.0.19'
+# Information added by Drupal.org packaging script on 2026-07-27
+version: '1.0.20'
 project: 'glightbox'
-datestamp: 1774619787
+datestamp: 1785134063

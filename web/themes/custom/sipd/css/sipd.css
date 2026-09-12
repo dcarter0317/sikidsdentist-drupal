@@ -673,7 +673,7 @@ ul {
   }
 
   @media (width < 900px) {
-    --interior-hero-height: 10rem;
+    --interior-hero-height: 2rem;
 
     .content-container {
       padding-top: 8px;
@@ -700,6 +700,10 @@ ul {
       justify-content: center;
       gap: 2rem;
       width: 100%;
+    }
+
+    .logo {
+      display: none;
     }
   }
 

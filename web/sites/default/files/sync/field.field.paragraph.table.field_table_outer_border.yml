@@ -1,0 +1,21 @@
+uuid: 57e30285-0d54-4f9d-b8b0-fdce1263ec55
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_table_outer_border
+    - paragraphs.paragraphs_type.table
+id: paragraph.table.field_table_outer_border
+field_name: field_table_outer_border
+entity_type: paragraph
+bundle: table
+label: 'Outer Border'
+description: 'Show a border around the outside of the whole table.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

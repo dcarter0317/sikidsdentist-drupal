@@ -3,7 +3,7 @@ type: theme
 base theme: stable9
 description: A custom theme for Staten Island Pediatric Dentistry
 package: Custom
-core_version_requirement: ^10 || ^11
+core_version_requirement: ^10 || ^11 || ^12
 libraries:
   - sipd/global
 regions:

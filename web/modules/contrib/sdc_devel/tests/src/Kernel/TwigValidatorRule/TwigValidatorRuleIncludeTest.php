@@ -5,23 +5,26 @@ declare(strict_types=1);
 namespace Drupal\Tests\sdc_devel\Kernel\TwigValidatorRule;
 
 use Drupal\Core\Logger\RfcLogLevel;
+use Drupal\sdc_devel\Plugin\TwigValidatorRule\TwigValidatorRuleInclude;
 use Drupal\Tests\sdc_devel\Kernel\TwigValidatorTestBase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
- * @coversDefaultClass \Drupal\sdc_devel\Plugin\TwigValidatorRule\TwigValidatorRuleInclude
+ * Test the TwigValidatorRuleInclude.
  *
- * @group sdc_devel
+ * CSpell:disable.
+ *
  * @internal
- *
- * cSpell:disable
  */
+#[CoversClass(TwigValidatorRuleInclude::class)]
+#[Group('sdc_devel')]
+#[RunTestsInSeparateProcesses]
 final class TwigValidatorRuleIncludeTest extends TwigValidatorTestBase {
 
-  /**
-   * @covers ::processNode
-   *
-   * @dataProvider providerTestTwigValidatorInclude
-   */
+  #[DataProvider('providerTestTwigValidatorInclude')]
   public function testTwigValidatorInclude(string $source, array $expected): void {
     $this->runTestSourceTwigValidator($source, $expected);
   }

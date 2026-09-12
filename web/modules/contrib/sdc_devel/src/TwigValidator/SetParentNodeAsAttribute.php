@@ -15,6 +15,8 @@ final class SetParentNodeAsAttribute implements NodeVisitorInterface {
 
   /**
    * {@inheritdoc}
+   *
+   * phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceAfterLastUsed
    */
   public function enterNode(Node $node, Environment $env): Node {
     foreach ($node as $subNode) {

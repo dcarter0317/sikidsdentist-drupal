@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\twig_tweak\View;
 
-use Drupal\Core\Block\BlockManagerInterface;
 use Drupal\Core\Block\BlockPluginInterface;
+use Drupal\Core\Block\BlockManagerInterface;
 use Drupal\Core\Block\TitleBlockPluginInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\TitleResolverInterface;
@@ -18,42 +16,101 @@ use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * Builds render arrays for blocks in Twig templates.
+ * Block view builder.
  */
-final readonly class BlockViewBuilder {
+class BlockViewBuilder {
 
   /**
-   * {@selfdoc}
+   * The plugin.manager.block service.
+   *
+   * @var \Drupal\Core\Block\BlockManagerInterface
+   */
+  protected $pluginManagerBlock;
+
+  /**
+   * The context repository service.
+   *
+   * @var \Drupal\Core\Plugin\Context\ContextRepositoryInterface
+   */
+  protected $contextRepository;
+
+  /**
+   * The plugin context handler.
+   *
+   * @var \Drupal\Core\Plugin\Context\ContextHandlerInterface
+   */
+  protected $contextHandler;
+
+  /**
+   * The current user.
+   *
+   * @var \Drupal\Core\Session\AccountInterface
+   */
+  protected $account;
+
+  /**
+   * The request stack.
+   *
+   * @var \Symfony\Component\HttpFoundation\RequestStack
+   */
+  protected $requestStack;
+
+  /**
+   * The current route match.
+   *
+   * @var \Drupal\Core\Routing\RouteMatchInterface
+   */
+  protected $routeMatch;
+
+  /**
+   * The title resolver.
+   *
+   * @var \Drupal\Core\Controller\TitleResolverInterface
+   */
+  protected $titleResolver;
+
+  /**
+   * Constructs a BlockViewBuilder object.
    */
   public function __construct(
-    private BlockManagerInterface $pluginManagerBlock,
-    private ContextRepositoryInterface $contextRepository,
-    private ContextHandlerInterface $contextHandler,
-    private AccountInterface $account,
-    private RequestStack $requestStack,
-    private RouteMatchInterface $routeMatch,
-    private TitleResolverInterface $titleResolver,
-  ) {}
+    BlockManagerInterface $plugin_manager_block,
+    ContextRepositoryInterface $context_repository,
+    ContextHandlerInterface $context_handler,
+    AccountInterface $account,
+    RequestStack $request_stack,
+    RouteMatchInterface $route_match,
+    TitleResolverInterface $title_resolver,
+  ) {
+    $this->pluginManagerBlock = $plugin_manager_block;
+    $this->contextRepository = $context_repository;
+    $this->contextHandler = $context_handler;
+    $this->account = $account;
+    $this->requestStack = $request_stack;
+    $this->routeMatch = $route_match;
+    $this->titleResolver = $title_resolver;
+  }
 
   /**
    * Builds the render array for a block.
    *
    * @param string $id
-   *   The ID of block plugin to render.
+   *   The string of block plugin to render.
    * @param array $configuration
    *   (optional) Pass on any configuration to the plugin block.
    * @param bool $wrapper
-   *   (optional) Whether to wrap the output in a block theme template.
+   *   (optional) Whether or not use block template for rendering.
    *
    * @return array
    *   A renderable array representing the content of the block.
    */
   public function build(string $id, array $configuration = [], bool $wrapper = TRUE): array {
+
     $configuration += ['label_display' => BlockPluginInterface::BLOCK_LABEL_VISIBLE];
 
+    /** @var \Drupal\Core\Block\BlockPluginInterface $block_plugin */
     $block_plugin = $this->pluginManagerBlock->createInstance($id, $configuration);
 
-    // Provide runtime contexts to context-aware block plugins.
+    // Inject runtime contexts.
     if ($block_plugin instanceof ContextAwarePluginInterface) {
       $contexts = $this->contextRepository->getRuntimeContexts($block_plugin->getContextMapping());
       $this->contextHandler->applyContextMapping($block_plugin, $contexts);
@@ -83,7 +140,9 @@ final readonly class BlockViewBuilder {
       if ($block_plugin instanceof TitleBlockPluginInterface) {
         $build['content']['#cache']['contexts'][] = 'url';
       }
-      if ($wrapper && !Element::isEmpty($build['content'])) {
+      // Some blocks return null instead of array when empty.
+      // @see https://www.drupal.org/project/drupal/issues/3212354
+      if ($wrapper && is_array($build['content']) && !Element::isEmpty($build['content'])) {
         $build += [
           '#theme' => 'block',
           '#id' => $configuration['id'] ?? NULL,
@@ -94,9 +153,10 @@ final readonly class BlockViewBuilder {
           '#base_plugin_id' => $block_plugin->getBaseId(),
           '#derivative_plugin_id' => $block_plugin->getDerivativeId(),
         ];
-        // Move block-level properties from content to the top-level render array.
-        // This preserves the plugin's rendering control while ensuring proper
-        // theming via Drupal's block template.
+        // Semantically, the content returned by the plugin is the block, and in
+        // particular, #attributes and #contextual_links is information about
+        // the *entire* block. Therefore, we must move these properties into the
+        // top-level element.
         foreach (['#attributes', '#contextual_links'] as $property) {
           if (isset($build['content'][$property])) {
             $build[$property] = $build['content'][$property];
@@ -111,12 +171,11 @@ final readonly class BlockViewBuilder {
       ->addCacheableDependency($block_plugin)
       ->applyTo($build);
 
-    // This will allow caching the block individually.
     if (!isset($build['#cache']['keys'])) {
       $build['#cache']['keys'] = [
         'twig_tweak_block',
         $id,
-        '[configuration]=' . \hash('sha256', \serialize($configuration)),
+        '[configuration]=' . hash('sha256', serialize($configuration)),
         '[wrapper]=' . (int) $wrapper,
       ];
     }

@@ -1,0 +1,32 @@
+uuid: 2ee19c58-f656-4014-96d9-b5ef05f12f6d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.table_row.field_row_cells
+    - field.field.paragraph.table_row.field_row_heading
+    - paragraphs.paragraphs_type.table_row
+id: paragraph.table_row.default
+targetEntityType: paragraph
+bundle: table_row
+mode: default
+content:
+  field_row_cells:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_row_heading:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

@@ -35,3 +35,7 @@ Temporary Items
 *.icloud
 
 # End of https://www.toptal.com/developers/gitignore/api/macos
+
+# ddev tailscale livereload watcher (host-side, per-developer)
+.ddev/.tailscale-livereload.pid
+.ddev/.tailscale-livereload.log

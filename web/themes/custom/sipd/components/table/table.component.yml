@@ -1,0 +1,85 @@
+name: Table
+description: "Responsive, accessible table for feature comparisons, pricing, and data-heavy content."
+group: "Content Components"
+
+props:
+  type: object
+  properties:
+    caption:
+      type: string
+      title: "Caption"
+      description: "Optional caption describing the table content."
+    headers:
+      type: array
+      title: "Column headings"
+      description: "List of column heading strings shown in the table head."
+      items:
+        type: string
+    rows:
+      type: array
+      title: "Rows"
+      description: "List of rows. Each row has an optional row heading and a list of cell values."
+      items:
+        type: object
+        properties:
+          heading:
+            type: string
+            title: "Row heading"
+            description: "Optional row heading rendered as a <th scope=\"row\">."
+          cells:
+            type: array
+            title: "Cells"
+            description: "List of cell values for this row."
+            items:
+              type: string
+    variant_class:
+      type: string
+      title: "Alignment variant class"
+      description: "Optional table-level alignment modifier (e.g. align-left, align-center, align-right)."
+    dark_mode:
+      type: boolean
+      title: "Dark Mode"
+      description: "Whether the component should be rendered using the site's dark mode color pattern."
+      default: false
+    vertical_borders:
+      type: boolean
+      title: "Vertical Borders"
+      description: "Show vertical borders between columns, in addition to the horizontal row dividers."
+      default: false
+    outer_border:
+      type: boolean
+      title: "Outer Border"
+      description: "Show a border around the outside of the whole table."
+      default: false
+    bg_color:
+      type: string
+      title: "Table Background Color"
+      description: "HEX color code for the overall table background."
+    header_bg_color:
+      type: string
+      title: "Table Header Background Color"
+      description: "HEX color code for the table header row (thead) background."
+    row_bg_color:
+      type: string
+      title: "Row Background Color"
+      description: "HEX color code applied behind each table row, including row heading cells."
+    col_bg_color:
+      type: string
+      title: "Column Background Color"
+      description: "HEX color code applied to each data cell (column)."
+
+variants:
+  alignment:
+    title: "Text Alignment"
+    description: "Controls table-wide cell content alignment."
+    default: align-left
+    options:
+      align-left:
+        title: "Left"
+        description: "Left-aligned cell content."
+      align-center:
+        title: "Center"
+        description: "Centered cell content."
+      align-right:
+        title: "Right"
+        description: "Right-aligned cell content."

@@ -1,0 +1,5 @@
+services:
+  # Drush 13 auto-registers contrib Drush command classes as autowired services.
+  # Twig Tweak 4.0.0-alpha2's debug commands type-hint Twig\Environment, which is
+  # only registered under the service id "twig". Alias it so autowiring resolves.
+  Twig\Environment: '@twig'

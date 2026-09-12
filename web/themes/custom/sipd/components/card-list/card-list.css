@@ -37,6 +37,13 @@
   display: contents;
 }
 
+/* The card_item paragraph bridge template wraps the card in its own
+   div (for {{ attributes }}). Flatten that too so the .card article
+   itself is the real grid item and picks up the grid's row-stretch. */
+.card-list > .field > .field__item > div {
+  display: contents;
+}
+
 /* ── Named column variants ────────────────────────────────── */
 
 .card-list--columns-2 {
@@ -59,5 +66,38 @@
   .card-list--columns-3,
   .card-list--columns-4 {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ── Horizontal layout ────────────────────────────────────── */
+/* Cards sit side-by-side in a single row instead of wrapping into
+   a grid. Flex's default cross-axis stretch equalizes every card's
+   height to the tallest one in the row, same as the grid variants. */
+
+.card-list--horizontal {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  overflow-x: auto;
+}
+
+.card-list--horizontal.card-list--columns-2,
+.card-list--horizontal.card-list--columns-3,
+.card-list--horizontal.card-list--columns-4 {
+  grid-template-columns: none;
+}
+
+.card-list--horizontal .card-list__heading {
+  flex-basis: 100%;
+}
+
+.card-list--horizontal .card {
+  flex: 0 0 var(--card-list-min-col-width);
+  min-width: var(--card-list-min-col-width);
+}
+
+@media (width < 900px) {
+  .card-list--horizontal {
+    grid-template-columns: none;
   }
 }

@@ -69,8 +69,10 @@ abstract class ValidatorBase {
       if ($a->type() === $b->type()) {
         return $a->line() <=> $b->line();
       }
+
       return $a->type() <=> $b->type();
     });
+
     return $this->messages;
   }
 

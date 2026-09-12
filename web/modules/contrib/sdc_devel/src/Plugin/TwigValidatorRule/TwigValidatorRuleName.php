@@ -23,9 +23,10 @@ use Twig\Node\Node;
     self::RULE_NAME_FORBID => [
       'componentMetadata' => 'This is an internal SDC variable specific to Drupal.',
     ],
-    // Attributes is always injected.
+    // Attributes and form_state are always injected.
     self::RULE_NAME_IGNORE => [
       'attributes',
+      'form_state',
     ],
   ],
   label: new TranslatableMarkup('Name rules'),
@@ -42,7 +43,7 @@ final class TwigValidatorRuleName extends TwigValidatorRulePluginBase {
     }
 
     $errors = $this->checkLoopVariable($id, $node);
-    $errors = array_merge($errors, $this->checkForbiddenNames($id, $node));
+    $errors = \array_merge($errors, $this->checkForbiddenNames($id, $node));
 
     if (!empty($errors)) {
       return $errors;
@@ -100,7 +101,7 @@ final class TwigValidatorRuleName extends TwigValidatorRulePluginBase {
       return TRUE;
     }
 
-    if (in_array($name, $this->getNameIgnore(), TRUE)) {
+    if (\in_array($name, $this->getNameIgnore(), TRUE)) {
       return TRUE;
     }
 
@@ -121,17 +122,19 @@ final class TwigValidatorRuleName extends TwigValidatorRulePluginBase {
   private function checkLoopVariable(string $id, Node $node): array {
     $name = $node->getAttribute('name');
 
-    if ('loop' !== $name) {
+    if ($name !== 'loop') {
       return [];
     }
 
     $parent = $node->getAttribute(NodeAttribute::PARENT);
+
     if (!\is_a($parent, 'Twig\Node\Expression\GetAttrExpression') || !$parent->hasNode('attribute')) {
       return [];
     }
 
     $value = $parent->getNode('attribute')->getAttribute('value');
-    if ('parent' === $value) {
+
+    if ($value === 'parent') {
       return [ValidatorMessage::createForNode($id, $node, new TranslatableMarkup('Breaking the flow. Bad performance.'))];
     }
 
@@ -175,6 +178,7 @@ final class TwigValidatorRuleName extends TwigValidatorRulePluginBase {
     $name = $node->getAttribute('name');
     $message = new TranslatableMarkup('Unknown variable: `@name`.', ['@name' => $name]);
     $tip = new TranslatableMarkup('The variable is not declared in the component definition.');
+
     return [ValidatorMessage::createForNode($id, $node, $message, RfcLogLevel::ERROR, $tip)];
   }
 

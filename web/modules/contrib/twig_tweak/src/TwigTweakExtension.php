@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\twig_tweak;
 
 use Drupal\Component\Utility\NestedArray;
@@ -26,7 +24,6 @@ use Twig\Extension\AbstractExtension;
 use Twig\Markup as TwigMarkup;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
-use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Twig extension with some useful functions and filters.
@@ -35,15 +32,29 @@ use Symfony\Component\VarDumper\VarDumper;
  * on each page request. For performance reasons services are wrapped in static
  * callbacks.
  */
-final class TwigTweakExtension extends AbstractExtension {
+class TwigTweakExtension extends AbstractExtension {
 
   /**
-   * {@selfdoc}
+   * The module handler to invoke alter hooks.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
    */
-  public function __construct(
-    private readonly ModuleHandlerInterface $moduleHandler,
-    private readonly ThemeManagerInterface $themeManager,
-  ) {}
+  protected $moduleHandler;
+
+  /**
+   * The theme manager to invoke alter hooks.
+   *
+   * @var \Drupal\Core\Theme\ThemeManagerInterface
+   */
+  protected $themeManager;
+
+  /**
+   * Constructs the TwigTweakExtension object.
+   */
+  public function __construct(ModuleHandlerInterface $module_handler, ThemeManagerInterface $theme_manager) {
+    $this->moduleHandler = $module_handler;
+    $this->themeManager = $theme_manager;
+  }
 
   /**
    * {@inheritdoc}
@@ -53,29 +64,30 @@ final class TwigTweakExtension extends AbstractExtension {
     $all_options = ['needs_environment' => TRUE, 'needs_context' => TRUE];
 
     $functions = [
-      new TwigFunction('drupal_view', \views_embed_view(...)),
-      new TwigFunction('drupal_view_result', \views_get_view_result(...)),
-      new TwigFunction('drupal_block', self::drupalBlock(...)),
-      new TwigFunction('drupal_region', self::drupalRegion(...)),
-      new TwigFunction('drupal_entity', self::drupalEntity(...)),
-      new TwigFunction('drupal_entity_form', self::drupalEntityForm(...)),
-      new TwigFunction('drupal_field', self::drupalField(...)),
-      new TwigFunction('drupal_menu', self::drupalMenu(...)),
-      new TwigFunction('drupal_form', self::drupalForm(...)),
-      new TwigFunction('drupal_image', self::drupalImage(...)),
-      new TwigFunction('drupal_token', self::drupalToken(...)),
-      new TwigFunction('drupal_config', self::drupalConfig(...)),
-      new TwigFunction('drupal_dump', self::drupalDump(...), $context_options),
-      new TwigFunction('dd', self::drupalDump(...), $context_options),
-      new TwigFunction('drupal_title', self::drupalTitle(...)),
-      new TwigFunction('drupal_url', self::drupalUrl(...)),
-      new TwigFunction('drupal_link', self::drupalLink(...)),
-      new TwigFunction('drupal_messages', static fn (): array => ['#type' => 'status_messages']),
-      new TwigFunction('drupal_breadcrumb', self::drupalBreadcrumb(...)),
-      new TwigFunction('drupal_breakpoint', self::drupalBreakpoint(...), $all_options),
+      new TwigFunction('drupal_view', 'views_embed_view'),
+      new TwigFunction('drupal_view_result', 'views_get_view_result'),
+      new TwigFunction('drupal_block', [self::class, 'drupalBlock']),
+      new TwigFunction('drupal_region', [self::class, 'drupalRegion']),
+      new TwigFunction('drupal_entity', [self::class, 'drupalEntity']),
+      new TwigFunction('drupal_entity_form', [self::class, 'drupalEntityForm']),
+      new TwigFunction('drupal_field', [self::class, 'drupalField']),
+      new TwigFunction('drupal_menu', [self::class, 'drupalMenu']),
+      new TwigFunction('drupal_form', [self::class, 'drupalForm']),
+      new TwigFunction('drupal_image', [self::class, 'drupalImage']),
+      new TwigFunction('drupal_token', [self::class, 'drupalToken']),
+      new TwigFunction('drupal_config', [self::class, 'drupalConfig']),
+      new TwigFunction('drupal_dump', [self::class, 'drupalDump'], $context_options),
+      new TwigFunction('dd', [self::class, 'drupalDump'], $context_options),
+      new TwigFunction('drupal_title', [self::class, 'drupalTitle']),
+      new TwigFunction('drupal_url', [self::class, 'drupalUrl']),
+      new TwigFunction('drupal_link', [self::class, 'drupalLink']),
+      new TwigFunction('drupal_messages', function (): array {
+        return ['#type' => 'status_messages'];
+      }),
+      new TwigFunction('drupal_breadcrumb', [self::class, 'drupalBreadcrumb']),
+      new TwigFunction('drupal_breakpoint', [self::class, 'drupalBreakpoint'], $all_options),
       // @phpcs:ignore Drupal.Arrays.Array.LongLineDeclaration
-      new TwigFunction('drupal_contextual_links', self::drupalContextualLinks(...)),
-      new TwigFunction('drupal_logger', [self::class, 'drupalLogger']),
+      new TwigFunction('drupal_contextual_links', [self::class, 'drupalContextualLinks']),
     ];
 
     $this->moduleHandler->alter('twig_tweak_functions', $functions);
@@ -90,27 +102,27 @@ final class TwigTweakExtension extends AbstractExtension {
   public function getFilters(): array {
 
     $filters = [
-      new TwigFilter('token_replace', self::tokenReplaceFilter(...)),
-      new TwigFilter('preg_replace', self::pregReplaceFilter(...)),
-      new TwigFilter('image_style', self::imageStyleFilter(...)),
-      new TwigFilter('transliterate', self::transliterateFilter(...)),
-      new TwigFilter('check_markup', \check_markup(...)),
-      new TwigFilter('format_size', ByteSizeMarkup::create(...)),
-      new TwigFilter('truncate', Unicode::truncate(...)),
-      new TwigFilter('view', self::viewFilter(...)),
-      new TwigFilter('with', self::withFilter(...)),
-      new TwigFilter('data_uri', self::dataUriFilter(...)),
-      new TwigFilter('children', self::childrenFilter(...)),
-      new TwigFilter('file_uri', self::fileUriFilter(...)),
-      new TwigFilter('file_url', self::fileUrlFilter(...)),
-      new TwigFilter('entity_url', self::entityUrl(...)),
-      new TwigFilter('entity_link', self::entityLink(...)),
-      new TwigFilter('translation', self::entityTranslation(...)),
-      new TwigFilter('cache_metadata', self::CacheMetadata(...)),
+      new TwigFilter('token_replace', [self::class, 'tokenReplaceFilter']),
+      new TwigFilter('preg_replace', [self::class, 'pregReplaceFilter']),
+      new TwigFilter('image_style', [self::class, 'imageStyleFilter']),
+      new TwigFilter('transliterate', [self::class, 'transliterateFilter']),
+      new TwigFilter('check_markup', 'check_markup'),
+      new TwigFilter('format_size', [ByteSizeMarkup::class, 'create']),
+      new TwigFilter('truncate', [Unicode::class, 'truncate']),
+      new TwigFilter('view', [self::class, 'viewFilter']),
+      new TwigFilter('with', [self::class, 'withFilter']),
+      new TwigFilter('data_uri', [self::class, 'dataUriFilter']),
+      new TwigFilter('children', [self::class, 'childrenFilter']),
+      new TwigFilter('file_uri', [self::class, 'fileUriFilter']),
+      new TwigFilter('file_url', [self::class, 'fileUrlFilter']),
+      new TwigFilter('entity_url', [self::class, 'entityUrl']),
+      new TwigFilter('entity_link', [self::class, 'entityLink']),
+      new TwigFilter('translation', [self::class, 'entityTranslation']),
+      new TwigFilter('cache_metadata', [self::class, 'CacheMetadata']),
     ];
 
     if (Settings::get('twig_tweak_enable_php_filter')) {
-      $filters[] = new TwigFilter('php', self::phpFilter(...), ['needs_context' => TRUE]);
+      $filters[] = new TwigFilter('php', [self::class, 'phpFilter'], ['needs_context' => TRUE]);
     }
 
     $this->moduleHandler->alter('twig_tweak_filters', $filters);
@@ -124,35 +136,37 @@ final class TwigTweakExtension extends AbstractExtension {
    */
   public function getTests(): array {
     $tests = [];
+
     $this->moduleHandler->alter('twig_tweak_tests', $tests);
     $this->themeManager->alter('twig_tweak_tests', $tests);
+
     return $tests;
   }
 
   /**
    * Builds the render array for a block.
    */
-  private static function drupalBlock(string $id, array $configuration = [], bool $wrapper = TRUE): array {
+  public static function drupalBlock(string $id, array $configuration = [], bool $wrapper = TRUE): array {
     return \Drupal::service('twig_tweak.block_view_builder')->build($id, $configuration, $wrapper);
   }
 
   /**
    * Builds the render array of a given region.
    */
-  private static function drupalRegion(string $region, ?string $theme = NULL): array {
+  public static function drupalRegion(string $region, ?string $theme = NULL): array {
     return \Drupal::service('twig_tweak.region_view_builder')->build($region, $theme);
   }
 
   /**
    * Returns the render array to represent an entity.
    */
-  private static function drupalEntity(string $entity_type, string $selector, string $view_mode = 'full', ?string $langcode = NULL, bool $check_access = TRUE): array {
+  public static function drupalEntity(string $entity_type, string $selector, string $view_mode = 'full', ?string $langcode = NULL, bool $check_access = TRUE): array {
 
     $storage = \Drupal::entityTypeManager()->getStorage($entity_type);
 
     if (Uuid::isValid($selector)) {
       $entities = $storage->loadByProperties(['uuid' => $selector]);
-      $entity = \reset($entities);
+      $entity = reset($entities);
     }
     // Fall back to entity ID.
     else {
@@ -170,23 +184,21 @@ final class TwigTweakExtension extends AbstractExtension {
   /**
    * Gets the built and processed entity form for the given entity type.
    */
-  private static function drupalEntityForm(string $entity_type, ?string $id = NULL, string $form_mode = 'default', array $values = [], ?string $langcode = NULL, bool $check_access = TRUE): array {
+  public static function drupalEntityForm(string $entity_type, ?string $id = NULL, string $form_mode = 'default', array $values = [], bool $check_access = TRUE): array {
     $entity_storage = \Drupal::entityTypeManager()->getStorage($entity_type);
     $entity = $id ?
       \Drupal::service('entity.repository')->getActive($entity_type, $id) : $entity_storage->create($values);
-    // @phpstan-ignore-next-line
     if ($entity) {
       return \Drupal::service('twig_tweak.entity_form_view_builder')
-        ->build($entity, $form_mode, $langcode, $check_access);
+        ->build($entity, $form_mode, $check_access);
     }
-    // @phpstan-ignore-next-line
     return [];
   }
 
   /**
    * Returns the render array for a single entity field.
    */
-  private static function drupalField(string $field_name, string $entity_type, string $id, string $view_mode = 'full', ?string $langcode = NULL, bool $check_access = TRUE): array {
+  public static function drupalField(string $field_name, string $entity_type, string $id, $view_mode = 'full', ?string $langcode = NULL, bool $check_access = TRUE): array {
     $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($id);
     if ($entity) {
       return \Drupal::service('twig_tweak.field_view_builder')
@@ -198,7 +210,7 @@ final class TwigTweakExtension extends AbstractExtension {
   /**
    * Returns the render array for Drupal menu.
    */
-  private static function drupalMenu(string $menu_name, int $level = 1, int $depth = 0, bool $expand = FALSE): array {
+  public static function drupalMenu(string $menu_name, int $level = 1, int $depth = 0, bool $expand = FALSE): array {
     return \Drupal::service('twig_tweak.menu_view_builder')->build($menu_name, $level, $depth, $expand);
   }
 
@@ -213,18 +225,18 @@ final class TwigTweakExtension extends AbstractExtension {
    * @return array
    *   A render array to represent the form.
    */
-  private static function drupalForm(string $form_id, ...$args): array {
+  public static function drupalForm(string $form_id, ...$args): array {
     $callback = [\Drupal::formBuilder(), 'getForm'];
-    return \call_user_func_array($callback, \func_get_args());
+    return call_user_func_array($callback, func_get_args());
   }
 
   /**
    * Builds an image.
    */
-  private static function drupalImage(string $selector, ?string $style = NULL, array $attributes = [], bool $responsive = FALSE, bool $check_access = TRUE): array {
+  public static function drupalImage(string $selector, ?string $style = NULL, array $attributes = [], bool $responsive = FALSE, bool $check_access = TRUE): array {
 
     // Determine selector type by its value.
-    if (\preg_match('/^\d+$/', $selector)) {
+    if (preg_match('/^\d+$/', $selector)) {
       $selector_type = 'fid';
     }
     elseif (Uuid::isValid($selector)) {
@@ -238,14 +250,14 @@ final class TwigTweakExtension extends AbstractExtension {
       ->getStorage('file')
       ->loadByProperties([$selector_type => $selector]);
 
-    if (\count($files) == 0) {
+    if (count($files) == 0) {
       return [];
     }
 
     // To avoid ambiguity order by fid.
-    \ksort($files);
+    ksort($files);
 
-    $file = \reset($files);
+    $file = reset($files);
     return \Drupal::service('twig_tweak.image_view_builder')->build($file, $style, $attributes, $responsive, $check_access);
   }
 
@@ -269,7 +281,7 @@ final class TwigTweakExtension extends AbstractExtension {
    *
    * @see \Drupal\Core\Utility\Token::replace()
    */
-  private static function drupalToken(string $token, array $data = [], array $options = []): string {
+  public static function drupalToken(string $token, array $data = [], array $options = []): string {
     return \Drupal::token()->replace("[$token]", $data, $options);
   }
 
@@ -284,7 +296,7 @@ final class TwigTweakExtension extends AbstractExtension {
    * @return mixed
    *   The data that was requested.
    */
-  private static function drupalConfig(string $name, string $key) {
+  public static function drupalConfig(string $name, string $key) {
     return \Drupal::config($name)->get($key);
   }
 
@@ -296,12 +308,13 @@ final class TwigTweakExtension extends AbstractExtension {
    * @param mixed $variable
    *   (optional) The variable to dump.
    */
-  private static function drupalDump(array $context, $variable = NULL): void {
-    if (\class_exists(VarDumper::class)) {
-      \call_user_func(VarDumper::class . '::dump', \func_num_args() == 1 ? $context : $variable);
+  public static function drupalDump(array $context, $variable = NULL): void {
+    $var_dumper = '\Symfony\Component\VarDumper\VarDumper';
+    if (class_exists($var_dumper)) {
+      call_user_func($var_dumper . '::dump', func_num_args() == 1 ? $context : $variable);
     }
     else {
-      \trigger_error('Could not dump the variable because symfony/var-dumper component is not installed.', E_USER_WARNING);
+      trigger_error('Could not dump the variable because symfony/var-dumper component is not installed.', E_USER_WARNING);
     }
   }
 
@@ -310,12 +323,12 @@ final class TwigTweakExtension extends AbstractExtension {
    *
    * @todo Test it with NullRouteMatch
    */
-  private static function drupalTitle(): array {
+  public static function drupalTitle(): array {
     $title = NULL;
     if ($route = \Drupal::routeMatch()->getRouteObject()) {
       $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $route);
     }
-    $build['#markup'] = \is_array($title) ?
+    $build['#markup'] = is_array($title) ?
       \Drupal::service('renderer')->render($title) : $title;
     $build['#cache']['contexts'] = ['url'];
     return $build;
@@ -336,7 +349,7 @@ final class TwigTweakExtension extends AbstractExtension {
    *
    * @see \Drupal\Core\Url::fromUserInput()
    */
-  private static function drupalUrl(string $user_input, array $options = [], bool $check_access = FALSE): ?Url {
+  public static function drupalUrl(string $user_input, array $options = [], bool $check_access = FALSE): ?Url {
     if (isset($options['langcode'])) {
       $language_manager = \Drupal::languageManager();
       if ($language = $language_manager->getLanguage($options['langcode'])) {
@@ -370,7 +383,7 @@ final class TwigTweakExtension extends AbstractExtension {
    *
    * @see \Drupal\Core\Link::fromTextAndUrl()
    */
-  private static function drupalLink($text, string $user_input, array $options = [], bool $check_access = FALSE): ?Link {
+  public static function drupalLink($text, string $user_input, array $options = [], bool $check_access = FALSE): ?Link {
     $url = self::drupalUrl($user_input, $options, $check_access);
     if ($url) {
       // The text has been processed by twig already, convert it to a safe
@@ -387,7 +400,7 @@ final class TwigTweakExtension extends AbstractExtension {
   /**
    * Builds the breadcrumb.
    */
-  private static function drupalBreadcrumb(): array {
+  public static function drupalBreadcrumb(): array {
     return \Drupal::service('breadcrumb')
       ->build(\Drupal::routeMatch())
       ->toRenderable();
@@ -404,7 +417,7 @@ final class TwigTweakExtension extends AbstractExtension {
    *
    * @see https://www.drupal.org/node/2133283
    */
-  private static function drupalContextualLinks(string $id): array {
+  public static function drupalContextualLinks(string $id): array {
     $build['#cache']['contexts'] = ['user.permissions'];
     if (\Drupal::currentUser()->hasPermission('access contextual links')) {
       $build['#type'] = 'contextual_links_placeholder';
@@ -421,29 +434,13 @@ final class TwigTweakExtension extends AbstractExtension {
    * @param array $context
    *   Variables from the current Twig template.
    */
-  private static function drupalBreakpoint(Environment $environment, array $context): void {
-    if (\function_exists('xdebug_break')) {
-      \xdebug_break();
+  public static function drupalBreakpoint(Environment $environment, array $context): void {
+    if (function_exists('xdebug_break')) {
+      xdebug_break();
     }
     else {
-      \trigger_error('Could not make a break because xdebug is not available.', E_USER_WARNING);
+      trigger_error('Could not make a break because xdebug is not available.', E_USER_WARNING);
     }
-  }
-
-  /**
-   * Logs a message to the drupal log.
-   *
-   * @param string $channel
-   *   The logger channel.
-   * @param string $level
-   *   The severity level.
-   * @param string $message
-   *   The message to log.
-   * @param array $context
-   *   (optional) An array of context variables.
-   */
-  public static function drupalLogger(string $channel, string $level, string $message, array $context = []): void {
-    \Drupal::logger($channel)->log($level, $message, $context);
   }
 
   /**
@@ -464,7 +461,7 @@ final class TwigTweakExtension extends AbstractExtension {
    * @return string
    *   The entered HTML text with tokens replaced.
    */
-  private static function tokenReplaceFilter(string $text, array $data = [], array $options = []): string {
+  public static function tokenReplaceFilter(string $text, array $data = [], array $options = []): string {
     return \Drupal::token()->replace($text, $data, $options);
   }
 
@@ -481,8 +478,8 @@ final class TwigTweakExtension extends AbstractExtension {
    * @return string
    *   The new text if matches are found, otherwise unchanged text.
    */
-  private static function pregReplaceFilter(string $text, string $pattern, string $replacement): string {
-    return \preg_replace($pattern, $replacement, $text);
+  public static function pregReplaceFilter(string $text, string $pattern, string $replacement): string {
+    return preg_replace($pattern, $replacement, $text);
   }
 
   /**
@@ -497,20 +494,20 @@ final class TwigTweakExtension extends AbstractExtension {
    *   The absolute URL where a style image can be downloaded, suitable for use
    *   in an <img> tag. Requesting the URL will cause the image to be created.
    */
-  private static function imageStyleFilter(?string $path, string $style): ?string {
+  public static function imageStyleFilter(?string $path, string $style): ?string {
 
     if (!$path) {
-      \trigger_error('Image path is empty.');
+      trigger_error('Image path is empty.');
       return NULL;
     }
 
     if (!$image_style = ImageStyle::load($style)) {
-      \trigger_error(sprintf('Could not load image style %s.', $style));
+      trigger_error(sprintf('Could not load image style %s.', $style));
       return NULL;
     }
 
     if (!$image_style->supportsUri($path)) {
-      \trigger_error(\sprintf('Could not apply image style %s.', $style));
+      trigger_error(sprintf('Could not apply image style %s.', $style));
       return NULL;
     }
 
@@ -529,7 +526,7 @@ final class TwigTweakExtension extends AbstractExtension {
    * @param string $unknown_character
    *   (optional) The character to substitute for characters in $string without
    *   transliterated equivalents. Defaults to '?'.
-   * @param int|null $max_length
+   * @param int $max_length
    *   (optional) If provided, return at most this many characters, ensuring
    *   that the transliteration does not split in the middle of an input
    *   character's transliteration.
@@ -538,7 +535,7 @@ final class TwigTweakExtension extends AbstractExtension {
    *   $string with non-US-ASCII characters transliterated to US-ASCII
    *   characters, and unknown characters replaced with $unknown_character.
    */
-  private static function transliterateFilter(string $text, string $langcode = 'en', string $unknown_character = '?', ?int $max_length = NULL) {
+  public static function transliterateFilter(string $text, string $langcode = 'en', string $unknown_character = '?', ?int $max_length = NULL) {
     return \Drupal::transliteration()->transliterate($text, $langcode, $unknown_character, $max_length);
   }
 
@@ -549,7 +546,7 @@ final class TwigTweakExtension extends AbstractExtension {
    *   The object to build a render array from.
    * @param string|array $view_mode
    *   Can be either the name of a view mode, or an array of display settings.
-   * @param string|null $langcode
+   * @param string $langcode
    *   (optional) For which language the entity should be rendered, defaults to
    *   the current content language.
    * @param bool $check_access
@@ -558,13 +555,16 @@ final class TwigTweakExtension extends AbstractExtension {
    * @return array
    *   A render array to represent the object.
    */
-  private static function viewFilter(?object $object, $view_mode = 'default', ?string $langcode = NULL, bool $check_access = TRUE): array {
+  public static function viewFilter(?object $object, $view_mode = 'default', ?string $langcode = NULL, bool $check_access = TRUE): array {
     $build = [];
     if ($object instanceof FieldItemListInterface || $object instanceof FieldItemInterface) {
       $build = $object->view($view_mode);
-      CacheableMetadata::createFromRenderArray($build)
-        ->addCacheableDependency($object->getEntity())
-        ->applyTo($build);
+      /** @var \Drupal\Core\Entity\Plugin\DataType\EntityAdapter $parent */
+      if ($parent = $object->getParent()) {
+        CacheableMetadata::createFromRenderArray($build)
+          ->addCacheableDependency($parent->getEntity())
+          ->applyTo($build);
+      }
     }
     elseif ($object instanceof EntityInterface) {
       $build = \Drupal::service('twig_tweak.entity_view_builder')->build($object, $view_mode, $langcode, $check_access);
@@ -575,13 +575,13 @@ final class TwigTweakExtension extends AbstractExtension {
   /**
    * Creates a data URI (RFC 2397).
    */
-  private static function dataUriFilter(string $data, string $mime, array $parameters = []): string {
+  public static function dataUriFilter(string $data, string $mime, array $parameters = []): string {
     $uri = 'data:' . $mime;
     foreach ($parameters as $key => $value) {
-      $uri .= ';' . $key . '=' . \rawurlencode($value);
+      $uri .= ';' . $key . '=' . rawurlencode($value);
     }
     $uri .= \str_starts_with($data, 'text/') ?
-       ',' . \rawurlencode($data) : ';base64,' . \base64_encode($data);
+       ',' . rawurlencode($data) : ';base64,' . base64_encode($data);
     return $uri;
   }
 
@@ -598,8 +598,8 @@ final class TwigTweakExtension extends AbstractExtension {
    * @return array
    *   The modified array.
    */
-  private static function withFilter(array $build, $key, $element): array {
-    if (\is_array($key)) {
+  public static function withFilter(array $build, $key, $element): array {
+    if (is_array($key)) {
       NestedArray::setValue($build, $key, $element);
     }
     else {
@@ -619,9 +619,9 @@ final class TwigTweakExtension extends AbstractExtension {
    * @return array
    *   The element's children.
    */
-  private static function childrenFilter(array $build, bool $sort = FALSE): array {
+  public static function childrenFilter(array $build, bool $sort = FALSE): array {
     $keys = Element::children($build, $sort);
-    return \array_intersect_key($build, \array_flip($keys));
+    return array_intersect_key($build, array_flip($keys));
   }
 
   /**
@@ -633,7 +633,7 @@ final class TwigTweakExtension extends AbstractExtension {
    * @return string|null
    *   A URI that may be used to access the file.
    */
-  private static function fileUriFilter($input): ?string {
+  public static function fileUriFilter($input): ?string {
     return \Drupal::service('twig_tweak.uri_extractor')->extractUri($input);
   }
 
@@ -648,7 +648,7 @@ final class TwigTweakExtension extends AbstractExtension {
    * @return string|null
    *   A URL that may be used to access the file.
    */
-  private static function fileUrlFilter($input, bool $relative = TRUE): ?string {
+  public static function fileUrlFilter($input, bool $relative = TRUE): ?string {
     return \Drupal::service('twig_tweak.url_extractor')->extractUrl($input, $relative);
   }
 
@@ -660,7 +660,7 @@ final class TwigTweakExtension extends AbstractExtension {
    * @see https://www.drupal.org/node/2907810
    * @see \Drupal\Core\Entity\EntityInterface::toUrl()
    */
-  private static function entityUrl(EntityInterface $entity, string $rel = 'canonical', array $options = []): Url {
+  public static function entityUrl(EntityInterface $entity, string $rel = 'canonical', array $options = []): Url {
     return $entity->toUrl($rel, $options);
   }
 
@@ -672,7 +672,7 @@ final class TwigTweakExtension extends AbstractExtension {
    * @see https://www.drupal.org/node/2907810
    * @see \Drupal\Core\Entity\EntityInterface::toLink()
    */
-  private static function entityLink(EntityInterface $entity, ?string $text = NULL, string $rel = 'canonical', array $options = []): Link {
+  public static function entityLink(EntityInterface $entity, ?string $text = NULL, string $rel = 'canonical', array $options = []): Link {
     return $entity->toLink($text, $rel, $options);
   }
 
@@ -681,14 +681,14 @@ final class TwigTweakExtension extends AbstractExtension {
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity to get the translation from.
-   * @param string|null $langcode
+   * @param string $langcode
    *   (optional) For which language the translation should be looked for,
    *   defaults to the current language context.
    *
    * @return \Drupal\Core\Entity\EntityInterface
    *   The appropriate translation for the given language context.
    */
-  private static function entityTranslation(EntityInterface $entity, ?string $langcode = NULL): EntityInterface {
+  public static function entityTranslation(EntityInterface $entity, ?string $langcode = NULL): EntityInterface {
     return \Drupal::service('entity.repository')->getTranslationFromContext($entity, $langcode);
   }
 
@@ -701,7 +701,7 @@ final class TwigTweakExtension extends AbstractExtension {
    * @return array
    *   A render array with extracted cache metadata.
    */
-  private static function cacheMetadata($input): array {
+  public static function cacheMetadata($input): array {
     return \Drupal::service('twig_tweak.cache_metadata_extractor')->extractCacheMetadata($input);
   }
 
@@ -716,15 +716,15 @@ final class TwigTweakExtension extends AbstractExtension {
    * @return mixed
    *   The eval() result.
    */
-  private static function phpFilter(array $context, string $code) {
+  public static function phpFilter(array $context, string $code) {
     // Make Twig variables available in PHP code.
     // @cspell:disable-next-line
-    \extract($context, EXTR_SKIP);
-    \ob_start();
+    extract($context, EXTR_SKIP);
+    ob_start();
     // phpcs:ignore Drupal.Functions.DiscouragedFunctions.Discouraged
     print eval($code);
-    $output = \ob_get_contents();
-    \ob_end_clean();
+    $output = ob_get_contents();
+    ob_end_clean();
     return $output;
   }
 

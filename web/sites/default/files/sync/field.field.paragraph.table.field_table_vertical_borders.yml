@@ -1,0 +1,21 @@
+uuid: 13a70cf8-0ba6-4703-8195-40936b33d89b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_table_vertical_borders
+    - paragraphs.paragraphs_type.table
+id: paragraph.table.field_table_vertical_borders
+field_name: field_table_vertical_borders
+entity_type: paragraph
+bundle: table
+label: 'Vertical Borders'
+description: 'Show vertical borders between columns, in addition to the horizontal row dividers.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

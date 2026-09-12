@@ -15,7 +15,7 @@ use Drupal\Core\Entity\Display\EntityFormDisplayInterface;
 class ContentEntityFormDecoratorBase extends EntityFormDecoratorBase implements ContentEntityFormInterface {
 
   /**
-   * The inner entity form.
+   * The decorated content entity form.
    *
    * @var \Drupal\Core\Entity\ContentEntityFormInterface
    */

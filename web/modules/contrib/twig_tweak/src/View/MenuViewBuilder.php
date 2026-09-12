@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Drupal\twig_tweak\View;
 
 use Drupal\Core\Menu\MenuLinkTreeInterface;
@@ -9,21 +7,30 @@ use Drupal\Core\Menu\MenuLinkTreeInterface;
 /**
  * Menu view builder.
  */
-final readonly class MenuViewBuilder {
+class MenuViewBuilder {
 
   /**
-   * {@selfdoc}
+   * The menu link tree service.
+   *
+   * @var \Drupal\Core\Menu\MenuLinkTreeInterface
    */
-  public function __construct(private MenuLinkTreeInterface $menuLinkTree) {}
+  protected $menuLinkTree;
+
+  /**
+   * Constructs a MenuViewBuilder object.
+   */
+  public function __construct(MenuLinkTreeInterface $menu_link_tree) {
+    $this->menuLinkTree = $menu_link_tree;
+  }
 
   /**
    * Returns the render array for a menu.
    *
-   * @param non-empty-string $menu_name
+   * @param string $menu_name
    *   The name of the menu.
-   * @param non-negative-int $level
+   * @param int $level
    *   (optional) Initial menu level.
-   * @param non-negative-int $depth
+   * @param int $depth
    *   (optional) Maximum number of menu levels to display.
    * @param bool $expand
    *   (optional) Expand all menu links.

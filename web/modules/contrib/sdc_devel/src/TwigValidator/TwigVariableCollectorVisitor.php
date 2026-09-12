@@ -79,6 +79,8 @@ final class TwigVariableCollectorVisitor implements NodeVisitorInterface {
 
   /**
    * {@inheritdoc}
+   *
+   * phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceAfterLastUsed
    */
   public function enterNode(Node $node, Environment $env): Node {
     // Collect block names as valid variable, fix #3464630.
@@ -92,11 +94,13 @@ final class TwigVariableCollectorVisitor implements NodeVisitorInterface {
     if ($node instanceof NameExpression) {
       // Is parent a macro? Than add macro parameters to set list.
       $macro = TwigNodeFinder::filterParents($node, static fn (Node $node): bool => $node instanceof MacroNode);
+
       if (!empty($macro)) {
         foreach ($macro as $macroNode) {
-          foreach ($macroNode->getNode('arguments') as $key => $value) {
+          foreach ($macroNode->getNode('arguments') as $value) {
             if ($value instanceof LocalVariable && $value->hasAttribute('name')) {
               $name = $value->getAttribute('name');
+
               if (isset($this->variableSetList[$name])) {
                 continue;
               }
@@ -108,6 +112,7 @@ final class TwigVariableCollectorVisitor implements NodeVisitorInterface {
 
       // Find ConstantExpression in parent to guess type?
       $name = $node->getAttribute('name');
+
       if ($node instanceof AssignNameExpression) {
         $this->variableSetList[$name] = '';
       }

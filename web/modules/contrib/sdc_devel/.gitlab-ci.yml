@@ -8,6 +8,10 @@ include:
       - "/includes/include.drupalci.variables.yml"
       - "/includes/include.drupalci.workflows.yml"
 
+.manual-rule: &manual-rule
+  - when: manual
+    allow_failure: true
+
 .skip-phpmd-rule: &skip-phpmd-rule
   if: '$SKIP_PHPMD == "1"'
   when: never
@@ -52,3 +56,31 @@ include:
 
 phpmd:
   extends: .phpmd-base
+
+## Pages / documentation job ##
+
+pages:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      exists:
+        - zensical.toml
+      changes: &doc-changed-files-path
+        - docs/**/*
+        - zensical.toml
+    - if: $_PAGES_FORCE_REBUILD == "1" && $CI_PIPELINE_SOURCE =~ /(schedule|web)/
+      exists:
+    - *manual-rule
+  needs: []
+  image: python:latest
+  script:
+    - echo -e "\e[0Ksection_start:`date +%s`:build_docs[collapsed=true]\r\e[0KInstall Zensical and build the documentation site"
+    - python3 -m venv .venv
+    - source .venv/bin/activate
+    - pip install zensical
+    - echo -e "\e[0Ksection_end:`date +%s`:build_docs\r\e[0K"
+    - zensical build --clean
+    - printf "Documentation site available at $CI_PAGES_URL\n"
+  artifacts:
+    paths:
+      - public

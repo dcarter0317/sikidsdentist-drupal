@@ -1,0 +1,22 @@
+uuid: 86762100-3445-4fe4-8b73-2f9a52963bf4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_table_col_bg_color
+    - paragraphs.paragraphs_type.table
+  module:
+    - color_field
+id: paragraph.table.field_table_col_bg_color
+field_name: field_table_col_bg_color
+entity_type: paragraph
+bundle: table
+label: 'Column Background Color'
+description: 'Background color applied to each data cell (column).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 1
+field_type: color_field_type

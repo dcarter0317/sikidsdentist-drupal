@@ -5,6 +5,7 @@ namespace Drupal\glightbox;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Field\FieldItemInterface;
+use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Utility\Token;
 
 /**
@@ -61,11 +62,13 @@ class GalleryIdHelper {
    *   The Parent entity ID.
    * @param string $parent_paragraph_id,
    *   The Parent ID of paragraph.
+   * @param \Drupal\Core\Render\BubbleableMetadata|null $bubbleable_metadata
+   *   Optional bubbleable metadata to collect cache metadata from token replacement.
    *
    * @return string
    *   Return string.
    */
-  public function generateId(ContentEntityInterface $entity, FieldItemInterface $item, array $settings, $parent_entity_id = '', $parent_paragraph_id = '') {
+  public function generateId(ContentEntityInterface $entity, FieldItemInterface $item, array $settings, $parent_entity_id = '', $parent_paragraph_id = '', ?BubbleableMetadata $bubbleable_metadata = NULL) {
     $entity_bundle = $entity->bundle();
     $entity_type = $entity->getEntityTypeId();
     $config = $this->configFactory->get('glightbox.settings');
@@ -104,7 +107,8 @@ class GalleryIdHelper {
         $gallery_id = $this->token->replace(
           $settings['glightbox_gallery_custom'],
           [$entity_type => $entity, 'file' => $item],
-          ['clear' => TRUE]
+          ['clear' => TRUE],
+          $bubbleable_metadata,
         );
         break;
 

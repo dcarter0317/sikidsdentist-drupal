@@ -52,9 +52,15 @@
   {%- set items = attribute(content, nested_field_name) -%}
 {% endif %}
 
+{%- set layout_class = 'card-list--columns-3' -%}
+
+{% if paragraph.field_card_list_layout is defined and not paragraph.field_card_list_layout.isEmpty and paragraph.field_card_list_layout.value == 'horizontal' %}
+  {%- set layout_class = layout_class ~ ' card-list--horizontal' -%}
+{% endif %}
+
 {% include "sipd:card-list" with {
   heading: heading,
   items: items,
-  variant_class: 'card-list--columns-3',
+  variant_class: layout_class,
 } only %}
 </div>

@@ -5,21 +5,24 @@ declare(strict_types=1);
 namespace Drupal\Tests\sdc_devel\Kernel\TwigValidatorRule;
 
 use Drupal\Core\Logger\RfcLogLevel;
+use Drupal\sdc_devel\Plugin\TwigValidatorRule\TwigValidatorRuleRangeBinary;
 use Drupal\Tests\sdc_devel\Kernel\TwigValidatorTestBase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
- * @coversDefaultClass \Drupal\sdc_devel\Plugin\TwigValidatorRule\TwigValidatorRuleRangeBinary
+ * Test the TwigValidatorRuleRangeBinary.
  *
- * @group sdc_devel
  * @internal
  */
+#[CoversClass(TwigValidatorRuleRangeBinary::class)]
+#[Group('sdc_devel')]
+#[RunTestsInSeparateProcesses]
 final class TwigValidatorRuleRangeBinaryTest extends TwigValidatorTestBase {
 
-  /**
-   * @covers ::processNode
-   *
-   * @dataProvider providerTestTwigValidatorParent
-   */
+  #[DataProvider('providerTestTwigValidatorParent')]
   public function testTwigValidatorParent(string $source, array $expected): void {
     $this->runTestSourceTwigValidator($source, $expected);
   }
@@ -35,7 +38,7 @@ final class TwigValidatorRuleRangeBinaryTest extends TwigValidatorTestBase {
   public static function providerTestTwigValidatorParent(): array {
     return [
       [
-        "{% for i in 1..10 %}{{ i }}{% endfor %}",
+        '{% for i in 1..10 %}{{ i }}{% endfor %}',
         [
           [1, RfcLogLevel::WARNING],
         ],

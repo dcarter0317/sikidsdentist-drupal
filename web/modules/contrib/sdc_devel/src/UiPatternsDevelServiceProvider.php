@@ -31,7 +31,7 @@ class UiPatternsDevelServiceProvider extends ServiceProviderBase {
       $arguments = $definition->getArguments();
 
       foreach ($arguments as $index => $argument) {
-        if ('Drupal\Core\Theme\Component\ComponentValidator' !== (string) $argument) {
+        if ((string) $argument !== 'Drupal\Core\Theme\Component\ComponentValidator') {
           continue;
         }
 

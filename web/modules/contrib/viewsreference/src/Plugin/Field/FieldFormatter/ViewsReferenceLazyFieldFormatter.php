@@ -7,6 +7,7 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Security\TrustedCallbackInterface;
+use Drupal\views\ContextualLinksHelper;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Views;
 
@@ -107,6 +108,7 @@ class ViewsReferenceLazyFieldFormatter extends FormatterBase implements TrustedC
             $parent_field_name,
             $parent_revision_id,
             $delta,
+            $langcode,
           ],
         ],
         '#create_placeholder' => TRUE,
@@ -148,8 +150,10 @@ class ViewsReferenceLazyFieldFormatter extends FormatterBase implements TrustedC
    *   The parent revision ID.
    * @param int|null $delta
    *   The field item delta.
+   * @param string|null $parent_entity_langcode
+   *   The langcode the parent entity was rendered in.
    */
-  public static function lazyBuilder(string $view_name, string $display_id, string $data, string $enabled_settings, bool $plugin_types, ?string $parent_entity_type, ?string $parent_entity_id, ?string $parent_field_name, ?string $parent_revision_id, ?int $delta): array {
+  public static function lazyBuilder(string $view_name, string $display_id, string $data, string $enabled_settings, bool $plugin_types, ?string $parent_entity_type, ?string $parent_entity_id, ?string $parent_field_name, ?string $parent_revision_id, ?int $delta, ?string $parent_entity_langcode = NULL): array {
     // Double-check that a display ID has been selected.
     if (!$display_id) {
       return [];
@@ -175,6 +179,7 @@ class ViewsReferenceLazyFieldFormatter extends FormatterBase implements TrustedC
       'enabled_settings' => $unserialized_enabled_settings,
       'parent_entity_type' => $parent_entity_type,
       'parent_entity_id' => $parent_entity_id,
+      'parent_entity_langcode' => $parent_entity_langcode,
       'parent_field_name' => $parent_field_name,
       'parent_revision_id' => $parent_revision_id,
       'field_item_delta' => $delta,
@@ -184,8 +189,8 @@ class ViewsReferenceLazyFieldFormatter extends FormatterBase implements TrustedC
     $view->execute($display_id);
 
     $render_array = $view->buildRenderable($display_id, $view->args, FALSE);
-    if ($plugin_types) {
-      if (!empty($view->result) || !empty($view->empty)) {
+    if (!empty($view->result) || !empty($view->empty)) {
+      if ($plugin_types) {
         // Add a custom template if the title is available.
         $title = $view->getTitle();
         if (!empty($title) && !empty($unserialized_enabled_settings['title'])) {
@@ -200,13 +205,18 @@ class ViewsReferenceLazyFieldFormatter extends FormatterBase implements TrustedC
             '#title' => $title,
           ];
         }
-        // The views_add_contextual_links() function needs the following
-        // information in the render array in order to attach the contextual
-        // links to the view.
-        $render_array['#view_id'] = $view->storage->id();
-        $render_array['#view_display_show_admin_links'] = $view->getShowAdminLinks();
-        $render_array['#view_display_plugin_id'] = $view->getDisplay()->getPluginId();
-        views_add_contextual_links($render_array, $render_array['#view_display_plugin_id'], $display_id);
+      }
+
+      // ContextualLinksHelper::addLinks() needs the following information
+      // in the render array in order to attach the contextual links to
+      // the view.
+      $render_array['#view_id'] = $view->storage->id();
+      $render_array['#view_display_show_admin_links'] = $view->getShowAdminLinks();
+      $render_array['#view_display_plugin_id'] = $view->getDisplay()->getPluginId();
+      $plugin_id = $render_array['#view_display_plugin_id'];
+      $location = in_array($plugin_id, ['block', 'page', 'view']) ? $plugin_id : 'view';
+      if (\Drupal::hasService(ContextualLinksHelper::class)) {
+        \Drupal::service(ContextualLinksHelper::class)->addLinks($render_array, $location, $display_id);
       }
     }
 

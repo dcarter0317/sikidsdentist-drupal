@@ -8,6 +8,9 @@ use Drupal\Core\Template\Loader\StringLoader;
 use Drupal\sdc_devel\TwigValidator\SetParentNodeAsAttribute;
 use Drupal\sdc_devel\TwigValidator\TwigNodeFinder;
 use Drupal\Tests\UnitTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use Twig\Environment;
 use Twig\Node\ModuleNode;
 use Twig\Node\Node;
@@ -17,14 +20,13 @@ use Twig\NodeVisitor\NodeVisitorInterface;
 /**
  * Simple test for Twig Finder helper class.
  *
- * @coversDefaultClass \Drupal\sdc_devel\TwigValidator\TwigNodeFinder
- *
- * @group sdc_devel
- * @internal
- *
  * phpcs:disable Drupal.Commenting.VariableComment.Missing
+ *
+ * @internal
  */
-class TwigNodeFinderTest extends UnitTestCase {
+#[CoversClass(TwigNodeFinder::class)]
+#[Group('sdc_devel')]
+final class TwigNodeFinderTest extends UnitTestCase {
 
   private Environment $twig;
 
@@ -39,7 +41,7 @@ class TwigNodeFinderTest extends UnitTestCase {
   }
 
   /**
-   * Test the method findParentIs().
+   * Test the findParentIs method.
    *
    * @param string $twigText
    *   The twig template content.
@@ -51,12 +53,9 @@ class TwigNodeFinderTest extends UnitTestCase {
    *   The attribute 'name' value to look.
    * @param bool $expected
    *   The result expected.
-   *
-   * @covers ::findParentIs
-   * @dataProvider findParentIsDataProvider
    */
+  #[DataProvider('findParentIsDataProvider')]
   public function testFindParentRandomIsDefault(string $twigText, string $nodeClass, string $findClass, string $attributeValue, bool $expected): void {
-
     $nodeTree = $this->createNodeTree($twigText);
     $nodeTraverser = new NodeTraverser($this->twig, [new SetParentNodeAsAttribute()]);
     $nodeTraverser->traverse($nodeTree);
@@ -67,10 +66,11 @@ class TwigNodeFinderTest extends UnitTestCase {
     $nodeTraverser->traverse($nodeTree);
 
     $found = FALSE;
+
     if ($testVisitor->resultList) {
       $found = TRUE;
     }
-    $this->assertSame($expected, $found);
+    self::assertSame($expected, $found);
   }
 
   /**
@@ -108,10 +108,8 @@ class TwigNodeFinderTest extends UnitTestCase {
    *   The class to find in the tree.
    * @param int $expectedCount
    *   The count result expected.
-   *
-   * @covers ::filterParents
-   * @dataProvider filterParentsDataProvider
    */
+  #[DataProvider('filterParentsDataProvider')]
   public function testFilterParents(string $twigText, string $nodeClass, string $findClass, int $expectedCount): void {
     $nodeTree = $this->createNodeTree($twigText);
     $nodeTraverser = new NodeTraverser($this->twig, [new SetParentNodeAsAttribute()]);
@@ -122,7 +120,7 @@ class TwigNodeFinderTest extends UnitTestCase {
     $nodeTraverser->addVisitor($testVisitor);
     $nodeTraverser->traverse($nodeTree);
 
-    $this->assertSame($expectedCount, $testVisitor->resultList ? \count($testVisitor->resultList) : 0);
+    self::assertSame($expectedCount, $testVisitor->resultList ? \count($testVisitor->resultList) : 0);
   }
 
   /**
@@ -166,6 +164,7 @@ class TwigNodeFinderTest extends UnitTestCase {
   private function createNodeTree(string $raw): ModuleNode {
     $template = $this->twig->createTemplate($raw);
     $source = $template->getSourceContext();
+
     return $this->twig->parse($this->twig->tokenize($source));
   }
 
@@ -185,6 +184,8 @@ final class TestVisitor implements NodeVisitorInterface {
 
   /**
    * {@inheritdoc}
+   *
+   * phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceAfterLastUsed
    */
   public function enterNode(Node $node, Environment $env): Node {
     if (!\is_a($node, $this->nodeClass)) {
@@ -195,14 +196,17 @@ final class TestVisitor implements NodeVisitorInterface {
       if (!$node->hasAttribute('name')) {
         return $node;
       }
+
       if ($node->getAttribute('name') !== $this->attributeValue) {
         return $node;
       }
     }
 
     $twigNodeFinder = new TwigNodeFinder();
+
     if ($this->attributeValue) {
       $result = $twigNodeFinder->findParentIs($node, $this->findClass);
+
       if (!empty($result)) {
         $this->resultList[] = $result;
       }
@@ -212,9 +216,10 @@ final class TestVisitor implements NodeVisitorInterface {
       // TwigVariableCollectorVisitor.
       $class = $this->findClass;
       $fn = static function (Node $node) use (&$class) {
-        return ($class === \get_class($node));
+        return $class === \get_class($node);
       };
       $result = $twigNodeFinder->filterParents($node, $fn);
+
       if (!empty($result)) {
         $this->resultList[] = $result;
       }

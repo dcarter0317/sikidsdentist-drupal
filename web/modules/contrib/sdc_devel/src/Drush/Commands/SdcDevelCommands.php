@@ -24,6 +24,7 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
  * @codeCoverageIgnore
  */
 final class SdcDevelCommands extends DrushCommands {
+
   use AutowireTrait;
 
   /**
@@ -77,21 +78,23 @@ final class SdcDevelCommands extends DrushCommands {
   #[CLI\DefaultTableFields(fields: ['component', 'severity', 'message', 'Type', 'line', 'source'])]
   #[CLI\FilterDefaultField(field: 'component')]
   public function uiPatternsDevelValidate(string $project, ?string $id = NULL, array $options = ['install' => FALSE]): RowsOfFields {
-    if (FALSE !== \strpos($project, ',')) {
+    if (\strpos($project, ',') !== FALSE) {
       $projects = \explode(',', $project);
     }
     else {
       $projects = [$project];
     }
 
-    if (TRUE === $options['install']) {
+    if ($options['install'] === TRUE) {
       $this->installProjects($projects);
     }
 
     $rows = [];
+
     foreach ($projects as $project) {
       $this->logger()->notice(dt('Start validation of @project...', ['@project' => $project]));
       $projectRows = $this->validate($project, $id);
+
       if ($projectRows === NULL) {
         $this->logger()->warning(dt('No components found, either it contains no components or is not enabled. Run this command with `--install` to try to force install.'));
       }
@@ -99,13 +102,13 @@ final class SdcDevelCommands extends DrushCommands {
         $this->logger()->success(dt('No components errors found for @project, nice job! 👍', ['@project' => $project]));
       }
       else {
-        $params = ['@count' => count($projectRows), '@project' => $project];
+        $params = ['@count' => \count($projectRows), '@project' => $project];
         $this->logger()->warning(dt('Found @count problems in @project.', $params));
         $rows += $projectRows;
       }
     }
 
-    if (TRUE === $options['install']) {
+    if ($options['install'] === TRUE) {
       $this->uninstallProjects();
     }
 
@@ -146,8 +149,10 @@ final class SdcDevelCommands extends DrushCommands {
   private function validateComponents(string $project, array $components, ?string $id): ?array {
     $found_components = FALSE;
     $rows = [];
+
     foreach ($components as $component) {
       $provider = $component->getBaseId();
+
       if ($provider !== $project) {
         continue;
       }
@@ -187,6 +192,7 @@ final class SdcDevelCommands extends DrushCommands {
   private function formatMessages(string $component_id, array $messages): array {
     $levels = RfcLogLevel::getLevels();
     $rows = [];
+
     foreach ($messages as $message) {
       $level = $levels[$message->level()] ?? 'Unknown';
       $line = ($message->line() === 0) ? '-' : $message->line();
@@ -200,6 +206,7 @@ final class SdcDevelCommands extends DrushCommands {
         'source' => \trim($source),
       ];
     }
+
     return $rows;
   }
 
@@ -214,11 +221,12 @@ final class SdcDevelCommands extends DrushCommands {
     $themes = $this->extensionListTheme->getList();
 
     $result = [];
+
     foreach ($projects as $project) {
-      if (isset($modules[$project]) && $modules[$project]->status == 0) {
+      if (isset($modules[$project]) && $modules[$project]->status === 0) {
         $result['module'][] = $project;
       }
-      elseif (isset($themes[$project]) && $themes[$project]->status == 0) {
+      elseif (isset($themes[$project]) && $themes[$project]->status === 0) {
         $result['theme'][] = $project;
       }
     }
@@ -230,6 +238,7 @@ final class SdcDevelCommands extends DrushCommands {
     if (!empty($result['theme'])) {
       $this->themeInstaller->install($result['theme'], TRUE);
     }
+
     if (!empty($result['module'])) {
       $process = $this->processManager()->drush($this->siteAliasManager->getSelf(), PmCommands::INSTALL, $result['module']);
       $process->mustRun();
@@ -245,6 +254,7 @@ final class SdcDevelCommands extends DrushCommands {
     if (!empty($this->installed['theme'])) {
       $this->themeInstaller->uninstall($this->installed['theme']);
     }
+
     if (!empty($this->installed['module'])) {
       $process = $this->processManager()->drush($this->siteAliasManager->getSelf(), PmCommands::UNINSTALL, $this->installed['module']);
       $process->mustRun();

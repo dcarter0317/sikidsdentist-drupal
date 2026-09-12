@@ -30,6 +30,38 @@ field.formatter.settings.glightbox:
       type: string
       label: 'Caption description custom'
 
+field.formatter.settings.glightbox_responsive:
+  type: mapping
+  label: 'GLightbox Responsive formatter settings'
+  mapping:
+    glightbox_responsive_node_style:
+      type: string
+      label: 'Responsive image style for content'
+    glightbox_image_style:
+      type: string
+      label: 'Image style for GLightbox'
+    glightbox_responsive_image_style:
+      type: string
+      label: 'Responsive image style for GLightbox'
+    glightbox_gallery:
+      type: string
+      label: 'Gallery grouping mode'
+    glightbox_gallery_custom:
+      type: string
+      label: 'Custom gallery value'
+    glightbox_caption:
+      type: string
+      label: 'Caption source'
+    glightbox_caption_custom:
+      type: string
+      label: 'Custom caption text'
+    glightbox_caption_description:
+      type: string
+      label: 'Caption description source'
+    glightbox_caption_description_custom:
+      type: string
+      label: 'Custom caption description'
+
 glightbox.settings:
   type: config_object
   label: 'GLightbox settings'
