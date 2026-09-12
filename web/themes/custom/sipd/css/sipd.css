@@ -1118,6 +1118,18 @@ ul {
   color: var(--clr-text-2);
   font-weight: var(--fw-light);
   padding-block: 8rem;
+  gap: 3rem;
+
+  .content-primary {
+    > div {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .content-secondary {
+    flex: 1 1 40%;
+    max-width: 700px;
+  }
 
   iframe {
     width: 100%;
