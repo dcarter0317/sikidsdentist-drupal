@@ -19,12 +19,11 @@ bundle: text_block
 mode: default
 content:
   field_tb_bg_color:
-    type: color_field_widget_default
+    type: color_field_widget_box
     weight: 4
     region: content
     settings:
-      placeholder_color: ''
-      placeholder_opacity: ''
+      default_colors: '#00334f,#38bcb1,#1478a3,#ffffff,#000000,#39bdb3,#00334f,#39bdb3,#f3efef,#668595,#287ca6,#e4ff7f,#fefefe,#333333,#414549,#89bbd1,#38bcb1,#ff0000'
     third_party_settings: {  }
   field_tb_body:
     type: text_textarea
@@ -48,12 +47,11 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_tb_text_color:
-    type: color_field_widget_default
+    type: color_field_widget_box
     weight: 5
     region: content
     settings:
-      placeholder_color: ''
-      placeholder_opacity: ''
+      default_colors: '#00334f,#38bcb1,#1478a3,#ffffff,#000000,#39bdb3,#00334f,#39bdb3,#f3efef,#668595,#287ca6,#e4ff7f,#fefefe,#333333,#414549,#89bbd1,#38bcb1,#ff0000'
     third_party_settings: {  }
   field_tb_title:
     type: string_textfield

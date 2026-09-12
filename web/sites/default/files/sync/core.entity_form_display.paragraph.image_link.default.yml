@@ -17,12 +17,11 @@ bundle: image_link
 mode: default
 content:
   field_image_link_bg_color:
-    type: color_field_widget_default
+    type: color_field_widget_box
     weight: 1
     region: content
     settings:
-      placeholder_color: ''
-      placeholder_opacity: ''
+      default_colors: '#ffffff,#fefefe,#f3efef,#e4ff7f,#89bbd1,#39bdb3,#38bcb1,#668595,#287ca6,#1478a3,#ff0000,#414549,#333333,#00334f,#000000'
     third_party_settings: {  }
   field_image_link_media:
     type: media_library_widget

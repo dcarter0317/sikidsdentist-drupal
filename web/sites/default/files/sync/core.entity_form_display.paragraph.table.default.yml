@@ -38,12 +38,11 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_table_bg_color:
-    type: color_field_widget_default
+    type: color_field_widget_box
     weight: 5
     region: content
     settings:
-      placeholder_color: ''
-      placeholder_opacity: ''
+      default_colors: '#ffffff,#fefefe,#f3efef,#e4ff7f,#89bbd1,#39bdb3,#38bcb1,#668595,#287ca6,#1478a3,#ff0000,#414549,#333333,#00334f,#000000'
     third_party_settings: {  }
   field_table_caption:
     type: string_textfield
@@ -54,12 +53,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_table_col_bg_color:
-    type: color_field_widget_default
+    type: color_field_widget_box
     weight: 8
     region: content
     settings:
-      placeholder_color: ''
-      placeholder_opacity: ''
+      default_colors: '#ffffff,#fefefe,#f3efef,#e4ff7f,#89bbd1,#39bdb3,#38bcb1,#668595,#287ca6,#1478a3,#ff0000,#414549,#333333,#00334f,#000000'
     third_party_settings: {  }
   field_table_dark_mode:
     type: boolean_checkbox
@@ -69,12 +67,11 @@ content:
       display_label: true
     third_party_settings: {  }
   field_table_header_bg_color:
-    type: color_field_widget_default
+    type: color_field_widget_box
     weight: 6
     region: content
     settings:
-      placeholder_color: ''
-      placeholder_opacity: ''
+      default_colors: '#ffffff,#fefefe,#f3efef,#e4ff7f,#89bbd1,#39bdb3,#38bcb1,#668595,#287ca6,#1478a3,#ff0000,#414549,#333333,#00334f,#000000'
     third_party_settings: {  }
   field_table_headers:
     type: string_textfield
@@ -92,12 +89,11 @@ content:
       display_label: true
     third_party_settings: {  }
   field_table_row_bg_color:
-    type: color_field_widget_default
+    type: color_field_widget_box
     weight: 7
     region: content
     settings:
-      placeholder_color: ''
-      placeholder_opacity: ''
+      default_colors: '#ffffff,#fefefe,#f3efef,#e4ff7f,#89bbd1,#39bdb3,#38bcb1,#668595,#287ca6,#1478a3,#ff0000,#414549,#333333,#00334f,#000000'
     third_party_settings: {  }
   field_table_rows:
     type: paragraphs
