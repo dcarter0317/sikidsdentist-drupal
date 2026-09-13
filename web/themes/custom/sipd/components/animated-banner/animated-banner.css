@@ -73,7 +73,7 @@
 
 @media (width < 900px) {
   .banner .banner__content .banner__title {
-    font-size: 1.75rem;
+    font-size: var(--fs-h2);
     margin-block: initial;
   }
 }

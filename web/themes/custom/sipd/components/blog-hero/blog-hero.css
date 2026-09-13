@@ -1,6 +1,6 @@
 .blog-hero {
   --blog-hero-text-color: var(--clr-text-3);
-  --blog-hero-title-font-size: 2.5rem;
+  --blog-hero-title-font-size: 2.3rem;
   --blog-hero-info-font-size: 1.4rem;
   --blog-hero-font-weight: 300;
   --blog-hero-height: 68vh;
