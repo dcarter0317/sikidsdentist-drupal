@@ -6,3 +6,4 @@ package: 'Custom'
 dependencies:
   - drupal:paragraphs
   - drupal:text
+  - drupal:color_field

@@ -9,11 +9,13 @@
   --grid-item-bg: transparent;
   --grid-item-color: var(--clr-text-3, #00334f);
   --grid-item-border-radius: 8px;
+  --grid-item-border-color: var(--clr-primary, #1478a3);
 
   background: var(--grid-item-bg);
   padding: 1rem;
   color: var(--grid-item-color);
   border-radius: var(--grid-item-border-radius);
+  border-bottom: 3px solid var(--grid-item-border-color);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 

@@ -3,16 +3,34 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.grid_item.field_grid_item_bg_color
+    - field.field.paragraph.grid_item.field_grid_item_border_color
     - field.field.paragraph.grid_item.field_grid_item_content
     - field.field.paragraph.grid_item.field_grid_item_heading
+    - field.field.paragraph.grid_item.field_grid_item_text_color
     - paragraphs.paragraphs_type.grid_item
   module:
+    - color_field
     - text
 id: paragraph.grid_item.default
 targetEntityType: paragraph
 bundle: grid_item
 mode: default
 content:
+  field_grid_item_bg_color:
+    type: color_field_widget_box
+    weight: 2
+    region: content
+    settings:
+      default_colors: '#00334f,#38bcb1,#1478a3,#ffffff,#000000,#39bdb3,#00334f,#39bdb3,#f3efef,#668595,#287ca6,#e4ff7f,#fefefe,#333333,#414549,#89bbd1,#38bcb1,#ff0000'
+    third_party_settings: {  }
+  field_grid_item_border_color:
+    type: color_field_widget_box
+    weight: 4
+    region: content
+    settings:
+      default_colors: '#00334f,#38bcb1,#1478a3,#ffffff,#000000,#39bdb3,#00334f,#39bdb3,#f3efef,#668595,#287ca6,#e4ff7f,#fefefe,#333333,#414549,#89bbd1,#38bcb1,#ff0000'
+    third_party_settings: {  }
   field_grid_item_content:
     type: text_textarea
     weight: 1
@@ -28,6 +46,13 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_grid_item_text_color:
+    type: color_field_widget_box
+    weight: 3
+    region: content
+    settings:
+      default_colors: '#00334f,#38bcb1,#1478a3,#ffffff,#000000,#39bdb3,#00334f,#39bdb3,#f3efef,#668595,#287ca6,#e4ff7f,#fefefe,#333333,#414549,#89bbd1,#38bcb1,#ff0000'
     third_party_settings: {  }
 hidden:
   admin_title: true

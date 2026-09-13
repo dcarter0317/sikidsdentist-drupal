@@ -1,0 +1,20 @@
+uuid: ddd7d4d4-900b-462e-af43-af7ecdba5c8b
+langcode: en
+status: true
+dependencies:
+  module:
+    - color_field
+    - paragraphs
+id: paragraph.field_grid_item_border_color
+field_name: field_grid_item_border_color
+entity_type: paragraph
+type: color_field_type
+settings:
+  format: '#HEXHEX'
+module: color_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

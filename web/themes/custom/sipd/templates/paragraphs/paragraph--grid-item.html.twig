@@ -12,6 +12,9 @@
   {{ title_suffix }}
   {%- set heading = null -%}
 {%- set content = null -%}
+{%- set bg_color = null -%}
+{%- set text_color = null -%}
+{%- set border_color = null -%}
 
 {% if paragraph.field_grid_item_heading is defined and not paragraph.field_grid_item_heading.isEmpty %}
   {%- set heading = paragraph.field_grid_item_heading.value -%}
@@ -21,8 +24,32 @@
   {%- set content = paragraph.field_grid_item_content.processed|default(paragraph.field_grid_item_content.value) -%}
 {% endif %}
 
+{% if paragraph.field_grid_item_bg_color is defined and not paragraph.field_grid_item_bg_color.isEmpty %}
+  {%- set bg_color = paragraph.field_grid_item_bg_color.0.color -%}
+  {% if bg_color and bg_color|first != '#' %}
+    {%- set bg_color = '#' ~ bg_color -%}
+  {% endif %}
+{% endif %}
+
+{% if paragraph.field_grid_item_text_color is defined and not paragraph.field_grid_item_text_color.isEmpty %}
+  {%- set text_color = paragraph.field_grid_item_text_color.0.color -%}
+  {% if text_color and text_color|first != '#' %}
+    {%- set text_color = '#' ~ text_color -%}
+  {% endif %}
+{% endif %}
+
+{% if paragraph.field_grid_item_border_color is defined and not paragraph.field_grid_item_border_color.isEmpty %}
+  {%- set border_color = paragraph.field_grid_item_border_color.0.color -%}
+  {% if border_color and border_color|first != '#' %}
+    {%- set border_color = '#' ~ border_color -%}
+  {% endif %}
+{% endif %}
+
 {% include "sipd:grid-item" with {
   heading: heading,
   content: content,
+  bg_color: bg_color,
+  text_color: text_color,
+  border_color: border_color,
 } only %}
 </div>

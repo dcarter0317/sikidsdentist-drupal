@@ -6,12 +6,27 @@
  * Renders as a single cell inside a Grid Container.
  *
  * Props:
- * - heading: string  — optional cell heading (optional)
- * - content: string  — body content; supports HTML markup (optional)
+ * - heading: string       — optional cell heading (optional)
+ * - content: string       — body content; supports HTML markup (optional)
+ * - bg_color: string      — optional background color, hex (optional)
+ * - text_color: string    — optional text color, hex (optional)
+ * - border_color: string  — optional bottom border color, hex (optional)
  */
 #}
 
-<div class="grid-item">
+{%- set inline_styles = [] -%}
+{% if bg_color %}
+  {%- set inline_styles = inline_styles|merge(['--grid-item-bg: ' ~ bg_color]) -%}
+{% endif %}
+{% if text_color %}
+  {%- set inline_styles = inline_styles|merge(['--grid-item-color: ' ~ text_color]) -%}
+{% endif %}
+{% if border_color %}
+  {%- set inline_styles = inline_styles|merge(['--grid-item-border-color: ' ~ border_color]) -%}
+{% endif %}
+{%- set style_attribute = inline_styles ? ' style="' ~ inline_styles|join('; ') ~ ';"' : '' -%}
+
+<div class="grid-item"{{ style_attribute|raw }}>
   {% if heading %}
     <h2 class="grid-item__heading">{{ heading }}</h2>
   {% endif %}

@@ -13,3 +13,15 @@ props:
       type: string
       title: "Content"
       description: "Body content for the grid cell. Supports HTML markup."
+    bg_color:
+      type: string
+      title: "Background Color"
+      description: "Optional background color (hex) for the grid cell."
+    text_color:
+      type: string
+      title: "Text Color"
+      description: "Optional text color (hex) for the grid cell."
+    border_color:
+      type: string
+      title: "Bottom Border Color"
+      description: "Optional color (hex) for the grid cell's 3px bottom border."
