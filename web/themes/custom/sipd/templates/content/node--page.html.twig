@@ -5,6 +5,11 @@
 <section {{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
+  {% if node_edit_url %}
+    <a href="{{ node_edit_url }}" class="node-edit-link" title="Edit this page">
+      <i class="fa-solid fa-pen"></i> Edit Page
+    </a>
+  {% endif %}
   {% include('@sipd/templates/layout/header.html.twig') %}
 
   <!-- INTERIOR HERO SECTION -->

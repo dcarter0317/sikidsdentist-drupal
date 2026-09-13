@@ -113,6 +113,12 @@ function sipd_preprocess_page__front(array &$variables): void {
 function sipd_preprocess_node(array &$variables): void {
   $variables['directory'] = \Drupal::service('extension.list.theme')->getPath('sipd');
   $variables['base_path'] = base_path();
+
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  if ($variables['view_mode'] === 'full' && $node->access('update')) {
+    $variables['node_edit_url'] = $node->toUrl('edit-form')->toString();
+  }
 }
 
 /**
