@@ -1,0 +1,23 @@
+uuid: 2d2e4d9b-7a3c-4b4e-8c3b-0b3c7c2d3e02
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta_layout
+    - paragraphs.paragraphs_type.banner
+  module:
+    - options
+id: paragraph.banner.field_cta_layout
+field_name: field_cta_layout
+entity_type: paragraph
+bundle: banner
+label: 'CTA Layout'
+description: 'Direction of the CTA banner content: row keeps the title and button side by side; column stacks them.'
+required: false
+translatable: true
+default_value:
+  -
+    value: row
+default_value_callback: ''
+settings: {  }
+field_type: list_string

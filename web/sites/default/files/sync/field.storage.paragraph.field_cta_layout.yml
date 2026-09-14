@@ -1,0 +1,27 @@
+uuid: 1c1e3c8a-6f2b-4a3d-9b2a-9a2b6b1c2e01
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_cta_layout
+field_name: field_cta_layout
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: row
+      label: Row
+    -
+      value: column
+      label: Column
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -22,7 +22,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow-x: hidden;
   background: var(--banner-bg-color);
   color: var(--banner-text-color);
 }
@@ -39,10 +39,6 @@
 
 /* ─── Content Container ─────────────────────────────────────────────────────── */
 .banner__content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
   padding: 1rem;
   width: 100%;
@@ -150,6 +146,10 @@
 .banner--cta-banner p.p-title {
   margin-bottom: 0;
   font-size: var(--fs-h1);
+}
+
+.banner--cta-layout-column .banner__content {
+  flex-direction: column;
 }
 
 

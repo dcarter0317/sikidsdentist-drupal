@@ -67,6 +67,14 @@ props:
       type: string
       title: "Column Background Color"
       description: "HEX color code applied to each data cell (column)."
+    mobile_layout:
+      type: string
+      title: "Mobile Layout"
+      description: "How the table behaves on narrow screens."
+      default: scroll
+      enum:
+        - scroll
+        - stacked
 
 variants:
   alignment:

@@ -13,6 +13,7 @@
 {%- set cta_url      = paragraph.field_primary_cta.0 ? paragraph.field_primary_cta.0.url.toString() : null -%}
 {%- set cta_secondary_label = paragraph.field_secondary_cta.0.title|default(null) -%}
 {%- set cta_secondary_url   = paragraph.field_secondary_cta.0 ? paragraph.field_secondary_cta.0.url.toString() : null -%}
+{%- set cta_layout   = paragraph.field_cta_layout.value|default('row') -%}
 
 {%- set props = {
   banner_style:        banner_style,
@@ -22,6 +23,7 @@
   cta_url:             cta_url,
   cta_secondary_label: cta_secondary_label,
   cta_secondary_url:   cta_secondary_url,
+  cta_layout:          cta_layout,
 } -%}
 
 {%- set raw_anim = paragraph.field_banner_animation_style.value -%}

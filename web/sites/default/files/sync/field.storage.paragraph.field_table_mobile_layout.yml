@@ -1,0 +1,27 @@
+uuid: 41d09f8f-129c-46bf-9198-e00d06e08811
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_table_mobile_layout
+field_name: field_table_mobile_layout
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: scroll
+      label: 'Horizontal scroll'
+    -
+      value: stacked
+      label: 'Stacked cards'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

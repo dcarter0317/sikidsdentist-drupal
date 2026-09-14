@@ -19,6 +19,7 @@
  * - Background colors (color_field, .0.color): field_table_bg_color,
  *   field_table_header_bg_color, field_table_row_bg_color,
  *   field_table_col_bg_color
+ * - Mobile layout: field_table_mobile_layout (scroll|stacked)
  */
 #}
 
@@ -37,6 +38,7 @@
 {%- set header_bg_color = null -%}
 {%- set row_bg_color = null -%}
 {%- set col_bg_color = null -%}
+{%- set mobile_layout = paragraph.field_table_mobile_layout.value|default('scroll') -%}
 
 {# Caption #}
 {% if paragraph.field_table_caption is defined and not paragraph.field_table_caption.isEmpty %}
@@ -157,5 +159,6 @@
   header_bg_color: header_bg_color,
   row_bg_color: row_bg_color,
   col_bg_color: col_bg_color,
+  mobile_layout: mobile_layout,
 } only %}
 </div>

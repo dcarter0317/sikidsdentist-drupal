@@ -34,3 +34,8 @@ props:
       type: string
       title: "Animation Class"
       description: "CSS animation class applied to the banner article element."
+    cta_layout:
+      type: string
+      title: "CTA Layout"
+      default: "row"
+      description: "Flex direction for the cta-banner variant: 'row' or 'column'."

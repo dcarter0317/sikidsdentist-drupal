@@ -9,6 +9,9 @@
 {%- if animation_class -%}
   {%- set article_classes = article_classes|merge([animation_class]) -%}
 {%- endif -%}
+{%- if banner_style == 'cta-banner' and cta_layout|default('row') == 'column' -%}
+  {%- set article_classes = article_classes|merge(['banner--cta-layout-column']) -%}
+{%- endif -%}
 
 <article class="{{ article_classes|join(' ') }}">
   <div class="banner__content">

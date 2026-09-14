@@ -16,8 +16,12 @@
  * - header_bg_color
  * - row_bg_color
  * - col_bg_color
+ * - mobile_layout ("scroll" [default] or "stacked")
  */
 #}
+
+{% set mobile_layout = mobile_layout|default('scroll') %}
+{% set is_stacked = mobile_layout == 'stacked' %}
 
 {%
   set wrap_classes = [
@@ -33,6 +37,7 @@
     dark_mode ? 'table-comp--dark' : '',
     vertical_borders ? 'table-comp--vertical-borders' : '',
     outer_border ? 'table-comp--outer-border' : '',
+    is_stacked ? 'table-comp--stacked' : '',
   ]
 %}
 
@@ -52,7 +57,14 @@
 {% set style_str = inline_styles|length > 0 ? inline_styles|join('; ') ~ ';' : '' %}
 {% set style_attribute = style_str ? 'style="' ~ style_str ~ '"' : '' %}
 
-<div class="{{ wrap_classes|join(' ')|trim }}" {{ style_attribute|raw }}>
+{#
+  When the table can scroll horizontally, expose it as a keyboard-focusable
+  region (WCAG 1.4.10 / 2.1.1) so keyboard-only users can scroll it without
+  a mouse or touch input.
+#}
+{% set scroll_a11y_attributes = is_stacked ? '' : ('role="region" tabindex="0" aria-label="' ~ (caption|default('Scrollable data table')) ~ '"') %}
+
+<div class="{{ wrap_classes|join(' ')|trim }}" {{ style_attribute|raw }} {{ scroll_a11y_attributes|raw }}>
   <table class="{{ table_classes|join(' ')|trim }}">
     {% if caption %}
       <caption>{{ caption }}</caption>
@@ -75,8 +87,12 @@
             {% if row.heading %}
               <th scope="row">{{ row.heading }}</th>
             {% endif %}
+            {% set header_offset = row.heading ? 1 : 0 %}
             {% for cell in row.cells %}
-              <td>{{ cell }}</td>
+              {# data-label powers the stacked mobile layout's "label: value" rows.
+                 Offset by 1 when a row heading is present, since the first
+                 header column belongs to the <th>, not the first <td>. #}
+              <td data-label="{{ headers[loop.index0 + header_offset]|default('') }}">{{ cell }}</td>
             {% endfor %}
           </tr>
         {% endfor %}

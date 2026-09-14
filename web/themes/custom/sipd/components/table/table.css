@@ -5,9 +5,23 @@
  */
 
 .table-wrap {
+  position: relative;
   width: 100%;
   overflow-x: auto;
   background-color: var(--table-bg, var(--clr-bg-1, #ffffff));
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .table-wrap {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Keyboard focus indicator for the scrollable region (WCAG 2.1.1 / 1.4.10) */
+.table-wrap:focus-visible {
+  outline: 2px solid var(--clr-primary, #0f7a5a);
+  outline-offset: -2px;
 }
 
 .table-comp {
@@ -17,6 +31,15 @@
   font-size: 0.95rem;
   line-height: 1.5;
   background-color: var(--table-bg, var(--clr-bg-1, #ffffff));
+}
+
+.table-comp caption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--ff-body);
+  font-weight: var(--fw-bold);
+  color: var(--table-text, var(--clr-text-3, #163b5c));
+  padding: 0 0 0.75rem;
 }
 
 .table-comp thead th {
@@ -124,10 +147,31 @@
   border: 1px solid var(--table-border, #e5e7eb);
 }
 
-/* Optional mobile styles: since we have overflow-x: auto on wrapper, it will scroll. */
+/* ---------------------------------------------------------------------- */
+/* Mobile: default "scroll" layout                                        */
+/* ---------------------------------------------------------------------- */
+
 @media (width < 768px) {
   .table-wrap {
     padding: 1rem 0.5rem;
+  }
+
+  /*
+   * Scroll-shadow affordance: fades in a shadow on whichever edge still has
+   * hidden content, so it's visually obvious the table can be scrolled
+   * sideways. Pure CSS (Lea Verou's background-attachment: local/scroll
+   * technique) — no JS or scroll listeners required, and it automatically
+   * disappears once you've scrolled all the way to that edge.
+   */
+  .table-wrap:has(.table-comp:not(.table-comp--stacked)) {
+    background-image:
+      linear-gradient(to right, var(--table-bg, var(--clr-bg-1, #ffffff)) 30%, rgba(0, 0, 0, 0)),
+      linear-gradient(to left, var(--table-bg, var(--clr-bg-1, #ffffff)) 30%, rgba(0, 0, 0, 0)) 100% 0,
+      linear-gradient(to right, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0)),
+      linear-gradient(to left, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0)) 100% 0;
+    background-repeat: no-repeat;
+    background-size: 32px 100%, 32px 100%, 12px 100%, 12px 100%;
+    background-attachment: local, local, scroll, scroll;
   }
 
   .table-comp thead th,
@@ -135,5 +179,138 @@
   .table-comp tbody td {
     padding: 1rem 0.75rem;
     font-size: 0.875rem;
+  }
+
+  /*
+   * Give columns a sensible minimum width instead of letting them get
+   * crushed to fit the viewport. This is what actually makes the wrapper's
+   * overflow-x: auto produce a real, legible horizontal scroll on phones
+   * rather than illegibly narrow, wrapped columns.
+   */
+  .table-comp:not(.table-comp--stacked) {
+    width: max-content;
+    min-width: 100%;
+  }
+
+  .table-comp:not(.table-comp--stacked) th,
+  .table-comp:not(.table-comp--stacked) td {
+    min-width: 140px;
+  }
+
+  /*
+   * The <caption> spans the full (widened) table width, so left it
+   * unpinned it would scroll out of view horizontally along with the
+   * table. Pin it to the visible edge of the scroll container instead.
+   * (This is safe on <caption>, a block-level box — unlike sticky on a
+   * <td>/<th>, see note below, it has no table-cell painting quirks.)
+   */
+  .table-comp:not(.table-comp--stacked) caption {
+    position: sticky;
+    left: 0;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  /*
+   * NOTE: a sticky first column (position: sticky on the row's <th>/<td>)
+   * was intentionally tried and removed here. Browsers paint table cell
+   * backgrounds separately from normal stacking-context painting, so a
+   * sticky cell's "opaque" background does not reliably cover the cells
+   * scrolling underneath it — neighboring column text visibly bled
+   * through during scroll in testing. Sticky columns inside a real
+   * <table> are a known cross-browser trouble spot; the reliable fix
+   * would require a duplicated frozen-column table (as grid libraries
+   * like AG Grid/DataTables do), which is out of scope for this
+   * lightweight component. Plain horizontal scroll (below) is used
+   * instead.
+   */
+}
+
+/* ---------------------------------------------------------------------- */
+/* Mobile: opt-in "stacked" layout (mobile_layout: stacked)                */
+/* Each row becomes a labeled card instead of scrolling horizontally.      */
+/* Best for long, narrow-column tables (pricing, specs, comparisons).      */
+/* ---------------------------------------------------------------------- */
+
+@media (width < 640px) {
+  .table-comp--stacked {
+    border: none;
+  }
+
+  .table-comp--stacked thead {
+    /* Visually hidden but still available to screen readers. */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+    margin: -1px;
+    padding: 0;
+  }
+
+  .table-comp--stacked,
+  .table-comp--stacked tbody,
+  .table-comp--stacked tr,
+  .table-comp--stacked th,
+  .table-comp--stacked td {
+    display: block;
+    width: 100%;
+  }
+
+  .table-comp--stacked tbody tr {
+    margin-bottom: 1rem;
+    border: 1px solid var(--table-border, #e5e7eb);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .table-comp--stacked tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .table-comp--stacked tbody th {
+    text-align: left;
+    border-bottom: 1px solid var(--table-border, #e5e7eb);
+  }
+
+  .table-comp--stacked tbody td {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    text-align: right;
+    border: none;
+    border-bottom: 1px solid var(--table-border, #e5e7eb);
+  }
+
+  .table-comp--stacked tbody td::before {
+    content: attr(data-label);
+    font-family: var(--ff-body);
+    font-weight: var(--fw-bold);
+    color: var(--table-header-color, var(--clr-text-3, #163b5c));
+    text-align: left;
+  }
+
+  .table-comp--stacked tbody td:last-child {
+    border-bottom: none;
+  }
+
+  /* Table-level alignment doesn't apply visually once cells are stacked. */
+  .table-comp--stacked.align-left td,
+  .table-comp--stacked.align-center td,
+  .table-comp--stacked.align-right td {
+    text-align: right;
+  }
+
+  /* Vertical/outer border options are meaningless once rows are stacked cards. */
+  .table-comp--stacked.table-comp--vertical-borders th,
+  .table-comp--stacked.table-comp--vertical-borders td {
+    border-right: none;
+  }
+
+  .table-comp--stacked.table-comp--outer-border {
+    border: none;
   }
 }

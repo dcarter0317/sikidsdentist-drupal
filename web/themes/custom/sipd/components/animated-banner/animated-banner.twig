@@ -15,6 +15,7 @@
  *   - cta_url (string)
  *   - cta_secondary_label (string)
  *   - cta_secondary_url (string)
+ *   - cta_layout (string)      - 'row' | 'column', applies to cta-banner style only
  */
 #}
 
@@ -22,6 +23,9 @@
 {%- set content_classes = ['banner__content', 'banner--' ~ banner_style] -%}
 {%- if animation_class -%}
   {%- set content_classes = content_classes|merge([animation_class]) -%}
+{%- endif -%}
+{%- if banner_style == 'cta-banner' and cta_layout|default('row') == 'column' -%}
+  {%- set content_classes = content_classes|merge(['banner--cta-layout-column']) -%}
 {%- endif -%}
 
 <article class="banner">

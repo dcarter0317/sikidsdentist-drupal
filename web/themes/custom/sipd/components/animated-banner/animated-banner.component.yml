@@ -39,3 +39,8 @@ props:
       title: "Text Align"
       default: "left"
       description: "Text align for the banner content."
+    cta_layout:
+      type: string
+      title: "CTA Layout"
+      default: "row"
+      description: "Flex direction for the cta-banner variant: 'row' or 'column'."

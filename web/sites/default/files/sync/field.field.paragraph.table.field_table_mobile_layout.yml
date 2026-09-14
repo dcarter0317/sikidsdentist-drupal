@@ -1,0 +1,23 @@
+uuid: aedb9999-1a8d-4430-a472-70f34cc0ccb3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_table_mobile_layout
+    - paragraphs.paragraphs_type.table
+  module:
+    - options
+id: paragraph.table.field_table_mobile_layout
+field_name: field_table_mobile_layout
+entity_type: paragraph
+bundle: table
+label: 'Mobile Layout'
+description: 'How the table behaves on narrow (mobile) screens: horizontal scroll keeps the table shape and scrolls sideways; stacked cards turns each row into a labeled block, which reads better for long tables with few columns.'
+required: false
+translatable: true
+default_value:
+  -
+    value: scroll
+default_value_callback: ''
+settings: {  }
+field_type: list_string

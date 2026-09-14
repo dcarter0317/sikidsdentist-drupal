@@ -10,6 +10,7 @@ dependencies:
     - field.field.paragraph.animated_banner.field_ab_style
     - field.field.paragraph.animated_banner.field_ab_title
     - field.field.paragraph.animated_banner.field_animation_style
+    - field.field.paragraph.animated_banner.field_cta_layout
     - paragraphs.paragraphs_type.animated_banner
   module:
     - link
@@ -80,5 +81,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_cta_layout:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
     region: content
 hidden: {  }

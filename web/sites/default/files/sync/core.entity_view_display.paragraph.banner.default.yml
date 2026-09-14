@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.banner.field_banner_animation_style
+    - field.field.paragraph.banner.field_cta_layout
     - field.field.paragraph.banner.field_banner_style
     - field.field.paragraph.banner.field_banner_title
     - field.field.paragraph.banner.field_eyebrow
@@ -39,6 +40,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_cta_layout:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
     region: content
   field_eyebrow:
     type: string

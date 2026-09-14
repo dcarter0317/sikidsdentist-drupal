@@ -10,6 +10,7 @@ dependencies:
     - field.field.paragraph.table.field_table_dark_mode
     - field.field.paragraph.table.field_table_header_bg_color
     - field.field.paragraph.table.field_table_headers
+    - field.field.paragraph.table.field_table_mobile_layout
     - field.field.paragraph.table.field_table_outer_border
     - field.field.paragraph.table.field_table_row_bg_color
     - field.field.paragraph.table.field_table_rows
@@ -85,6 +86,13 @@ content:
       link_rel: canonical
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_table_mobile_layout:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 11
     region: content
   field_table_row_bg_color:
     type: color_field_formatter_text

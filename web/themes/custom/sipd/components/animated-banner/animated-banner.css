@@ -23,14 +23,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow-x: hidden;
   background: var(--banner-bg-color);
   color: var(--banner-text-color);
 }
 
 @media (width < 900px) {
   .banner {
-    height: var(--banner-height-mobile);
+    min-height: var(--banner-height-mobile);
     width: 100% !important;
     max-width: 100% !important;
     margin-inline: auto !important;
@@ -46,10 +46,6 @@
 
 /* ─── Content Container ─────────────────────────────────────────────────────── */
 .banner .banner__content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   color: #fff;
   text-align: center;
   padding: 1rem;
@@ -151,6 +147,10 @@
   margin-bottom: 0;
 }
 
+.banner .banner__content.banner--cta-banner.banner--cta-layout-column {
+  flex-direction: column;
+}
+
 @media (width < 900px) {
   .banner .banner__content.banner--cta-banner {
     flex-direction: column;
@@ -162,13 +162,11 @@
   }
 }
 
-s
-
 /*
  * Animation overrides: sipd.css slide-* classes set position:relative and use
- * left/top keyframes that end at 0 — wrong for an absolutely-centered element.
- * These higher-specificity rules keep the content absolutely positioned and
- * replace the keyframes with transform-based ones ending at translate(-50%,-50%).
+ * left/top keyframes that end at 0. These higher-specificity rules replace
+ * the keyframes with transform-based ones ending at translate(0, 0), since
+ * .banner__content is centered by the flex parent, not by absolute offset.
  */
 .banner .banner__content.slide-in-left {
   animation: bannerSlideInLeft 650ms ease-out forwards;
@@ -204,96 +202,96 @@ s
 
 @keyframes bannerSlideInLeft {
   0% {
-    transform: translate(-150%, -50%);
+    transform: translateX(-100%);
     opacity: 0;
   }
 
   100% {
-    transform: translate(-50%, -50%);
+    transform: translateX(0);
     opacity: 1;
   }
 }
 
 @keyframes bannerSlideInContentLeft {
   0% {
-    transform: translate(-100%, -50%);
+    transform: translateX(-50%);
     opacity: 0;
   }
 
   100% {
-    transform: translate(-50%, -50%);
+    transform: translateX(0);
     opacity: 1;
   }
 }
 
 @keyframes bannerSlideInRight {
   0% {
-    transform: translate(50%, -50%);
+    transform: translateX(100%);
     opacity: 0;
   }
 
   100% {
-    transform: translate(-50%, -50%);
+    transform: translateX(0);
     opacity: 1;
   }
 }
 
 @keyframes bannerSlideInContentRight {
   0% {
-    transform: translate(0%, -50%);
+    transform: translateX(50%);
     opacity: 0;
   }
 
   100% {
-    transform: translate(-50%, -50%);
+    transform: translateX(0);
     opacity: 1;
   }
 }
 
 @keyframes bannerSlideDown {
   0% {
-    transform: translate(-50%, -150%);
+    transform: translateY(-100%);
     opacity: 0;
   }
 
   100% {
-    transform: translate(-50%, -50%);
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes bannerSlideDownContent {
   0% {
-    transform: translate(-50%, -100%);
+    transform: translateY(-50%);
     opacity: 0;
   }
 
   100% {
-    transform: translate(-50%, -50%);
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes bannerSlideUp {
   0% {
-    transform: translate(-50%, 50%);
+    transform: translateY(100%);
     opacity: 0;
   }
 
   100% {
-    transform: translate(-50%, -50%);
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes bannerSlideUpContent {
   0% {
-    transform: translate(-50%, 0%);
+    transform: translateY(50%);
     opacity: 0;
   }
 
   100% {
-    transform: translate(-50%, -50%);
+    transform: translateY(0);
     opacity: 1;
   }
 }
