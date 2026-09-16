@@ -12,10 +12,12 @@
  */
 
 // 1. Hostinger Staging Database Configuration
+// This file becomes settings.local.php on the server and is gitignored,
+// so it's safe to put the real password directly below.
 $databases['default']['default'] = [
   'database' => 'u123456789_staging',   // Replace with your Hostinger DB name (e.g. u123456789_db)
   'username' => 'u123456789_dbuser',    // Replace with your Hostinger DB username
-  'password' => 'YOUR_DB_PASSWORD',     // Replace with your Hostinger DB user password
+  'password' => 'REPLACE_WITH_REAL_DB_PASSWORD', // Replace with your Hostinger DB user password
   'host' => '127.0.0.1',                // Hostinger databases use 127.0.0.1 or localhost
   'port' => '3306',
   'driver' => 'mysql',

@@ -39,3 +39,12 @@ Temporary Items
 # ddev tailscale livereload watcher (host-side, per-developer)
 .ddev/.tailscale-livereload.pid
 .ddev/.tailscale-livereload.log
+
+# Local/environment settings containing real credentials — never commit these.
+web/sites/default/settings.local.php
+web/sites/*/settings.local.php
+*.env
+.env.local
+
+# Local deployment build artifacts (DB dumps, upload zips).
+/deploy/
