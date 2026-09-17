@@ -51,7 +51,7 @@ video,
 embed,
 object {
   display: block;
-  max-width: 100% !important;
+  max-width: 100%;
   height: auto;
   box-sizing: border-box;
 }
@@ -60,8 +60,8 @@ object {
 .no-scale-up img,
 .no-scale-up video,
 .no-scale-up iframe {
-  width: auto !important;
-  max-width: 100% !important;
+  width: auto;
+  max-width: 100%;
 }
 
 html,
@@ -75,6 +75,11 @@ body {
   color: var(--clr-text-1);
   overflow-x: clip;
   overflow-y: visible;
+
+  @media (width < 900px) {
+    width: 100vw;
+    max-width: 100vw;
+  }
 }
 
 .text-align-left {
@@ -93,36 +98,13 @@ body {
   font-family: var(--ff-body);
   min-height: 100%;
   display: grid;
+
+  @media (width < 900px) {
+    display: block;
+  }
 }
 
 @media (width < 900px) {
-
-  html,
-  body,
-  .page-wrap,
-  .layout-container {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    overflow-x: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    display: block !important;
-  }
-
-  body {
-    background: var(--clr-bg-1);
-  }
-
-  .content-container {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-    box-sizing: border-box !important;
-    margin-inline: 0 !important;
-  }
-
   .service a {
     width: 100%;
     box-sizing: border-box;
@@ -213,6 +195,14 @@ ul {
   width: 100%;
   max-width: 1200px;
   margin-inline: auto;
+
+  @media (width < 900px) {
+    width: 100vw;
+    max-width: 100vw;
+    padding-inline: 0.5rem;
+    margin-inline: 0;
+    box-sizing: border-box;
+  }
 }
 
 .text-light {
@@ -228,6 +218,19 @@ ul {
   width: 100%;
   display: grid;
   grid-template-rows: auto 1fr auto;
+
+  @media (width < 900px) {
+    width: 100vw;
+    max-width: 100vw;
+    display: block;
+  }
+}
+
+.layout-container {
+  @media (width < 900px) {
+    width: 100vw;
+    max-width: 100vw;
+  }
 }
 
 .border-top {
@@ -421,7 +424,7 @@ ul {
   }
 
   button.submenu-toggle {
-    display: none !important;
+    display: none;
   }
 }
 
@@ -561,8 +564,8 @@ ul {
   aspect-ratio: 21/9;
 
   @media (width < 900px) {
-    height: auto !important;
-    aspect-ratio: 16/9 !important;
+    height: auto;
+    aspect-ratio: 16/9;
   }
 }
 
@@ -583,9 +586,9 @@ ul {
   aspect-ratio: 21/9;
 
   @media (width < 900px) {
-    aspect-ratio: auto !important;
-    min-height: 380px !important;
-    padding-bottom: 3rem !important;
+    aspect-ratio: auto;
+    min-height: 380px;
+    padding-bottom: 3rem;
   }
 
   .btn {
@@ -1021,12 +1024,17 @@ ul {
   position: relative;
 
   @media (width < 900px) {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    box-sizing: border-box !important;
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 
+    /*
+     * Splide.js sets inline widths on these elements via JS to control
+     * the carousel track, so CSS alone cannot win the specificity war
+     * without !important.
+     */
     .splide__track,
     .splide__list,
     .splide__slide,
@@ -1056,10 +1064,10 @@ ul {
     padding-block: 4rem;
 
     @media (width < 900px) {
-      width: 90% !important;
-      max-width: 90% !important;
-      padding-block: 0.5rem !important;
-      font-size: 1.1rem !important;
+      width: 90%;
+      max-width: 90%;
+      padding-block: 0.5rem;
+      font-size: 1.1rem;
     }
 
     h2 {
@@ -1068,8 +1076,8 @@ ul {
       margin-bottom: 0;
 
       @media (width < 900px) {
-        font-size: 1.8rem !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
       }
     }
 
@@ -1080,8 +1088,8 @@ ul {
       text-decoration: none;
 
       @media (width < 900px) {
-        font-size: 0.9rem !important;
-        padding-inline: 1rem !important;
+        font-size: 0.9rem;
+        padding-inline: 1rem;
       }
     }
   }
@@ -1092,10 +1100,10 @@ ul {
   padding-block: 4rem;
 
   @media (width < 900px) {
-    width: 90vw !important;
-    max-width: 90vw !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    width: 90vw;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
     box-sizing: border-box;
     display: block;
   }
@@ -1105,9 +1113,9 @@ ul {
     padding-inline: 6rem;
 
     @media (width < 900px) {
-      width: 100% !important;
-      max-width: 100% !important;
-      padding-inline: 0.5rem !important;
+      width: 100%;
+      max-width: 100%;
+      padding-inline: 0.5rem;
       box-sizing: border-box;
       padding-block: inherit;
     }
@@ -1484,44 +1492,56 @@ ul {
   flex-direction: column;
 }
 
-/* ── EPT Paragraph Columns Responsive Overrides ─────────── */
+/*
+ * ── EPT Paragraph Columns Responsive Overrides ───────────
+ * The ept_columns module's own grid-column-count selectors (e.g.
+ * ".ept-paragraph-columns.column-2.columns-50-50 > ...") carry the same
+ * specificity as a plain 3-class match here, so the ept-paragraph-columns
+ * class is repeated to outweigh them deterministically, regardless of
+ * asset load order, instead of relying on !important.
+ */
 @media (width < 900px) {
 
-  .paragraph.ept-paragraph.ept-paragraph-columns>.ept-container>.field--name-field-ept-columns,
-  .paragraph.ept-paragraph.ept-paragraph-columns>.field--name-field-ept-columns {
-    display: flex !important;
-    flex-direction: column !important;
-    grid-template-columns: 1fr !important;
-    gap: 1.5rem !important;
+  .paragraph.ept-paragraph.ept-paragraph-columns.ept-paragraph-columns>.ept-container>.field--name-field-ept-columns,
+  .paragraph.ept-paragraph.ept-paragraph-columns.ept-paragraph-columns>.field--name-field-ept-columns {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  .paragraph.ept-paragraph.ept-paragraph-columns>.ept-container>.field--name-field-ept-columns>.field__item,
-  .paragraph.ept-paragraph.ept-paragraph-columns>.field--name-field-ept-columns>.field__item {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
+  .paragraph.ept-paragraph.ept-paragraph-columns.ept-paragraph-columns>.ept-container>.field--name-field-ept-columns>.field__item,
+  .paragraph.ept-paragraph.ept-paragraph-columns.ept-paragraph-columns>.field--name-field-ept-columns>.field__item {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
-  .ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field__item .paragraph,
-  .ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field--item .paragraph,
-  .ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field__item .paragraph,
-  .ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field--item .paragraph {
-    height: auto !important;
+  .ept-paragraph-columns.columns-equal-height.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field__item .paragraph,
+  .ept-paragraph-columns.columns-equal-height.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field--item .paragraph,
+  .ept-paragraph-columns.columns-equal-height.columns-equal-height>.field--name-field-ept-columns>.field__item .paragraph,
+  .ept-paragraph-columns.columns-equal-height.columns-equal-height>.field--name-field-ept-columns>.field--item .paragraph {
+    height: auto;
   }
 
+  /*
+   * These two rules match the exact selectors of the unconditional
+   * "EPT Paragraph Columns Equal Height Fix" rules above and are declared
+   * after them, so normal cascade order already wins here.
+   */
   .ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field__item>*,
   .ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field--item>*,
   .ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field__item>*,
   .ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field--item>* {
-    height: auto !important;
+    height: auto;
   }
 
   .ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field__item>*>*,
   .ept-paragraph-columns.columns-equal-height>.ept-container>.field--name-field-ept-columns>.field--item>*>*,
   .ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field__item>*>*,
   .ept-paragraph-columns.columns-equal-height>.field--name-field-ept-columns>.field--item>*>* {
-    flex-grow: 0 !important;
-    height: auto !important;
+    flex-grow: 0;
+    height: auto;
   }
 }
 
@@ -1656,52 +1676,70 @@ ul {
   }
 }
 
-/* Custom Full Bleed EPT Columns */
+/*
+ * Custom Full Bleed EPT Columns
+ * No other rule sets `width` on `.paragraph`, so an explicit value here
+ * always applies without a specificity fight — !important was never
+ * needed to make this win.
+ */
 .paragraph.columns-full-bleed {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  margin-left: calc(-50vw + 50%) !important;
-  margin-right: calc(-50vw + 50%) !important;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
   box-sizing: border-box;
   z-index: 1;
 }
 
 @media (width < 900px) {
   .paragraph.columns-full-bleed {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
 .paragraph.columns-full-bleed .ept-container:not(.content-container) {
-  width: 95% !important;
-  max-width: 95% !important;
-  margin-inline: auto !important;
-  padding-inline: 0 !important;
+  width: 95%;
+  max-width: 95%;
+  margin-inline: auto;
+  padding-inline: 0;
 }
 
-/* Ensure nested components inside container paragraphs are transparent and do not breakout */
+/*
+ * Ensure nested components inside container paragraphs are transparent and
+ * do not breakout. Each component (banner/two-col-cta/text-section) styles
+ * itself with a single class selector, so this 3-class selector already
+ * outranks it without !important.
+ */
 .paragraph .paragraph .banner,
 .paragraph .paragraph .two-col-cta,
 .paragraph .paragraph .text-section {
-  background: transparent !important;
-  background-color: transparent !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin-inline: 0 !important;
-  left: auto !important;
-  transform: none !important;
+  background: transparent;
+  background-color: transparent;
+  width: 100%;
+  max-width: 100%;
+  margin-inline: 0;
+  left: auto;
+  transform: none;
 }
 
-/* Ensure floated content paragraphs and their wrappers are not flexed by column container equal-height settings */
-.paragraph--type--floated-content,
-.paragraph .field__item>div:has(.floated-content),
-.floated-content {
-  display: block !important;
-  height: auto !important;
-  flex-grow: 0 !important;
+/*
+ * Ensure floated content paragraphs and their wrappers are not flexed by
+ * the ept_columns module's equal-height settings. Scoped to that exact
+ * ancestor chain (with columns-equal-height repeated) so the selector
+ * outranks the module's 5-class rule instead of relying on !important.
+ */
+.ept-paragraph-columns.columns-equal-height.columns-equal-height .field--name-field-ept-columns .field__item .paragraph--type--floated-content,
+.ept-paragraph-columns.columns-equal-height.columns-equal-height .field--name-field-ept-columns .field--item .paragraph--type--floated-content,
+.ept-paragraph-columns.columns-equal-height.columns-equal-height .field--name-field-ept-columns .field__item > div:has(.floated-content),
+.ept-paragraph-columns.columns-equal-height.columns-equal-height .field--name-field-ept-columns .field--item > div:has(.floated-content),
+.ept-paragraph-columns.columns-equal-height.columns-equal-height .field--name-field-ept-columns .field__item .floated-content,
+.ept-paragraph-columns.columns-equal-height.columns-equal-height .field--name-field-ept-columns .field--item .floated-content {
+  display: block;
+  height: auto;
+  flex-grow: 0;
 }
 
 /* Front-end shortcut for editors to jump straight to the node edit form. */
