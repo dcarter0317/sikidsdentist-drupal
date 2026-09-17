@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.page_hero.field_no_scale_up
     - field.field.paragraph.page_hero.field_ph_banner_label
     - field.field.paragraph.page_hero.field_ph_cta
     - field.field.paragraph.page_hero.field_ph_description
@@ -61,4 +62,5 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
-hidden: {  }
+hidden:
+  field_no_scale_up: true

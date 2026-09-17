@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.slide_item.field_no_scale_up
     - field.field.paragraph.slide_item.field_slide_alignment
     - field.field.paragraph.slide_item.field_slide_body
     - field.field.paragraph.slide_item.field_slide_cta
@@ -61,4 +62,5 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-hidden: {  }
+hidden:
+  field_no_scale_up: true

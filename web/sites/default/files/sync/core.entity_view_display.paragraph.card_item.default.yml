@@ -10,6 +10,7 @@ dependencies:
     - field.field.paragraph.card_item.field_card_style
     - field.field.paragraph.card_item.field_card_title
     - field.field.paragraph.card_item.field_card_type
+    - field.field.paragraph.card_item.field_no_scale_up
     - paragraphs.paragraphs_type.card_item
   module:
     - link
@@ -77,4 +78,5 @@ content:
     third_party_settings: {  }
     weight: 6
     region: content
-hidden: {  }
+hidden:
+  field_no_scale_up: true

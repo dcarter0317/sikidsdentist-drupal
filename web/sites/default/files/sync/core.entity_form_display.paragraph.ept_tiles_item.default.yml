@@ -8,6 +8,7 @@ dependencies:
     - field.field.paragraph.ept_tiles_item.field_ept_tiles_link
     - field.field.paragraph.ept_tiles_item.field_ept_tiles_text
     - field.field.paragraph.ept_tiles_item.field_ept_tiles_title
+    - field.field.paragraph.ept_tiles_item.field_no_scale_up
     - paragraphs.paragraphs_type.ept_tiles_item
   module:
     - link
@@ -57,6 +58,13 @@ content:
     settings:
       rows: 2
       placeholder: ''
+    third_party_settings: {  }
+  field_no_scale_up:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   admin_title: true

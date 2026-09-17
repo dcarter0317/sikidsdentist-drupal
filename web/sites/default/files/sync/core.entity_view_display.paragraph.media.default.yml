@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.media.field_mc_media
+    - field.field.paragraph.media.field_no_scale_up
     - paragraphs.paragraphs_type.media
 id: paragraph.media.default
 targetEntityType: paragraph
@@ -19,4 +20,5 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-hidden: {  }
+hidden:
+  field_no_scale_up: true

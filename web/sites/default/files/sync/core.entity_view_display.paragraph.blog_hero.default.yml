@@ -10,6 +10,7 @@ dependencies:
     - field.field.paragraph.blog_hero.field_blog_hero_date
     - field.field.paragraph.blog_hero.field_blog_hero_title
     - field.field.paragraph.blog_hero.field_content_alignment
+    - field.field.paragraph.blog_hero.field_no_scale_up
     - field.field.paragraph.blog_hero.layout_builder__layout
     - paragraphs.paragraphs_type.blog_hero
   module:
@@ -158,4 +159,5 @@ hidden:
   field_blog_hero_bg_img_alt: true
   field_blog_hero_date: true
   field_blog_hero_title: true
+  field_no_scale_up: true
   layout_builder__layout: true

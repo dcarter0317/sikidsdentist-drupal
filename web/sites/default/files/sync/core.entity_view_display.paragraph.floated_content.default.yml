@@ -9,6 +9,7 @@ dependencies:
     - field.field.paragraph.floated_content.field_fc_float_direction
     - field.field.paragraph.floated_content.field_fc_image
     - field.field.paragraph.floated_content.field_fc_text_color
+    - field.field.paragraph.floated_content.field_no_scale_up
     - paragraphs.paragraphs_type.floated_content
   module:
     - color_field
@@ -70,4 +71,5 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
-hidden: {  }
+hidden:
+  field_no_scale_up: true

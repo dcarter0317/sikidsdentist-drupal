@@ -13,6 +13,7 @@ dependencies:
     - field.field.paragraph.featured_post.field_fp_style
     - field.field.paragraph.featured_post.field_fp_subtitle
     - field.field.paragraph.featured_post.field_fp_title
+    - field.field.paragraph.featured_post.field_no_scale_up
     - paragraphs.paragraphs_type.featured_post
   module:
     - link
@@ -104,4 +105,5 @@ content:
     third_party_settings: {  }
     weight: 6
     region: content
-hidden: {  }
+hidden:
+  field_no_scale_up: true

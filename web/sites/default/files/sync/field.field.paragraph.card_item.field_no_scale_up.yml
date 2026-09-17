@@ -1,0 +1,21 @@
+uuid: 3051a369-b3f2-44ca-af0b-7a07c0e9f440
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_no_scale_up
+    - paragraphs.paragraphs_type.card_item
+id: paragraph.card_item.field_no_scale_up
+field_name: field_no_scale_up
+entity_type: paragraph
+bundle: card_item
+label: "Don't scale image larger than original size"
+description: 'If checked, the image will never be enlarged beyond its native/original dimensions, only scaled down to fit its container.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

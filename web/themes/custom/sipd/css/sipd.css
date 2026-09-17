@@ -56,6 +56,14 @@ object {
   box-sizing: border-box;
 }
 
+/* Set on a paragraph wrapper when its "Don't scale image larger than original size" toggle is on. */
+.no-scale-up img,
+.no-scale-up video,
+.no-scale-up iframe {
+  width: auto !important;
+  max-width: 100% !important;
+}
+
 html,
 body {
   margin-left: 0;
@@ -1173,6 +1181,7 @@ ul {
 
   ul {
     list-style: none;
+    margin-left: 0;
     padding-left: 0;
     display: flex;
     justify-content: center;

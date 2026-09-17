@@ -122,6 +122,29 @@ function sipd_preprocess_node(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for paragraph.html.twig.
+ *
+ * Adds a "no-scale-up" class to the paragraph wrapper when its
+ * "Don't scale image larger than original size" toggle is enabled, so
+ * images inside it (however the bundle renders them) never enlarge past
+ * their native size. Attaching it to $variables['attributes'] directly
+ * (rather than a bundle template's local classes array) means it also
+ * reaches paragraph types whose render template is provided by a
+ * contrib module (e.g. ept_tiles, ept_video_and_image_gallery) instead
+ * of this theme.
+ */
+function sipd_preprocess_paragraph(array &$variables): void {
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  $paragraph = $variables['paragraph'];
+  $no_scale_up = $paragraph->hasField('field_no_scale_up')
+    && !$paragraph->get('field_no_scale_up')->isEmpty()
+    && (bool) $paragraph->get('field_no_scale_up')->value;
+  if ($no_scale_up) {
+    $variables['attributes']['class'][] = 'no-scale-up';
+  }
+}
+
+/**
  * Implements hook_theme_registry_alter().
  *
  * Forces Drupal to respect theme template overrides for EPT modules.

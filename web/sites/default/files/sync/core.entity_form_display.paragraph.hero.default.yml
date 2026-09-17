@@ -15,6 +15,7 @@ dependencies:
     - field.field.paragraph.hero.field_hero_style
     - field.field.paragraph.hero.field_hero_subheadline
     - field.field.paragraph.hero.field_hero_theme
+    - field.field.paragraph.hero.field_no_scale_up
     - paragraphs.paragraphs_type.hero
   module:
     - link
@@ -114,6 +115,13 @@ content:
     weight: 7
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_no_scale_up:
+    type: boolean_checkbox
+    weight: 12
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   admin_title: true

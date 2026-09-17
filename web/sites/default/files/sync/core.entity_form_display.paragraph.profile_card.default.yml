@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.profile_card.field_no_scale_up
     - field.field.paragraph.profile_card.field_profile_card_bio
     - field.field.paragraph.profile_card.field_profile_card_link
     - field.field.paragraph.profile_card.field_profile_card_media
@@ -17,6 +18,13 @@ targetEntityType: paragraph
 bundle: profile_card
 mode: default
 content:
+  field_no_scale_up:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_profile_card_bio:
     type: text_textarea
     weight: 2

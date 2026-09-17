@@ -9,6 +9,7 @@ dependencies:
     - field.field.paragraph.floated_content.field_fc_float_direction
     - field.field.paragraph.floated_content.field_fc_image
     - field.field.paragraph.floated_content.field_fc_text_color
+    - field.field.paragraph.floated_content.field_no_scale_up
     - paragraphs.paragraphs_type.floated_content
   module:
     - color_field
@@ -60,6 +61,13 @@ content:
     region: content
     settings:
       default_colors: '#ffffff,#fefefe,#f3efef,#e4ff7f,#89bbd1,#39bdb3,#38bcb1,#668595,#287ca6,#1478a3,#ff0000,#414549,#333333,#00334f,#000000'
+    third_party_settings: {  }
+  field_no_scale_up:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   admin_title: true

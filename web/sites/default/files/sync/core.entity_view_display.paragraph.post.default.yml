@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.post.field_border_style
+    - field.field.paragraph.post.field_no_scale_up
     - field.field.paragraph.post.field_post_body
     - field.field.paragraph.post.field_post_cta
     - field.field.paragraph.post.field_post_eyebrowv
@@ -79,4 +80,5 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-hidden: {  }
+hidden:
+  field_no_scale_up: true

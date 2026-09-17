@@ -892,8 +892,12 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
  * - Rerouting outgoing emails.
  *
  * Keep this code block at the end of this file to take full effect.
+ *
+ * settings.local.php in this repo is written for the Hostinger staging
+ * server (trusted_host_patterns, DB credentials), so it's skipped under
+ * DDEV to avoid clobbering the local settings.ddev.php include above.
  */
-if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+if (getenv('IS_DDEV_PROJECT') != 'true' && file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
 

@@ -13,6 +13,7 @@ dependencies:
     - field.field.paragraph.featured_post.field_fp_style
     - field.field.paragraph.featured_post.field_fp_subtitle
     - field.field.paragraph.featured_post.field_fp_title
+    - field.field.paragraph.featured_post.field_no_scale_up
     - paragraphs.paragraphs_type.featured_post
   module:
     - link
@@ -97,6 +98,13 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_no_scale_up:
+    type: boolean_checkbox
+    weight: 10
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   admin_title: true

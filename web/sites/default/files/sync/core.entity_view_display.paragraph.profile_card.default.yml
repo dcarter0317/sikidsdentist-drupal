@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.profile_card.field_no_scale_up
     - field.field.paragraph.profile_card.field_profile_card_bio
     - field.field.paragraph.profile_card.field_profile_card_link
     - field.field.paragraph.profile_card.field_profile_card_media
@@ -52,4 +53,5 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-hidden: {  }
+hidden:
+  field_no_scale_up: true

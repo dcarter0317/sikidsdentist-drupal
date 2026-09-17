@@ -6,6 +6,7 @@ dependencies:
     - field.field.paragraph.image_link.field_image_link_bg_color
     - field.field.paragraph.image_link.field_image_link_media
     - field.field.paragraph.image_link.field_image_link_url
+    - field.field.paragraph.image_link.field_no_scale_up
     - paragraphs.paragraphs_type.image_link
   module:
     - color_field
@@ -37,6 +38,13 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_no_scale_up:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   admin_title: true
